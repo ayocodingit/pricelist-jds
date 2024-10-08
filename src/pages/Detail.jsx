@@ -16,11 +16,12 @@ function Detail() {
       setUser(userDetail);
       return;
     }
+    navigate('/404');
 
   }, []);
 
   if (!user) {
-    return navigate('404');
+    return navigate('/404', {replace: true});
   }
 
   return (

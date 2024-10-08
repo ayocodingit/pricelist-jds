@@ -1,22 +1,38 @@
-const users = [{
-  username: 'novansyaah',
-  name_card: 'Rahadian Novansyah',
-  payments: [
-    {
-        provider: 'gopay',
-          value: '089669494255',
-    },
-    {
-        provider: 'dana',
-        value: '089669494255',
-    },
-    {
-        provider: 'jago',
-        value: '502687237661'
-    }
-  ]  
-}]
+const users = [
+  {
+    username: "novansyaah",
+    name_card: "Rahadian Novansyah",
+    payments: [
+      {
+        provider: "gopay",
+        value: "089669494255",
+      },
+      {
+        provider: "dana",
+        value: "089669494255",
+      },
+      {
+        provider: "jago",
+        value: "502687237661",
+      },
+    ],
+  },
+  {
+    username: "duhabduh",
+    name_card: "Muhamad Abduh",
+    payments: [
+      {
+        provider: "gopay",
+        value: "085722507840",
+      },
+      {
+        provider: "jago",
+        value: "501150988960",
+      },
+    ],
+  },
+];
 
 export const getUser = (username) => {
-    return users.filter((user) => user.username === username)[0]
-}
+  return users.filter((user) => user.username === username)[0];
+};

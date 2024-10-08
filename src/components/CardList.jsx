@@ -13,7 +13,7 @@ function CardList({ product }) {
               <img
                 src={product.image}
                 alt="image product"
-                className="w-1/2 rounded-lg hover: cursor-zoom-in"
+                className="w-32 min-h-36 rounded-lg hover: cursor-zoom-in object-contain"
                 loading="lazy"
               />
             </PhotoView>
@@ -25,7 +25,7 @@ function CardList({ product }) {
           </h1>
           <p className="md:text-sm text-lg font-serif"> Rp {product.price}</p>
         </div>
-        <div>
+        <div className="flex">
           <Link
             to={"/list/" + product.username}
             className="w-full h-8 bg-blue-600 text-md md:text-sm flex justify-center items-center text-white rounded-sm shadow-lg"
