@@ -8,12 +8,16 @@ function CardList({ product }) {
     <div className=" rounded-lg bg-white shadow-xl flex p-5 mb-5">
       <div className="flex flex-col gap-2 justify-center w-full">
         <div className="flex shadow-b-md justify-center">
-          <PhotoProvider>
-            <PhotoView src={product.image}>
+          <PhotoProvider className={`${
+                  !product.is_available && "grayscale"
+                }`}>
+            <PhotoView src={product.image} >
               <img
                 src={product.image}
                 alt="image product"
-                className="w-32 min-h-36 rounded-lg hover: cursor-zoom-in object-contain"
+                className={`w-32 min-h-36 rounded-lg hover: cursor-zoom-in object-contain ${
+                  !product.is_available && "grayscale"
+                }`}
                 loading="lazy"
               />
             </PhotoView>
@@ -27,10 +31,12 @@ function CardList({ product }) {
         </div>
         <div className="flex">
           <Link
-            to={"/list/" + product.username}
-            className="w-full h-8 bg-blue-600 text-md md:text-sm flex justify-center items-center text-white rounded-sm shadow-lg"
+            to={product.is_available ? "/list/" + product.username : "#"}
+            className={`w-full h-8 ${
+              product.is_available ? "bg-blue-600" : "bg-gray-600"
+            } text-md md:text-sm flex justify-center items-center text-white rounded-sm shadow-lg `}
           >
-            Order
+            {product.is_available ? "Order" : "Out of Stock"}
           </Link>
         </div>
       </div>

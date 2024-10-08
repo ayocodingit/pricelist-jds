@@ -4,12 +4,14 @@ const products = [
     name: "kartika toast kecil",
     price: 5000,
     username: "novansyaah",
+    is_available: true,
   },
   {
     image: "/product/kartika-toast.jpg",
     name: "kartika toast besar",
     price: 8500,
     username: "novansyaah",
+    is_available: true,
   },
   {
     image:
@@ -17,6 +19,7 @@ const products = [
     name: "Kacang Atom Garuda",
     price: 1500,
     username: "duhabduh",
+    is_available: true,
   },
   {
     image:
@@ -24,6 +27,7 @@ const products = [
     name: "BonCabe Makaroni Krispi",
     price: 2500,
     username: "duhabduh",
+    is_available: true,
   },
   {
     image:
@@ -31,6 +35,7 @@ const products = [
     name: "Kopi Excelso Single Serving",
     price: 5000,
     username: "duhabduh",
+    is_available: true,
   },
 ];
 

@@ -21,7 +21,7 @@ function Detail() {
   }, []);
 
   if (!user) {
-    return navigate('/404', {replace: true});
+    return navigate('/404');
   }
 
   return (
