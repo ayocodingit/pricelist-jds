@@ -20,7 +20,7 @@ function Payment({ payment }) {
   };
 
   return (
-    <div className="capitalize w-full md:w-80 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-2xl text-md">
+    <div className="capitalize w-full md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-2xl text-md">
       <div className="flex gap-5 items-center">
         <img
           src={`/${payment.provider}.png`}

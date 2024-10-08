@@ -12,7 +12,7 @@ const users = [
         value: "089669494255",
       },
       {
-        provider: "jago",
+        provider: "jago syariah",
         value: "502687237661",
       },
     ],
@@ -26,7 +26,7 @@ const users = [
         value: "085722507840",
       },
       {
-        provider: "jago",
+        provider: "jago syariah",
         value: "501150988960",
       },
     ],
