@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf");
+}
+
+html {
+  background: hsla(95, 33%, 49%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(95, 33%, 49%, 1) 0%,
+    hsla(106, 27%, 52%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(95, 33%, 49%, 1) 0%,
+    hsla(106, 27%, 52%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(95, 33%, 49%, 1) 0%,
+    hsla(106, 27%, 52%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#77A755", endColorstr="#73A564", GradientType=1 );
+}
