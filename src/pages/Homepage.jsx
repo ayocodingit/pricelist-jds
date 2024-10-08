@@ -5,8 +5,8 @@ function Homepage() {
   return (
     <div className="h-full flex flex-col justify-center items-center gap-24">
       <div className="flex flex-col items-center text-white  gap-2">
-        <h1 className="text-5xl">Welcome Back, To</h1>
-        <p className="text-xl">Pricelist UMKM</p>
+        <h1 className="text-4xl">Welcome Back</h1>
+        <p className="text-xl">Pricelist UMKM JDS</p>
       </div>
       <div className="flex justify-center">
         <img
