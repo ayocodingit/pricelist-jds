@@ -20,26 +20,25 @@ function Payment({ payment }) {
   };
 
   return (
-    <div className="capitalize w-full md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-2xl text-md">
-      <div className="flex gap-5 items-center">
+    <div className="capitalize w-80 text-xs md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-12 md:h-16 bg-white text-black rounded-lg shadow-lg text-md">
+      <div className="flex gap-5 items-center justify-between">
         <img
           src={`/${payment.provider}.png`}
           alt="logo"
-          width={30}
-          className="object-fill"
+          className="object-cover max-h-8"
         />
         <p className="first-letter: capitalize">{payment.provider}</p>
       </div>
-      <div className="flex gap-2">
-        <p>{payment.value}</p>
+      <div className="flex gap-2 items-center">
+        <p className="">{payment.value}</p>
         {payment.provider != "telegram" && (
           <CopyToClipboard text={payment.value} onCopy={alert}>
-            <AiOutlineCopy className={"text-2xl hover: cursor-pointer"} />
+            <AiOutlineCopy className={"text-lg hover: cursor-pointer"} />
           </CopyToClipboard>
         )}
         {payment.provider == "telegram" && (
           <a href={'https://t.me/' + payment.value}>
-            <AiOutlineSend className={"text-2xl hover: cursor-pointer"} />
+            <AiOutlineSend className={"text-lg hover: cursor-pointer"} />
           </a>
         )}
 

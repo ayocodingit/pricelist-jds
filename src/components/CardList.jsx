@@ -2,20 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { BiMap } from "react-icons/bi";
 
 function CardList({ product }) {
   return (
-    <div className=" rounded-lg bg-white shadow-xl flex p-5 mb-5">
-      <div className="flex flex-col gap-2 justify-center w-full">
+    <div className=" rounded-md bg-white shadow-xl flex">
+      <div className="flex flex-col gap-1 justify-center w-full">
         <div className="flex shadow-b-md justify-center">
-          <PhotoProvider className={`${
-                  !product.is_available && "grayscale"
-                }`}>
-            <PhotoView src={product.image} >
+          <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
+            <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-32 min-h-32 rounded-lg hover: cursor-zoom-in object-contain ${
+                className={` rounded-t-lg min-h-[7rem] h-8 p-1 hover: cursor-zoom-in object-cover object-top ${
                   !product.is_available && "grayscale"
                 }`}
                 loading="lazy"
@@ -23,24 +22,23 @@ function CardList({ product }) {
             </PhotoView>
           </PhotoProvider>
         </div>
-        <div className="text-center flex flex-col">
-          <h1 className="md:text-base text-lg font-roboto capitalize">
-            {product.name} 
-          </h1>
-          
-          <p className="md:text-sm text-lg font-serif"> Rp {product.price} </p>
-        </div>
-        <div className="flex flex-col gap-1">
-          <Link
-            to={product.is_available ? "/list/" + product.username : "#"}
-            className={`w-full h-8 ${
-              product.is_available ? "bg-blue-600" : "bg-gray-600"
-            } text-md md:text-sm flex justify-center items-center text-white rounded-sm shadow-lg `}
-          >
-            {product.is_available ? "Order" : "Out of Stock"}
-          </Link>
-          <span className="text-xs text-gray-600 text-center">{ product.location }</span>
-        </div>
+        <Link to={product.is_available ? "/list/" + product.username : "#"} className="p-2 hover: bg-gray-50" title={product.name}>
+          <div className="px-1 flex flex-col ">
+            <h1 className={` ${!product.is_available && 'line-through'} text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`} >
+              {product.name}
+            </h1>
+
+            <p className="text-sm font-serif text-orange-600">
+              Rp{product.price}
+            </p>
+          </div>
+          <div className="flex p-1">
+            <BiMap />
+            <p className="text-xs text-gray-600 text-center">
+              {product.location}
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

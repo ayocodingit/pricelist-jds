@@ -4,7 +4,7 @@ const products = [
     name: "kartika toast kecil",
     price: 5000,
     username: "novansyaah",
-    is_available: true,
+    is_available: false,
     location: "R. Selatan",
   },
   {

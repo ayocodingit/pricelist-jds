@@ -8,9 +8,6 @@ import { router } from "./routes/route.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     
-    <div className="h-screen p-5 font-roboto">
       <RouterProvider router={router} />
-    
-    </div>
   </StrictMode>
 );

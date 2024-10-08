@@ -24,22 +24,22 @@ function Detail() {
   }
 
   return (
-    <div className="h-full flex flex-col text-white items-center">
-      <h1 className="text-3xl mt-10 flex justify-center items-center">
-        <Link to={"/list"} className="text-md">
-          <BsChevronCompactLeft />{" "}
-        </Link>{" "}
+    <div className=" flex flex-col text-white items-center">
+      <h1 className="text-lg mt-10 flex justify-center items-center">
+        <Link to={"/list"}>
+          <BsChevronCompactLeft />
+        </Link>
         {user.name_card}
       </h1>
 
-      <div className="mt-10 flex flex-col gap-5 w-full items-center">
-        <p className="font-extrabold text-lg text-center">
+      <div className="mt-10 flex flex-col gap-3 w-full items-center">
+        <p className="font-extrabold text-xs md:text-lg text-center">
           Thank you for your purchase. <br />
           Don't forget to confirm with the seller if you have paid.
         </p>
-        <p className="text-2xl">Info Account</p>
+        <p className="text-sm md:text-md">Info Account</p>
         <Payment payment={{ provider: "telegram", value: user.username }} />
-        <p className="text-2xl"> Info Payment</p>
+        <p className="text-sm md:text-md"> Info Payment</p>
         {user.payments.map((payment, index) => {
           return <Payment payment={payment} key={index} />;
         })}
