@@ -15,7 +15,7 @@ function CardList({ product }) {
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-32 min-h-36 rounded-lg hover: cursor-zoom-in object-contain ${
+                className={`w-32 min-h-32 rounded-lg hover: cursor-zoom-in object-contain ${
                   !product.is_available && "grayscale"
                 }`}
                 loading="lazy"
@@ -23,13 +23,14 @@ function CardList({ product }) {
             </PhotoView>
           </PhotoProvider>
         </div>
-        <div className="text-center">
+        <div className="text-center flex flex-col">
           <h1 className="md:text-base text-lg font-roboto capitalize">
-            {product.name}
+            {product.name} 
           </h1>
-          <p className="md:text-sm text-lg font-serif"> Rp {product.price}</p>
+          
+          <p className="md:text-sm text-lg font-serif"> Rp {product.price} </p>
         </div>
-        <div className="flex">
+        <div className="flex flex-col gap-1">
           <Link
             to={product.is_available ? "/list/" + product.username : "#"}
             className={`w-full h-8 ${
@@ -38,6 +39,7 @@ function CardList({ product }) {
           >
             {product.is_available ? "Order" : "Out of Stock"}
           </Link>
+          <span className="text-xs text-gray-600 text-center">{ product.location }</span>
         </div>
       </div>
     </div>

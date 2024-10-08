@@ -5,6 +5,7 @@ const products = [
     price: 5000,
     username: "novansyaah",
     is_available: true,
+    location: "R. Selatan",
   },
   {
     image: "/product/kartika-toast.jpg",
@@ -12,6 +13,7 @@ const products = [
     price: 8500,
     username: "novansyaah",
     is_available: true,
+    location: "R. Selatan",
   },
   {
     image:
@@ -20,6 +22,7 @@ const products = [
     price: 1500,
     username: "duhabduh",
     is_available: true,
+    location: "R. Selatan",
   },
   {
     image:
@@ -28,6 +31,7 @@ const products = [
     price: 2500,
     username: "duhabduh",
     is_available: true,
+    location: "R. Selatan",
   },
   {
     image:
@@ -36,6 +40,7 @@ const products = [
     price: 5000,
     username: "duhabduh",
     is_available: true,
+    location: "R. Selatan",
   },
 ];
 
