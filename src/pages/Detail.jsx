@@ -3,23 +3,28 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../repository/users";
 import Payment from "../components/Payment";
 import { AiOutlineHome } from "react-icons/ai";
+import { getByID } from "../repository/produts";
 
 function Detail() {
   const [user, setUser] = useState(null);
-  const { user: username } = useParams();
+  const [product, setProduct] = useState(null);
+  const { product: productID, user: username } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const productDetail = getByID(productID);
     const userDetail = getUser(username);
 
-    if (userDetail) {
+    if (userDetail && productDetail) {
       setUser(userDetail);
+      setProduct(productDetail);
+
       return;
     }
     navigate("/404");
   }, []);
-
-  if (!user) {
+  
+  if (!user || !product) {
     return navigate("/404");
   }
 
@@ -38,10 +43,10 @@ function Detail() {
           Don't forget to confirm with the seller if you have paid.
         </p>
         <p className="text-sm md:text-md">Info Account</p>
-        <Payment payment={{ provider: "telegram", value: user.username }} />
+        <Payment payment={{ provider: "telegram", value: user.username }} product={product.name} name_card={user.name_card} />
         <p className="text-sm md:text-md"> Info Payment</p>
         {user.payments.map((payment, index) => {
-          return <Payment payment={payment} key={index} />;
+          return <Payment payment={payment} key={index}/>;
         })}
       </div>
     </div>

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { AiOutlineCopy,AiOutlineSend } from "react-icons/ai";
+import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
 import { Flip, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-function Payment({ payment }) {
+function Payment({ payment, product }) {
   const alert = () => {
     toast.success("Copied on Clipboard", {
       position: "bottom-right",
@@ -37,7 +36,7 @@ function Payment({ payment }) {
           </CopyToClipboard>
         )}
         {payment.provider == "telegram" && (
-          <a href={'https://t.me/' + payment.value}>
+          <a href={`https://t.me/${payment.value}?text=Halo gan, beli **${product}** dong, saya sudah tf yups!`}>
             <AiOutlineSend className={"text-lg hover: cursor-pointer"} />
           </a>
         )}

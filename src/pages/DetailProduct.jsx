@@ -72,7 +72,7 @@ function DetailProduct() {
           </div>
           <div className="bg-green-600 w-1/2 flex items-center justify-center font-serif">
             <Link
-              to={"/payment/" + product.username}
+              to={`/payment/${product.id}/${product.username}`}
               className=" text-center text-white"
             >
               Order
