@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../repository/users";
 import Payment from "../components/Payment";
-import { BsChevronCompactLeft } from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
 
 function Detail() {
   const [user, setUser] = useState(null);
@@ -25,9 +25,9 @@ function Detail() {
 
   return (
     <div className=" flex flex-col text-white items-center">
-      <h1 className="text-lg mt-10 flex justify-center items-center">
+      <h1 className="text-lg mt-10 flex gap-1 justify-center items-center">
         <Link to={"/list"}>
-          <BsChevronCompactLeft />
+          <AiOutlineHome />
         </Link>
         {user.name_card}
       </h1>

@@ -22,7 +22,7 @@ function CardList({ product }) {
             </PhotoView>
           </PhotoProvider>
         </div>
-        <Link to={product.is_available ? "/list/" + product.username : "#"} className="p-2 hover: bg-gray-50" title={product.name}>
+        <Link to={product.is_available ? "/list/" + product.id : "#"} className="p-2 hover: bg-gray-50" title={product.name}>
           <div className="px-1 flex flex-col ">
             <h1 className={` ${!product.is_available && 'line-through'} text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`} >
               {product.name}
