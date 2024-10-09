@@ -83,6 +83,26 @@ const products = [
     is_available: true,
     location: "R. Tengah",
   },
+  {
+    image:
+      "https://i.ibb.co.com/dGM6NfJ/image.png",
+    name: "Pempek Campur",
+    price: 35000,
+    username: "shintadewiaw",
+    tag: 'ready stock',
+    is_available: true,
+    location: "R. Selatan",
+  },
+  {
+    image:
+      "https://i.ibb.co.com/yVSVhNq/image.png",
+    name: "Pempek Kapal Selam",
+    price: 20000,
+    username: "shintadewiaw",
+    tag: 'ready stock',
+    is_available: true,
+    location: "R. Selatan",
+  },
 ];
 
 export const getProducts = (q = "") => {

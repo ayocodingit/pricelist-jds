@@ -35,7 +35,7 @@ function CardList({ product }) {
           <div className="flex p-1">
             <BiMap />
             <p className="text-xs text-gray-600 text-center">
-              {product.location} - <span className="rounded-sm border-gray-500">{product.tag}</span>
+              {product.location} - <span className="rounded-sm border-gray-500 capitalize">{product.tag}</span>
             </p>
           </div>
         </Link>

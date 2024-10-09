@@ -63,6 +63,16 @@ const users = [
       },
     ],
   },
+  {
+    username: "shintadewiaw",
+    name_card: "Shinta Dewi",
+    payments: [
+      {
+        provider: "jago syariah",
+        value: "502139100590",
+      },
+    ],
+  },
 ];
 
 export const getUser = (username) => {
