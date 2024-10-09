@@ -28,7 +28,7 @@ function DetailProduct() {
   }
 
   return (
-    <div className="flex flex-col bg-white h-screen relative">
+    <div className="flex flex-col bg-white h-[90vh] md:h-screen relative">
       <div className="w-full flex md:justify-center">
       <div className="w-full md:w-1/2 flex justify-center md:bg-gray-200">
         <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
