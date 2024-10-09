@@ -30,7 +30,7 @@ function Detail() {
 
   return (
     <div className=" flex flex-col text-white items-center">
-      <h1 className="text-lg mt-10 flex gap-1 justify-center items-center">
+      <h1 className="text-lg mt-20 flex gap-1 justify-center items-center">
         <Link to={"/list"}>
           <AiOutlineHome />
         </Link>
@@ -38,11 +38,11 @@ function Detail() {
       </h1>
 
       <div className="mt-10 flex flex-col gap-3 w-full items-center">
-        <p className="font-extrabold text-xs md:text-lg text-center">
+        <p className="font-bold p-2 text-md md:text-lg text-center">
           Thank you for your purchase. <br />
           Don't forget to confirm with the seller if you have paid.
         </p>
-        <p className="text-sm md:text-md">Info Account</p>
+        <p className="text-md md:text-md">Info Account</p>
         <Payment payment={{ provider: "telegram", value: user.username }} product={product.name} name_card={user.name_card} />
         <p className="text-sm md:text-md"> Info Payment</p>
         {user.payments.map((payment, index) => {
