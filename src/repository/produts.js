@@ -4,6 +4,8 @@ const products = [
     name: "kartika toast kecil",
     price: 5000,
     username: "novansyaah",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
   },
@@ -12,6 +14,8 @@ const products = [
     name: "kartika toast besar",
     price: 8500,
     username: "novansyaah",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
   },
@@ -21,6 +25,8 @@ const products = [
     name: "Kacang Atom Garuda",
     price: 1500,
     username: "duhabduh",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
   },
@@ -30,6 +36,8 @@ const products = [
     name: "BonCabe Makaroni Krispi",
     price: 2500,
     username: "duhabduh",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
   },
@@ -39,6 +47,8 @@ const products = [
     name: "Kopi Excelso Single Serving",
     price: 5000,
     username: "duhabduh",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
   },
@@ -48,8 +58,30 @@ const products = [
     name: "ES KUL-KUL PISANG & MELON",
     price: 2500,
     username: "samudra_ajri",
+    tag: 'Ready Stock',
+
     is_available: true,
     location: "R. Selatan",
+  },
+  {
+    image:
+      "https://i.ibb.co.com/5B95kvd/photo-2024-10-09-10-34-57.jpg",
+    name: "Cranberry Creamcheese Sourdough Bread",
+    price: 26000,
+    username: "ashrinp",
+    tag: 'Open PO',
+    is_available: true,
+    location: "R. Tengah",
+  },
+  {
+    image:
+      "https://i.ibb.co.com/Fzb89Ss/photo-2024-10-09-10-34-52.jpg",
+    name: "Butter Salted Bread",
+    price: 13000,
+    username: "ashrinp",
+    tag: 'Open PO',
+    is_available: true,
+    location: "R. Tengah",
   },
 ];
 
