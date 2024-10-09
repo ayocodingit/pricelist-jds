@@ -54,7 +54,7 @@ const users = [
         value: "089666300757",
       },
       {
-        provider: "ovo",
+        provider: "dana",
         value: "089666300757",
       },
       {
