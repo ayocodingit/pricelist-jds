@@ -31,6 +31,20 @@ const users = [
       },
     ],
   },
+  {
+    username: "samudra_ajri",
+    name_card: "Samudra Ajri",
+    payments: [
+      {
+        provider: "gopay",
+        value: "082129379891",
+      },
+      {
+        provider: "ovo",
+        value: "082129379891",
+      },
+    ],
+  },
 ];
 
 export const getUser = (username) => {

@@ -4,7 +4,7 @@ const products = [
     name: "kartika toast kecil",
     price: 5000,
     username: "novansyaah",
-    is_available: false,
+    is_available: true,
     location: "R. Selatan",
   },
   {
@@ -39,6 +39,15 @@ const products = [
     name: "Kopi Excelso Single Serving",
     price: 5000,
     username: "duhabduh",
+    is_available: true,
+    location: "R. Selatan",
+  },
+  {
+    image:
+      "https://i.ibb.co.com/bsdnCSK/image.png",
+    name: "ES KUL-KUL PISANG & MELON",
+    price: 2500,
+    username: "samudra_ajri",
     is_available: true,
     location: "R. Selatan",
   },
