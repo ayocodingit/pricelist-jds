@@ -21,7 +21,7 @@ function List() {
           <div className="relative w-full md:w-80">
           <input
             type="text"
-            className="md:w-80 w-full h-10  rounded-md focus:outline-none text-black pl-8 pr-5 text-xs"
+            className="md:w-80 w-full h-10  rounded-md focus:outline-none text-black pl-8 pr-5 text-md"
             placeholder="Search ..."
             id="search"
             onChange={debounce((e) => setQ(e.target.value), 250)}
