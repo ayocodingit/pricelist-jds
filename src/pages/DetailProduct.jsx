@@ -59,7 +59,7 @@ function DetailProduct() {
               <p className="text-orange-600 text-xl font-serif ">
                 {formatNumberIDR(product.price)}
               </p>
-              <p className="text-[#5D9F5D]  outline-dashed px-2 outline-[#5D9F5D] text-sm rounded-md capitalize">
+              <p className="text-[#5D9F5D] text-center outline-dashed px-2 outline-[#5D9F5D] text-sm rounded-md capitalize">
                 {product.tag}
               </p>
               <p className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
