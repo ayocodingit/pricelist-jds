@@ -53,7 +53,7 @@ function Detail() {
   }
 
   return (
-    <div className="flex flex-col bg-gray-50  items-center  md:h-[calc(100dvh)] p-5">
+    <div className="flex flex-col bg-gray-50 items-center h-[calc(100dvh)] p-5">
       <h1 className="text-lg mt-5 flex gap-1 justify-center items-center">
         <Link to={"/list"}>
           <AiOutlineHome />
