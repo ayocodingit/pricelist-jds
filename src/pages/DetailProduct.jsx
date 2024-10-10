@@ -73,7 +73,7 @@ function DetailProduct() {
                   className="w-20 h-10 focus:outline-none border-b-2"
                   value={qty}
                   onChange={(e) => {
-                    setQty(parseInt(e.target.value));
+                    setQty(Number(e.target.value));
                     setTotal(product.price * qty);
                   }}
                 />
