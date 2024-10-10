@@ -4,7 +4,7 @@ import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Payment({ payment, product, qty }) {
+function Payment({ payment, product, qty, name_card }) {
   const alert = () => {
     toast.success("Copied on Clipboard", {
       position: "bottom-right",
@@ -19,17 +19,17 @@ function Payment({ payment, product, qty }) {
   };
 
   return (
-    <div className="capitalize w-80 text-md md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-md">
+    <div className="w-80 text-md md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-md">
       <div className="flex gap-5 items-center justify-between">
         <img
           src={`/${payment.provider}.png`}
           alt="logo"
-          className="object-cover max-h-8"
+          className="object-fill max-h-8"
         />
         <p className="first-letter: capitalize">{payment.provider}</p>
       </div>
-      <div className="flex gap-2 items-center">
-        <p className="">{payment.value}</p>
+      <div className="flex items-center gap-1">
+        <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-right">{payment.provider == "telegram" && (`@`)}{payment.value}</p>
         {payment.provider != "telegram" && (
           <CopyToClipboard text={payment.value} onCopy={alert}>
             <AiOutlineCopy className={"text-lg hover:cursor-copy"} />

@@ -4,6 +4,7 @@ import { getByID } from "../repository/produts";
 import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
+import { formatNumberIDR } from "../utils/formatter";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
@@ -31,7 +32,7 @@ function DetailProduct() {
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
       <div className="w-full flex md:justify-center">
-        <div className="w-full md:w-1/2 flex justify-center border-x-4 border-white">
+        <div className="w-full md:w-1/2 flex justify-center md:border-x-4 border-white">
           <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
@@ -56,14 +57,20 @@ function DetailProduct() {
           <div className="mt-2 p-4 flex justify-between gap-5">
             <div className="flex flex-col gap-4">
               <p className="text-orange-600 text-xl font-serif ">
-                Rp{product.price}
+                {formatNumberIDR(product.price)}
               </p>
-              <p className="text-lg font-roboto capitalize">{product.name}</p>
+              <div className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
+                <p className="text-white outline-dashed px-2 bg-[#5D9F5D] text-sm rounded-md capitalize">
+                  {product.tag}
+                </p>{" "}
+                <p className="flex">
+
+                {product.name}
+                </p>
+              </div>
               <div className="flex items-center ">
                 <BiMap />
-                <p className="text-md text-gray-600 text-center">
-                  {product.location}
-                </p>
+                <p className="text-md text-gray-600">{product.location}</p>
               </div>
               <div className="flex gap-5 items-center">
                 <label htmlFor="">Quantity</label>
@@ -98,7 +105,7 @@ function DetailProduct() {
               <div className="flex gap-5 items-center">
                 <div>Total Price</div>
                 <div className="text-orange-600 text-xl font-serif">
-                  Rp{total}
+                  {formatNumberIDR(total)}
                 </div>
               </div>
             </div>
@@ -107,8 +114,8 @@ function DetailProduct() {
       </div>
       <div className=" w-full absolute bottom-0 flex items-center md:justify-center">
         <Link
-          to={`/payment/${product.id}/${product.username}?qty=${qty}`}
-          className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] " 
+          to={`/payment/${product.id}/${product.username}/${qty}`}
+          className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] "
         >
           <div className="text-center text-white text-md w-full flex items-center justify-center font-serif">
             Order Now

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
+import { formatNumberIDR } from "../utils/formatter";
 
 function CardList({ product }) {
   return (
@@ -31,7 +32,7 @@ function CardList({ product }) {
             </h1>
 
             <p className="text-sm font-serif text-orange-600">
-              Rp{product.price}
+              {formatNumberIDR(product.price)}
             </p>
           </div>
         </div>

@@ -3,7 +3,7 @@ const products = [
     id: 1,
     image: "https://i.ibb.co.com/bv2BGTj/image.png",
     category: "makanan",
-    name: "kartika toast kecil",
+    name: "kartika toast puffies kecil",
     price: 5000,
     username: "novansyaah",
     tag: "Ready Stock",
@@ -13,7 +13,7 @@ const products = [
   {
     id: 2,
     image: "https://i.ibb.co.com/TkdQhSc/image.pngg",
-    name: "kartika toast besar",
+    name: "kartika toast puffies besar",
     category: "makanan",
     price: 8500,
     username: "novansyaah",

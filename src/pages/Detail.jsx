@@ -12,13 +12,13 @@ import { AiOutlineCopy, AiOutlineHome } from "react-icons/ai";
 import { getByID } from "../repository/produts";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Flip, toast } from "react-toastify";
+import { formatNumberIDR } from "../utils/formatter";
 
 function Detail() {
   const [user, setUser] = useState(null);
   const [product, setProduct] = useState(null);
-  const { product: productID, user: username } = useParams();
-  const [searchParams] = useSearchParams();
-  const qty = searchParams.get("qty") ?? 1;
+  const { product: productID, user: username, qty } = useParams();
+  
 
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ function Detail() {
     });
   };
 
-  if (!user || !product) {
+  if (!user || !product || isNaN(qty)) {
     return navigate("/404");
   }
 
@@ -64,15 +64,15 @@ function Detail() {
       <div className="mt-10 flex flex-col gap-3 w-full items-center">
         <div className="flex flex-col items-center gap-2 text-md pt-2 text-black bg-white rounded-md w-80 md:w-96 shadow-lg">
           <p className=" capitalize text-wrap">{product.name}</p>
-          <p
-            className="text-xl font-serif  flex"
-            
-          >
-            Rp{product.price} x {qty}
+          <p className="text-xl font-serif  flex">
+            {formatNumberIDR(product.price)} x {qty}
           </p>
           <CopyToClipboard text={product.price * qty} onCopy={alert}>
-            <p title="Copy Text" className="hover:bg-opacity-90 bg-[#5D9F5D] text-white transition-all hover:rounded-md hover:cursor-copy font-bold font-serif flex justify-center items-center border-t-2 border-gray-200 py-2 w-full">
-              Rp{product.price * qty}{" "}
+            <p
+              title="Copy Text"
+              className="hover:bg-opacity-90 bg-[#5D9F5D] text-white hover:rounded-md hover:cursor-copy font-bold font-serif flex justify-center items-center border-t-2 border-gray-200 py-2 w-full"
+            >
+              {formatNumberIDR(product.price * qty)}
             </p>
           </CopyToClipboard>
         </div>
