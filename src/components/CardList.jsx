@@ -14,7 +14,7 @@ function CardList({ product }) {
               <img
                 src={product.image}
                 alt="image product"
-                className={` rounded-t-lg min-h-[10rem] h-8 hover: cursor-zoom-in object-cover object-top ${
+                className={` min-h-[10rem] h-8 hover: cursor-zoom-in object-cover object-top ${
                   !product.is_available && "grayscale"
                 }`}
                 loading="lazy"
