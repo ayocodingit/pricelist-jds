@@ -3,28 +3,32 @@ import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
-    <div className="h-[calc(100dvh)] flex flex-col justify-center items-center gap-10">
-      <div className="flex flex-col items-center text-white  gap-2">
-        <h1 className="text-3xl font-serif tracking-widest">Price list </h1>
+    <div className="h-[calc(100dvh)] flex flex-col justify-center items-center gap-10 bg-gray-50">
+      <div className="flex flex-col items-center   gap-2">
+        <h1 className="text-4xl font-serif tracking-widest">Price list </h1>
         <p className="text-md tracking-widest">
           Small and Medium enterprises (SMEs)
         </p>
       </div>
       <div className="flex justify-center">
-        <img src="/logo_jds.png" alt="logo jds" width={250} />
+        <img src="/logo_jds.png" alt="logo jds" className="w-60"/>
       </div>
       <div className="flex items-center flex-col gap-1">
         <div className="flex flex-col items-center gap-1">
-        <img src="/qrcode.png" alt="qr code" className="object-fill w-40 rounded-md " />
-        <p className="text-white uppercase"> Scan Here</p>
+          <img
+            src="/qrcode.png"
+            alt="qr code"
+            className="object-fill w-40 rounded-md "
+          />
+          <p className=" uppercase"> Scan Here</p>
         </div>
         <div class="relative flex py-5 w-full items-center">
-          <div class="flex-grow border-t border-white border-2"></div>
-          <span class="flex-shrink mx-4 text-white">OR</span>
-          <div class="flex-grow border-t border-white border-2"></div>
+          <div class="flex-grow border-t border-black border-2"></div>
+          <span class="flex-shrink mx-4 ">OR</span>
+          <div class="flex-grow border-t border-black border-2"></div>
         </div>
         <Link
-          className="w-40 h-8 text-center flex justify-center items-center rounded-lg border-2 border-white text-white"
+          className="w-40 h-8 text-center flex justify-center items-center rounded-lg border-2 text-white hover:bg-opacity-90 bg-[#5D9F5D] "
           to={"list"}
         >
           Start

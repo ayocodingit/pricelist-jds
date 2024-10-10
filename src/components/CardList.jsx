@@ -1,30 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
-import { BiMap } from "react-icons/bi";
 
 function CardList({ product }) {
   return (
-    <div className=" rounded-md bg-white shadow-xl flex">
+    <Link
+      className=" rounded-md flex bg-white shadow-md hover:outline-[#5D9F5D] hover:outline-double"
+      to={product.is_available ? "/list/" + product.id : "#"}
+      title={product.name}
+    >
       <div className="flex flex-col gap-1 justify-center w-full">
         <div className="flex justify-center">
-          <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
-            <PhotoView src={product.image}>
-              <img
-                src={product.image}
-                alt="image product"
-                className={` min-h-[10rem] h-8 hover: cursor-zoom-in object-cover object-top ${
-                  !product.is_available && "grayscale"
-                }`}
-                loading="lazy"
-              />
-            </PhotoView>
-          </PhotoProvider>
+          <img
+            src={product.image}
+            alt="image product"
+            className={` min-h-[10rem] h-8 object-fill object-top rounded-md ${
+              !product.is_available && "grayscale"
+            }`}
+            loading="lazy"
+          />
         </div>
-        <Link to={product.is_available ? "/list/" + product.id : "#"} className="p-2 hover: bg-gray-50" title={product.name}>
+        <div className="p-2">
           <div className="px-1 flex flex-col ">
-            <h1 className={` ${!product.is_available && 'line-through'} text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`} >
+            <h1
+              className={` ${
+                !product.is_available && "line-through"
+              } text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`}
+            >
               {product.name}
             </h1>
 
@@ -32,10 +34,9 @@ function CardList({ product }) {
               Rp{product.price}
             </p>
           </div>
-         
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Payment({ payment, product, qty }) {
@@ -19,7 +19,7 @@ function Payment({ payment, product, qty }) {
   };
 
   return (
-    <div className="capitalize w-80 text-sm md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-md">
+    <div className="capitalize w-80 text-md md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-md">
       <div className="flex gap-5 items-center justify-between">
         <img
           src={`/${payment.provider}.png`}
@@ -32,18 +32,17 @@ function Payment({ payment, product, qty }) {
         <p className="">{payment.value}</p>
         {payment.provider != "telegram" && (
           <CopyToClipboard text={payment.value} onCopy={alert}>
-            <AiOutlineCopy className={"text-lg hover: cursor-pointer"} />
+            <AiOutlineCopy className={"text-lg hover:cursor-copy"} />
           </CopyToClipboard>
         )}
         {payment.provider == "telegram" && (
           <a
             href={`https://t.me/${payment.value}?text=Halo gan, beli **${product}** ${qty} yah, saya sudah tf yups! 😁`}
           >
-            <AiOutlineSend className={"text-lg hover: cursor-pointer"} />
+            <AiOutlineSend className={"text-lg hover:cursor-pointer"} />
           </a>
         )}
 
-        <ToastContainer />
       </div>
     </div>
   );

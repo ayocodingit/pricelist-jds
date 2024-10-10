@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getByID } from "../repository/produts";
-import { BsChevronCompactLeft } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 
@@ -21,7 +21,7 @@ function DetailProduct() {
       return;
     }
 
-    // navigate("/404");
+    navigate("/404");
   }, []);
 
   if (!product) {
@@ -29,15 +29,15 @@ function DetailProduct() {
   }
 
   return (
-    <div className="flex flex-col bg-white h-[calc(100dvh)]  relative">
+    <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
       <div className="w-full flex md:justify-center">
-        <div className="w-full md:w-1/2 flex justify-center md:bg-gray-200">
+        <div className="w-full md:w-1/2 flex justify-center border-x-4 border-white">
           <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`max-h-[20rem]  w-full md:w-96 relative object-contain rounded-t-lg hover: cursor-zoom-in object-top ${
+                className={`max-h-[20rem]  w-full relative object-contain border-2 border-gray-100 hover:cursor-zoom-in ${
                   !product.is_available && "grayscale"
                 }`}
               />
@@ -45,54 +45,75 @@ function DetailProduct() {
           </PhotoProvider>
           <Link
             to={"/list"}
-            className="absolute start-5 md:start-[26%] top-5 bg-gray-50 p-2 rounded-md text-black"
+            className="absolute start-5 md:start-[26%] top-2 p-1 bg-black bg-opacity-30 rounded-full text-white "
           >
-            <BsChevronCompactLeft className="text-md" />
+            <BsArrowLeft className="text-2xl" />
           </Link>
         </div>
       </div>
-      <div className="w-full flex md:justify-center">
-        <div className="   flex justify-center">
-          <div className="mt-2 p-4 flex items-center justify-between gap-5">
-            <div className="flex flex-col">
-              <p className=" font-lg font-roboto capitalize">{product.name}</p>
-              <p className="text-orange-600 font-md font-serif ">
+      <div className="w-full flex md:justify-center h-full">
+        <div className="w-1/2   flex md:bg-white">
+          <div className="mt-2 p-4 flex justify-between gap-5">
+            <div className="flex flex-col gap-4">
+              <p className="text-orange-600 text-xl font-serif ">
                 Rp{product.price}
               </p>
-              <div className="flex">
+              <p className="text-lg font-roboto capitalize">{product.name}</p>
+              <div className="flex items-center ">
                 <BiMap />
-                <p className="text-xs text-gray-600 text-center">
+                <p className="text-md text-gray-600 text-center">
                   {product.location}
                 </p>
               </div>
               <div className="flex gap-5 items-center">
-                <label htmlFor="">Qty</label>
-                <input
-                  type="number"
-                  className="w-20 h-10 focus:outline-none border-b-2"
-                  value={qty}
-                  onChange={(e) => {
-                  setQty(e.target.value);
-                  setTotal(product.price * qty);
-                  }}
-                />
+                <label htmlFor="">Quantity</label>
+                <div className="flex outline-double outline-gray-200 h-8 justify-center items-center text-lg w-32">
+                  <button
+                    onClick={() => {
+                      if (qty > 1) {
+                        const count = qty - 1;
+                        setQty(count);
+                        setTotal(product.price * count);
+                      }
+                    }}
+                    className=" w-full h-full"
+                  >
+                    -
+                  </button>
+                  <div className="outline-double w-full  outline-gray-200 text-center h-full flex justify-center items-center">
+                    {qty}
+                  </div>
+                  <button
+                    onClick={() => {
+                      const count = qty + 1;
+                      setQty(count);
+                      setTotal(product.price * count);
+                    }}
+                    className="w-full h-full "
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div className="flex gap-5 items-center">
+                <div>Total Price</div>
+                <div className="text-orange-600 text-xl font-serif">
+                  Rp{total}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className=" w-full absolute bottom-0 flex items-center md:justify-center">
-        <div className="md:w-1/2 flex h-12 text-white w-full md:justify-center">
-          <div className="bg-orange-400 w-1/2 flex justify-center items-center">
-            <p className="rounded-sm border-gray-500 capitalize flex gap-1 items-center text-sm">
-              Rp{total}
-            </p>
+        <Link
+          to={`/payment/${product.id}/${product.username}?qty=${qty}`}
+          className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] " 
+        >
+          <div className="text-center text-white text-md w-full flex items-center justify-center font-serif">
+            Order Now
           </div>
-          <Link to={`/payment/${product.id}/${product.username}?qty=${qty}`} className="text-center text-white text-sm bg-green-600 w-1/2 flex items-center justify-center font-serif">
-            
-              Order
-          </Link>
-        </div>
+        </Link>
       </div>
     </div>
   );

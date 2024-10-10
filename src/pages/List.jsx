@@ -14,21 +14,21 @@ function List() {
   }, [q]);
 
   return (
-    <div>
-      <div className="flex flex-col gap-1 items-center mt-10">
-        <p className="text-lg text-white">Search Product</p>
+    <div className="bg-gray-50 h-[calc(100dvh)] relative">
+      {/* section Search */}
+      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0">
         <div className="w-full p-2 flex justify-center">
-          <div className="relative w-full md:w-80">
+          <div className="relative w-full md:w-1/2">
           <input
             type="text"
-            className="md:w-80 w-full h-10  rounded-md focus:outline-none text-black pl-8 pr-5 text-md"
-            placeholder="Search ..."
+            className=" w-full h-9  rounded-md focus:outline-[#5D9F5D] outline-1 outline-gray-200 outline-double text-black pl-8 pr-5 text-md"
+            placeholder="Cari Produk JDS"
             id="search"
             onChange={debounce((e) => setQ(e.target.value), 250)}
           />
           <label
             htmlFor="search"
-            className="absolute text-md left-2 top-3 text-gray-400"
+            className="absolute text-md left-2 top-2 text-gray-300"
           >
             <FaSearch />
           </label>
@@ -36,14 +36,18 @@ function List() {
         </div>
         <Footer />
       </div>
-      <div className="flex justify-center mt-4">
-        <div className="gap-2 p-2 grid grid-cols-2 md:grid-cols-5 md:w-3/4 ">
+      <div className="flex md:justify-center md:p-5 p-2">
+        { products.length > 0 && (
+<div className="md:gap-4 gap-2 grid grid-cols-2 md:grid-cols-6 md:w-3/4 ">
           {products.map((product, index) => {
             return <CardList product={product} key={index} />;
           })}
         </div>
+        ) }
+        
         {products.length == 0 && (
-          <div className="text-center text-white">Not Found!</div>
+          <div className="capitalize">
+product not found!</div>
         )}
       </div>
     </div>
