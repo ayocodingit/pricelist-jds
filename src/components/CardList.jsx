@@ -8,7 +8,7 @@ function CardList({ product }) {
   return (
     <div className=" rounded-md bg-white shadow-xl flex">
       <div className="flex flex-col gap-1 justify-center w-full">
-        <div className="flex shadow-b-md justify-center">
+        <div className="flex justify-center">
           <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
