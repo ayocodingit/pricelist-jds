@@ -69,11 +69,10 @@ function DetailProduct() {
                 <label htmlFor="">Qty</label>
                 <input
                   type="number"
-                  min={1}
                   className="w-20 h-10 focus:outline-none border-b-2"
                   value={qty}
                   onChange={(e) => {
-                  setQty(Number(e.target.value));
+                  setQty(e.target.value);
                   if (parseInt(qty)) setTotal(product.price * qty);
                   }}
                 />
