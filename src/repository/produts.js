@@ -61,7 +61,7 @@ const products = [
   {
     id: 6,
     image: "https://i.ibb.co.com/bsdnCSK/image.png",
-    name: "ES KUL-KUL PISANG & MELON",
+    name: "ES KUL-KUL PISANG DAN MELON",
     category: "makanan",
     price: 2500,
     username: "samudra_ajri",

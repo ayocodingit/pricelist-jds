@@ -14,7 +14,7 @@ function CardList({ product }) {
               <img
                 src={product.image}
                 alt="image product"
-                className={` rounded-t-lg min-h-[7rem] h-8 p-1 hover: cursor-zoom-in object-cover object-top ${
+                className={` rounded-t-lg min-h-[10rem] h-8 p-1 hover: cursor-zoom-in object-cover object-top ${
                   !product.is_available && "grayscale"
                 }`}
                 loading="lazy"
@@ -32,12 +32,7 @@ function CardList({ product }) {
               Rp{product.price}
             </p>
           </div>
-          <div className="flex p-1">
-            <BiMap />
-            <p className="text-xs text-gray-600 text-center">
-              {product.location} - <span className="rounded-sm border-gray-500 capitalize">{product.tag}</span>
-            </p>
-          </div>
+         
         </Link>
       </div>
     </div>

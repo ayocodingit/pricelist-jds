@@ -17,20 +17,22 @@ function List() {
     <div>
       <div className="flex flex-col gap-1 items-center mt-10">
         <p className="text-lg text-white">Search Product</p>
-        <div className="relative w-full p-2">
+        <div className="w-full p-2 flex justify-center">
+          <div className="relative w-full md:w-80">
           <input
             type="text"
-            className="md:w-80 w-full h-8  rounded-md focus:outline-none text-black pl-8 pr-5 text-xs"
+            className="md:w-80 w-full h-10  rounded-md focus:outline-none text-black pl-8 pr-5 text-xs"
             placeholder="Search ..."
             id="search"
             onChange={debounce((e) => setQ(e.target.value), 250)}
           />
           <label
             htmlFor="search"
-            className="absolute text-md left-4 top-4 text-gray-400"
+            className="absolute text-md left-2 top-3 text-gray-400"
           >
             <FaSearch />
           </label>
+          </div>
         </div>
         <Footer />
       </div>
