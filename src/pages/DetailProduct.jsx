@@ -11,6 +11,7 @@ function DetailProduct() {
   const [total, setTotal] = useState(0);
   const { id } = useParams();
 
+  const navigate = useNavigate();
   useEffect(() => {
     const productDetail = getByID(id);
 
