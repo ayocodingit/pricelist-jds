@@ -55,19 +55,16 @@ function DetailProduct() {
       <div className="w-full flex md:justify-center h-full">
         <div className="w-1/2   flex md:bg-white">
           <div className="mt-2 p-4 flex justify-between gap-5">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               <p className="text-orange-600 text-xl font-serif ">
                 {formatNumberIDR(product.price)}
               </p>
-              <div className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
-                <p className="text-white outline-dashed px-2 bg-[#5D9F5D] text-sm rounded-md capitalize">
-                  {product.tag}
-                </p>{" "}
-                <p className="flex">
-
+              <p className="text-[#5D9F5D]  outline-dashed px-2 outline-[#5D9F5D] text-sm rounded-md capitalize">
+                {product.tag}
+              </p>
+              <p className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
                 {product.name}
-                </p>
-              </div>
+              </p>
               <div className="flex items-center ">
                 <BiMap />
                 <p className="text-md text-gray-600">{product.location}</p>
