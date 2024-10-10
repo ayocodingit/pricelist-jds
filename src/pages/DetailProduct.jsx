@@ -73,7 +73,7 @@ function DetailProduct() {
                   value={qty}
                   onChange={(e) => {
                   setQty(e.target.value);
-                  if (parseInt(qty)) setTotal(product.price * qty);
+                  setTotal(product.price * qty);
                   }}
                 />
               </div>
