@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
+import { TelegramIcon, TelegramShareButton } from "react-share";
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,20 +30,27 @@ function Payment({ payment, product, qty, name_card }) {
         <p className="first-letter: capitalize">{payment.provider}</p>
       </div>
       <div className="flex items-center gap-1">
-        <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-right">{payment.provider == "telegram" && (`@`)}{payment.value}</p>
+        <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-right">
+          {payment.provider == "telegram" && `@`}
+          {payment.value}
+        </p>
         {payment.provider != "telegram" && (
           <CopyToClipboard text={payment.value} onCopy={alert}>
             <AiOutlineCopy className={"text-lg hover:cursor-copy"} />
           </CopyToClipboard>
         )}
         {payment.provider == "telegram" && (
-          <a
-            href={`https://t.me/${payment.value}?text=Halo gan, beli **${product}** ${qty} yah, saya sudah tf yups! 😁`}
+          <TelegramShareButton
+            url={"Haloo Akang Teteh~"}
+            openShareDialogOnClick={true}
+            title={`
+aku beli **${product}** ${qty} yah, 
+saya sudah tf yups! tolong di ceki ceki
+Hatur nuhun~ ✨`}
           >
             <AiOutlineSend className={"text-lg hover:cursor-pointer"} />
-          </a>
+          </TelegramShareButton>
         )}
-
       </div>
     </div>
   );
