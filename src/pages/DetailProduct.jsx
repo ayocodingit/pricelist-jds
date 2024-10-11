@@ -5,7 +5,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 import { formatNumberIDR } from "../utils/formatter";
-import { TelegramShareButton } from "react-share";
+import { TelegramIcon, TelegramShareButton } from "react-share";
 import { AiOutlineShareAlt } from "react-icons/ai";
 
 function DetailProduct() {
@@ -46,16 +46,18 @@ function DetailProduct() {
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute end-5 md:end-[30rem] justify-between md:start-[26%] gap-5 top-5 ">
+          <div className="flex absolute start-5 md:end-[30rem] justify-between md:start-[26%] gap-5 top-5 ">
             <Link
               to={"/list"}
-              className="p-1 bg-black bg-opacity-30 rounded-full text-white text-3xl"
+              className="  text-white text-2xl flex  items-center justify-between gap-3"
             >
-              <BsArrowLeft />
+              <BsArrowLeft className="bg-black rounded-full bg-opacity-30 text-3xl p-1" />
+              <TelegramShareButton url={location.href}>
+                <div className="flex">
+                  <TelegramIcon size={32} round={true}/>
+                </div>
+              </TelegramShareButton>
             </Link>
-            <TelegramShareButton url={location.href}>
-              <AiOutlineShareAlt className="p-1 bg-black bg-opacity-30 rounded-full text-white text-4xl" />
-            </TelegramShareButton>
           </div>
         </div>
       </div>
