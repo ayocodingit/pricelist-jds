@@ -4,6 +4,7 @@ import List from "../pages/List.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import Detail from "../pages/Detail.jsx";
 import DetailProduct from "../pages/DetailProduct.jsx";
+import Search from "../pages/Search.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
   {
     path: "list",
     element: <List />,
+  },
+  {
+    path: "search",
+    element: <Search />,
   },
   {
     path: "list/:id",

@@ -62,7 +62,7 @@ function Detail() {
       </h1>
 
       <div className="mt-10 flex flex-col gap-3 w-full items-center">
-        <div className="flex flex-col items-center gap-2 text-md pt-2 text-black bg-white rounded-md w-80 md:w-96 shadow-lg">
+        <div className="flex flex-col items-center gap-2 text-md pt-2 text-black bg-white rounded-md w-full md:w-96 shadow-lg">
           <p className=" capitalize text-wrap">{product.name}</p>
           <p className="text-xl font-serif  flex">
             {formatNumberIDR(product.price)} x {qty}

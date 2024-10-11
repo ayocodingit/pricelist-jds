@@ -53,7 +53,7 @@ function DetailProduct() {
         </div>
       </div>
       <div className="w-full flex md:justify-center h-full">
-        <div className="w-1/2   flex md:bg-white">
+        <div className="md:w-1/2 w-full    flex md:bg-white">
           <div className="mt-2 p-4 flex justify-between gap-5">
             <div className="flex flex-col gap-3">
               <p className="text-orange-600 text-xl font-serif ">
