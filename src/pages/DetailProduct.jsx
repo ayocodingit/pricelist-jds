@@ -54,9 +54,13 @@ function DetailProduct() {
               <BsArrowLeft className="bg-black rounded-full bg-opacity-30 text-3xl p-1" />
               <TelegramShareButton
                 url={product.image}
-                title={`Haloo Akang Teteh~
+                title={`
+Haloo Akang Teteh~
 
-Mangga in case ada yg mau **${product.name}**, untuk info harga produknya silakan kunjungi di bawah ini yah 
+Mangga in case ada yg mau beli
+**${product.name}**, 
+
+untuk info harga produknya silakan kunjungi di bawah ini yah 
 ${location.href}
 
 Hatur nuhun~ ✨`}
