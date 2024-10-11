@@ -19,6 +19,7 @@ function CardList({ product }) {
               !product.is_available && "grayscale"
             }`}
             loading="lazy"
+            onError='/not-found.png'
           />
         </div>
         <div className="p-2">

@@ -73,6 +73,21 @@ const users = [
       },
     ],
   },
+  {   
+    username: "imamfahmi29",
+    name_card: "Imam Fahmi Fadillah",
+    payments: [
+      {
+        provider: "gopay",
+        value: "087802366348",
+      },
+      {
+        provider: "jago",
+        value: "502292253759",
+      },
+    ],
+  }
+
 ];
 
 export const getUser = (username) => {

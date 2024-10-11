@@ -43,6 +43,7 @@ function DetailProduct() {
                 className={`max-h-[20rem]  w-full relative object-contain border-2 border-gray-100 hover:cursor-zoom-in ${
                   !product.is_available && "grayscale"
                 }`}
+                
               />
             </PhotoView>
           </PhotoProvider>
@@ -59,6 +60,7 @@ Mangga in case ada yg mau beli
 
 **~${product.name}~**
 ${product.image}
+Harganya cuma **${formatNumberIDR(product.price)}** aja
 
 untuk info detail produknya silakan kunjungi di bawah ini yah 
 ${location.href}
@@ -66,7 +68,7 @@ ${location.href}
 Hatur nuhun~ ✨
 `}
               >
-                  <TelegramIcon size={32} round={true} />
+                <TelegramIcon size={32} round={true} />
               </TelegramShareButton>
             </Link>
           </div>
@@ -85,10 +87,13 @@ Hatur nuhun~ ✨
               <p className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
                 {product.name}
               </p>
-              <div className="flex items-center ">
-                <BiMap />
-                <p className="text-md text-gray-600">{product.location}</p>
-              </div>
+              {product.location && (
+                <div className="flex items-center ">
+                  <BiMap />
+                  <p className="text-md text-gray-600">{product.location}</p>
+                </div>
+              )}
+
               <div className="flex gap-5 items-center">
                 <label htmlFor="">Quantity</label>
                 <div className="flex outline-double outline-gray-200 h-8 justify-center items-center text-lg w-32">

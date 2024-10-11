@@ -1,3 +1,5 @@
+import { tag } from "../utils/contstant/tag";
+
 const products = [
   {
     id: 1,
@@ -6,7 +8,7 @@ const products = [
     name: "kartika toast puffies kecil",
     price: 5000,
     username: "novansyaah",
-    tag: "Ready Stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -17,7 +19,7 @@ const products = [
     category: "makanan",
     price: 8500,
     username: "novansyaah",
-    tag: "Ready Stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -29,7 +31,7 @@ const products = [
     name: "Kacang Atom Garuda",
     price: 1500,
     username: "duhabduh",
-    tag: "Ready Stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -41,7 +43,7 @@ const products = [
     category: "makanan",
     price: 2500,
     username: "duhabduh",
-    tag: "Ready Stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -53,8 +55,7 @@ const products = [
     category: "makanan",
     price: 5000,
     username: "duhabduh",
-    tag: "Ready Stock",
-
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -65,8 +66,7 @@ const products = [
     category: "makanan",
     price: 2500,
     username: "samudra_ajri",
-    tag: "Ready Stock",
-
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -77,9 +77,8 @@ const products = [
     category: "makanan",
     price: 26000,
     username: "ashrinp",
-    tag: "Open PO",
+    tag: tag.PO,
     is_available: true,
-    location: "R. Tengah",
   },
   {
     id: 8,
@@ -88,9 +87,8 @@ const products = [
     category: "makanan",
     price: 13000,
     username: "ashrinp",
-    tag: "Open PO",
+    tag: tag.PO,
     is_available: true,
-    location: "R. Tengah",
   },
   {
     id: 9,
@@ -99,7 +97,7 @@ const products = [
     category: "makanan",
     price: 35000,
     username: "shintadewiaw",
-    tag: "ready stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
   },
@@ -110,9 +108,28 @@ const products = [
     category: "makanan",
     price: 20000,
     username: "shintadewiaw",
-    tag: "ready stock",
+    tag: tag.READY_STOCK,
     is_available: true,
     location: "R. Selatan",
+  },
+  {
+    id: 11,
+    image: "https://i.ibb.co.com/VQYydq6/IMG-20241009-145142-643.jpg",
+    name: "Cilok Bos Anom - Isi 10 Biji",
+    price: 10000,
+    username: "imamfahmi29",
+    is_available: true,
+    tag: tag.PO
+  },
+
+  {
+    id: 12,
+    image: "https://i.ibb.co.com/VQYydq6/IMG-20241009-145142-643.jpg",
+    name: "Cilok Bos Anom - Isi 15 Biji",
+    price: 15000,
+    username: "imamfahmi29",
+    is_available: true,
+    tag: tag.PO
   },
 ];
 
@@ -125,5 +142,5 @@ export const getProducts = (q = "") => {
 };
 
 export const getByID = (id) => {
-  return products.filter((product) => product.id == id)[0]
-}
+  return products.filter((product) => product.id == id)[0];
+};
