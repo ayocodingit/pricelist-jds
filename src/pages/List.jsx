@@ -30,6 +30,7 @@ function List() {
               type="text"
               className=" w-full h-9  rounded-md focus:outline-[#5D9F5D] outline-1 outline-[#5D9F5D] outline-double text-black pl-8 pr-5 text-md"
               placeholder="Cari Produk"
+              defaultValue={q}
               id="search"
               onChange={handleSearch}
             />
