@@ -152,17 +152,15 @@ const products = [
     username: "imamfahmi29",
     is_available: true,
     tag: tagOptions.PO,
-    discount: 20,
+    discount: 0,
   },
 ];
 
 const getFunctionSort = (sort) => {
-  console.log(sort);
-  
   return sort == "A-Z" ? sortAscByName : sortDescByDiscount;
 };
 
-export const getProducts = (q = "", category = "", sort = "A-Z") => {
+export const getProducts = (q = "", category = "", sort) => {
   const funcSort = getFunctionSort(sort);
   if (q == "" && category == "") return funcSort(products);
 
@@ -170,7 +168,7 @@ export const getProducts = (q = "", category = "", sort = "A-Z") => {
 
   return funcSort(
     products.filter(
-      (product) => product.name?.match(regex) && category == product.category
+      (product) => product.name.match(regex) && category == product.category
     )
   );
 };
@@ -180,7 +178,10 @@ export const getByID = (id) => {
 };
 
 const sortDescByDiscount = (products) => {
-  return products.sort((a, b) => b.discount - a.discount);
+  return products.sort((a, b) => {
+    
+    return b.discount - a.discount
+});
 };
 
 const sortAscByName = (products) => {
