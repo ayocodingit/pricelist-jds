@@ -199,7 +199,7 @@ function DetailProduct() {
           </div>
         </div>
       </div>
-      <div className="w-full md:absolute bottom-0 flex items-center  text-white text-sm  justify-center">
+      <div className="w-full bottom-0 flex items-center  text-white text-sm  justify-center">
         <div className="flex w-full md:w-1/2 h-10 items-center">
           <button
             className="w-1/2 bg-orange-600 h-full"

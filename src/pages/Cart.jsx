@@ -12,6 +12,7 @@ function Cart() {
 
   useEffect(() => {
     setProducts(getAllCart());
+    setIsChange(false)
   }, [isChange]);
 
   return (

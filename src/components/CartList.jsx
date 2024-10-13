@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { Link, useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function CartList({ product, setIsChange }) {
   const navigate = useNavigate();
   return (
-    <div className="text-sm text-black rounded-lg bg-white gap-2 p-4 h-40 flex w-full shadow-lg">
+    <div className="text-sm text-black rounded-lg bg-white gap-2 p-4 h-44 flex w-full shadow-lg relative">
       <img src={product.image} alt="" className="w-1/3 object-contain " />
       <div className="w-full flex flex-col p-2 gap-2 relative">
         {product.discount > 0 ? (
@@ -27,30 +28,34 @@ function CartList({ product, setIsChange }) {
         </p>
         <p className="flex text-sm">Quantity {product.qty}</p>
         <div className="absolute bottom-0 flex justify-between w-full md:w-1/2 gap-2">
-            <button
+          <button
+            onClick={() => {
+              removeItemCart(product.id);
+              setIsChange(true);
+              navigate(
+                `/payment/${product.id}/${product.username}/${product.qty}`
+              );
+            }}
+            className="bg-primary text-white rounded-md text-center w-1/2"
+          >
+            Buy Now
+          </button>
+          <button
+            onClick={() => {
+              navigate(`/list/${product.id}?qty=${product.qty}`);
+            }}
+            className="bg-orange-500 text-white rounded-md text-center w-1/2"
+          >
+            Edit
+          </button>
+        </div>
+        <FaRegTrashAlt
+          className="text-xl absolute right-2 text-red-500 hover: cursor-pointer"
           onClick={() => {
             removeItemCart(product.id);
-            setIsChange(true)
-            navigate(
-              `/payment/${product.id}/${product.username}/${product.qty}`
-            );
+            setIsChange(true);
           }}
-          className="bg-primary text-white rounded-md text-center w-1/2"
-        >
-          Buy Now
-        </button>
-        <button
-          onClick={() => {
-            navigate(
-              `/list/${product.id}?qty=${product.qty}`
-            );
-          }}
-          className="bg-orange-500 text-white rounded-md text-center w-1/2"
-        >
-          Edit
-        </button>
-        </div>
-        
+        />
       </div>
     </div>
   );
