@@ -69,6 +69,7 @@ function DetailProduct() {
       theme: "light",
       transition: Flip,
     });
+    return navigate("/list")
   };
 
   const isStockEmpty =
