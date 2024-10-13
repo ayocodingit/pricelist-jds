@@ -103,7 +103,7 @@ function List() {
       </div>
       {products.length == 0 && (
         <div className="capitalize justify-center h-96 flex items-center">
-          Produk tidak ditemukan!
+          Product is Not Found
         </div>
       )}
     </div>
