@@ -12,7 +12,7 @@ const products = [
     tag: tagOptions.READY_STOCK,
     stock: 10,
     discount: 10,
-    is_available: false,
+    is_available: true,
     location: "R. Selatan",
   },
   {
