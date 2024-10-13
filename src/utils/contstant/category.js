@@ -1,3 +1,5 @@
-export const category = {
+export const categoryOptions = {
   FOOD: "makanan",
+  DRINK: "minuman",
+  INGREDIENTS: "bahan-bahan",
 };

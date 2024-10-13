@@ -62,9 +62,9 @@ function DetailProduct() {
           <div className="flex absolute start-5 md:end-[30rem] justify-between md:start-[26%] gap-5 top-5 ">
             <Link
               to={"/list"}
-              className="  text-white text-2xl flex  items-center justify-between gap-3"
+              className="  text-white flex  items-center justify-between gap-3"
             >
-              <BsArrowLeft className="bg-black rounded-full bg-opacity-30 text-3xl p-1" />
+              <BsArrowLeft className="bg-black rounded-full bg-opacity-40 text-3xl p-1" />
               <TelegramShareButton
                 url={`Haloo Akang Teteh~`}
                 title={`
@@ -154,7 +154,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
       </div>
-      <div className=" w-full absolute bottom-0 flex items-center md:justify-center">
+      <div className=" w-full md:absolute bottom-0 flex items-center md:justify-center">
         <Link
           to={`/payment/${product.id}/${product.username}/${qty}`}
           className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] "

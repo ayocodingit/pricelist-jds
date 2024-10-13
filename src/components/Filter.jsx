@@ -2,6 +2,7 @@ import React from "react";
 import { FaUtensils } from "react-icons/fa";
 import { IoFastFoodOutline, IoWaterOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import { categoryOptions } from "../utils/contstant/category";
 
 function Filter({ handleCategory, category }) {
   return (
@@ -9,39 +10,37 @@ function Filter({ handleCategory, category }) {
       <ul className="flex items-center text-black p-2 gap-1 text-2xl">
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
-            category == "makanan" && "text-primary"
+            category == categoryOptions.FOOD && "text-primary"
           }`}
-          onClick={() => handleCategory("makanan")}
-          title="makanan"
+          onClick={() => handleCategory(categoryOptions.FOOD)}
+          title={categoryOptions.FOOD}
         >
           <IoFastFoodOutline />
           <span className="text-sm">Food</span>
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
-            category == "minuman" && "text-primary"
+            category == categoryOptions.DRINK && "text-primary"
           }`}
-          onClick={() => handleCategory("minuman")}
-          title="minuman"
+          onClick={() => handleCategory(categoryOptions.DRINK)}
+          title={categoryOptions.DRINK}
         >
           <IoWaterOutline />
           <span className="text-sm">Drink</span>
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
-            category == "bahan-bahan" && "text-primary"
+            category == categoryOptions.INGREDIENTS && "text-primary"
           }`}
-          onClick={() => handleCategory("bahan-bahan")}
-          title="bahan-bahan"
+          onClick={() => handleCategory(categoryOptions.INGREDIENTS)}
+          title={categoryOptions.INGREDIENTS}
         >
           <FaUtensils />
-          <span className="text-sm">ingredients</span>
+          <span className="text-sm">Ingredients</span>
         </li>
         {category != "" && (
           <li
-            className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
-              category == "" && "text-primary"
-            }`}
+            className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center`}
             onClick={() => handleCategory("")}
             title="Reset"
           >

@@ -50,7 +50,7 @@ function List() {
             >
               <FaSearch />
             </label>
-            <BiFilterAlt className="text-2xl text-primary" onClick={() => setFilter(!filter)}/>
+            <BiFilterAlt className="text-3xl text-primary" onClick={() => setFilter(!filter)}/>
           </div>
         </div>
         {
