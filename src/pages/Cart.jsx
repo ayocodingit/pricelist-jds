@@ -15,8 +15,8 @@ function Cart() {
   }, [isChange]);
 
   return (
-    <div className="bg-gray-50 text-md ">
-      <div className="flex gap-2 p-2 items-center bg-primary text-white shadow-lg sticky top-0 z-10">
+    <div className="bg-gray-50 text-md flex flex-col items-center w-full">
+      <div className="flex gap-2 p-2 items-center bg-primary text-white shadow-lg sticky top-0 z-10 w-full md:w-1/2">
         <BsArrowLeft
           className=" p-1 text-3xl"
           onClick={() => navigate("/list")}
@@ -32,7 +32,7 @@ function Cart() {
       )}
 
       {products.length > 0 && (
-        <div className="p-2 flex flex-col gap-2">
+        <div className="p-2 flex flex-col gap-2 md:items-center md:w-1/2">
           {products.map((product, index) => {
             return <CartList product={product} key={index} setIsChange={setIsChange} />;
           })}

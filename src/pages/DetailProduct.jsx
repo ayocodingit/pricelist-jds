@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { getByID } from "../repository/produts";
 import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -8,19 +13,23 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
-import { addToCart } from "../repository/carts";
+import { addToCart, getCountCart, removeItemCart } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
+import { CiShoppingCart } from "react-icons/ci";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
-  const [qty, setQty] = useState(1);
+  const [URLSearchParams] = useSearchParams();
+  const [qty, setQty] = useState(parseInt(URLSearchParams.get("qty")) || 1);
   const [total, setTotal] = useState(0);
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
+  const [totalCart, setTotalCart] = useState(0);
 
   const navigate = useNavigate();
   useEffect(() => {
     const productDetail = getByID(id);
+    setTotalCart(getCountCart);
 
     if (productDetail) {
       setProduct(productDetail);
@@ -31,7 +40,7 @@ function DetailProduct() {
     }
 
     navigate("/404");
-  }, []);
+  }, [totalCart]);
 
   const calculateTotal = (price, discount, operator) => {
     let count = qty;
@@ -49,9 +58,9 @@ function DetailProduct() {
     return navigate("/404");
   }
 
-  const alert = () => {
-    toast.success("Add To Cart Success", {
-      position: "top-right",
+  const alert = (isNewProduct) => {
+    toast.success(`${isNewProduct ? 'Add To Cart' : 'Updated'} Success`, {
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       pauseOnHover: false,
@@ -86,14 +95,20 @@ function DetailProduct() {
               to={"/list"}
               className="   flex  items-center justify-between gap-3"
             >
-              <BsArrowLeft className="bg-primary rounded-full p-1 text-3xl" />
+              <BsArrowLeft className="bg-primary rounded-full p-1 text-4xl" />
             </Link>
             <div className="flex gap-2 bg-primary rounded-full p-1 ">
               <FaRegShareFromSquare
-                className="p-1 hover: cursor-pointer text-2xl"
+                className="p-1 hover: cursor-pointer text-3xl"
                 onClick={() => setShowSocialMedia(!showSocialMedia)}
               />
               {showSocialMedia && <SocialMedia product={product} />}
+              <div className="relative" onClick={() => navigate("/cart")}>
+                <CiShoppingCart className="text-3xl text-white" />
+                <p className="absolute rounded-full top-0 right-0 text-primary bg-white text-xs w-1/2 flex justify-center">
+                  {totalCart}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -184,19 +199,31 @@ function DetailProduct() {
       </div>
       <div className="w-full md:absolute bottom-0 flex items-center  text-white text-sm  justify-center">
         <div className="flex w-full md:w-1/2 h-10 items-center">
-          <button className="w-1/2 bg-orange-600 h-full" onClick={() => {addToCart(product, qty); alert()}}>Add To Cart</button>
-          <Link
-            to={
-              isStockEmpty
-                ? "#"
-                : `/payment/${product.id}/${product.username}/${qty}`
-            }
+          <button
+            className="w-1/2 bg-orange-600 h-full"
+            onClick={() => {
+              const isNewProduct = addToCart(product, qty);
+              setTotalCart(1);
+              alert(isNewProduct);
+            }}
+          >
+            Add To Cart
+          </button>
+          <button
             className={`hover:bg-opacity-90 flex items-center justify-center h-full w-1/2 ${
               isStockEmpty ? "bg-gray-500" : "bg-primary"
             } `}
+            onClick={() => {
+              removeItemCart(product.id);
+              navigate(
+                isStockEmpty
+                  ? "#"
+                  : `/payment/${product.id}/${product.username}/${qty}`
+              );
+            }}
           >
             {isStockEmpty ? "Not Ready Stock" : "Order Now"}
-          </Link>
+          </button>
         </div>
       </div>
     </div>
