@@ -3,7 +3,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { Link, useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
 
-function CartList({ product }) {
+function CartList({ product, setIsChange }) {
   const navigate = useNavigate();
   return (
     <div className="text-sm text-black rounded-lg bg-white gap-2 p-2 h-40 flex">
@@ -29,6 +29,7 @@ function CartList({ product }) {
         <button
           onClick={() => {
             removeItemCart(product.id);
+            setIsChange(true)
             navigate(
               `/payment/${product.id}/${product.username}/${product.qty}`
             );

@@ -1,40 +1,30 @@
+const key = "products";
 export const addToCart = (item, qty) => {
   let isNewItem = true;
   const product = {
     ...item,
     qty,
   };
-  const storage = localStorage.getItem("carts");
+  const products = getAllCart();
 
-  let carts = [];
-
-  if (storage) {
-    carts = JSON.parse(storage) || [];
-  }
-
-  for (var i in carts) {
-    if (carts[i].id == product.id) {
-      carts[i] = product;
+  for (const i in products) {
+    if (products[i].id == product.id) {
+      products[i] = product;
       isNewItem = false;
       break;
     }
-
-    carts.push(product);
   }
 
-  if (carts.length == 0) {
-    carts.push(product);
-  }
+  if (isNewItem) products.push(product);
 
-  if (!isNewItem) localStorage.removeItem("carts");
-
-  localStorage.setItem("carts", JSON.stringify(carts));
+  localStorage.removeItem(key);
+  localStorage.setItem(key, JSON.stringify(products));
 
   return isNewItem;
 };
 
 export const getAllCart = () => {
-  const storage = localStorage.getItem("carts");
+  const storage = localStorage.getItem(key);
   let carts = [];
 
   if (storage) {
@@ -53,6 +43,10 @@ export const removeItemCart = (id) => {
 
   products = products.filter((product) => product.id != id);
 
-  localStorage.removeItem("carts");
-  localStorage.setItem("carts", JSON.stringify(products));
+  localStorage.removeItem(key);
+  localStorage.setItem(key, JSON.stringify(products));
+};
+
+export const removeAllCart = () => {
+  localStorage.removeItem(key);
 };
