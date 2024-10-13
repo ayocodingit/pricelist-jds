@@ -6,6 +6,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { TelegramIcon, TelegramShareButton } from "react-share";
+import { tagOptions } from "../utils/contstant/tag";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
@@ -43,6 +44,9 @@ function DetailProduct() {
   if (!product) {
     return navigate("/404");
   }
+
+  const isStockEmpty =
+    product.tag == tagOptions.READY_STOCK && product.stock == 0;
 
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
@@ -100,8 +104,15 @@ Hatur nuhun~ ✨
                   calculateDiscount(product.price, product.discount)
                 )}
               </p>
-              <p className="text-[#5D9F5D] text-center outline-dashed px-2 outline-[#5D9F5D] text-sm rounded-md capitalize">
-                {product.tag} <span>{product.stock}</span>
+              <p
+                className={`${
+                  isStockEmpty
+                    ? "text-gray-500 text-gray-500"
+                    : "text-primary outline-primary"
+                } text-center outline-dashed px-2  text-sm rounded-md capitalize`}
+              >
+                {isStockEmpty && "Not "}
+                {product.tag} {!isStockEmpty && <span>{product.stock}</span>}
               </p>
               <p className="text-lg font-bold font-sans capitalize flex gap-2 text-wrap items-center">
                 {product.name}
@@ -113,37 +124,40 @@ Hatur nuhun~ ✨
                   <p className="text-sm text-gray-600">{product.location}</p>
                 </div>
               )}
-
-              <div className="flex gap-5 items-center">
-                <label htmlFor="" className="text-sm">Quantity</label>
-                <div className="flex h-8 justify-center items-center w-32">
-                  <button
-                    onClick={() => {
-                      if (qty > 1) {
-                        calculateTotal(product.price, product.discount, "-");
-                      }
-                    }}
-                    className=" w-full bg-primary text-white text-xl rounded-full h-full"
-                  >
-                    -
-                  </button>
-                  <div className="w-full  text-center h-full flex justify-center items-center">
-                    {qty}
+              {!isStockEmpty && (
+                <div className="flex gap-5 items-center">
+                  <label htmlFor="" className="text-sm">
+                    Quantity
+                  </label>
+                  <div className="flex h-8 justify-center items-center w-32">
+                    <button
+                      onClick={() => {
+                        if (qty > 1) {
+                          calculateTotal(product.price, product.discount, "-");
+                        }
+                      }}
+                      className=" w-full bg-primary text-white text-xl rounded-full h-full"
+                    >
+                      -
+                    </button>
+                    <div className="w-full  text-center h-full flex justify-center items-center">
+                      {qty}
+                    </div>
+                    <button
+                      onClick={() => {
+                        if (
+                          product.tag == tagOptions.PO ||
+                          (product.stock > 1 && qty < product.stock)
+                        )
+                          calculateTotal(product.price, product.discount, "+");
+                      }}
+                      className="w-full bg-primary text-white text-xl rounded-full h-full"
+                    >
+                      +
+                    </button>
                   </div>
-                  <button
-                    onClick={() => {
-                      if (
-                        !product.stock ||
-                        (product.stock > 1 && qty < product.stock)
-                      )
-                        calculateTotal(product.price, product.discount, "+");
-                    }}
-                    className="w-full bg-primary text-white text-xl rounded-full h-full"
-                  >
-                    +
-                  </button>
                 </div>
-              </div>
+              )}
               <div className="flex gap-5 items-center">
                 <div className="text-sm">Total Price</div>
                 <div className="text-orange-600 text-md font-serif">
@@ -156,11 +170,17 @@ Hatur nuhun~ ✨
       </div>
       <div className=" w-full md:absolute bottom-0 flex items-center md:justify-center">
         <Link
-          to={`/payment/${product.id}/${product.username}/${qty}`}
-          className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] "
+          to={
+            isStockEmpty
+              ? "#"
+              : `/payment/${product.id}/${product.username}/${qty}`
+          }
+          className={`hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center ${
+            isStockEmpty ? "bg-gray-500" : "bg-primary"
+          } `}
         >
           <div className="text-center text-white text-sm w-full flex items-center justify-center font-serif">
-            Order Now
+            {isStockEmpty ? "Not Ready Stock" : "Order Now"}
           </div>
         </Link>
       </div>
