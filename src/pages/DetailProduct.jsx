@@ -80,14 +80,20 @@ function DetailProduct() {
         </div>
       </div>
       <div className="w-full flex md:justify-center h-full">
-        <div className="md:w-1/2 w-full    flex md:bg-white">
+        <div className="md:w-1/2 w-full flex md:bg-white">
           <div className="mt-2 p-4 flex justify-between gap-5">
             <div className="flex flex-col gap-2">
               {product.discount > 0 && (
-                <span className="text-sm text-primary font-serif underline">
-                  Promo {product.discount}%
+                <div className="text-sm flex gap-2">
+                <span className="text-primary font-serif underline">
+                  Discount {product.discount}%
                 </span>
+                <span className="line-through text-black">
+                  {formatNumberIDR(product.price)}
+                </span>
+                </div>
               )}
+              
               <p className="text-orange-600 text-md font-serif flex gap-2 items-center">
                 {formatNumberIDR(
                   calculateDiscount(product.price, product.discount)
