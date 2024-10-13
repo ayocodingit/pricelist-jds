@@ -157,12 +157,12 @@ const products = [
 ];
 
 const getFunctionSort = (sort) => {
-  return sort == "A-Z" ? sortAscByName : sortDescByDiscount;
+  return sort == "name" ? sortAscByName : sortDescByDiscount;
 };
 
-export const getProducts = (q = "", category = "", sort) => {
+export const getProducts = (q = "", category = "", sort = "") => {
   const funcSort = getFunctionSort(sort);
-  if (q == "" && category == "") return funcSort(products);
+  if (q == "" && category == "") return funcSort(products.filter((product) => product));
 
   const regex = new RegExp(q, "gi");
 
@@ -179,9 +179,8 @@ export const getByID = (id) => {
 
 const sortDescByDiscount = (products) => {
   return products.sort((a, b) => {
-    
-    return b.discount - a.discount
-});
+    return b.discount - a.discount;
+  });
 };
 
 const sortAscByName = (products) => {

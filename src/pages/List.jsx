@@ -15,7 +15,7 @@ function List() {
   const [category, setCategory] = useState(
     URLSearchParams.get("category") || ""
   );
-  const [sort, setSort] = useState("A-Z");
+  const [sort, setSort] = useState(URLSearchParams.get("sort") || "");
   const [filter, setFilter] = useState(false);
 
   useEffect(() => {
@@ -25,17 +25,17 @@ function List() {
   const handleSearch = (e) => {
     const q = e.target.value;
     setQ(q);
-    SetURLSearchParams({ q, category });
+    SetURLSearchParams({ q, category, sort });
   };
 
   const handleCategory = (category) => {
-    if (category == "") setFilter(false);
     setCategory(category);
-    SetURLSearchParams({ q, category });
+    SetURLSearchParams({ q, category, sort });
   };
 
-  const handleSort = (sort) => {
-    setSort(sort);
+  const handleSort = (sorting) => {
+    setSort(sorting);
+    SetURLSearchParams({ q, category, sort: sorting });
   };
 
   return (
@@ -62,13 +62,21 @@ function List() {
               className="text-3xl text-primary"
               onClick={() => setFilter(!filter)}
             />
-            <SortProduct handleSort={handleSort} sort={sort} />
-
           </div>
-        </div>  
+        </div>
         {filter && (
-          <Filter handleCategory={handleCategory} category={category} />
+          <div className="flex w-full md:w-1/2 justify-center gap-2 p-3 bg-gray-50">
+            <div className="flex flex-col items-center justify-center">
+              <SortProduct handleSort={handleSort} sort={sort} />
+              <p className="text-sm font-bold text-primary">Sort </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Filter handleCategory={handleCategory} category={category}/>
+              <p className="text-sm font-bold text-primary">Category</p>
+            </div>
+          </div>
         )}
+
         <Footer />
       </div>
       <div className="flex justify-center md:p-5 p-2">
