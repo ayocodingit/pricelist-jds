@@ -69,7 +69,8 @@ function DetailProduct() {
       theme: "light",
       transition: Flip,
     });
-    return navigate("/list")
+    
+    return navigate("/list/" + product.id + "?qty=" + qty)
   };
 
   const isStockEmpty =
