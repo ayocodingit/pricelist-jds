@@ -5,18 +5,22 @@ import { getProducts } from "../repository/produts";
 import Footer from "../components/Footer";
 import { useSearchParams } from "react-router-dom";
 import { BiFilterAlt } from "react-icons/bi";
-import Filter from "../components/Filter";
+import Filter from "../components/FilterCategory";
+import SortProduct from "../components/SortProduct";
 
 function List() {
   const [products, setProducts] = useState([]);
   const [URLSearchParams, SetURLSearchParams] = useSearchParams();
   const [q, setQ] = useState(URLSearchParams.get("q") || "");
-  const [category, setCategory] = useState(URLSearchParams.get("category") || "")
+  const [category, setCategory] = useState(
+    URLSearchParams.get("category") || ""
+  );
+  const [sort, setSort] = useState("A-Z");
   const [filter, setFilter] = useState(false);
 
   useEffect(() => {
-    setProducts(getProducts(q, category));
-  }, [q, category]);
+    setProducts(getProducts(q, category, sort));
+  }, [q, category, sort]);
 
   const handleSearch = (e) => {
     const q = e.target.value;
@@ -25,10 +29,14 @@ function List() {
   };
 
   const handleCategory = (category) => {
-    if (category == '') setFilter(false)
-    setCategory(category)
+    if (category == "") setFilter(false);
+    setCategory(category);
     SetURLSearchParams({ q, category });
-  }
+  };
+
+  const handleSort = (sort) => {
+    setSort(sort);
+  };
 
   return (
     <div className="bg-gray-50">
@@ -50,13 +58,17 @@ function List() {
             >
               <FaSearch />
             </label>
-            <BiFilterAlt className="text-3xl text-primary" onClick={() => setFilter(!filter)}/>
+            <BiFilterAlt
+              className="text-3xl text-primary"
+              onClick={() => setFilter(!filter)}
+            />
+            <SortProduct handleSort={handleSort} sort={sort} />
+
           </div>
-        </div>
-        {
-          filter && <Filter handleCategory={handleCategory} category={category}/>
-        }
-        
+        </div>  
+        {filter && (
+          <Filter handleCategory={handleCategory} category={category} />
+        )}
         <Footer />
       </div>
       <div className="flex justify-center md:p-5 p-2">

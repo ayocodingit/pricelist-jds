@@ -4,7 +4,7 @@ import { IoFastFoodOutline, IoWaterOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { categoryOptions } from "../utils/contstant/category";
 
-function Filter({ handleCategory, category }) {
+function FilterCategory({ handleCategory, category }) {
   return (
     <div>
       <ul className="flex items-center text-black p-2 gap-1 text-2xl">
@@ -53,4 +53,4 @@ function Filter({ handleCategory, category }) {
   );
 }
 
-export default Filter;
+export default FilterCategory;

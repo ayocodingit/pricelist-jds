@@ -152,18 +152,49 @@ const products = [
     username: "imamfahmi29",
     is_available: true,
     tag: tagOptions.PO,
-    discount: 0,
+    discount: 20,
   },
 ];
 
-export const getProducts = (q = "", category = "") => {
-  if (q == "" && category == '') return products;
+const getFunctionSort = (sort) => {
+  console.log(sort);
+  
+  return sort == "A-Z" ? sortAscByName : sortDescByDiscount;
+};
+
+export const getProducts = (q = "", category = "", sort = "A-Z") => {
+  const funcSort = getFunctionSort(sort);
+  if (q == "" && category == "") return funcSort(products);
 
   const regex = new RegExp(q, "gi");
 
-  return products.filter((product) => product.name?.match(regex) && category == product.category);
+  return funcSort(
+    products.filter(
+      (product) => product.name?.match(regex) && category == product.category
+    )
+  );
 };
 
 export const getByID = (id) => {
   return products.filter((product) => product.id == id)[0];
+};
+
+const sortDescByDiscount = (products) => {
+  return products.sort((a, b) => b.discount - a.discount);
+};
+
+const sortAscByName = (products) => {
+  return products.sort((a, b) => {
+    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
 };
