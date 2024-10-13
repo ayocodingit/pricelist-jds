@@ -19,7 +19,7 @@ function Cart() {
           className=" p-1 text-3xl"
           onClick={() => navigate("/list")}
         />
-        <p>Cart</p>
+        <p>Cart ({products.length})</p>
       </div>
 
       {products.length === 0 && (
