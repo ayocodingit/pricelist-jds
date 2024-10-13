@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
   Link,
-  useLocation,
   useNavigate,
   useParams,
-  useSearchParams,
 } from "react-router-dom";
 import { getUser } from "../repository/users";
 import Payment from "../components/Payment";
-import { AiOutlineCopy, AiOutlineHome } from "react-icons/ai";
 import { getByID } from "../repository/produts";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Flip, toast } from "react-toastify";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
+import { FaCubes } from "react-icons/fa6";
 
 function Detail() {
   const [user, setUser] = useState(null);
@@ -53,9 +51,9 @@ function Detail() {
 
   return (
     <div className="flex flex-col bg-gray-50 items-center h-[calc(100dvh)] p-5">
-      <h1 className="text-md mt-5 flex gap-1 justify-center items-center">
+      <h1 className="text-lg mt-5 flex gap-1 justify-center items-center">
         <Link to={"/list"}>
-          <AiOutlineHome />
+          <FaCubes className="text-xl"/>
         </Link>
         {user.name_card}
       </h1>

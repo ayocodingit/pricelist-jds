@@ -5,14 +5,16 @@ import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
-import { TelegramIcon, TelegramShareButton } from "react-share";
+import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
+import SocialMedia from "../components/SocialMedia";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(0);
   const { id } = useParams();
+  const [showSocialMedia, setShowSocialMedia] = useState(false)
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -51,42 +53,29 @@ function DetailProduct() {
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
       <div className="w-full flex md:justify-center">
-        <div className="w-full md:w-1/2 flex justify-center md:border-x-4 border-white">
+        <div className="w-full md:w-1/2 flex justify-center md:border-x-4 md:border-white">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`max-h-[20rem]  w-full relative object-contain border-2 border-gray-100 hover:cursor-zoom-in ${
+                className={`max-h-[20rem]  w-full relative object-contain md:border-2 md:border-gray-100 hover:cursor-zoom-in ${
                   isStockEmpty && "grayscale"
                 }`}
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute start-5 md:end-[30rem] justify-between md:start-[26%] gap-5 top-5 ">
+          <div className="flex absolute start-5 justify-between md:start-[26%] gap-2 top-5 items-center  text-white ">
             <Link
               to={"/list"}
-              className="  text-white flex  items-center justify-between gap-3"
+              className="   flex  items-center justify-between gap-3"
             >
-              <BsArrowLeft className="bg-black rounded-full bg-opacity-40 text-3xl p-1" />
-              <TelegramShareButton
-                url={`Haloo Akang Teteh~`}
-                title={`
-Mangga in case ada yg mau beli
-
-**~${product.name}~**
-${product.image}
-Harganya cuma **${formatNumberIDR(product.price)}** aja
-
-untuk info detail produknya silakan kunjungi di bawah ini yah 
-${location.href}
-
-Hatur nuhun~ ✨
-`}
-              >
-                <TelegramIcon size={32} round={true} />
-              </TelegramShareButton>
+              <BsArrowLeft className="bg-primary rounded-full p-1 text-3xl" />
             </Link>
+            <div className="flex gap-2 bg-primary rounded-full p-1 ">
+              <FaRegShareFromSquare className="p-1 hover: cursor-pointer text-2xl" onClick={() => setShowSocialMedia(!showSocialMedia)}/>
+              { showSocialMedia && <SocialMedia product={product} /> }
+            </div>
           </div>
         </div>
       </div>
@@ -136,7 +125,7 @@ Hatur nuhun~ ✨
                           calculateTotal(product.price, product.discount, "-");
                         }
                       }}
-                      className=" w-full bg-primary text-white text-xl rounded-full h-full"
+                      className=" w-full bg-primary text-white text-xl rounded-lg h-full"
                     >
                       -
                     </button>
@@ -151,7 +140,7 @@ Hatur nuhun~ ✨
                         )
                           calculateTotal(product.price, product.discount, "+");
                       }}
-                      className="w-full bg-primary text-white text-xl rounded-full h-full"
+                      className="w-full bg-primary text-white text-xl rounded-lg h-full"
                     >
                       +
                     </button>

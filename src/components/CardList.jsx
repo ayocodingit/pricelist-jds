@@ -20,7 +20,7 @@ function CardList({ product }) {
         <img
             src={product.image}
             alt="image product"
-            className={` min-h-[10rem] h-8 object-fill rounded-md ${
+            className={` min-h-[10rem] h-10 object-contain rounded-md ${
               !isStockEmpty && "grayscale"
             }`}
             loading="lazy"
@@ -35,11 +35,10 @@ function CardList({ product }) {
               {product.name}
             </h1>
             {product.discount > 0 ? (
-              <p className="text-xs text-primary flex gap-2">
+              <p className="text-xs text-primary flex gap-1 items-center">
                 <span className="underline">
 Discount {product.discount}%
                 </span>
-                
                 {product.discount > 0 && (
                 <span className="line-through text-black">
                   {formatNumberIDR(product.price)}

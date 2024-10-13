@@ -85,7 +85,7 @@ function List() {
       </div>
       <div className="flex justify-center md:p-5 p-2">
         {products.length > 0 && (
-          <div className="md:gap-4 gap-2 grid grid-cols-2 md:grid-cols-6 w-full">
+          <div className="gap-2 grid grid-cols-2 md:grid-cols-6 w-full">
             {products.map((product, index) => {
               return <CardList product={product} key={index} />;
             })}
