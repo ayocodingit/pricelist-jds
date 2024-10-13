@@ -6,7 +6,7 @@ import { categoryOptions } from "../utils/contstant/category";
 
 function FilterCategory({ handleCategory, category }) {
   return (
-      <ul className="flex items-center text-black p-2 gap-1 text-xl overflow-x-auto w-44 md:w-full">
+      <ul className="flex items-center text-black p-2 gap-1 text-xl overflow-x-auto w-48 md:w-full">
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
             category == categoryOptions.FOOD && "text-primary"
