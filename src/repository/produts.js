@@ -160,7 +160,7 @@ const getFunctionSort = (sort) => {
   return sort == "name" ? sortAscByName : sortDescByDiscount;
 };
 
-export const getProducts = (q = "", category = "", sort = "") => {
+export const getProducts = (q = "", category = "", sort = '') => {
   const funcSort = getFunctionSort(sort);
   if (q == "" && category == "") return funcSort(products.filter((product) => product));
 
