@@ -203,7 +203,7 @@ function DetailProduct() {
             className="w-1/2 bg-orange-600 h-full"
             onClick={() => {
               const isNewProduct = addToCart(product, qty);
-              setTotalCart(1);
+              setTotalCart(totalCart + 1);
               alert(isNewProduct);
             }}
           >
