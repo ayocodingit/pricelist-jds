@@ -15,7 +15,7 @@ export const addToCart = (item, qty) => {
     }
   }
 
-  if (isNewItem) products.pop(product);
+  if (isNewItem) products.unshift(product);
 
   localStorage.removeItem(key);
   localStorage.setItem(key, JSON.stringify(products));
