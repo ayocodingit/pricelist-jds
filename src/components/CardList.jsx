@@ -2,12 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
+import { tagOptions } from "../utils/contstant/tag";
 
 function CardList({ product }) {
+  const isStockEmpty =
+    !((product.tag == tagOptions.READY_STOCK && product.stock == 0) || !product.is_available);
+    
   return (
     <Link
       className=" rounded-md flex bg-white shadow-md hover:outline-[#5D9F5D] hover:outline-double"
-      to={product.is_available ? "/list/" + product.id : "#"}
+      to={isStockEmpty ? "/list/" + product.id : "#"}
       title={product.name}
     >
       <div className="flex flex-col gap-1 justify-center w-full">
@@ -15,9 +19,7 @@ function CardList({ product }) {
           <img
             src={product.image}
             alt="image product"
-            className={` min-h-[10rem] h-8 object-fill object-top rounded-md ${
-              !product.is_available && "grayscale"
-            }`}
+            className={` min-h-[10rem] h-8 object-fill object-top rounded-md ${!isStockEmpty && 'grayscale'}`}
             loading="lazy"
           />
         </div>
@@ -26,7 +28,7 @@ function CardList({ product }) {
             
             <h1
               className={` ${
-                !product.is_available && "line-through"
+                !isStockEmpty && "line-through"
               } text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`}
             >
               {product.name}

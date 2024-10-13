@@ -33,7 +33,7 @@ function List() {
   return (
     <div className="bg-gray-50">
       {/* section Search */}
-      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0 shadow-md transition-all">
+      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0 shadow-md z-10">
         <div className="w-full p-2 flex justify-center">
           <div className="relative w-full flex gap-2 md:w-1/2 items-center">
             <input

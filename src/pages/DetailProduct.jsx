@@ -46,19 +46,19 @@ function DetailProduct() {
   }
 
   const isStockEmpty =
-    product.tag == tagOptions.READY_STOCK && product.stock == 0;
+    (product.tag == tagOptions.READY_STOCK && product.stock == 0) || !product.is_available;
 
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
       <div className="w-full flex md:justify-center">
         <div className="w-full md:w-1/2 flex justify-center md:border-x-4 border-white">
-          <PhotoProvider className={`${!product.is_available && "grayscale"}`}>
+          <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
                 className={`max-h-[20rem]  w-full relative object-contain border-2 border-gray-100 hover:cursor-zoom-in ${
-                  !product.is_available && "grayscale"
+                  isStockEmpty && "grayscale"
                 }`}
               />
             </PhotoView>
@@ -107,7 +107,7 @@ Hatur nuhun~ ✨
               <p
                 className={`${
                   isStockEmpty
-                    ? "text-gray-500 text-gray-500"
+                    ? "text-gray-500 outline-gray-500"
                     : "text-primary outline-primary"
                 } text-center outline-dashed px-2  text-sm rounded-md capitalize`}
               >
