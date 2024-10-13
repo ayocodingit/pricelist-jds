@@ -6,7 +6,7 @@ import { removeItemCart } from "../repository/carts";
 function CartList({ product, setIsChange }) {
   const navigate = useNavigate();
   return (
-    <div className="text-sm text-black rounded-lg bg-white gap-2 p-2 h-40 flex w-full">
+    <div className="text-sm text-black rounded-lg bg-white gap-2 p-4 h-40 flex w-full">
       <img src={product.image} alt="" className="w-1/3 object-contain " />
       <div className="w-full flex flex-col p-2 gap-2 relative">
         {product.discount > 0 ? (

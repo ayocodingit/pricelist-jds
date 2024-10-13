@@ -32,7 +32,7 @@ function Cart() {
       )}
 
       {products.length > 0 && (
-        <div className="p-2 flex flex-col gap-2 md:items-center md:w-1/2">
+        <div className="p-2 flex flex-col gap-2 md:items-center w-full md:w-1/2">
           {products.map((product, index) => {
             return <CartList product={product} key={index} setIsChange={setIsChange} />;
           })}
