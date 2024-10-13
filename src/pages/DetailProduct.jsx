@@ -8,13 +8,15 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
+import { addToCart } from "../repository/carts";
+import { Flip, toast } from "react-toastify";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(0);
   const { id } = useParams();
-  const [showSocialMedia, setShowSocialMedia] = useState(false)
+  const [showSocialMedia, setShowSocialMedia] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -47,8 +49,22 @@ function DetailProduct() {
     return navigate("/404");
   }
 
+  const alert = () => {
+    toast.success("Add To Cart Success", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Flip,
+    });
+  };
+
   const isStockEmpty =
-    (product.tag == tagOptions.READY_STOCK && product.stock == 0) || !product.is_available;
+    (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
+    !product.is_available;
 
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
@@ -73,8 +89,11 @@ function DetailProduct() {
               <BsArrowLeft className="bg-primary rounded-full p-1 text-3xl" />
             </Link>
             <div className="flex gap-2 bg-primary rounded-full p-1 ">
-              <FaRegShareFromSquare className="p-1 hover: cursor-pointer text-2xl" onClick={() => setShowSocialMedia(!showSocialMedia)}/>
-              { showSocialMedia && <SocialMedia product={product} /> }
+              <FaRegShareFromSquare
+                className="p-1 hover: cursor-pointer text-2xl"
+                onClick={() => setShowSocialMedia(!showSocialMedia)}
+              />
+              {showSocialMedia && <SocialMedia product={product} />}
             </div>
           </div>
         </div>
@@ -85,15 +104,15 @@ function DetailProduct() {
             <div className="flex flex-col gap-2">
               {product.discount > 0 && (
                 <div className="text-sm flex gap-2">
-                <span className="text-primary font-serif underline">
-                  Discount {product.discount}%
-                </span>
-                <span className="line-through text-black">
-                  {formatNumberIDR(product.price)}
-                </span>
+                  <span className="text-primary font-serif underline">
+                    Discount {product.discount}%
+                  </span>
+                  <span className="line-through text-black">
+                    {formatNumberIDR(product.price)}
+                  </span>
                 </div>
               )}
-              
+
               <p className="text-orange-600 text-md font-serif flex gap-2 items-center">
                 {formatNumberIDR(
                   calculateDiscount(product.price, product.discount)
@@ -163,21 +182,22 @@ function DetailProduct() {
           </div>
         </div>
       </div>
-      <div className=" w-full md:absolute bottom-0 flex items-center md:justify-center">
-        <Link
-          to={
-            isStockEmpty
-              ? "#"
-              : `/payment/${product.id}/${product.username}/${qty}`
-          }
-          className={`hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center ${
-            isStockEmpty ? "bg-gray-500" : "bg-primary"
-          } `}
-        >
-          <div className="text-center text-white text-sm w-full flex items-center justify-center font-serif">
+      <div className="w-full md:absolute bottom-0 flex items-center  text-white text-sm  justify-center">
+        <div className="flex w-full md:w-1/2 h-10 items-center">
+          <button className="w-1/2 bg-orange-600 h-full" onClick={() => {addToCart(product, qty); alert()}}>Add To Cart</button>
+          <Link
+            to={
+              isStockEmpty
+                ? "#"
+                : `/payment/${product.id}/${product.username}/${qty}`
+            }
+            className={`hover:bg-opacity-90 flex items-center justify-center h-full w-1/2 ${
+              isStockEmpty ? "bg-gray-500" : "bg-primary"
+            } `}
+          >
             {isStockEmpty ? "Not Ready Stock" : "Order Now"}
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     </div>
   );

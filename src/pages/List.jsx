@@ -3,10 +3,12 @@ import { FaSearch } from "react-icons/fa";
 import CardList from "../components/CardList";
 import { getProducts } from "../repository/produts";
 import Footer from "../components/Footer";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { BiFilterAlt } from "react-icons/bi";
 import Filter from "../components/FilterCategory";
 import SortProduct from "../components/SortProduct";
+import { CiShoppingCart } from "react-icons/ci";
+import { getCountCart } from "../repository/carts";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -15,13 +17,14 @@ function List() {
   const [category, setCategory] = useState(
     URLSearchParams.get("category") || ""
   );
+  const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "discount");
   const [filter, setFilter] = useState(false);
 
   useEffect(() => {
-    if (!['name', 'discount'].includes(sort)) {
-      setSort('discount')
-      SetURLSearchParams({ q, category, sort: 'discount' });
+    if (!["name", "discount"].includes(sort)) {
+      setSort("discount");
+      SetURLSearchParams({ q, category, sort: "discount" });
     }
     setProducts(getProducts(q, category, sort));
   }, [q, category, sort]);
@@ -45,7 +48,7 @@ function List() {
   return (
     <div className="bg-gray-50">
       {/* section Search */}
-      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0 shadow-md z-10">
+      <div className="flex flex-col gap-1 items-center py-3 md:py-5 bg-primary sticky top-0 shadow-lg z-10">
         <div className="w-full p-2 flex justify-center">
           <div className="relative w-full flex gap-2 md:w-1/2 items-center">
             <input
@@ -63,9 +66,15 @@ function List() {
               <FaSearch />
             </label>
             <BiFilterAlt
-              className="text-3xl text-primary"
+              className="text-3xl text-white"
               onClick={() => setFilter(!filter)}
             />
+            <div className="relative" onClick={() => navigate("/cart")}>
+              <CiShoppingCart className="text-3xl text-white" />
+              <p className="absolute rounded-full top-0 right-0 text-primary bg-white text-xs w-1/2 flex justify-center">
+                {getCountCart()}
+              </p>
+            </div>
           </div>
         </div>
         {filter && (
@@ -75,7 +84,7 @@ function List() {
               <p className="text-sm font-bold text-primary">Sort </p>
             </div>
             <div className="flex flex-col items-center">
-              <Filter handleCategory={handleCategory} category={category}/>
+              <Filter handleCategory={handleCategory} category={category} />
               <p className="text-sm font-bold text-primary">Category</p>
             </div>
           </div>

@@ -27,13 +27,7 @@ function CardList({ product }) {
           />
         <div className="p-2">
           <div className="px-1 flex flex-col gap-1">
-            <h1
-              className={` ${
-                !isStockEmpty && "line-through"
-              } text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`}
-            >
-              {product.name}
-            </h1>
+            
             {product.discount > 0 ? (
               <p className="text-xs text-primary flex gap-1 items-center">
                 <span className="underline">
@@ -51,6 +45,13 @@ Discount {product.discount}%
                   calculateDiscount(product.price, product.discount)
                 )}
             </p>
+            <h1
+              className={` ${
+                !isStockEmpty && "line-through"
+              } text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`}
+            >
+              {product.name}
+            </h1>
           </div>
         </div>
       </div>
