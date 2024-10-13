@@ -4,31 +4,41 @@ import CardList from "../components/CardList";
 import { getProducts } from "../repository/produts";
 import Footer from "../components/Footer";
 import { useSearchParams } from "react-router-dom";
+import { BiFilterAlt } from "react-icons/bi";
+import Filter from "../components/Filter";
 
 function List() {
   const [products, setProducts] = useState([]);
   const [URLSearchParams, SetURLSearchParams] = useSearchParams();
   const [q, setQ] = useState(URLSearchParams.get("q") || "");
+  const [category, setCategory] = useState(URLSearchParams.get("category") || "")
+  const [filter, setFilter] = useState(false);
 
   useEffect(() => {
-    setProducts(getProducts(q));
-  }, [q]);
+    setProducts(getProducts(q, category));
+  }, [q, category]);
 
   const handleSearch = (e) => {
     const q = e.target.value;
     setQ(q);
-    SetURLSearchParams({ q });
+    SetURLSearchParams({ q, category });
   };
 
+  const handleCategory = (category) => {
+    if (category == '') setFilter(false)
+    setCategory(category)
+    SetURLSearchParams({ q, category });
+  }
+
   return (
-    <div className="bg-gray-50 h-[calc(100dvh)] relative">
+    <div className="bg-gray-50">
       {/* section Search */}
-      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0 shadow-sm">
+      <div className="flex flex-col gap-1 items-center py-2 md:py-5 bg-white sticky top-0 shadow-md transition-all">
         <div className="w-full p-2 flex justify-center">
-          <div className="relative w-full md:w-1/2">
+          <div className="relative w-full flex gap-2 md:w-1/2 items-center">
             <input
               type="text"
-              className=" w-full h-9  rounded-md focus:outline-[#5D9F5D] outline-1 outline-[#5D9F5D] outline-double text-black pl-8 pr-5 text-md"
+              className=" w-full h-9  rounded-md focus:outline-primary outline-1 outline-primary outline-double text-black pl-8 pr-5 text-md"
               placeholder="Cari Produk"
               defaultValue={q}
               id="search"
@@ -36,12 +46,17 @@ function List() {
             />
             <label
               htmlFor="search"
-              className="absolute text-md left-2 top-2 text-[#5D9F5D]"
+              className="absolute text-md left-2 top-2 text-primary"
             >
               <FaSearch />
             </label>
+            <BiFilterAlt className="text-2xl text-primary" onClick={() => setFilter(!filter)}/>
           </div>
         </div>
+        {
+          filter && <Filter handleCategory={handleCategory} category={category}/>
+        }
+        
         <Footer />
       </div>
       <div className="flex justify-center md:p-5 p-2">
@@ -52,13 +67,12 @@ function List() {
             })}
           </div>
         )}
-
-        {products.length == 0 && (
-          <div className="capitalize  flex items-center">
-            Produk tidak ditemukan!
-          </div>
-        )}
       </div>
+      {products.length == 0 && (
+        <div className="capitalize justify-center h-96 flex items-center">
+          Produk tidak ditemukan!
+        </div>
+      )}
     </div>
   );
 }

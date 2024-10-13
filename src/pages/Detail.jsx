@@ -12,13 +12,12 @@ import { AiOutlineCopy, AiOutlineHome } from "react-icons/ai";
 import { getByID } from "../repository/produts";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Flip, toast } from "react-toastify";
-import { formatNumberIDR } from "../utils/formatter";
+import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 
 function Detail() {
   const [user, setUser] = useState(null);
   const [product, setProduct] = useState(null);
   const { product: productID, user: username, qty } = useParams();
-  
 
   const navigate = useNavigate();
 
@@ -54,7 +53,7 @@ function Detail() {
 
   return (
     <div className="flex flex-col bg-gray-50 items-center h-[calc(100dvh)] p-5">
-      <h1 className="text-lg mt-5 flex gap-1 justify-center items-center">
+      <h1 className="text-md mt-5 flex gap-1 justify-center items-center">
         <Link to={"/list"}>
           <AiOutlineHome />
         </Link>
@@ -62,25 +61,35 @@ function Detail() {
       </h1>
 
       <div className="mt-10 flex flex-col gap-3 w-full items-center">
-        <div className="flex flex-col items-center gap-2 text-md pt-2 text-black bg-white rounded-md w-full md:w-96 shadow-lg">
-          <p className=" capitalize text-wrap">{product.name}</p>
-          <p className="text-xl font-serif  flex">
-            {formatNumberIDR(product.price)} x {qty}
+        <div className="flex flex-col items-center gap-2 text-sm pt-2 text-black bg-white rounded-md w-full md:w-96 shadow-lg">
+          <p className=" capitalize text-wrap font-bold text-lg">
+            {product.name}
           </p>
-          <CopyToClipboard text={product.price * qty} onCopy={alert}>
+          <p className="text-md font-serif  flex">
+            {formatNumberIDR(
+              calculateDiscount(product.price, product.discount)
+            )}{" "}
+            x {qty}
+          </p>
+          <CopyToClipboard
+            text={calculateDiscount(product.price, product.discount) * qty}
+            onCopy={alert}
+          >
             <p
               title="Copy Text"
               className="hover:bg-opacity-90 bg-[#5D9F5D] text-white hover:rounded-md hover:cursor-copy font-bold font-serif flex justify-center items-center border-t-2 border-gray-200 py-2 w-full"
             >
-              {formatNumberIDR(product.price * qty)}
+              {formatNumberIDR(
+                calculateDiscount(product.price, product.discount) * qty
+              )}
             </p>
           </CopyToClipboard>
         </div>
-        <p className="font-bold p-2 text-md md:text-lg text-center">
+        <p className="font-bold p-2 text-sm md:text-md text-center">
           Thank you for your purchase. <br />
           Don't forget to confirm with the seller if you have paid. 😁
         </p>
-        <p className="text-md md:text-md">Info Account</p>
+        <p className="text-sm md:text-md">Info Account</p>
         <Payment
           payment={{ provider: "telegram", value: user.username }}
           product={product.name}

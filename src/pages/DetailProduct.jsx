@@ -4,9 +4,8 @@ import { getByID } from "../repository/produts";
 import { BsArrowLeft } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
-import { formatNumberIDR } from "../utils/formatter";
+import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { TelegramIcon, TelegramShareButton } from "react-share";
-import { AiOutlineShareAlt } from "react-icons/ai";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
@@ -20,12 +19,26 @@ function DetailProduct() {
 
     if (productDetail) {
       setProduct(productDetail);
-      setTotal(productDetail.price * qty);
+      setTotal(
+        calculateDiscount(productDetail.price, productDetail.discount) * qty
+      );
       return;
     }
 
     navigate("/404");
   }, []);
+
+  const calculateTotal = (price, discount, operator) => {
+    let count = qty;
+    if (operator == "-") {
+      count -= 1;
+    } else {
+      count += 1;
+    }
+
+    setQty(count);
+    setTotal(calculateDiscount(price, discount) * count);
+  };
 
   if (!product) {
     return navigate("/404");
@@ -43,7 +56,6 @@ function DetailProduct() {
                 className={`max-h-[20rem]  w-full relative object-contain border-2 border-gray-100 hover:cursor-zoom-in ${
                   !product.is_available && "grayscale"
                 }`}
-                
               />
             </PhotoView>
           </PhotoProvider>
@@ -77,56 +89,64 @@ Hatur nuhun~ ✨
       <div className="w-full flex md:justify-center h-full">
         <div className="md:w-1/2 w-full    flex md:bg-white">
           <div className="mt-2 p-4 flex justify-between gap-5">
-            <div className="flex flex-col gap-3">
-              <p className="text-orange-600 text-xl font-serif ">
-                {formatNumberIDR(product.price)}
+            <div className="flex flex-col gap-2">
+              {product.discount > 0 && (
+                <span className="text-sm text-primary font-serif underline">
+                  Promo {product.discount}%
+                </span>
+              )}
+              <p className="text-orange-600 text-md font-serif flex gap-2 items-center">
+                {formatNumberIDR(
+                  calculateDiscount(product.price, product.discount)
+                )}
               </p>
               <p className="text-[#5D9F5D] text-center outline-dashed px-2 outline-[#5D9F5D] text-sm rounded-md capitalize">
-                {product.tag}
+                {product.tag} <span>{product.stock}</span>
               </p>
-              <p className="text-lg font-roboto capitalize flex gap-2 text-wrap items-center">
+              <p className="text-lg font-bold font-sans capitalize flex gap-2 text-wrap items-center">
                 {product.name}
               </p>
+
               {product.location && (
                 <div className="flex items-center ">
                   <BiMap />
-                  <p className="text-md text-gray-600">{product.location}</p>
+                  <p className="text-sm text-gray-600">{product.location}</p>
                 </div>
               )}
 
               <div className="flex gap-5 items-center">
-                <label htmlFor="">Quantity</label>
-                <div className="flex outline-double outline-gray-200 h-8 justify-center items-center text-lg w-32">
+                <label htmlFor="" className="text-sm">Quantity</label>
+                <div className="flex h-8 justify-center items-center w-32">
                   <button
                     onClick={() => {
                       if (qty > 1) {
-                        const count = qty - 1;
-                        setQty(count);
-                        setTotal(product.price * count);
+                        calculateTotal(product.price, product.discount, "-");
                       }
                     }}
-                    className=" w-full h-full"
+                    className=" w-full bg-primary text-white text-xl rounded-full h-full"
                   >
                     -
                   </button>
-                  <div className="outline-double w-full  outline-gray-200 text-center h-full flex justify-center items-center">
+                  <div className="w-full  text-center h-full flex justify-center items-center">
                     {qty}
                   </div>
                   <button
                     onClick={() => {
-                      const count = qty + 1;
-                      setQty(count);
-                      setTotal(product.price * count);
+                      if (
+                        !product.stock ||
+                        (product.stock > 1 && qty < product.stock)
+                      )
+                        calculateTotal(product.price, product.discount, "+");
                     }}
-                    className="w-full h-full "
+                    className="w-full bg-primary text-white text-xl rounded-full h-full"
                   >
                     +
                   </button>
                 </div>
               </div>
               <div className="flex gap-5 items-center">
-                <div>Total Price</div>
-                <div className="text-orange-600 text-xl font-serif">
+                <div className="text-sm">Total Price</div>
+                <div className="text-orange-600 text-md font-serif">
                   {formatNumberIDR(total)}
                 </div>
               </div>
@@ -139,7 +159,7 @@ Hatur nuhun~ ✨
           to={`/payment/${product.id}/${product.username}/${qty}`}
           className="hover:bg-opacity-90 flex h-10 w-full md:w-1/2 md:justify-center  bg-[#5D9F5D] "
         >
-          <div className="text-center text-white text-md w-full flex items-center justify-center font-serif">
+          <div className="text-center text-white text-sm w-full flex items-center justify-center font-serif">
             Order Now
           </div>
         </Link>

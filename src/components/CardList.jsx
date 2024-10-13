@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
-import { formatNumberIDR } from "../utils/formatter";
+import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 
 function CardList({ product }) {
   return (
@@ -19,11 +19,11 @@ function CardList({ product }) {
               !product.is_available && "grayscale"
             }`}
             loading="lazy"
-            onError='/not-found.png'
           />
         </div>
         <div className="p-2">
-          <div className="px-1 flex flex-col ">
+          <div className="px-1 flex flex-col gap-1">
+            
             <h1
               className={` ${
                 !product.is_available && "line-through"
@@ -31,9 +31,15 @@ function CardList({ product }) {
             >
               {product.name}
             </h1>
-
-            <p className="text-sm font-serif text-orange-600">
-              {formatNumberIDR(product.price)}
+            {product.discount > 0 && (
+              <p className="text-xs text-primary w-1/2 underline">
+                Promo {product.discount}%
+              </p>
+            )}
+            <p className="text-sm font-serif text-orange-600 flex gap-2 items-center">
+              {formatNumberIDR(
+                calculateDiscount(product.price, product.discount)
+              )}
             </p>
           </div>
         </div>

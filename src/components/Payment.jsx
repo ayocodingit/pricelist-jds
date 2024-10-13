@@ -20,7 +20,7 @@ function Payment({ payment, product, qty, name_card }) {
   };
 
   return (
-    <div className="w-full text-md md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-md">
+    <div className="w-full md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-sm">
       <div className="flex gap-5 items-center justify-between">
         <img
           src={`/${payment.provider}.png`}

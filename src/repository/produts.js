@@ -9,6 +9,8 @@ const products = [
     price: 5000,
     username: "novansyaah",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 2.5,
     is_available: true,
     location: "R. Selatan",
   },
@@ -20,6 +22,8 @@ const products = [
     price: 8500,
     username: "novansyaah",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -32,6 +36,8 @@ const products = [
     price: 1500,
     username: "duhabduh",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -44,6 +50,8 @@ const products = [
     price: 2500,
     username: "duhabduh",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -56,6 +64,8 @@ const products = [
     price: 5000,
     username: "duhabduh",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -67,6 +77,8 @@ const products = [
     price: 2500,
     username: "samudra_ajri",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -78,6 +90,7 @@ const products = [
     price: 26000,
     username: "ashrinp",
     tag: tag.PO,
+    discount: 0,
     is_available: true,
   },
   {
@@ -88,6 +101,7 @@ const products = [
     price: 13000,
     username: "ashrinp",
     tag: tag.PO,
+    discount: 0,
     is_available: true,
   },
   {
@@ -98,6 +112,8 @@ const products = [
     price: 35000,
     username: "shintadewiaw",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -109,6 +125,8 @@ const products = [
     price: 20000,
     username: "shintadewiaw",
     tag: tag.READY_STOCK,
+    stock: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
   },
@@ -119,7 +137,8 @@ const products = [
     price: 10000,
     username: "imamfahmi29",
     is_available: true,
-    tag: tag.PO
+    tag: tag.PO,
+    discount: 0,
   },
 
   {
@@ -129,16 +148,17 @@ const products = [
     price: 15000,
     username: "imamfahmi29",
     is_available: true,
-    tag: tag.PO
+    tag: tag.PO,
+    discount: 0,
   },
 ];
 
-export const getProducts = (q = "") => {
-  if (q == "") return products;
+export const getProducts = (q = "", category = "") => {
+  if (q == "" && category == '') return products;
 
   const regex = new RegExp(q, "gi");
 
-  return products.filter((product) => product.name.match(regex));
+  return products.filter((product) => product.name?.match(regex) && category == product.category);
 };
 
 export const getByID = (id) => {
