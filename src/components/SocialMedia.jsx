@@ -23,10 +23,10 @@ Hatur nuhun~ ✨
       <TelegramShareButton url={url} title={title}>
         <TelegramIcon size={size} round={true} />
       </TelegramShareButton>
-      <WhatsappShareButton url={url} title={title}>
+      <WhatsappShareButton title={title} separator={''}>
         <WhatsappIcon size={size} round={true} />
       </WhatsappShareButton>
-      <FacebookShareButton url={url} title={title}>
+      <FacebookShareButton url={url} hashtag={title}>
         <FacebookIcon size={size} round={true} />
       </FacebookShareButton>
     </div>
