@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  FacebookIcon,
-  FacebookShareButton,
   TelegramIcon,
   TelegramShareButton,
   WhatsappIcon,
@@ -31,9 +29,6 @@ Hatur nuhun~ ✨
       <WhatsappShareButton url={'😋😋😋'} title={title} separator={""}>
         <WhatsappIcon size={size} round={true} />
       </WhatsappShareButton>
-      <FacebookShareButton url={url} hashtag={title}>
-        <FacebookIcon size={size} round={true} />
-      </FacebookShareButton>
     </div>
   );
 }
