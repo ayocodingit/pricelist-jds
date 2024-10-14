@@ -1,14 +1,19 @@
 import React from "react";
-import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 import { formatNumberIDR } from "../utils/formatter";
 
 function SocialMedia({ product }) {
   const url = `Haloo Akang Teteh~`;
-  const size = 25
+  const size = 25;
   const title = `
-Mangga in case ada yg mau beli
-
-**~${product.name}~**
+Mangga in case ada yg mau beli **~${product.name}~**
 ${product.image}
 Harganya cuma **${formatNumberIDR(product.price)}** aja
 
@@ -23,7 +28,7 @@ Hatur nuhun~ ✨
       <TelegramShareButton url={url} title={title}>
         <TelegramIcon size={size} round={true} />
       </TelegramShareButton>
-      <WhatsappShareButton url={product.image} title={title} separator={''}>
+      <WhatsappShareButton url={'😋😋😋'} title={title} separator={""}>
         <WhatsappIcon size={size} round={true} />
       </WhatsappShareButton>
       <FacebookShareButton url={url} hashtag={title}>
