@@ -13,7 +13,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
-import { addToCart, getCountCart, removeItemCart } from "../repository/carts";
+import { addToCart, getCountCart, moveToCheckOut, removeItemCart } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
 
@@ -211,11 +211,11 @@ function DetailProduct() {
               isStockEmpty ? "bg-gray-500" : "bg-primary"
             } `}
             onClick={() => {
-              removeItemCart(product.id);
+              moveToCheckOut([{...product, qty}]);
               navigate(
                 isStockEmpty
                   ? "#"
-                  : `/payment/${product.id}/${product.username}/${qty}`
+                  : `/checkout/${product.username}` 
               );
             }}
           >

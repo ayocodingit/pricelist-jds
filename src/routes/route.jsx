@@ -4,7 +4,7 @@ import List from "../pages/List.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import DetailProduct from "../pages/DetailProduct.jsx";
 import Cart from "../pages/Cart.jsx";
-import Payment from "../pages/Payment.jsx";
+import Checkout from "../pages/Checkout.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
     element: <DetailProduct />,
   },
   {
-    path: "payment/:product/:user/:qty",
-    element: <Payment />,
+    path: "checkout/:username",
+    element: <Checkout />,
   },
 ]);

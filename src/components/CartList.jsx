@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { Link, useNavigate } from "react-router-dom";
-import { removeItemCart } from "../repository/carts";
+import { moveToCheckOut, removeItemCart } from "../repository/carts";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 
@@ -31,10 +31,10 @@ function CartList({ product, setIsChange }) {
         <div className="absolute bottom-0 flex justify-between w-full md:w-1/2 gap-2">
           <button
             onClick={() => {
-              removeItemCart(product.id);
               setIsChange(true);
+              moveToCheckOut([product]);
               navigate(
-                `/payment/${product.id}/${product.username}/${product.qty}`
+                `/checkout/${product.username}`
               );
             }}
             className="bg-primary text-white rounded-md text-center w-1/2"

@@ -1,11 +1,13 @@
-const key = "products";
+const productsKey = "products";
+const checkoutKey = "checkout";
+
 export const addToCart = (item, qty) => {
   let isNewItem = true;
   const product = {
     ...item,
     qty,
   };
-  const products = getAllCart();
+  const products = getAll(productsKey);
 
   for (const i in products) {
     if (products[i].id == product.id) {
@@ -17,13 +19,14 @@ export const addToCart = (item, qty) => {
 
   if (isNewItem) products.unshift(product);
 
-  localStorage.removeItem(key);
-  localStorage.setItem(key, JSON.stringify(products));
+  localStorage.removeItem(productsKey);
+  localStorage.setItem(productsKey, JSON.stringify(products));
 
   return isNewItem;
 };
 
-export const getAllCart = () => {
+
+const getAll = (key) => {
   const storage = localStorage.getItem(key);
   let carts = [];
 
@@ -34,19 +37,32 @@ export const getAllCart = () => {
   return carts;
 };
 
+export const getAllCart = () => getAll(productsKey)
+export const getAllCheckout = () => getAll(checkoutKey)
+
 export const getCountCart = () => {
-  return getAllCart().length;
+  return getAll(productsKey).length;
 };
 
 export const removeItemCart = (id) => {
-  let products = getAllCart();
+  let products = getAll(productsKey);
 
   products = products.filter((product) => product.id != id);
 
-  localStorage.removeItem(key);
-  localStorage.setItem(key, JSON.stringify(products));
+  localStorage.removeItem(productsKey);
+  localStorage.setItem(productsKey, JSON.stringify(products));
 };
 
 export const removeAllCart = () => {
-  localStorage.removeItem(key);
+  localStorage.removeItem(productsKey);
+};
+
+export const removeAllCheckout = () => {
+  localStorage.removeItem(checkoutKey);
+};
+
+export const moveToCheckOut = (products) => {
+    products.forEach((product) => removeItemCart(product.id))
+    localStorage.removeItem(checkoutKey);
+    localStorage.setItem(checkoutKey, JSON.stringify(products));
 };

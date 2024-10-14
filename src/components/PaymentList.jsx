@@ -20,17 +20,17 @@ function Payment({ payment, product, qty, name_card }) {
   };
 
   return (
-    <div className="w-full md:text-lg md:w-96 flex justify-between items-center p-5 gap-3 h-16 bg-white text-black rounded-lg shadow-lg text-sm">
-      <div className="flex gap-5 items-center justify-between">
+    <div className="w-full md:text-lg flex flex-col p-2 bg-white text-black rounded-lg shadow-lg">
+      <div className="flex flex-col gap-2 items-center justify-between">
         <img
           src={`/${payment.provider}.png`}
           alt="logo"
-          className="object-fill max-h-8"
+          className="object-contain max-h-8"
         />
-        <p className="first-letter: capitalize">{payment.provider}</p>
+        <p className="first-letter: capitalize text-xs">{payment.provider}</p>
       </div>
-      <div className="flex items-center gap-1">
-        <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-right">
+      <div className="flex flex-col items-center gap-1 text-sm">
+        <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-center">
           {payment.provider == "telegram" && `@`}
           {payment.value}
         </p>
