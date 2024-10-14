@@ -65,7 +65,7 @@ function Checkout() {
         <p>{user.name_card}</p>
       </div>
 
-      <div className="flex flex-col gap-3 p-2 w-full bg-white text-md md:w-1/2 shadow-md">
+      <div className="flex flex-col gap-3 p-2 w-full bg-white text-md md:w-1/2 shadow-lg rounded-lg">
         {products.map((product, index) => {
           return (
             <div className=" flex flex-col gap-1" key={index}>
