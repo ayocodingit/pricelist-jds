@@ -13,7 +13,7 @@ function SocialMedia({ product }) {
   const url = `Haloo Akang Teteh~`;
   const size = 25;
   const title = `
-Mangga in case ada yg mau beli **~${product.name}~**
+Mangga in case ada yg mau beli ~**${product.name}**~
 ${product.image}
 Harganya cuma **${formatNumberIDR(product.price)}** aja
 
