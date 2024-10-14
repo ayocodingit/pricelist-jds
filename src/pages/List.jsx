@@ -19,7 +19,7 @@ function List() {
   );
   const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "discount");
-  const [filter, setFilter] = useState(false);
+  const [filter, setFilter] = useState(true);
 
   useEffect(() => {
     if (!["name", "discount"].includes(sort)) {
@@ -48,7 +48,7 @@ function List() {
   return (
     <div className="bg-gray-50">
       {/* section Search */}
-      <div className="flex flex-col gap-1 items-center py-3 md:py-5 bg-primary sticky top-0 shadow-lg z-10">
+      <div className="flex flex-col gap-2 items-center py-3 p-2 bg-primary sticky top-0 shadow-lg z-10">
         <div className="w-full p-2 flex justify-center">
           <div className="relative w-full flex gap-2 md:w-1/2 items-center">
             <input
@@ -78,14 +78,14 @@ function List() {
           </div>
         </div>
         {filter && (
-          <div className="flex w-full md:w-1/2 justify-center gap-2 p-3 bg-gray-50">
+          <div className="flex w-full md:w-1/2 justify-center gap-2 bg-gray-50 rounded-md">
             <div className="flex flex-col items-center justify-center">
               <SortProduct handleSort={handleSort} sort={sort} />
-              <p className="text-sm font-bold text-primary">Sort </p>
+              {/* <p className="text-sm font-bold text-primary">Sort </p> */}
             </div>
             <div className="flex flex-col items-center">
               <Filter handleCategory={handleCategory} category={category} />
-              <p className="text-sm font-bold text-primary">Category</p>
+              {/* <p className="text-sm font-bold text-primary">Category</p> */}
             </div>
           </div>
         )}
