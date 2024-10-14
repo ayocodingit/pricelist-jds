@@ -14,6 +14,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 3,
@@ -41,6 +43,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 4,
@@ -55,6 +58,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 5,
@@ -69,6 +73,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 6,
@@ -82,6 +87,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 7,
@@ -93,6 +99,7 @@ const products = [
     tag: tagOptions.PO,
     discount: 0,
     is_available: true,
+    description: "",
   },
   {
     id: 8,
@@ -104,6 +111,7 @@ const products = [
     tag: tagOptions.PO,
     discount: 0,
     is_available: true,
+    description: "",
   },
   {
     id: 9,
@@ -117,6 +125,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 10,
@@ -130,6 +139,7 @@ const products = [
     discount: 0,
     is_available: true,
     location: "R. Selatan",
+    description: "",
   },
   {
     id: 11,
@@ -141,6 +151,7 @@ const products = [
     is_available: true,
     tag: tagOptions.PO,
     discount: 0,
+    description: "",
   },
 
   {
@@ -153,6 +164,7 @@ const products = [
     is_available: true,
     tag: tagOptions.PO,
     discount: 0,
+    description: "",
   },
 ];
 
@@ -160,9 +172,10 @@ const getFunctionSort = (sort) => {
   return sort == "name" ? sortAscByName : sortDescByDiscount;
 };
 
-export const getProducts = (q = "", category = "", sort = '') => {
+export const getProducts = (q = "", category = "", sort = "") => {
   const funcSort = getFunctionSort(sort);
-  if (q == "" && category == "") return funcSort(products.filter((product) => product));
+  if (q == "" && category == "")
+    return funcSort(products.filter((product) => product));
 
   const regex = new RegExp(q, "gi");
 

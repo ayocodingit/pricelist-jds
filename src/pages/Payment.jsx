@@ -5,14 +5,14 @@ import {
   useParams,
 } from "react-router-dom";
 import { getUser } from "../repository/users";
-import Payment from "../components/Payment";
+import PaymentList from "../components/PaymentList";
 import { getByID } from "../repository/produts";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Flip, toast } from "react-toastify";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
-import { FaCubes } from "react-icons/fa6";
+import { BsShop } from "react-icons/bs";
 
-function Detail() {
+function Payment() {
   const [user, setUser] = useState(null);
   const [product, setProduct] = useState(null);
   const { product: productID, user: username, qty } = useParams();
@@ -50,14 +50,14 @@ function Detail() {
   }
 
   return (
-    <div className="flex flex-col bg-gray-50 items-center h-[calc(100dvh)] p-5">
-      <h1 className="text-lg mt-5 flex gap-1 justify-center items-center">
+    <div className="flex flex-col bg-gray-50 items-center w-full md:justify-center p-5">
+      <div className="text-lg mt-5 flex gap-2 items-center">
         <Link to={"/list"}>
-          <FaCubes className="text-xl"/>
+          <BsShop className="text-lg"/>
         </Link>
-        {user.name_card}
-      </h1>
-
+        <p>Payment</p>
+      </div>
+      
       <div className="mt-10 flex flex-col gap-3 w-full items-center">
         <div className="flex flex-col items-center gap-2 text-sm pt-2 text-black bg-white rounded-md w-full md:w-96 shadow-lg">
           <p className=" capitalize text-wrap font-bold text-lg">
@@ -88,7 +88,7 @@ function Detail() {
           Don't forget to confirm with the seller if you have paid. 😁
         </p>
         <p className="text-sm md:text-md">Info Account</p>
-        <Payment
+        <PaymentList
           payment={{ provider: "telegram", value: user.username }}
           product={product.name}
           name_card={user.name_card}
@@ -96,11 +96,11 @@ function Detail() {
         />
         <p className="text-sm md:text-md"> Info Payment</p>
         {user.payments.map((payment, index) => {
-          return <Payment payment={payment} key={index} />;
+          return <PaymentList payment={payment} key={index} />;
         })}
       </div>
     </div>
   );
 }
 
-export default Detail;
+export default Payment;
