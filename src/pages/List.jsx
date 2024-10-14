@@ -18,12 +18,12 @@ function List() {
     URLSearchParams.get("category") || ""
   );
   const navigate = useNavigate();
-  const [sort, setSort] = useState(URLSearchParams.get("sort") || "discount");
+  const [sort, setSort] = useState(URLSearchParams.get("sort") || "name");
   const [filter, setFilter] = useState(true);
 
   useEffect(() => {
     if (!["name", "discount"].includes(sort)) {
-      setSort("discount");
+      setSort("name");
       SetURLSearchParams({ q, category, sort: "discount" });
     }
     setProducts(getProducts(q, category, sort));
