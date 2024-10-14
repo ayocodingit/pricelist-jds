@@ -59,7 +59,7 @@ function DetailProduct() {
   }
 
   const alert = (isNewProduct) => {
-    toast.success(`${isNewProduct ? 'Add To Cart' : 'Updated'} Success`, {
+    toast.success(`${isNewProduct ? "Add To Cart" : "Updated"} Success`, {
       position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
@@ -69,8 +69,8 @@ function DetailProduct() {
       theme: "light",
       transition: Flip,
     });
-    
-    return navigate("/list/" + product.id + "?qty=" + qty)
+
+    return navigate("/list/" + product.id + "?qty=" + qty);
   };
 
   const isStockEmpty =
@@ -92,22 +92,17 @@ function DetailProduct() {
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute start-5 justify-between md:start-[26%] gap-2 top-5 items-center  text-white ">
-            <Link
-              to={"/list"}
-              className="   flex  items-center justify-between gap-3"
-            >
-              <BsArrowLeft className="bg-primary rounded-full p-1 text-4xl" />
-            </Link>
-            <div className="flex gap-2 bg-primary rounded-full p-1 ">
+          <div className="flex absolute start-5 justify-between md:start-[26%] gap-4 top-5 items-center text-black rounded-full shadow-md bg-white px-2">
+            <BsArrowLeft className="bg-white text-4xl rounded-full hover:cursor-pointer p-1" onClick={() => navigate('/list')} />
+            <div className="flex gap-2 bg-white rounded-full p-2 ">
               <FaRegShareFromSquare
                 className="p-1 hover: cursor-pointer text-3xl"
                 onClick={() => setShowSocialMedia(!showSocialMedia)}
               />
               {showSocialMedia && <SocialMedia product={product} />}
               <div className="relative" onClick={() => navigate("/cart")}>
-                <CiShoppingCart className="text-3xl text-white" />
-                <p className="absolute rounded-full top-0 right-0 text-primary bg-white text-xs w-1/2 flex justify-center">
+                <CiShoppingCart className="text-3xl " />
+                <p className="absolute rounded-full top-0 right-0 bg-primary text-white text-xs w-1/2 flex justify-center">
                   {totalCart}
                 </p>
               </div>
