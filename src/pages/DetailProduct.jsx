@@ -92,8 +92,8 @@ function DetailProduct() {
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute start-5 justify-between md:start-[26%] gap-4 top-5 items-center text-black rounded-full shadow-md bg-white px-2">
-            <BsArrowLeft className="bg-white text-4xl rounded-full hover:cursor-pointer p-1" onClick={() => navigate('/list')} />
+          <div className="flex absolute start-5 justify-between md:start-[26%] top-5 items-center text-black rounded-full shadow-md bg-white px-2">
+            <BsArrowLeft className="bg-white text-3xl rounded-full hover:cursor-pointer p-1" onClick={() => navigate('/list')} />
             <div className="flex gap-2 bg-white rounded-full p-2 ">
               <FaRegShareFromSquare
                 className="p-1 hover: cursor-pointer text-3xl"
