@@ -17,13 +17,13 @@ function Cart() {
 
   return (
     <div className="bg-gray-50 text-md flex flex-col items-center w-full">
-      <div className="flex gap-2 p-2 items-center bg-primary text-white shadow-lg sticky top-0 z-10 w-full md:w-1/2">
+      <div className="flex gap-2 p-5 items-center bg-primary text-white shadow-lg sticky top-0 z-10 w-full md:w-1/2 h-14">
         <BsArrowLeft
           className=" p-1 text-3xl"
           onClick={() => navigate("/list")}
         />
-        <p>Cart ({products.length})</p>
-        <FaRegTrashAlt className="text-xl absolute right-2" onClick={() => {removeAllCart(); setIsChange(true)}}/>
+        <p className="text-md">Cart ({products.length})</p>
+        <FaRegTrashAlt className="text-lg absolute right-2" onClick={() => {removeAllCart(); setIsChange(true)}}/>
       </div>
 
       {products.length === 0 && (

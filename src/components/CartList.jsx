@@ -3,6 +3,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { Link, useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { CgClose } from "react-icons/cg";
 
 function CartList({ product, setIsChange }) {
   const navigate = useNavigate();
@@ -49,8 +50,8 @@ function CartList({ product, setIsChange }) {
             Edit
           </button>
         </div>
-        <FaRegTrashAlt
-          className="text-xl absolute right-2 text-red-500 hover: cursor-pointer"
+        <CgClose
+          className="text-xl absolute right-1 top-0 hover: cursor-pointer"
           onClick={() => {
             removeItemCart(product.id);
             setIsChange(true);
