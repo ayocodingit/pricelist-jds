@@ -72,7 +72,7 @@ Hatur nuhun~ ✨`);
   }
 
   return (
-    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 print:w-full relative print:h-[calc(100dvh)] print:justify-normal">
+    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 print:max-w-screen-sm relative print:h-[calc(100dvh)] print:justify-normal">
       <div className="text-md flex flex-col gap-2 items-center md:w-1/2">
         <Link to={"/list"}>
           <BsShop className="text-5xl" />
