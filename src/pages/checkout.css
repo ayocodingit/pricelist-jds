@@ -1,5 +1,9 @@
 @media print {
+  body {
+    width: 58mm;
+  }
+
   @page {
-    size: A5;
+    size: 58mm 100mm;
   }
 }

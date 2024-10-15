@@ -23,7 +23,6 @@ function Checkout() {
     const productDetail = getAllCheckout();
     const userDetail = getUser(username);
     console.log(productDetail, userDetail);
-    
 
     if (userDetail && productDetail) {
       setUser(userDetail);
@@ -36,7 +35,7 @@ function Checkout() {
       productDetail.forEach((product) => {
         tmpTotal += product.qty * product.price;
         tmpTotalQty += product.qty;
-        message += `**${product.name}** - ${product.qty}
+        message += `**${product.name} - ${product.qty}** 
 `;
       });
 
@@ -48,32 +47,30 @@ ${message}
 saya sudah tf yups! tolong di ceki ceki
 Hatur nuhun~ ✨`);
 
-return
+      return;
     }
 
-    navigate("/404")
+    navigate("/404");
   }, []);
 
   if (!user || products.length == 0) {
     return navigate("/404");
   }
-  
-  
 
   return (
-    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 print:max-w-screen-sm relative print:h-[calc(100dvh)] print:justify-normal">
+    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-full">
       <div className="text-md flex flex-col gap-2 items-center md:w-1/2">
         <Link to={"/list"}>
-          <BsShop className="text-5xl" />
+          <BsShop className="text-5xl print:text-3xl" />
         </Link>
-        <p>{user.name_card}</p>
+        <p className="text-center">{user.name_card}</p>
       </div>
 
-      <div className="flex flex-col gap-3 p-2 w-full bg-white text-md md:w-1/2 print:w-full print:mt-10">
+      <div className="flex flex-col gap-3 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 border-y-2 border-black print:text-xs">
         {products.map((product, index) => {
           return (
             <div className=" flex flex-col gap-1" key={index}>
-              <p className="font-bold ">
+              <p className="font-bold print:text-xs">
                 {index + 1}. {product.name}
               </p>
               <div className="flex justify-between">
@@ -85,14 +82,16 @@ return
             </div>
           );
         })}
-        <div className="bg-white w-full flex border-t-2 py-3 justify-between">
-          <p>Total Quantity : {totalQty}</p>
+        <div className="bg-white w-full flex border-t-2 border-black py-3 justify-between">
+          <p>Total QTY: {totalQty}</p>
           <p>{formatNumberIDR(total)}</p>
         </div>
       </div>
-      <p className="font-bold p-2 text-md text-center ">
-        Thank you for your purchase. <br />
-        Don't forget to confirm with the seller if you have paid. 😁
+      <p className="font-bold text-md print:text-xs text-center flex flex-col ">
+        <span>Thank you for your purchase.</span>
+        <span className="print:hidden">
+          Don't forget to confirm with the seller if you have paid. 😁
+        </span>
       </p>
       <p className="text-md font-bold text-center md:w-1/2 print:hidden">
         Confirm Order
