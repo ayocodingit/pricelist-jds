@@ -70,7 +70,7 @@ Hatur nuhun~ ✨`);
         <span>Thank you for your purchase.</span>
       </p>
 
-      <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs rounded-lg shadow-lg">
+      <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs">
         {products.map((product, index) => {
           return (
             <div className=" flex flex-col gap-1" key={index}>
