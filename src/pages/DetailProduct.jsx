@@ -156,7 +156,7 @@ Hatur nuhun~ ✨
                     isStockEmpty
                       ? "text-gray-500 outline-gray-500"
                       : "text-primary outline-primary"
-                  } text-center outline-dashed text-md rounded-md capitalize`}
+                  } text-center outline-dashed text-sm rounded-md capitalize`}
                 >
                   {isStockEmpty && "Not "}
                   {product.tag}{" "}
