@@ -40,7 +40,8 @@ function Checkout() {
       productDetail.forEach((product) => {
         tmpTotal += product.qty * product.price;
         tmpTotalQty += product.qty;
-        message += `**${product.name}** - ${product.qty}`;
+        message += `**${product.name}** - ${product.qty}
+`;
       });
 
       setTotal(tmpTotal);
