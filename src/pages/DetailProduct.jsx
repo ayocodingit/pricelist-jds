@@ -21,6 +21,7 @@ import {
 } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 function DetailProduct() {
   const [product, setProduct] = useState(null);
@@ -187,9 +188,9 @@ Hatur nuhun~ ✨
                           calculateTotal(product.price, product.discount, "-");
                         }
                       }}
-                      className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg"
+                      className=" w-1/2 h-full bg-primary text-white text-md rounded-lg flex justify-center items-center"
                     >
-                      -
+                      <AiOutlineMinus/>
                     </button>
                     <div className="w-1/2  text-center h-full flex justify-center items-center">
                       {qty}
@@ -202,9 +203,9 @@ Hatur nuhun~ ✨
                         )
                           calculateTotal(product.price, product.discount, "+");
                       }}
-                      className="w-1/2 h-full bg-primary text-white text-sm rounded-lg"
+                      className="w-1/2 h-full bg-primary text-white text-md rounded-lg flex justify-center items-center"
                     >
-                      +
+                      <AiOutlinePlus/>
                     </button>
                   </div>
                 </div>

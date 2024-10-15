@@ -11,13 +11,12 @@ function Cart() {
   const [isChange, setIsChange] = useState(false);
   const [username, setUsername] = useState("");
   const [checkTotal, setCheckTotal] = useState(0);
+  const [ids, setIds] = useState([]);
 
   useEffect(() => {
-    console.log(username);
-    
     setProducts(getAllCart(username));
     setIsChange(false);
-  }, [isChange, checkTotal, username]);
+  }, [isChange, checkTotal, username, ids]);
 
   return (
     <div className=" text-md flex flex-col items-center w-full">
@@ -53,6 +52,8 @@ function Cart() {
                 setUsername={setUsername}
                 checkTotal={checkTotal}
                 setCheckTotal={setCheckTotal}
+                setIds={setIds}
+                ids={ids}
               />
             );
           })}

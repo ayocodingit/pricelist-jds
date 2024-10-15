@@ -11,20 +11,30 @@ function CartList({
   setUsername,
   setCheckTotal,
   checkTotal,
-}) {
+  ids,
+  setIds,
+}) {  
   const navigate = useNavigate();
   return (
     <div className="text-sm text-black rounded-lg bg-white gap-2 p-4 h-44 flex w-full shadow-lg relative">
       <input
         type="checkbox"
+        checked={ids.includes(product.id)}
         className="w-8 "
         onChange={(e) => {
           if (e.target.checked) {
             setCheckTotal((prev) => prev + 1);
             setUsername(product.username);
+            setIds((prev) => {
+              if (!prev.includes(product.id)) {
+                return prev.push(product.id);
+              }
+              return prev
+            });
           } else {
             setCheckTotal((prev) => {
               const total = prev - 1;
+              setIds((ids) => ids.filter((id) => id != product.id));
               if (total == 0) setUsername("");
               return total;
             });
