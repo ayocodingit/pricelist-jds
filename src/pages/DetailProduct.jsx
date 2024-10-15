@@ -131,7 +131,7 @@ Hatur nuhun~ ✨
       </div>
       <div className="w-full flex md:justify-center h-full">
         <div className="md:w-1/2 w-full flex md:bg-white">
-          <div className="mt-2 p-4 flex justify-between gap-5">
+          <div className="mt-2 p-4 flex justify-between gap-5 w-full">
             <div className="flex flex-col gap-2">
               {product.discount > 0 && (
                 <div className="text-sm flex gap-2">
@@ -149,16 +149,22 @@ Hatur nuhun~ ✨
                   calculateDiscount(product.price, product.discount)
                 )}
               </p>
-              <p
-                className={`${
-                  isStockEmpty
-                    ? "text-gray-500 outline-gray-500"
-                    : "text-primary outline-primary"
-                } text-center outline-dashed px-2  text-sm rounded-md capitalize w-1/3`}
-              >
-                {isStockEmpty && "Not "}
-                {product.tag} {product.tag == tagOptions.READY_STOCK && <span>{product.stock}</span>}
-              </p>
+              <div className="w-1/2">
+                <p
+                  className={`${
+                    isStockEmpty
+                      ? "text-gray-500 outline-gray-500"
+                      : "text-primary outline-primary"
+                  } text-center outline-dashed text-xs rounded-md capitalize`}
+                >
+                  {isStockEmpty && "Not "}
+                  {product.tag}{" "}
+                  {product.tag == tagOptions.READY_STOCK && (
+                    <span>{product.stock}</span>
+                  )}
+                </p>
+              </div>
+
               <p className="text-lg font-bold font-sans capitalize flex gap-2 text-wrap items-center">
                 {product.name}
               </p>
@@ -209,10 +215,14 @@ Hatur nuhun~ ✨
                   {formatNumberIDR(total)}
                 </div>
               </div>
-              <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll" >
-                <p className="text-xs text-gray-800">Description</p>
-                <p className="text-sm overflow-y-scoll w-full">{ product.description }</p>
-              </div>
+              {product.description && (
+                <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll">
+                  <p className="text-xs text-gray-800">Description</p>
+                  <p className="text-sm overflow-y-scoll w-full">
+                    {product.description}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -224,7 +234,7 @@ Hatur nuhun~ ✨
               isStockEmpty ? "bg-gray-500" : "bg-orange-600"
             }`}
             onClick={() => {
-              if (isStockEmpty) return
+              if (isStockEmpty) return;
               const isNewProduct = addToCart(product, qty);
               setTotalCart(totalCart + 1);
               alert(isNewProduct);
@@ -237,7 +247,7 @@ Hatur nuhun~ ✨
               isStockEmpty ? "bg-gray-500" : "bg-primary hover:bg-opacity-90"
             } `}
             onClick={() => {
-              if (isStockEmpty) return
+              if (isStockEmpty) return;
               moveToCheckOut([{ ...product, qty }]);
               navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
             }}
