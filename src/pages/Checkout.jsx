@@ -8,7 +8,7 @@ import { BsShop } from "react-icons/bs";
 import { getAllCheckout } from "../repository/carts";
 import { AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
-import "./checkout.css";
+// import "./checkout.css";
 
 function Checkout() {
   const [user, setUser] = useState({});
