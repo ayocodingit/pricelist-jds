@@ -126,7 +126,7 @@ return
         Payment Method
       </p>
 
-      <div className="w-full flex p-2 gap-2 md:w-1/2 overflow-y-auto print:hidden">
+      <div className="w-full flex gap-2 md:w-1/2 overflow-y-auto print:hidden">
         {user.payments.map((payment, index) => {
           return <PaymentList payment={payment} key={index} />;
         })}
