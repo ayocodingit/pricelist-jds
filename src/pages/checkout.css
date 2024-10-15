@@ -1,8 +1,4 @@
 @media print {
-  body {
-    width: 58mm;
-  }
-
   @page {
     size: 58mm 100mm;
   }
