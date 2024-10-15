@@ -217,7 +217,7 @@ Hatur nuhun~ ✨
                 </div>
               </div>
                 <div className="w-full flex flex-col outline-primary gap-2 min-h-20 text-gray-800">
-                  <div className="text-sm ">Description:</div>
+                  <div className="text-sm ">Description</div>
                   <div className="text-xs">
                     {product.description || '-'}
                   </div>
