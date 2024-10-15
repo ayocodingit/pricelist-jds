@@ -13,7 +13,11 @@ import {
   removeAllCheckout,
 } from "../repository/carts";
 import { TelegramShareButton } from "react-share";
-import { AiOutlineSend, AiOutlineMessage, AiOutlinePrinter } from "react-icons/ai";
+import {
+  AiOutlineSend,
+  AiOutlineMessage,
+  AiOutlinePrinter,
+} from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 
 function Checkout() {
@@ -105,16 +109,31 @@ Hatur nuhun~ ✨`);
         Thank you for your purchase. <br />
         Don't forget to confirm with the seller if you have paid. 😁
       </p>
-      <p className="text-md font-bold text-center md:w-1/2 print:hidden">Confirm Order</p>
+      <p className="text-md font-bold text-center md:w-1/2 print:hidden">
+        Confirm Order
+      </p>
 
       <div className="w-full md:w-1/3 flex flex-col items-center gap-5 print:hidden">
-        <textarea className="rounded-md outline-2 font-serif  outline-dotted p-2 w-full h-44 bg-gray-50 shadow-lg" onChange={(e) => setTitle(e.target.value)}>
+        <textarea
+          className="rounded-md outline-2 font-serif  outline-dotted p-2 w-full h-44 bg-gray-50 shadow-lg"
+          onChange={(e) => setTitle(e.target.value)}
+        >
           {title}
         </textarea>
         <div className="flex gap-2">
-
-        <SocialMedia title={title} size={30} />
-        <AiOutlinePrinter className="hover:cursor-pointer text-3xl" title="Print Order" onClick={() => window.print()}/>
+          <SocialMedia title={title} size={30} />
+          <AiOutlinePrinter
+            className="hover:cursor-pointer text-3xl"
+            title="Print Order"
+            onClick={() => {
+              const today = new Date();
+              const month = today.getMonth() + 1;
+              const year = today.getFullYear();
+              const date = today.getDate();
+              document.title = `Order Price List ${month}-${date}-${year}`;
+              window.print();
+            }}
+          />
         </div>
       </div>
 
