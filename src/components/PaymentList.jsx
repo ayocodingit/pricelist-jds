@@ -34,7 +34,7 @@ function Payment({ payment, product, qty, name_card }) {
           {payment.value}
         </p>
         
-          <div className="py-2 border-t-2 bg-gray-50 w-full flex justify-center">
+          <div className="py-2 border-t-2 bg-gray-200 w-full flex justify-center">
             <CopyToClipboard text={payment.value} onCopy={alert}>
               <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
             </CopyToClipboard>
