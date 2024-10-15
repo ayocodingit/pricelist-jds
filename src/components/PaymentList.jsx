@@ -20,37 +20,25 @@ function Payment({ payment, product, qty, name_card }) {
   };
 
   return (
-    <div className="w-full md:text-lg flex flex-col p-2 bg-white text-black rounded-lg shadow-lg">
-      <div className="flex flex-col gap-2 items-center justify-between">
+    <div className="w-full md:text-lg flex flex-col bg-white text-black rounded-lg shadow-lg">
+      <div className="flex flex-col gap-2 items-center justify-between p-2">
         <img
           src={`/${payment.provider}.png`}
           alt="logo"
-          className="object-contain max-h-8"
+          className="object-contain max-h-7"
         />
-        <p className="first-letter: capitalize text-xs">{payment.provider}</p>
+        <p className="first-letter: capitalize text-lg font-bold">{payment.provider}</p>
       </div>
-      <div className="flex flex-col items-center gap-1 text-sm">
+      <div className="flex flex-col items-center gap-1 text-xs">
         <p className="text-nowrap overflow-hidden text-ellipsis w-32 md:w-full text-center">
-          {payment.provider == "telegram" && `@`}
           {payment.value}
         </p>
-        {payment.provider != "telegram" && (
-          <CopyToClipboard text={payment.value} onCopy={alert}>
-            <AiOutlineCopy className={"text-lg hover:cursor-copy"} />
-          </CopyToClipboard>
-        )}
-        {payment.provider == "telegram" && (
-          <TelegramShareButton
-            url={"Haloo Akang Teteh~"}
-            openShareDialogOnClick={true}
-            title={`
-aku beli **${product}** ${qty} yah, 
-saya sudah tf yups! tolong di ceki ceki
-Hatur nuhun~ ✨`}
-          >
-            <AiOutlineSend className={"text-lg hover:cursor-pointer"} />
-          </TelegramShareButton>
-        )}
+        
+          <div className="py-2 border-t-2 bg-gray-50 w-full flex justify-center">
+            <CopyToClipboard text={payment.value} onCopy={alert}>
+              <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
+            </CopyToClipboard>
+          </div>
       </div>
     </div>
   );

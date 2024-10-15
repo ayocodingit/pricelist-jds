@@ -8,7 +8,9 @@ import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <div className="bg-gray-50">
+      <RouterProvider router={router} />
+    </div>
     <ToastContainer />
   </StrictMode>
 );
