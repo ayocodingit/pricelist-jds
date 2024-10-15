@@ -91,10 +91,11 @@ Hatur nuhun~ ✨`);
           <p>{formatNumberIDR(total)}</p>
         </div>
       </div>
+      
+      <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
       <p className="text-md font-bold text-center md:w-1/2 print:hidden">
         Confirm Order
       </p>
-      <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
         <span className="print:hidden">
           Don't forget to confirm with the seller if you have paid. 😁
         </span>
