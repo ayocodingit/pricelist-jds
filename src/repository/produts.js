@@ -180,6 +180,20 @@ const products = [
     location: "R. Selatan",
     description: "Bisa request dengan kemasan yang lebih besar (misal 1/2 kg)",
   },
+ {
+    id: 14,
+    image: "https://i.ibb.co.com/M5GDjmb/2-EA9707023420-FFF97454-E10-B4-FEA7071.jpg",
+    category: categoryOptions.FOOD,
+    name: "Inlie Sistik",
+    price: 15000,
+    username: "wanzismail",
+    tag: tagOptions.PO,
+    stock: 0,
+    discount: 0,
+    is_available: true,
+    location: "R. Selatan",
+    description: "-",
+  },
 
 ];
 
