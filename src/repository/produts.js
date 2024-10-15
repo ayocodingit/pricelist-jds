@@ -169,7 +169,16 @@ const products = [
 ];
 
 const getFunctionSort = (sort) => {
-  return sort == "name" ? sortAscByName : sortDescByDiscount;
+  let func = sortAscByName
+  switch (sort) {
+    case 'price':
+      func = sortDescByPrice
+      break;
+     case 'discount':
+      func = sortDescByDiscount
+      break;
+  }
+  return func
 };
 
 export const getProducts = (q = "", category = "", sort = "") => {
@@ -193,6 +202,12 @@ export const getByID = (id) => {
 const sortDescByDiscount = (products) => {
   return products.sort((a, b) => {
     return b.discount - a.discount;
+  });
+};
+
+const sortDescByPrice = (products) => {
+  return products.sort((a, b) => {
+    return a.price - b.price;
   });
 };
 

@@ -13,7 +13,12 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
-import { addToCart, getCountCart, moveToCheckOut, removeItemCart } from "../repository/carts";
+import {
+  addToCart,
+  getCountCart,
+  moveToCheckOut,
+  removeItemCart,
+} from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
 
@@ -93,13 +98,29 @@ function DetailProduct() {
             </PhotoView>
           </PhotoProvider>
           <div className="flex absolute start-5 justify-between md:start-[26%] top-5 items-center text-black rounded-full shadow-md bg-white px-2">
-            <BsArrowLeft className="bg-white text-3xl rounded-full hover:cursor-pointer p-1" onClick={() => navigate('/list')} />
+            <BsArrowLeft
+              className="bg-white text-3xl rounded-full hover:cursor-pointer p-1"
+              onClick={() => navigate("/list")}
+            />
             <div className="flex gap-2 bg-white rounded-full p-2 ">
               <FaRegShareFromSquare
                 className="p-1 hover: cursor-pointer text-3xl"
                 onClick={() => setShowSocialMedia(!showSocialMedia)}
               />
-              {showSocialMedia && <SocialMedia product={product} />}
+              {showSocialMedia && (
+                <SocialMedia
+                  title={`
+Mangga in case ada yg mau beli ~**${product.name}**~
+${product.image}
+Harganya cuma **${formatNumberIDR(product.price)}** aja
+
+untuk info detail produknya silakan kunjungi di bawah ini yah 
+${location.href}
+
+Hatur nuhun~ ✨
+`}
+                />
+              )}
               <div className="relative" onClick={() => navigate("/cart")}>
                 <CiShoppingCart className="text-3xl " />
                 <p className="absolute rounded-full top-0 right-0 bg-primary text-white text-xs w-1/2 flex justify-center">
@@ -155,18 +176,18 @@ function DetailProduct() {
                   <label htmlFor="" className="text-sm">
                     Quantity
                   </label>
-                  <div className="flex h-8 justify-center items-center w-32">
+                  <div className="flex h-6 justify-center items-center w-32">
                     <button
                       onClick={() => {
                         if (qty > 1) {
                           calculateTotal(product.price, product.discount, "-");
                         }
                       }}
-                      className=" w-full bg-primary text-white text-xl rounded-lg h-full"
+                      className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg"
                     >
                       -
                     </button>
-                    <div className="w-full  text-center h-full flex justify-center items-center">
+                    <div className="w-1/2  text-center h-full flex justify-center items-center">
                       {qty}
                     </div>
                     <button
@@ -177,7 +198,7 @@ function DetailProduct() {
                         )
                           calculateTotal(product.price, product.discount, "+");
                       }}
-                      className="w-full bg-primary text-white text-xl rounded-lg h-full"
+                      className="w-1/2 h-full bg-primary text-white text-sm rounded-lg"
                     >
                       +
                     </button>
@@ -211,12 +232,8 @@ function DetailProduct() {
               isStockEmpty ? "bg-gray-500" : "bg-primary"
             } `}
             onClick={() => {
-              moveToCheckOut([{...product, qty}]);
-              navigate(
-                isStockEmpty
-                  ? "#"
-                  : `/checkout/${product.username}` 
-              );
+              moveToCheckOut([{ ...product, qty }]);
+              navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
             }}
           >
             {isStockEmpty ? "Not Ready Stock" : "Order Now"}

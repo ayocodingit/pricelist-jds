@@ -26,18 +26,20 @@ export const addToCart = (item, qty) => {
 };
 
 
-const getAll = (key) => {
+const getAll = (key, username = '') => {
   const storage = localStorage.getItem(key);
   let carts = [];
 
   if (storage) {
     carts = JSON.parse(storage) || [];
   }
-
+  if (username) {
+      carts = carts.filter((product) => product.username == username)
+  }
   return carts;
 };
 
-export const getAllCart = () => getAll(productsKey)
+export const getAllCart = (username = '') => getAll(productsKey, username)
 export const getAllCheckout = () => getAll(checkoutKey)
 
 export const getCountCart = () => {
