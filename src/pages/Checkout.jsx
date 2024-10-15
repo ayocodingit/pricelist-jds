@@ -1,25 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../repository/users";
 import PaymentList from "../components/PaymentList";
-import { getByID } from "../repository/produts";
-import CopyToClipboard from "react-copy-to-clipboard";
 import { Flip, toast } from "react-toastify";
-import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
+import { formatNumberIDR } from "../utils/formatter";
 import { BsShop } from "react-icons/bs";
 import {
-  getAllCart,
   getAllCheckout,
-  removeAllCheckout,
 } from "../repository/carts";
-import { TelegramShareButton } from "react-share";
 import {
-  AiOutlineSend,
-  AiOutlineMessage,
   AiOutlinePrinter,
 } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
-import './checkout.css'
+import "./checkout.css";
 
 function Checkout() {
   const [user, setUser] = useState(null);
