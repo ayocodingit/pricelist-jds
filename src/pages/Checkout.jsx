@@ -58,7 +58,7 @@ Hatur nuhun~ ✨`);
   }
 
   return (
-    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-max-[58mm] print:font-extralight">
+    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-max-[58mm] print:h-[100mm] print:font-extralight">
       <div className="text-md flex flex-col gap-2 items-center md:w-1/2">
         <Link to={"/list"}>
           <BsShop className="text-5xl print:text-3xl" />
