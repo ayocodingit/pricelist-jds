@@ -215,10 +215,10 @@ Hatur nuhun~ ✨
                   {formatNumberIDR(total)}
                 </div>
               </div>
-                <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll">
+                <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll min-w-full">
                   <p className="text-xs text-gray-800">Description</p>
-                  <p className="text-sm overflow-y-scoll min-w-full">
-                    {product.description || '-'}
+                  <p className="text-sm overflow-y-scoll">
+                    {product.description || ''}
                   </p>
                 </div>
             </div>
