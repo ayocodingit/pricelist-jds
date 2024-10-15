@@ -91,14 +91,15 @@ Hatur nuhun~ ✨`);
           <p>{formatNumberIDR(total)}</p>
         </div>
       </div>
+      <p className="text-md font-bold text-center md:w-1/2 print:hidden">
+        Confirm Order
+      </p>
       <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
         <span className="print:hidden">
           Don't forget to confirm with the seller if you have paid. 😁
         </span>
       </p>
-      <p className="text-md font-bold text-center md:w-1/2 print:hidden">
-        Confirm Order
-      </p>
+      
 
       <div className="w-full md:w-1/3 flex flex-col items-center gap-5 print:hidden">
         <textarea
