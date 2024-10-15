@@ -13,16 +13,14 @@ function CardList({ product }) {
   return (
     <Link
       className=" rounded-md flex bg-white shadow-md hover:outline-[#5D9F5D] hover:outline-double"
-      to={isStockEmpty ? "/list/" + product.id : "#"}
+      to={"/list/" + product.id}
       title={product.name}
     >
       <div className="flex flex-col gap-1 justify-center w-full">
         <img
             src={product.image}
             alt="image product"
-            className={` min-h-[10rem] h-10 object-contain rounded-md ${
-              !isStockEmpty && "grayscale"
-            }`}
+            className={` min-h-[10rem] h-10 object-contain rounded-md `}
             loading="lazy"
           />
         <div className="p-2">

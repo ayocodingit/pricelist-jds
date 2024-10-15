@@ -54,7 +54,7 @@ const products = [
     price: 2500,
     username: "duhabduh",
     tag: tagOptions.READY_STOCK,
-    stock: 10,
+    stock: 0,
     discount: 0,
     is_available: true,
     location: "R. Selatan",

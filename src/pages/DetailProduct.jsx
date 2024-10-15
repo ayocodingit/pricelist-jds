@@ -91,9 +91,7 @@ function DetailProduct() {
               <img
                 src={product.image}
                 alt="image product"
-                className={`max-h-[20rem]  w-full relative object-contain md:border-2 md:border-gray-100 hover:cursor-zoom-in ${
-                  isStockEmpty && "grayscale"
-                }`}
+                className={`max-h-[20rem]  w-full relative object-contain md:border-2 md:border-gray-100 hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
@@ -218,8 +216,11 @@ Hatur nuhun~ ✨
       <div className="w-full bottom-0 flex items-center  text-white text-sm  justify-center">
         <div className="flex w-full md:w-1/2 h-10 items-center">
           <button
-            className="w-1/2 bg-orange-600 h-full"
+            className={`w-1/2  h-full ${
+              isStockEmpty ? "bg-gray-500" : "bg-orange-600"
+            }`}
             onClick={() => {
+              if (isStockEmpty) return
               const isNewProduct = addToCart(product, qty);
               setTotalCart(totalCart + 1);
               alert(isNewProduct);
@@ -228,10 +229,11 @@ Hatur nuhun~ ✨
             Add To Cart
           </button>
           <button
-            className={`hover:bg-opacity-90 flex items-center justify-center h-full w-1/2 ${
-              isStockEmpty ? "bg-gray-500" : "bg-primary"
+            className={` flex items-center justify-center h-full w-1/2 ${
+              isStockEmpty ? "bg-gray-500" : "bg-primary hover:bg-opacity-90"
             } `}
             onClick={() => {
+              if (isStockEmpty) return
               moveToCheckOut([{ ...product, qty }]);
               navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
             }}
