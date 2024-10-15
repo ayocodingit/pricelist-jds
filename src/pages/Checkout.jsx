@@ -19,6 +19,7 @@ import {
   AiOutlinePrinter,
 } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
+import './checkout.css'
 
 function Checkout() {
   const [user, setUser] = useState(null);
