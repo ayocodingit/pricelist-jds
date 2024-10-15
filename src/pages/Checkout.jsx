@@ -49,7 +49,6 @@ function Checkout() {
       setTitle(`aku beli produkmu yah 😁,
 
 ${message}
-
 saya sudah tf yups! tolong di ceki ceki
 Hatur nuhun~ ✨`);
     }
