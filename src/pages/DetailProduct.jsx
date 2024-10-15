@@ -130,9 +130,9 @@ Hatur nuhun~ ✨
         </div>
       </div>
       <div className="w-full flex md:justify-center h-full">
-        <div className="md:w-1/2 w-full flex md:bg-white">
+        <div className="md:w-1/2 w-full flex md:bg-white ">
           <div className="mt-2 p-4 flex justify-between gap-5 w-full">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-full">
               {product.discount > 0 && (
                 <div className="text-sm flex gap-2">
                   <span className="text-primary font-serif underline">
@@ -215,7 +215,7 @@ Hatur nuhun~ ✨
                   {formatNumberIDR(total)}
                 </div>
               </div>
-                <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg">
+                <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg min-h-20">
                   <div className="text-xs text-gray-800">Description</div>
                   <div className="text-sm overflow-y-scoll">
                     {product.description || ''}
