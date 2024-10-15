@@ -217,7 +217,7 @@ Hatur nuhun~ ✨
               </div>
                 <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll">
                   <p className="text-xs text-gray-800">Description</p>
-                  <p className="text-sm overflow-y-scoll w-full">
+                  <p className="text-sm overflow-y-scoll min-w-full">
                     {product.description || '-'}
                   </p>
                 </div>
