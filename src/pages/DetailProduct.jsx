@@ -157,7 +157,7 @@ Hatur nuhun~ ✨
                 } text-center outline-dashed px-2  text-sm rounded-md capitalize`}
               >
                 {isStockEmpty && "Not "}
-                {product.tag} {!isStockEmpty && <span>{product.stock}</span>}
+                {product.tag} {product.tag == tagOptions.READY_STOCK && <span>{product.stock}</span>}
               </p>
               <p className="text-lg font-bold font-sans capitalize flex gap-2 text-wrap items-center">
                 {product.name}

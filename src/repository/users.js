@@ -86,7 +86,26 @@ const users = [
         value: "502292253759",
       },
     ],
-  }
+  },
+   {
+    username: "wanzismail",
+    name_card: "Ridwan Ismail",
+    payments: [
+      {
+        provider: "gopay",
+        value: "081313318815",
+      },
+      {
+        provider: "jago syariah",
+        value: "501424131640",
+      },
+      {
+        provider: "bca",
+        value: "1390112927",
+      },
+    ],
+  },
+
 
 ];
 

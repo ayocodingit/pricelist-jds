@@ -5,17 +5,13 @@ import PaymentList from "../components/PaymentList";
 import { Flip, toast } from "react-toastify";
 import { formatNumberIDR } from "../utils/formatter";
 import { BsShop } from "react-icons/bs";
-import {
-  getAllCheckout,
-} from "../repository/carts";
-import {
-  AiOutlinePrinter,
-} from "react-icons/ai";
+import { getAllCheckout } from "../repository/carts";
+import { AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 import "./checkout.css";
 
 function Checkout() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [total, setTotal] = useState(0);
   const [totalQty, setTotalQty] = useState(0);
   const [products, setProducts] = useState([]);
@@ -26,6 +22,8 @@ function Checkout() {
   useEffect(() => {
     const productDetail = getAllCheckout();
     const userDetail = getUser(username);
+    console.log(productDetail, userDetail);
+    
 
     if (userDetail && productDetail) {
       setUser(userDetail);
@@ -49,25 +47,18 @@ function Checkout() {
 ${message}
 saya sudah tf yups! tolong di ceki ceki
 Hatur nuhun~ ✨`);
-    }
-  }, []);
 
-  const alert = () => {
-    toast.success("Copied on Clipboard", {
-      position: "bottom-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Flip,
-    });
-  };
+return
+    }
+
+    navigate("/404")
+  }, []);
 
   if (!user || products.length == 0) {
     return navigate("/404");
   }
+  
+  
 
   return (
     <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 print:max-w-screen-sm relative print:h-[calc(100dvh)] print:justify-normal">

@@ -166,6 +166,21 @@ const products = [
     discount: 0,
     description: "",
   },
+   {
+    id: 13,
+    image: "https://i.ibb.co.com/Qk52ftR/28-E94874-A881-EBFE0-B85-CE186-A35-D0101.jpg",
+    category: categoryOptions.FOOD,
+    name: "Pangsit Nek Abun",
+    price: 15000,
+    username: "wanzismail",
+    tag: tagOptions.PO,
+    stock: 0,
+    discount: 0,
+    is_available: true,
+    location: "R. Selatan",
+    description: "Bisa request dengan kemasan yang lebih besar (misal 1/2 kg)",
+  },
+
 ];
 
 const getFunctionSort = (sort) => {
