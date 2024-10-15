@@ -66,7 +66,7 @@ Hatur nuhun~ ✨`);
         <p className="text-center">{user.name_card}</p>
       </div>
 
-      <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs">
+      <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs rounded-lg shadow-lg">
         {products.map((product, index) => {
           return (
             <div className=" flex flex-col gap-1" key={index}>
