@@ -154,7 +154,7 @@ Hatur nuhun~ ✨
                   isStockEmpty
                     ? "text-gray-500 outline-gray-500"
                     : "text-primary outline-primary"
-                } text-center outline-dashed px-2  text-sm rounded-md capitalize`}
+                } text-center outline-dashed px-2  text-sm rounded-md capitalize w-1/3`}
               >
                 {isStockEmpty && "Not "}
                 {product.tag} {product.tag == tagOptions.READY_STOCK && <span>{product.stock}</span>}
@@ -208,6 +208,10 @@ Hatur nuhun~ ✨
                 <div className="text-orange-600 text-md font-serif">
                   {formatNumberIDR(total)}
                 </div>
+              </div>
+              <div className="w-full flex flex-col outline-primary outline-dashed border-black gap-2 p-2 rounded-lg shadow-lg overflow-y-scoll" >
+                <p className="text-xs text-gray-800">Description</p>
+                <p className="text-sm overflow-y-scoll w-full">{ product.description }</p>
               </div>
             </div>
           </div>
