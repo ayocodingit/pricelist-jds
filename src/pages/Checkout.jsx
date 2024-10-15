@@ -58,7 +58,7 @@ Hatur nuhun~ ✨`);
   }
 
   return (
-    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-full">
+    <div className="flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-full print:font-extralight">
       <div className="text-md flex flex-col gap-2 items-center md:w-1/2">
         <Link to={"/list"}>
           <BsShop className="text-5xl print:text-3xl" />
@@ -66,28 +66,28 @@ Hatur nuhun~ ✨`);
         <p className="text-center">{user.name_card}</p>
       </div>
 
-      <div className="flex flex-col gap-3 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 border-y-2 border-black print:text-xs">
+      <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs">
         {products.map((product, index) => {
           return (
             <div className=" flex flex-col gap-1" key={index}>
-              <p className="font-bold print:text-xs">
+              <p className="font-bold print:font-normal print:text-xs">
                 {index + 1}. {product.name}
               </p>
-              <div className="flex justify-between">
-                <p className="px-4">
+              <div className="flex justify-between ">
+                <p className="px-4 print:text-xs">
                   {product.qty} x {product.price}
                 </p>
-                <p>{formatNumberIDR(product.qty * product.price)}</p>
+                <p className="print:text-xs">{formatNumberIDR(product.qty * product.price)}</p>
               </div>
             </div>
           );
         })}
-        <div className="bg-white w-full flex border-t-2 border-black py-3 justify-between">
+        <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-32">
           <p>Total QTY: {totalQty}</p>
           <p>{formatNumberIDR(total)}</p>
         </div>
       </div>
-      <p className="font-bold text-md print:text-xs text-center flex flex-col ">
+      <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
         <span>Thank you for your purchase.</span>
         <span className="print:hidden">
           Don't forget to confirm with the seller if you have paid. 😁
