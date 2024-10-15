@@ -68,9 +68,6 @@ Hatur nuhun~ ✨`);
 
       <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
         <span>Thank you for your purchase.</span>
-        <span className="print:hidden">
-          Don't forget to confirm with the seller if you have paid. 😁
-        </span>
       </p>
 
       <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs rounded-lg shadow-lg">
@@ -94,6 +91,11 @@ Hatur nuhun~ ✨`);
           <p>{formatNumberIDR(total)}</p>
         </div>
       </div>
+      <p className="font-bold print:font-normal text-md print:text-xs text-center flex flex-col ">
+        <span className="print:hidden">
+          Don't forget to confirm with the seller if you have paid. 😁
+        </span>
+      </p>
       <p className="text-md font-bold text-center md:w-1/2 print:hidden">
         Confirm Order
       </p>
