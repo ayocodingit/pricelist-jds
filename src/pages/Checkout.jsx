@@ -7,6 +7,7 @@ import { BsPencil, BsShop } from "react-icons/bs";
 import { getAllCheckout } from "../repository/carts";
 import { AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
+import { getAttrDate } from "../utils/date";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -52,7 +53,7 @@ Hatur nuhun~ ✨`);
   }, []);
 
   if (!user || products.length == 0) {
-    return navigate("/404");
+    return 
   }
 
   return (
@@ -108,10 +109,7 @@ Hatur nuhun~ ✨`);
             className="hover:cursor-pointer text-3xl"
             title="Print Order"
             onClick={() => {
-              const today = new Date();
-              const month = today.getMonth() + 1;
-              const year = today.getFullYear();
-              const date = today.getDate();
+              const { month, date, year} = getAttrDate()
               document.title = `Order Price List ${month}-${date}-${year}`;
               window.print();
             }}

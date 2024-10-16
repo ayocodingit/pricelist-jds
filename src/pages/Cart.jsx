@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllCart, moveToCheckOut, removeAllCart } from "../repository/carts";
 import { BsArrowLeft, BsShop } from "react-icons/bs";
 import CartList from "../components/CartList";
@@ -81,10 +81,10 @@ function Cart() {
           </div>
         ) : <div></div>}
         <div className="  h-full flex items-center gap-3">
-          <p className="flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <p>Total</p>
             <p>{formatNumberIDR(checkTotal)}</p>
-          </p>
+          </div>
           <p
             className={`h-full bg-primary text-white flex items-center p-2 ${
               checkTotal != 0 && "hover:cursor-pointer"

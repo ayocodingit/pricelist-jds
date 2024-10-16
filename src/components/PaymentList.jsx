@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
-import { TelegramIcon, TelegramShareButton } from "react-share";
+import { AiOutlineCopy } from "react-icons/ai";
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Payment({ payment, product, qty, name_card }) {
+function Payment({ payment }) {
   const alert = () => {
     toast.success("Copied on Clipboard", {
       position: "bottom-right",
