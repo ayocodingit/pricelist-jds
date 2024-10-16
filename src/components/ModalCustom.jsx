@@ -5,7 +5,7 @@ import "./modalCustom.css";
 function ModalCustom({ modalIsOpen, closeModal, children }) {
   const customStyles = {
     content: {
-      top: "50%",
+      top: "100%",
       left: "50%",
       right: "auto",
       bottom: "auto",
