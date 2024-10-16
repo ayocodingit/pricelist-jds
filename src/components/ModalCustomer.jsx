@@ -52,6 +52,7 @@ let's get to know each other first</label>
         >
           Save
         </button>
+        <p className="text-xs text-gray-600">*temporary flow to order</p>
       </div>
     </ModalCustom>
   );
