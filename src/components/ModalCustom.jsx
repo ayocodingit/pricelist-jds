@@ -14,7 +14,7 @@ function ModalCustom({ modalIsOpen, closeModal, children }) {
       display: "flex",
       justifyContent: "center",
       transform: "translate(-50%, -50%)",
-      zIndex: "30"
+      zIndex: 30
     },
   };
 
