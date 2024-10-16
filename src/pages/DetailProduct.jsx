@@ -152,10 +152,10 @@ Hatur nuhun~ ✨
               <p
                 className={`${
                   isStockEmpty ? "text-gray-500 " : "text-primary"
-                } text-sm rounded-md capitalize underline`}
+                } text-sm rounded-md capitalize`}
               >
                 {isStockEmpty && "Not "}
-                {product.tag}{" "}
+                {product.tag}:{" "}
                 {product.tag == tagOptions.READY_STOCK && (
                   <span>{product.stock}</span>
                 )}

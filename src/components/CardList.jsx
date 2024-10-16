@@ -6,10 +6,9 @@ import { tagOptions } from "../utils/contstant/tag";
 import { BiMap } from "react-icons/bi";
 
 function CardList({ product }) {
-  const isStockEmpty = !(
+  const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
-    !product.is_available
-  );
+    !product.is_available;
 
   return (
     <Link
@@ -25,7 +24,7 @@ function CardList({ product }) {
             className={` min-h-[10rem] h-10 object-contain rounded-md w-full`}
             loading="lazy"
           />
-          { !isStockEmpty && (
+          { isStockEmpty && (
             <span className="absolute rounded-full bg-black text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">Habis</span>
 
           ) }
@@ -50,6 +49,14 @@ function CardList({ product }) {
                 </span>
               )}
             </p>
+            <p
+                className={`${
+                  isStockEmpty ? "text-gray-500 " : "text-primary"
+                } text-xs rounded-md capitalize underline`}
+              >
+                {isStockEmpty && "Not "}
+                {product.tag}
+              </p>
             {product.location ? (
               <div className="flex items-center">
                 <BiMap />
