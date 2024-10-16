@@ -29,7 +29,7 @@ function ModalCustomer({
     >
       <div className="rounded-md w-full md:w-1/2 flex flex-col gap-2">
         <label htmlFor="customer">
-let's get to know each other first</label>
+Silakan masukan data diri anda untuk melakukan pemesanan</label>
         <input
           type="text"
           id="customer"
@@ -52,7 +52,6 @@ let's get to know each other first</label>
         >
           Save
         </button>
-        <p className="text-xs text-gray-600">*temporary flow to order</p>
       </div>
     </ModalCustom>
   );
