@@ -5,16 +5,15 @@ import "./modalCustom.css";
 function ModalCustom({ modalIsOpen, closeModal, children }) {
   const customStyles = {
     content: {
-      top: "90%",
+      top: "75%",
       left: "50%",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
-      width: "100%",
+      width: "99%",
       display: "flex",
       justifyContent: "center",
       transform: "translate(-50%, -50%)",
-      zIndex: 30
     },
   };
 
