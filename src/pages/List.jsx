@@ -46,7 +46,7 @@ function List() {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-screen">
       {/* section Search */}
       <div className="flex flex-col gap-2 items-center py-3 p-2 bg-primary sticky top-0 shadow-lg z-10">
         <div className="w-full p-2 flex justify-center">
