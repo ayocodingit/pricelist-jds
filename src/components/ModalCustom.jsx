@@ -10,7 +10,7 @@ function ModalCustom({ modalIsOpen, closeModal, children }) {
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
-      width: "99%",
+      width: "95%",
       display: "flex",
       justifyContent: "center",
       transform: "translate(-50%, -50%)",
