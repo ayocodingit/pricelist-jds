@@ -11,7 +11,7 @@ function Homepage() {
         </p>
       </div>
       <div className="flex justify-center">
-        <img src="/logo_jds.png" alt="logo jds" className="w-60"/>
+        <img src="/logo_jds.png" alt="logo jds" className="w-60" />
       </div>
       <div className="flex items-center flex-col gap-1">
         <div className="flex flex-col items-center gap-1">
@@ -22,10 +22,10 @@ function Homepage() {
           />
           <p className=" uppercase"> Scan Here</p>
         </div>
-        <div class="relative flex py-5 w-full items-center">
-          <div class="flex-grow border-t border-black border-2"></div>
-          <span class="flex-shrink mx-4 ">OR</span>
-          <div class="flex-grow border-t border-black border-2"></div>
+        <div className="relative flex py-5 w-full items-center">
+          <div className="flex-grow border-t border-black border-2"></div>
+          <span className="flex-shrink mx-4 ">OR</span>
+          <div className="flex-grow border-t border-black border-2"></div>
         </div>
         <Link
           className="w-40 h-8 text-center flex justify-center items-center rounded-lg border-2 text-white hover:bg-opacity-90 bg-[#5D9F5D] "

@@ -8,6 +8,7 @@ import { getAllCheckout } from "../repository/carts";
 import { AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 import { getAttrDate } from "../utils/date";
+import ModalCustomer from "../components/ModalCustomer";
 
 function Checkout() {
   const [user, setUser] = useState({});

@@ -5,6 +5,8 @@ import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { formatNumberIDR } from "../utils/formatter";
+import ModalCustomer from "../components/ModalCustomer";
+import { getCustomer } from "../repository/customer";
 
 function Cart() {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,7 @@ function Cart() {
   const [username, setUsername] = useState("");
   const [checkTotal, setCheckTotal] = useState(0);
   const [ids, setIds] = useState([]);
+  const [isModalCustomer, setIsModalCustomer] = useState(false);
 
   useEffect(() => {
     setProducts(getAllCart(username));
@@ -79,7 +82,9 @@ function Cart() {
               {username}
             </p>
           </div>
-        ) : <div></div>}
+        ) : (
+          <div></div>
+        )}
         <div className="  h-full flex items-center gap-3">
           <div className="flex flex-col items-center">
             <p>Total</p>
@@ -90,9 +95,14 @@ function Cart() {
               checkTotal != 0 && "hover:cursor-pointer"
             } `}
             onClick={() => {
-              if (checkTotal != 0) {
+              if (checkTotal != 0 && getCustomer()) {
+              
                 moveToCheckOut(products);
-                navigate(`/checkout/${username}`);
+                return navigate(`/checkout/${username}`);
+              } 
+              if (!getCustomer()) {
+
+                setIsModalCustomer(true);
               }
             }}
           >
@@ -100,6 +110,10 @@ function Cart() {
           </p>
         </div>
       </div>
+      <ModalCustomer
+        setIsModalCustomer={setIsModalCustomer}
+        isModalCustomer={isModalCustomer}
+      />
     </div>
   );
 }

@@ -1,9 +1,10 @@
+import { getCustomer } from "./customer";
 import { sendOrders } from "./orders";
 
 const productsKey = "products";
 const checkoutKey = "checkout";
 
-export const addToCart = (item, qty, note = '') => {
+export const addToCart = (item, qty, note = "") => {
   let isNewItem = true;
   const product = {
     ...item,
@@ -28,8 +29,7 @@ export const addToCart = (item, qty, note = '') => {
   return isNewItem;
 };
 
-
-const getAll = (key, username = '') => {
+const getAll = (key, username = "") => {
   const storage = localStorage.getItem(key);
   let carts = [];
 
@@ -37,13 +37,13 @@ const getAll = (key, username = '') => {
     carts = JSON.parse(storage) || [];
   }
   if (username) {
-      carts = carts.filter((product) => product.username == username)
+    carts = carts.filter((product) => product.username == username);
   }
   return carts;
 };
 
-export const getAllCart = (username = '') => getAll(productsKey, username)
-export const getAllCheckout = () => getAll(checkoutKey)
+export const getAllCart = (username = "") => getAll(productsKey, username);
+export const getAllCheckout = () => getAll(checkoutKey);
 
 export const getCountCart = () => {
   return getAll(productsKey).length;
@@ -67,8 +67,8 @@ export const removeAllCheckout = () => {
 };
 
 export const moveToCheckOut = (products) => {
-    products.forEach((product) => removeItemCart(product.id))
-    localStorage.removeItem(checkoutKey);
-    localStorage.setItem(checkoutKey, JSON.stringify(products));
-    sendOrders(products)
+  products.forEach((product) => removeItemCart(product.id));
+  localStorage.removeItem(checkoutKey);
+  localStorage.setItem(checkoutKey, JSON.stringify(products));
+  sendOrders(products, getCustomer());
 };

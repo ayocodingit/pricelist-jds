@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getByID } from "../repository/produts";
 import { BsArrowLeft, BsCartPlus } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -12,14 +8,12 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
-import {
-  addToCart,
-  getCountCart,
-  moveToCheckOut,
-} from "../repository/carts";
+import { addToCart, getCountCart, moveToCheckOut } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { getCustomer } from "../repository/customer";
+import ModalCustomer from "../components/ModalCustomer";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -30,6 +24,8 @@ function DetailProduct() {
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
+  const [isModalCustomer, setIsModalCustomer] = useState(false);
+  
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -81,6 +77,16 @@ function DetailProduct() {
   const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
+
+  const handleCheckout = () => {
+    if (isStockEmpty) return;
+    if (!getCustomer()) {
+      setIsModalCustomer(true);
+      return;
+    }
+    moveToCheckOut([{ ...product, qty, note }]);
+    navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
+  };
 
   return (
     <div className="flex flex-col h-[calc(100dvh)]  relative ">
@@ -221,7 +227,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
       </div>
-      <div className="absolute w-full bottom-0 flex items-center  text-white justify-center h-14">
+      <div className="absolute w-full bottom-0 flex items-center  text-white justify-center h-12">
         <div className="flex w-full md:w-1/2 h-full  items-center">
           <button
             className={`w-1/2  h-full p-2 flex justify-center items-center hover:bg-opacity-90 ${
@@ -240,17 +246,13 @@ Hatur nuhun~ ✨
             className={` flex items-center justify-center h-full w-1/2 ${
               isStockEmpty ? "bg-gray-500" : "bg-primary hover:bg-opacity-90"
             } `}
-            onClick={() => {
-              if (isStockEmpty) return;
-              moveToCheckOut([{ ...product, qty, note }]);
-              navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
-            }}
+            onClick={handleCheckout}
           >
             <span className="flex flex-col p-2">
               {isStockEmpty ? (
                 "Not Ready Stock"
               ) : (
-                <div className="flex flex-col items-center text-sm">
+                <div className="flex flex-col items-center text-xs">
                   <span className="font-bold">Order Now </span>
                   <span className="text-md font-serif">
                     {formatNumberIDR(total)}
@@ -261,6 +263,7 @@ Hatur nuhun~ ✨
           </button>
         </div>
       </div>
+      <ModalCustomer setIsModalCustomer={setIsModalCustomer} isModalCustomer={isModalCustomer}/>
     </div>
   );
 }

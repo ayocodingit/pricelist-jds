@@ -1,4 +1,4 @@
-const storeOrder = async (product, orderId) => {
+const storeOrder = async (product, orderId, customer) => {
   const body = {
     answers: [
       {
@@ -12,6 +12,12 @@ const storeOrder = async (product, orderId) => {
         uuid_question: "41410412-a9f9-4c0b-87a9-35e3f58c6c39",
         type: "text",
         value: product.username,
+      },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "f63f141a-755d-45fd-ac9e-1162d476519b",
+        type: "text",
+        value: customer,
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
@@ -64,10 +70,12 @@ const storeOrder = async (product, orderId) => {
   return await rawResponse.json();
 };
 
-export const sendOrders = (products) => {
+export const sendOrders = (products, customer = "") => {
   const promises = [];
   const orderId = `order-${Date.now()}`;
-  products.forEach((product) => promises.push(storeOrder(product, orderId)));
+  products.forEach((product) =>
+    promises.push(storeOrder(product, orderId, customer))
+  );
 
   Promise.allSettled(promises).then((res) => console.log(res));
 };
