@@ -43,7 +43,7 @@ function CartList({
           />
         </div>
       </div>
-      <div className="flex gap-4 w-full p-2 items-center">
+      <div className="flex gap-4 w-full p-4 items-center">
         <input
           type="checkbox"
           checked={ids.includes(product.id)}
@@ -71,7 +71,7 @@ function CartList({
         <img
           src={product.image}
           alt="image product"
-          className="max-h-20 w-1/4 object-contain "
+          className="h-16 w-1/4  object-contain"
         />
         <div className="w-full flex flex-col p-1 gap-1 relative">
           <p className="font-bold text-md">{product.name}</p>
