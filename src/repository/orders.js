@@ -1,13 +1,11 @@
-import { getAttrDate } from "../utils/date";
-
-const storeOrder = async (product) => {
+const storeOrder = async (product, orderId) => {
   const body = {
     answers: [
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
         uuid_question: "0e74fafb-50ce-4aad-af55-8c8b563e4eb4",
         type: "text",
-        value: `order-${Date.now()}`,
+        value: orderId,
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
@@ -17,15 +15,33 @@ const storeOrder = async (product) => {
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "044fad74-16c9-41aa-be44-052302a2c127",
+        type: "text",
+        value: product.id,
+      },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
         uuid_question: "0cd7d044-c1db-465e-81b5-99c83f703578",
         type: "text",
         value: product.name,
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "e4b1038e-0027-4844-a981-276d77400a12",
+        type: "text",
+        value: product.price,
+      },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
         uuid_question: "b097f8ba-dabe-41cd-af01-ecf475b22880",
         type: "number",
         value: product.qty,
+      },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "adc487f7-e6db-48b3-b8bf-68d522d7b721",
+        type: "number",
+        value: product.price * product.qty,
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
@@ -50,7 +66,8 @@ const storeOrder = async (product) => {
 
 export const sendOrders = (products) => {
   const promises = [];
-  products.forEach((product) => promises.push(storeOrder(product)));
+  const orderId = `order-${Date.now()}`;
+  products.forEach((product) => promises.push(storeOrder(product, orderId)));
 
   Promise.allSettled(promises).then((res) => console.log(res));
 };
