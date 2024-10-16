@@ -209,7 +209,7 @@ Hatur nuhun~ ✨
               
 
               <div className="w-full flex flex-col gap-2 text-sm">
-                <textarea id="note" placeholder="Enter Note" onChange={(e) => setNote(e.target.value)} className="w-1/2 rounded-md outline-dashed outline-1 text-xs p-2 focus:outline-primary italic h-20" maxLength={100}>{note}</textarea>
+                <textarea id="note" placeholder="Enter Note" onChange={(e) => setNote(e.target.value)} className="md:w-1/2 w-full rounded-md outline-dashed outline-1 text-xs p-2 focus:outline-primary italic h-20" maxLength={100}>{note}</textarea>
               </div>
             </div>
           </div>
