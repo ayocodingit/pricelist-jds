@@ -236,7 +236,7 @@ Hatur nuhun~ ✨
             } `}
             onClick={() => {
               if (isStockEmpty) return;
-              moveToCheckOut([{ ...product, qty }]);
+              moveToCheckOut([{ ...product, qty, note }]);
               navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
             }}
           >

@@ -75,6 +75,9 @@ Hatur nuhun~ ✨`);
               <p className="font-bold print:font-normal print:text-xs">
                 {index + 1}. {product.name}
               </p>
+              <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
+                {product.note}
+              </p>
               <div className="flex justify-between ">
                 <p className="px-4 print:text-xs">
                   {product.qty} x {product.price}
