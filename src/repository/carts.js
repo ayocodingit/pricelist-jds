@@ -1,10 +1,11 @@
 const productsKey = "products";
 const checkoutKey = "checkout";
 
-export const addToCart = (item, qty) => {
+export const addToCart = (item, qty, note = '') => {
   let isNewItem = true;
   const product = {
     ...item,
+    note,
     qty,
   };
   const products = getAll(productsKey);

@@ -26,7 +26,7 @@ function CartList({
           <div className="flex gap-2 items-center">
             <div
               onClick={() => {
-                navigate(`/list/${product.id}?qty=${product.qty}`);
+                navigate(`/list/${product.id}?qty=${product.qty}&note=${product.note}`);
               }}
               className="hover: cursor-pointer"
             >
@@ -83,7 +83,8 @@ function CartList({
               </span>
             )}
           </p>
-          <p className="flex text-xs">Quantity {product.qty}</p>
+          <p className="flex text-xs">Quantity: {product.qty}</p>
+          <p className="flex text-xs flex-col ">Note <span className="text-gray-600 italic">{product.note || '-'}</span></p>
         </div>
       </div>
     </div>

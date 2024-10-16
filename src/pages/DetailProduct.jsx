@@ -27,6 +27,7 @@ function DetailProduct() {
   const [product, setProduct] = useState(null);
   const [URLSearchParams] = useSearchParams();
   const [qty, setQty] = useState(parseInt(URLSearchParams.get("qty")) || 1);
+  const [note, setNote] = useState(URLSearchParams.get("note") || '')
   const [total, setTotal] = useState(0);
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
@@ -161,16 +162,18 @@ Hatur nuhun~ ✨
                 )}
               </p>
 
-              
-
               {product.location && (
                 <div className="flex items-center ">
                   <BiMap />
                   <p className="text-sm text-gray-600">{product.location}</p>
                 </div>
               )}
+              <div className="w-full flex flex-col outline-primary gap-2 min-h-18 text-gray-800">
+                <div className="text-sm ">Description</div>
+                <div className="text-xs">{product.description || "-"}</div>
+              </div>
               {!isStockEmpty && (
-                <div className="flex gap-5 items-center">
+                <div className="flex gap-2 mt-2">
                   <label htmlFor="" className="text-sm">
                     Quantity
                   </label>
@@ -203,9 +206,10 @@ Hatur nuhun~ ✨
                   </div>
                 </div>
               )}
-              <div className="w-full flex flex-col outline-primary gap-2 min-h-20 text-gray-800">
-                <div className="text-sm ">Description</div>
-                <div className="text-xs">{product.description || "-"}</div>
+              
+
+              <div className="w-full flex flex-col gap-2 text-sm">
+                <textarea id="note" placeholder="Enter Note" onChange={(e) => setNote(e.target.value)} className="w-1/2 rounded-md outline-dashed outline-1 text-xs p-2 focus:outline-primary italic h-20" maxLength={100}>{note}</textarea>
               </div>
             </div>
           </div>
@@ -219,7 +223,7 @@ Hatur nuhun~ ✨
             }`}
             onClick={() => {
               if (isStockEmpty) return;
-              const isNewProduct = addToCart(product, qty);
+              const isNewProduct = addToCart(product, qty, note);
               setTotalCart(totalCart + 1);
               alert(isNewProduct);
             }}
