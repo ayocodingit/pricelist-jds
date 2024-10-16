@@ -22,7 +22,6 @@ function Checkout() {
   useEffect(() => {
     const productDetail = getAllCheckout();
     const userDetail = getUser(username);
-    console.log(productDetail, userDetail);
 
     if (userDetail && productDetail) {
       setUser(userDetail);

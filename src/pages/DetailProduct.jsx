@@ -6,7 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { getByID } from "../repository/produts";
-import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft, BsCartPlus } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
@@ -86,13 +86,13 @@ function DetailProduct() {
   return (
     <div className="flex flex-col bg-gray-50 h-[calc(100dvh)]  relative">
       <div className="w-full flex md:justify-center">
-        <div className="w-full md:w-1/2 flex justify-center md:border-x-4 md:border-white">
+        <div className="w-full md:w-1/2 flex justify-center md:border-x-2 md:border-white">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`max-h-[20rem]  w-full relative object-contain md:border-2 md:border-gray-100 hover:cursor-zoom-in`}
+                className={`max-h-[20rem]  w-full relative object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
@@ -132,43 +132,36 @@ Hatur nuhun~ ✨
       </div>
       <div className="w-full flex md:justify-center h-full">
         <div className="md:w-1/2 w-full flex md:bg-white ">
-          <div className="mt-2 p-4 flex justify-between gap-5 w-full">
+          <div className="mt-5 p-4 flex justify-between w-full">
             <div className="flex flex-col gap-2 w-full">
-              {product.discount > 0 && (
-                <div className="text-sm flex gap-2">
-                  <span className="text-primary font-serif underline">
-                    Discount {product.discount}%
-                  </span>
-                  <span className="line-through text-black">
-                    {formatNumberIDR(product.price)}
-                  </span>
-                </div>
-              )}
-
-              <p className="text-orange-600 text-md font-serif flex gap-2 items-center">
-                {formatNumberIDR(
-                  calculateDiscount(product.price, product.discount)
-                )}
-              </p>
-              <div className="w-1/2">
-                <p
-                  className={`${
-                    isStockEmpty
-                      ? "text-gray-500 outline-gray-500"
-                      : "text-primary outline-primary"
-                  } text-center outline-dashed text-sm rounded-md capitalize`}
-                >
-                  {isStockEmpty && "Not "}
-                  {product.tag}{" "}
-                  {product.tag == tagOptions.READY_STOCK && (
-                    <span>{product.stock}</span>
-                  )}
-                </p>
-              </div>
-
-              <p className="text-lg font-bold font-sans capitalize flex gap-2 text-wrap items-center">
+              <p className="text-md font-roboto capitalize flex gap-2 text-wrap items-center">
                 {product.name}
               </p>
+              <p className="text-sm font-serif text-orange-600 flex gap-2 items-center">
+                <span className="text-md">
+                  {formatNumberIDR(
+                    calculateDiscount(product.price, product.discount)
+                  )}
+                </span>
+                {product.discount > 0 && (
+                  <span className="bg-green-100  text-primary p-1 rounded-md text-xs">
+                    -{product.discount}%
+                  </span>
+                )}
+              </p>
+              <p
+                className={`${
+                  isStockEmpty ? "text-gray-500 " : "text-primary"
+                } text-sm rounded-md capitalize underline`}
+              >
+                {isStockEmpty && "Not "}
+                {product.tag}{" "}
+                {product.tag == tagOptions.READY_STOCK && (
+                  <span>{product.stock}</span>
+                )}
+              </p>
+
+              
 
               {product.location && (
                 <div className="flex items-center ">
@@ -181,16 +174,16 @@ Hatur nuhun~ ✨
                   <label htmlFor="" className="text-sm">
                     Quantity
                   </label>
-                  <div className="flex h-6 justify-center items-center w-32">
+                  <div className="flex h-6 justify-center items-center w-20 text-sm">
                     <button
                       onClick={() => {
                         if (qty > 1) {
                           calculateTotal(product.price, product.discount, "-");
                         }
                       }}
-                      className=" w-1/2 h-full bg-primary text-white text-md rounded-lg flex justify-center items-center"
+                      className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
                     >
-                      <AiOutlineMinus/>
+                      <AiOutlineMinus />
                     </button>
                     <div className="w-1/2  text-center h-full flex justify-center items-center">
                       {qty}
@@ -203,33 +196,25 @@ Hatur nuhun~ ✨
                         )
                           calculateTotal(product.price, product.discount, "+");
                       }}
-                      className="w-1/2 h-full bg-primary text-white text-md rounded-lg flex justify-center items-center"
+                      className="w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
                     >
-                      <AiOutlinePlus/>
+                      <AiOutlinePlus />
                     </button>
                   </div>
                 </div>
               )}
-              <div className="flex gap-5 items-center">
-                <div className="text-sm">Total Price</div>
-                <div className="text-orange-600 text-md font-serif">
-                  {formatNumberIDR(total)}
-                </div>
+              <div className="w-full flex flex-col outline-primary gap-2 min-h-20 text-gray-800">
+                <div className="text-sm ">Description</div>
+                <div className="text-xs">{product.description || "-"}</div>
               </div>
-                <div className="w-full flex flex-col outline-primary gap-2 min-h-20 text-gray-800">
-                  <div className="text-sm ">Description</div>
-                  <div className="text-xs">
-                    {product.description || '-'}
-                  </div>
-                </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-full bottom-0 flex items-center  text-white text-sm  justify-center">
-        <div className="flex w-full md:w-1/2 h-10 items-center">
+      <div className="w-full bottom-0 flex items-center  text-white justify-center shadow-lg ">
+        <div className="flex w-full md:w-1/2 h-12 items-center ">
           <button
-            className={`w-1/2  h-full ${
+            className={`w-1/2  h-full p-2 flex justify-center items-center ${
               isStockEmpty ? "bg-gray-500" : "bg-orange-600"
             }`}
             onClick={() => {
@@ -239,7 +224,7 @@ Hatur nuhun~ ✨
               alert(isNewProduct);
             }}
           >
-            Add To Cart
+            <BsCartPlus className="text-2xl" />
           </button>
           <button
             className={` flex items-center justify-center h-full w-1/2 ${
@@ -251,7 +236,18 @@ Hatur nuhun~ ✨
               navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
             }}
           >
-            {isStockEmpty ? "Not Ready Stock" : "Order Now"}
+            <span className="flex flex-col p-2">
+              {isStockEmpty ? (
+                "Not Ready Stock"
+              ) : (
+                <div className="flex flex-col items-center ">
+                  <span className="text-sm">Order Now </span>
+                  <span className="text-md font-serif">
+                    ({formatNumberIDR(total)})
+                  </span>
+                </div>
+              )}
+            </span>
           </button>
         </div>
       </div>
