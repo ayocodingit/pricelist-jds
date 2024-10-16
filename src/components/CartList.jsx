@@ -13,7 +13,7 @@ function CartList({
   ids,
   setIds,
 }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const totalPrice = calculateDiscount(product.price, product.discount);
   return (
     <div className="text-sm text-black rounded-lg bg-white flex flex-col w-full shadow-lg relative">
@@ -22,26 +22,26 @@ function CartList({
           <BsShop className="text-xl " />
           {product.username}
         </div>
-        <div className="flex gap-2 items-center">
-          { ids.length == 0 && (
+        {ids.length == 0 && (
+          <div className="flex gap-2 items-center">
             <div
-            onClick={() => {
-              navigate(`/list/${product.id}?qty=${product.qty}`);
-            }}
-            className="hover: cursor-pointer"
-          >
-            <BsPencil />
+              onClick={() => {
+                navigate(`/list/${product.id}?qty=${product.qty}`);
+              }}
+              className="hover: cursor-pointer"
+            >
+              <BsPencil />
+            </div>
+
+            <CgClose
+              className="text-xl hover: cursor-pointer"
+              onClick={() => {
+                removeItemCart(product.id);
+                setIsChange(true);
+              }}
+            />
           </div>
-          ) }
-          
-          <CgClose
-            className="text-xl hover: cursor-pointer"
-            onClick={() => {
-              removeItemCart(product.id);
-              setIsChange(true);
-            }}
-          />
-        </div>
+        )}
       </div>
       <div className="flex gap-4 w-full p-2 items-center">
         <input

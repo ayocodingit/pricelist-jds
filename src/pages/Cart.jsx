@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getAllCart, moveToCheckOut, removeAllCart } from "../repository/carts";
-import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft, BsShop } from "react-icons/bs";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -61,7 +61,25 @@ function Cart() {
         </div>
       )}
       <div className="fixed bottom-0 z-10 text-sm h-14 flex w-full md:w-1/2 rounded-md  items-center gap-2 bg-white font-md justify-between">
-        <div className="p-2">{username}</div>
+        {ids.length > 0 ? (
+          <div className="flex gap-2 pl-6 items-center">
+            <input
+              type="checkbox"
+              checked={ids.length}
+              className="accent-primary w-5 h-5"
+              onChange={(e) => {
+                setIds([]);
+                setUsername("");
+                setCheckTotal(0);
+              }}
+            />
+
+            <p className="flex gap-2">
+              <BsShop className="text-xl " />
+              {username}
+            </p>
+          </div>
+        ) : <div></div>}
         <div className="  h-full flex items-center gap-3">
           <p className="flex flex-col items-center">
             <p>Total</p>
