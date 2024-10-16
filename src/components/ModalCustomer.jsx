@@ -28,7 +28,7 @@ function ModalCustomer({
       closeModal={() => setIsModalCustomer(false)}
     >
       <div className="rounded-md w-full md:w-1/2 flex flex-col gap-2">
-        <label htmlFor="customer">
+        <label htmlFor="customer" className="text-sm">
 Silakan masukan data diri anda untuk melakukan pemesanan</label>
         <input
           type="text"
