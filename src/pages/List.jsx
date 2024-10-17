@@ -17,7 +17,7 @@ function List() {
   const [URLSearchParams, SetURLSearchParams] = useSearchParams();
   const [q, setQ] = useState(URLSearchParams.get("q") || "");
   const [category, setCategory] = useState(
-    URLSearchParams.get("category") || categoryOptions.FOOD
+    URLSearchParams.get("category") || ''
   );
   const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "price");
