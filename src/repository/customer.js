@@ -13,7 +13,11 @@ export const storeCustomer = (username) => {
 export const getCustomer = () => {
   const item = localStorage.getItem(customerKey);
 
-  if (item) return JSON.parse(item);
-
-  return item;
+  if (!item) return item;
+  try {
+    return JSON.parse(item);
+  } catch (error) {
+    storeCustomer(item);
+    return getCustomer();
+  }
 };

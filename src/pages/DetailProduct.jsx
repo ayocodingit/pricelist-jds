@@ -241,6 +241,12 @@ Hatur nuhun~ ✨
             }}
           >
             <BsCartPlus className="text-2xl" />
+            { getCustomer() && 
+              (
+                <p>Hai {getCustomer().username}</p>
+              )
+            }
+            
           </button>
           <button
             className={` flex items-center justify-center h-full w-1/2 ${
