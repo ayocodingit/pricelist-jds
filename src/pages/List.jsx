@@ -85,7 +85,7 @@ function List() {
             >
               <BiUserCircle className="text-3xl text-white hover:cursor-pointer" onClick={() => setShowProfile((prev) => !prev)}/>
               {getCustomer() && showProfile && (
-                <div className=" absolute top-10 right-0 w-32 z-20 bg-white shadow-md text-black p-2 rounded-md text-md">
+                <div className=" absolute top-10 right-0 w-32 z-20 bg-white shadow-md text-black p-2 rounded-md text-sm">
                   <div className="flex items-center justify-between gap-2">
                     <p>Hai, {getCustomer()?.customer} </p>
                     <BiPencil className="hover:cursor-pointer" onClick={() => setIsModalCustomer((prev) => !prev)} />
