@@ -219,7 +219,7 @@ export const getProducts = (q = "", category = "", sort = "") => {
 
   return funcSort(
     products.filter(
-      (product) => product.name.match(regex) && category == product.category
+      (product) => product.name.match(regex) || category == product.category
     )
   );
 };
