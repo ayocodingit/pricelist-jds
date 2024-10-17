@@ -51,23 +51,23 @@ function List() {
 
   return (
     <div className="bg-gray-50 min-h-screen flex md:justify-center">
-      <div className=" md:w-1/2 flex flex-col">
+      <div className="w-full md:w-1/2 flex flex-col">
         <div className="sticky top-0 bg-gray-50 z-10 shadow-sm w-full">
           {/* Profile */}
-          <div className="px-5 pt-7 flex justify-between items-center w-full">
+          <div className="px-5 pt-7 flex justify-between items-center">
             <div className="">
               <p className="text-lg">Hello {getCustomer()?.customer || 'Brother'}</p>
               <p className="text-2xl font-bold">Welcome Back!</p>
             </div>
             <div className="relative hover:cursor-pointer" onClick={() => navigate("/cart")}>
               <CiShoppingCart className="text-4xl" />
-              <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs flex justify-center">
+              <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs w-1/2 flex justify-center">
                 {getCountCart()}
               </p>
             </div>
           </div>
           {/* Search */}
-          <div className="px-5 my-4 relative w-full">
+          <div className="px-5 my-4 relative">
             <input
               type="text"
               placeholder="Search"
