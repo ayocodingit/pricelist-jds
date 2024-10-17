@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalCustom from "./ModalCustom";
-import { storeCustomer } from "../repository/customer";
+import { getCustomer, storeCustomer } from "../repository/customer";
 import { Flip, toast } from "react-toastify";
 
 function ModalCustomer({
   setIsModalCustomer,
   isModalCustomer,
 }) {
-    const [customer, setCustomer] = useState("");
+    const [customer, setCustomer] = useState('');
+
+    useEffect(() => {
+        setCustomer(getCustomer().username || '')
+    }, [isModalCustomer])
+
     const alert = () => {
         toast.success(`Thank You For Register`, {
         position: "bottom-right",
@@ -27,7 +32,7 @@ function ModalCustomer({
       modalIsOpen={isModalCustomer}
       closeModal={() => setIsModalCustomer(false)}
     >
-      <div className="rounded-md w-full md:w-1/2 flex flex-col gap-2">
+      <div className="rounded-md w-full md:w-1/2 flex flex-col gap-2 items-center">
         <label htmlFor="customer" className="text-sm">
 Silakan masukan data diri anda untuk melakukan pemesanan</label>
         <input
@@ -37,10 +42,11 @@ Silakan masukan data diri anda untuk melakukan pemesanan</label>
           placeholder="Please Enter Your Name"
           min={3}
           onChange={(e) => setCustomer(e.target.value)}
+          defaultValue={customer}
           required
         />
         <button
-          className="bg-primary text-white rounded-lg"
+          className="bg-primary text-white rounded-lg w-1/2"
           onClick={() => {
             if (!customer) return;
             storeCustomer(customer);

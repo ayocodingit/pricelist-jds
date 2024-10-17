@@ -7,6 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { formatNumberIDR } from "../utils/formatter";
 import ModalCustomer from "../components/ModalCustomer";
 import { getCustomer } from "../repository/customer";
+import Profile from "../components/Profile";
 
 function Cart() {
   const [products, setProducts] = useState([]);
@@ -24,6 +25,7 @@ function Cart() {
 
   return (
     <div className=" text-md flex flex-col items-center w-full relative min-h-[calc(100dvh)]">
+      <Profile />
       <div className="flex gap-2 p-5 justify-between items-center bg-primary text-white shadow-lg sticky top-0 z-10 w-full md:w-1/2 h-14 ">
         <BsArrowLeft
           className=" p-1 text-3xl"

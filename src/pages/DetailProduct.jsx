@@ -14,6 +14,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { getCustomer } from "../repository/customer";
 import ModalCustomer from "../components/ModalCustomer";
+import Profile from "../components/Profile";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -89,7 +90,8 @@ function DetailProduct() {
   return (
     <div className="flex flex-col h-[calc(100dvh)]  relative ">
       <div className="w-full flex md:justify-center ">
-        <div className="w-full md:w-1/2 flex justify-center md:border-x-2 md:border-white">
+        <div className="w-full md:w-1/2 flex justify-center md:border-x-2 md:border-white ">
+          <Profile />
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
