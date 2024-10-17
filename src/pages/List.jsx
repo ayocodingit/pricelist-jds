@@ -26,7 +26,7 @@ function List() {
   const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
-    if (!["name", "discount", "price"].includes(sort)) {
+    if (!["name", "discount", "price", ""].includes(sort)) {
       setSort("name");
       SetURLSearchParams({ q, category, sort: "discount" });
     }
