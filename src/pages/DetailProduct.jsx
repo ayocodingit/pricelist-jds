@@ -160,7 +160,7 @@ Hatur nuhun~ ✨
                 } text-sm rounded-md capitalize`}
               >
                 {isStockEmpty && "Not "}
-                {product.tag}:{" "}
+                {product.tag}{" "}
                 {product.tag == tagOptions.READY_STOCK && (
                   <span>{product.stock}</span>
                 )}
