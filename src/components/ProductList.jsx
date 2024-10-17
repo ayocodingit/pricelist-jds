@@ -5,7 +5,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
 import { BiMap } from "react-icons/bi";
 
-function CardList({ product }) {
+function ProductList({ product }) {
   const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
@@ -72,4 +72,4 @@ function CardList({ product }) {
   );
 }
 
-export default CardList;
+export default ProductList;

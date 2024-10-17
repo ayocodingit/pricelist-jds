@@ -3,38 +3,38 @@ import { AiOutlineSortAscending, AiOutlineDollar, AiOutlinePercentage } from "re
 
 function SortProduct({ handleSort, sort }) {
   return (
-      <ul className="flex items-center text-black p-2 gap-1 text-xl">
+      <>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
             sort == 'name' && "text-primary"
           }`}
           onClick={() => handleSort('name')}
           title={'name'}
         >
           <AiOutlineSortAscending />
-          <span className="text-sm">Name</span>
+          <span>Name</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
             sort == 'price' && "text-primary"
           }`}
           onClick={() => handleSort('price')}
           title={'price'}
         >
           <AiOutlineDollar />
-           <span className="text-sm">Price</span>
+           <span>Price</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex flex-col items-center ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
             sort == 'discount' && "text-primary"
           }`}
           onClick={() => handleSort('discount')}
           title={'discount'}
         >
           <AiOutlinePercentage />
-           <span className="text-sm">Discount</span>
+           <span>Discount</span>
         </li>
-      </ul>
+      </>
   );
 }
 
