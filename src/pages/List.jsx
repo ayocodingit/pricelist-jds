@@ -86,7 +86,7 @@ function List() {
             />
             <FaSearch className="absolute top-3 text-lg left-8 " />
             <VscListFilter
-              className="text-4xl hover:cursor-pointer"
+              className={`text-4xl hover:cursor-pointer ${filter && 'text-primary'}`}
               onClick={() => setFilter((prev) => !prev)}
             />
           </div>
