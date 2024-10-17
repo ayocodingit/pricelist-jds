@@ -54,7 +54,7 @@ function List() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen flex md:justify-center">
+    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
         <div className="sticky top-0 bg-gray-50 z-10 shadow-sm">
           {/* Profile */}
@@ -80,11 +80,11 @@ function List() {
             <input
               type="text"
               placeholder="Search"
-              className="bg-white rounded-md w-full h-10 pl-10 outline-primary outline-double"
+              className="bg-white rounded-md w-full h-10 pl-10 focus:outline-primary outline-1 outline-double"
               defaultValue={q}
               onChange={handleSearch}
             />
-            <FaSearch className="absolute top-3 text-lg left-8 text-primary " />
+            <FaSearch className="absolute top-3 text-lg left-8 " />
             <VscListFilter
               className="text-4xl hover:cursor-pointer"
               onClick={() => setFilter((prev) => !prev)}
