@@ -12,7 +12,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className=" rounded-md flex bg-white shadow-md hover:outline-[#5D9F5D] hover:outline-double"
+      className=" rounded-md flex bg-white shadow-xl hover:outline-[#5D9F5D] hover:outline-double"
       to={"/list/" + product.id}
       title={product.name}
     >
