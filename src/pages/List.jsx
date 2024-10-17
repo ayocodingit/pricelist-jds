@@ -17,7 +17,7 @@ function List() {
   const [URLSearchParams, SetURLSearchParams] = useSearchParams();
   const [q, setQ] = useState(URLSearchParams.get("q") || "");
   const [category, setCategory] = useState(
-    URLSearchParams.get("category") || ''
+    URLSearchParams.get("category") || categoryOptions.FOOD
   );
   const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "price");
@@ -26,7 +26,7 @@ function List() {
   const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
-    if (!["name", "discount", "price", ""].includes(sort)) {
+    if (!["name", "discount", "price"].includes(sort)) {
       setSort("name");
       SetURLSearchParams({ q, category, sort: "discount" });
     }
