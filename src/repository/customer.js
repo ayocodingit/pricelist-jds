@@ -7,9 +7,13 @@ export const storeCustomer = (username) => {
     localStorage.removeItem(customerKey);
   }
 
-  localStorage.setItem(customerKey, username);
+  localStorage.setItem(customerKey, JSON.stringify({ username }));
 };
 
 export const getCustomer = () => {
-  return localStorage.getItem(customerKey) || "";
+  const item = localStorage.getItem(customerKey);
+
+  if (item) return JSON.parse(item);
+
+  return item;
 };
