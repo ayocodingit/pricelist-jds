@@ -59,7 +59,7 @@ function List() {
               <p className="text-lg">Hello {getCustomer()?.customer || 'Brother'}</p>
               <p className="text-2xl font-bold">Welcome Back!</p>
             </div>
-            <div className="relative hover:cursor-pointer" onClick={() => navigate("/cart")}>
+            <div className="relative hover:cursor-pointer w-full" onClick={() => navigate("/cart")}>
               <CiShoppingCart className="text-4xl" />
               <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs w-1/2 flex justify-center">
                 {getCountCart()}
