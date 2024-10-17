@@ -17,7 +17,7 @@ export const getCustomer = () => {
   try {
     return JSON.parse(item);
   } catch (error) {
-    storeCustomer(item);
+    storeCustomer({ customer: item, isOpen: true });
     return getCustomer();
   }
 };

@@ -4,11 +4,13 @@ import CardList from "../components/CardList";
 import { getProducts } from "../repository/produts";
 import Footer from "../components/Footer";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { BiFilterAlt } from "react-icons/bi";
+import { BiFilterAlt, BiPencil, BiUserCircle } from "react-icons/bi";
 import Filter from "../components/FilterCategory";
 import SortProduct from "../components/SortProduct";
 import { CiShoppingCart } from "react-icons/ci";
 import { getCountCart } from "../repository/carts";
+import { getCustomer } from "../repository/customer";
+import ModalCustomer from "../components/ModalCustomer";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -20,9 +22,11 @@ function List() {
   const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "price");
   const [filter, setFilter] = useState(true);
+  const [isModalCustomer, setIsModalCustomer] = useState(false);
+  const [showProfile, setShowProfile] = useState(false)
 
   useEffect(() => {
-    if (!["name", "discount", 'price'].includes(sort)) {
+    if (!["name", "discount", "price"].includes(sort)) {
       setSort("name");
       SetURLSearchParams({ q, category, sort: "discount" });
     }
@@ -75,6 +79,27 @@ function List() {
                 {getCountCart()}
               </p>
             </div>
+            { getCustomer()?.username && (
+            <div
+              className="relative flex items-center gap-1 text-white"
+              title={`${
+                getCustomer()?.customer
+                  ? "Hai," + getCustomer()?.customer
+                  : "Not Register"
+              }`}
+            >
+              <BiUserCircle className="text-3xl text-white hover:cursor-pointer" onClick={() => setShowProfile((prev) => !prev)}/>
+              {getCustomer() && showProfile && (
+                <div className=" absolute -bottom-10 right-0 w-32 z-20 bg-white shadow-md text-black p-2 rounded-md ">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs">Hai, {getCustomer()?.customer} </p>
+                    <BiPencil className="hover:cursor-pointer" onClick={() => setIsModalCustomer((prev) => !prev)} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            ) }
           </div>
         </div>
         {filter && (
@@ -106,6 +131,10 @@ function List() {
           Product is Not Found
         </div>
       )}
+      <ModalCustomer
+        setIsModalCustomer={setIsModalCustomer}
+        isModalCustomer={isModalCustomer}
+      />
     </div>
   );
 }

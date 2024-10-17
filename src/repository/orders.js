@@ -17,7 +17,7 @@ const storeOrder = async (product, orderId, customer) => {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
         uuid_question: "f63f141a-755d-45fd-ac9e-1162d476519b",
         type: "text",
-        value: customer.username,
+        value: customer.customer,
       },
       {
         uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
