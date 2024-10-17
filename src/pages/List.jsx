@@ -54,7 +54,7 @@ function List() {
       <div className=" md:w-1/2 flex flex-col">
         <div className="sticky top-0 bg-gray-50 z-10 shadow-sm">
           {/* Profile */}
-          <div className="px-5 pt-7 flex justify-between items-center">
+          <div className="px-5 pt-7 flex justify-between items-center w-full">
             <div className="">
               <p className="text-lg">Hello {getCustomer()?.customer || 'Brother'}</p>
               <p className="text-2xl font-bold">Welcome Back!</p>
