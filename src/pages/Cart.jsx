@@ -97,12 +97,12 @@ function Cart() {
               checkTotal != 0 && "hover:cursor-pointer"
             } `}
             onClick={() => {
-              if (checkTotal != 0 && getCustomer()) {
+              if (checkTotal != 0 && getCustomer()?.customer) {
               
                 moveToCheckOut(products);
                 return navigate(`/checkout/${username}`);
               } 
-              if (!getCustomer()) {
+              if (!getCustomer()?.customer) {
 
                 setIsModalCustomer(true);
               }
