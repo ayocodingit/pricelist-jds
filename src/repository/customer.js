@@ -1,13 +1,13 @@
 const customerKey = "customer";
 
-export const storeCustomer = (username) => {
+export const storeCustomer = (payload) => {
   const item = localStorage.getItem(customerKey);
 
   if (item) {
     localStorage.removeItem(customerKey);
   }
 
-  localStorage.setItem(customerKey, JSON.stringify({ username }));
+  localStorage.setItem(customerKey, JSON.stringify(payload));
 };
 
 export const getCustomer = () => {

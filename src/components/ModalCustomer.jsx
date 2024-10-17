@@ -49,7 +49,7 @@ Silakan masukan data diri anda untuk melakukan pemesanan</label>
           className="bg-primary text-white rounded-lg w-1/2"
           onClick={() => {
             if (!customer) return;
-            storeCustomer(customer);
+            storeCustomer({customer, isOpen: true});
             setCustomer("");
             alert()
             setIsModalCustomer(false);
