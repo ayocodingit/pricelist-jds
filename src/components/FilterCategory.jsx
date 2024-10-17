@@ -8,14 +8,6 @@ function FilterCategory({ handleCategory, category }) {
     <>
       <li
         className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center shadow-md rounded-md ${
-          category =="" ? "text-white bg-primary" : "bg-white"
-        }`}
-        onClick={() => handleCategory("")}
-      >
-        <span>All</span>
-      </li>
-      <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center shadow-md rounded-md ${
           category == categoryOptions.FOOD ? "text-white bg-primary" : "bg-white"
         }`}
         onClick={() => handleCategory(categoryOptions.FOOD)}
