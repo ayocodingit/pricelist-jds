@@ -79,7 +79,7 @@ function List() {
                 {getCountCart()}
               </p>
             </div>
-            { getCustomer()?.username && (
+            { getCustomer()?.customer && (
             <div
               className="relative flex items-center gap-1 text-white"
               title={`${
