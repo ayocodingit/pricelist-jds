@@ -11,6 +11,10 @@ import { categoryOptions } from "../utils/contstant/category";
 import FavoriteList from "../components/FavoriteList";
 import ProductList from "../components/ProductList";
 import SortProduct from "../components/SortProduct";
+import { BsFilter } from "react-icons/bs";
+import { FcFilledFilter } from "react-icons/fc";
+import { GrFilter } from "react-icons/gr";
+import { VscListFilter } from "react-icons/vsc";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -52,22 +56,27 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-screen flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
-        <div className="sticky top-0 bg-gray-50 z-10 shadow-sm w-full">
+        <div className="sticky top-0 bg-gray-50 z-10 shadow-sm">
           {/* Profile */}
           <div className="px-5 pt-7 flex justify-between items-center">
             <div className="">
-              <p className="text-lg">Hello {getCustomer()?.customer || 'Brother'}</p>
-              <p className="text-2xl font-bold">Welcome Back!</p>
+              <p className="text-md">
+                Hello {getCustomer()?.customer || "Brother"}
+              </p>
+              <p className="text-xl font-bold">Welcome Back!</p>
             </div>
-            <div className="relative hover:cursor-pointer" onClick={() => navigate("/cart")}>
-              <CiShoppingCart className="text-4xl" />
+            <div
+              className="relative hover:cursor-pointer"
+              onClick={() => navigate("/cart")}
+            >
+              <CiShoppingCart className="text-3xl" />
               <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs w-1/2 flex justify-center">
                 {getCountCart()}
               </p>
             </div>
           </div>
           {/* Search */}
-          <div className="px-5 my-4 relative">
+          <div className="px-5 my-4 relative flex gap-2 items-center">
             <input
               type="text"
               placeholder="Search"
@@ -76,19 +85,26 @@ function List() {
               onChange={handleSearch}
             />
             <FaSearch className="absolute top-3 text-lg left-8 text-primary " />
-          </div>
-
-          {/* Category */}
-          <div className="px-5 my-5 overflow-auto flex text-md gap-2">
-            <FilterCategory
-              handleCategory={handleCategory}
-              category={category}
+            <VscListFilter
+              className="text-4xl hover:cursor-pointer"
+              onClick={() => setFilter((prev) => !prev)}
             />
           </div>
-          {/* Sorting */}
-          <div className="px-5 my-5 flex text-md gap-2">
-            <SortProduct handleSort={handleSort} sort={sort} />
-          </div>
+          {filter && (
+            <>
+              {/* Category */}
+              <div className="px-5 my-5 overflow-auto flex text-sm gap-2">
+                <FilterCategory
+                  handleCategory={handleCategory}
+                  category={category}
+                />
+              </div>
+              {/* Sorting */}
+              <div className="px-5 my-5 flex text-sm gap-2">
+                <SortProduct handleSort={handleSort} sort={sort} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* Favorite */}
@@ -114,10 +130,10 @@ function List() {
           )}
         </div>
       </div>
-        <ModalCustomer
-          setIsModalCustomer={setIsModalCustomer}
-          isModalCustomer={isModalCustomer}
-        />
+      <ModalCustomer
+        setIsModalCustomer={setIsModalCustomer}
+        isModalCustomer={isModalCustomer}
+      />
     </div>
   );
 }
