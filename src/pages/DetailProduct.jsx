@@ -79,7 +79,7 @@ function DetailProduct() {
 
   const handleCheckout = () => {
     if (isStockEmpty) return;
-    if (!getCustomer()) {
+    if (!getCustomer()?.customer) {
       setIsModalCustomer(true);
       return;
     }
