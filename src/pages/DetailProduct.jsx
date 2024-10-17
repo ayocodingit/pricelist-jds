@@ -25,8 +25,6 @@ function DetailProduct() {
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
-  
-
   const navigate = useNavigate();
   useEffect(() => {
     const productDetail = getByID(id);
@@ -241,12 +239,6 @@ Hatur nuhun~ ✨
             }}
           >
             <BsCartPlus className="text-2xl" />
-            { getCustomer() && 
-              (
-                <p>Hai {getCustomer().username}</p>
-              )
-            }
-            
           </button>
           <button
             className={` flex items-center justify-center h-full w-1/2 ${
@@ -269,7 +261,10 @@ Hatur nuhun~ ✨
           </button>
         </div>
       </div>
-      <ModalCustomer setIsModalCustomer={setIsModalCustomer} isModalCustomer={isModalCustomer}/>
+      <ModalCustomer
+        setIsModalCustomer={setIsModalCustomer}
+        isModalCustomer={isModalCustomer}
+      />
     </div>
   );
 }
