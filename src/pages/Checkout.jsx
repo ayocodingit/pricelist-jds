@@ -9,6 +9,7 @@ import { AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 import { getAttrDate } from "../utils/date";
 import ModalCustomer from "../components/ModalCustomer";
+import { getCustomer } from "../repository/customer";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -24,7 +25,7 @@ function Checkout() {
     const productDetail = getAllCheckout();
     const userDetail = getUser(username);
 
-    if (userDetail && productDetail) {
+    if (userDetail && productDetail && getCustomer()) {
       setUser(userDetail);
       setProducts(productDetail);
 
@@ -53,8 +54,8 @@ Hatur nuhun~ ✨`);
     navigate("/404");
   }, []);
 
-  if (!user || products.length == 0) {
-    return 
+  if (!user || products.length == 0 || !getCustomer()) {
+    return;
   }
 
   return (
@@ -110,7 +111,7 @@ Hatur nuhun~ ✨`);
             className="hover:cursor-pointer text-3xl"
             title="Print Order"
             onClick={() => {
-              const { month, date, year} = getAttrDate()
+              const { month, date, year } = getAttrDate();
               document.title = `Order Price List ${month}-${date}-${year}`;
               window.print();
             }}
