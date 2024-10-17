@@ -10,7 +10,7 @@ function ModalCustomer({
     const [customer, setCustomer] = useState('');
 
     useEffect(() => {
-        setCustomer(getCustomer().username || '')
+        setCustomer(getCustomer()?.customer || '')
     }, [isModalCustomer])
 
     const alert = () => {
