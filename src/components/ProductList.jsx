@@ -52,19 +52,11 @@ function ProductList({ product }) {
             <p
                 className={`${
                   isStockEmpty ? "text-gray-500 " : "text-primary"
-                } text-xs rounded-md capitalize underline`}
+                } text-xs rounded-md capitalize`}
               >
                 {isStockEmpty && "Not "}
                 {product.tag}
               </p>
-            {product.location ? (
-              <div className="flex items-center">
-                <BiMap />
-                <p className="text-xs text-gray-400">{product.location}</p>
-              </div>
-            ) : (
-              <div>&nbsp;</div>
-            )}
           </div>
         </div>
       </div>
