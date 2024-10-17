@@ -21,7 +21,7 @@ function List() {
   );
   const navigate = useNavigate();
   const [sort, setSort] = useState(URLSearchParams.get("sort") || "price");
-  const [filter, setFilter] = useState(true);
+  const [filter, setFilter] = useState(false);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
   const [showProfile, setShowProfile] = useState(false)
 
