@@ -70,7 +70,7 @@ function List() {
               <FaSearch />
             </label>
             <BiFilterAlt
-              className="text-3xl text-white"
+              className="text-4xl text-white"
               onClick={() => setFilter(!filter)}
             />
             <div className="relative" onClick={() => navigate("/cart")}>
