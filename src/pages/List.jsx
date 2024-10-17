@@ -67,7 +67,7 @@ function List() {
             </div>
           </div>
           {/* Search */}
-          <div className="px-5 my-4 relative">
+          <div className="px-5 my-4 relative w-full">
             <input
               type="text"
               placeholder="Search"
