@@ -16,7 +16,7 @@ function ProductList({ product }) {
       to={"/list/" + product.id}
       title={product.name}
     >
-      <div className="flex flex-col p-2 justify-center w-full">
+      <div className="flex flex-col justify-center w-full">
         <div className="relative flex justify-center">
           <img
             src={product.image}
@@ -31,7 +31,7 @@ function ProductList({ product }) {
         </div>
 
         <div className="p-2">
-          <div className="px-1 flex flex-col gap-1">
+          <div className="flex flex-col gap-1">
             <h1
               className={`text-nowrap overflow-hidden text-sm text-ellipsis font-roboto capitalize w-full`}
             >
