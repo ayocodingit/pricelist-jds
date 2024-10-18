@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DetailProduct from "../pages/DetailProduct.jsx";
 import Cart from "../pages/Cart.jsx";
 import Checkout from "../pages/Checkout.jsx";
+import SuccessOrder from "../pages/SuccessOrder.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -27,5 +28,9 @@ export const router = createBrowserRouter([
   {
     path: "checkout/:username",
     element: <Checkout />,
+  },
+  {
+    path: "success-order",
+    element: <SuccessOrder />,
   },
 ]);

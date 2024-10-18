@@ -25,7 +25,7 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)]">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-2 py-5 px-2 justify-between items-center shadow-md sticky top-0 z-10 bg-gray-50">
+        <div className="flex gap-2 py-5 px-2 justify-between items-center shadow-sm sticky top-0 z-10 bg-gray-50">
           <BsArrowLeft
             className="p-1 text-3xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
@@ -48,9 +48,7 @@ function Cart() {
 
         {products.length > 0 && (
           <div
-            className={`py-4 px-2 flex flex-col max-h-[calc(${
-              ids.length ? "75dvh" : "100dvh"
-            })] w-full overflow-auto`}
+            className={`py-4 px-2 flex flex-col max-h-[calc(80dvh)] w-full overflow-auto bg-white`}
           >
             {products.map((product, index) => {
               return (
@@ -68,53 +66,30 @@ function Cart() {
             })}
           </div>
         )}
-        {ids.length > 0 && (
-          <div className="fixed bottom-0 z-10 text-sm h-14 flex w-full md:w-1/2 rounded-md  items-center gap-2 bg-white shadow-lg justify-between">
-            {ids.length > 0 ? (
-              <div className="flex gap-2 pl-6 items-center">
-                <input
-                  type="checkbox"
-                  checked={ids.length}
-                  className="accent-primary w-5 h-5"
-                  onChange={(e) => {
-                    setIds([]);
-                    setUsername("");
-                    setCheckTotal(0);
-                  }}
-                />
-
-                <p className="flex gap-2">
-                  <BsShop className="text-xl " />
-                  {username}
-                </p>
-              </div>
-            ) : (
-              <div></div>
-            )}
-            <div className="  h-full flex items-center gap-3">
-              <div className="flex flex-col items-center">
-                <p>Total</p>
-                <p>{formatNumberIDR(checkTotal)}</p>
-              </div>
-              <p
-                className={`h-full bg-primary text-white flex items-center p-2 ${
-                  checkTotal != 0 && "hover:cursor-pointer"
-                } `}
-                onClick={() => {
-                  if (checkTotal != 0 && getCustomer()?.customer) {
-                    moveToCheckOut(products);
-                    return navigate(`/checkout/${username}`);
-                  }
-                  if (!getCustomer()?.customer) {
-                    setIsModalCustomer(true);
-                  }
-                }}
-              >
-                Checkout ({ids.length})
-              </p>
+        <div className="fixed bottom-0 z-10 text-sm py-4 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-lg justify-between">
+          <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
+            <div className="flex justify-between w-full  items-center">
+              <p>Selected Items({ids.length})</p>
+              <p>Total : {formatNumberIDR(checkTotal)}</p>
             </div>
+            <button
+              className={`w-full bg-primary text-white flex justify-center rounded-lg p-2 ${
+                checkTotal != 0 && "hover:cursor-pointer"
+              } `}
+              onClick={() => {
+                if (checkTotal != 0 && getCustomer()?.customer) {
+                  moveToCheckOut(products);
+                  return navigate(`/checkout/${username}`);
+                }
+                if (!getCustomer()?.customer) {
+                  setIsModalCustomer(true);
+                }
+              }}
+            >
+              Check out
+            </button>
           </div>
-        )}
+        </div>
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}

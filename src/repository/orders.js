@@ -1,4 +1,6 @@
-const storeOrder = async (product, orderId, customer) => {
+import { getCustomer } from "./customer";
+
+const storeOrder = async (product, orderId, customer, paymentMethod, photo) => {
   const body = {
     answers: [
       {
@@ -55,26 +57,76 @@ const storeOrder = async (product, orderId, customer) => {
         type: "text",
         value: product.note,
       },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "98b0c161-eefd-4015-83f8-0abde4268a22",
+        type: "text",
+        value: paymentMethod,
+      },
+      {
+        uuid_survey: "597cc77c-8c9a-4db4-a4e0-9b06bbf822ed",
+        uuid_question: "445940e4-00b4-4745-a350-821a9c7b03e0",
+        type: "upload",
+        value: photo,
+      },
     ],
     submitted_time: 14.018,
   };
 
-  const rawResponse = await fetch(import.meta.env.VITE_BASE_URL_JABARFORM, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  const rawResponse = await fetch(
+    import.meta.env.VITE_BASE_URL_JABARFORM + "/v2/answers",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }
+  );
+
+  if (rawResponse.status != 200) throw new Error("failed store order");
+
   return await rawResponse.json();
 };
 
-export const sendOrders = (products, customer) => {
+export const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.set("files", file);
+  const rawResponse = await fetch(
+    import.meta.env.VITE_BASE_URL_JABARFORM + "/upload",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        ContentType: "multipart/form-data",
+      },
+      body: formData,
+    }
+  );
+  if (rawResponse.status != 200) throw new Error("failed upload image");
+
+  return await rawResponse.json();
+};
+
+export const sendOrders = async (products, paymentMethod, file) => {
   const promises = [];
+  const customer = getCustomer();
   const orderId = `order-${Date.now()}`;
+  const photo = [];
+
+  if (paymentMethod !== "cash") {
+    try {
+      const res = await uploadImage(file);
+      const filename = res[0].filename;
+      photo.push(filename);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   products.forEach((product) =>
-    promises.push(storeOrder(product, orderId, customer))
+    promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
   );
 
   Promise.allSettled(promises).then((res) => console.log(res));

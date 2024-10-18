@@ -82,7 +82,7 @@ function DetailProduct() {
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-full h-[22rem] p-2 object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
@@ -126,7 +126,7 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="px-2 text-sm h-full md:h-auto">
+        <div className="px-2 text-sm max-h-[calc(50dvh)]">
           <div className="p-5 shadow-lg rounded-t-3xl bg-white flex flex-col h-full gap-2">
             <div className="flex justify-between">
               <div>

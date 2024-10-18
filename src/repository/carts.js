@@ -70,5 +70,4 @@ export const moveToCheckOut = (products) => {
   products.forEach((product) => removeItemCart(product.id));
   localStorage.removeItem(checkoutKey);
   localStorage.setItem(checkoutKey, JSON.stringify(products));
-  sendOrders(products, getCustomer());
 };
