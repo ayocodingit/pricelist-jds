@@ -5,15 +5,12 @@ import { BsArrowLeft, BsCartPlus } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BiMap } from "react-icons/bi";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
-import { FaRegShareFromSquare } from "react-icons/fa6";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
-import { addToCart, getCountCart, moveToCheckOut } from "../repository/carts";
+import { addToCart, getCountCart } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { getCustomer } from "../repository/customer";
-import ModalCustomer from "../components/ModalCustomer";
 import { VscShare } from "react-icons/vsc";
 
 function DetailProduct() {
@@ -25,7 +22,6 @@ function DetailProduct() {
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
-  const [isModalCustomer, setIsModalCustomer] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const productDetail = getByID(id);
@@ -76,16 +72,6 @@ function DetailProduct() {
   const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
-
-  const handleCheckout = () => {
-    if (isStockEmpty) return;
-    if (!getCustomer()?.customer) {
-      setIsModalCustomer(true);
-      return;
-    }
-    moveToCheckOut([{ ...product, qty, note }]);
-    navigate(isStockEmpty ? "#" : `/checkout/${product.username}`);
-  };
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
@@ -253,10 +239,6 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <ModalCustomer
-          setIsModalCustomer={setIsModalCustomer}
-          isModalCustomer={isModalCustomer}
-        />
       </div>
     </div>
   );
