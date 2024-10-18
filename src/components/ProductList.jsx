@@ -17,7 +17,7 @@ function ProductList({ product }) {
       title={product.name}
     >
       <div className="flex flex-col justify-center w-full">
-        <div className="relative flex justify-center w-40">
+        <div className="relative flex justify-center w-20">
           <img
             src={product.image}
             alt="image product"
