@@ -54,7 +54,7 @@ function Cart() {
         )}
 
         {products.length > 0 && (
-          <div className="py-4 px-2 flex flex-col h-[calc(75dvh)] w-full overflow-auto">
+          <div className={`py-4 px-2 flex flex-col h-[calc(${ids.length ? '75dvh': '100dvh' })] w-full overflow-auto`}>
             {products.map((product, index) => {
               return (
                 <CartList
@@ -71,54 +71,53 @@ function Cart() {
             })}
           </div>
         )}
-        { ids.length > 0 && (
+        {ids.length > 0 && (
+          <div className="fixed bottom-0 z-10 text-sm h-14 flex w-full md:w-1/2 rounded-md  items-center gap-2 bg-white shadow-lg justify-between">
+            {ids.length > 0 ? (
+              <div className="flex gap-2 pl-6 items-center">
+                <input
+                  type="checkbox"
+                  checked={ids.length}
+                  className="accent-primary w-5 h-5"
+                  onChange={(e) => {
+                    setIds([]);
+                    setUsername("");
+                    setCheckTotal(0);
+                  }}
+                />
 
-        <div className="fixed bottom-0 z-10 text-sm h-14 flex w-full md:w-1/2 rounded-md  items-center gap-2 bg-white shadow-lg justify-between">
-          {ids.length > 0 ? (
-            <div className="flex gap-2 pl-6 items-center">
-              <input
-                type="checkbox"
-                checked={ids.length}
-                className="accent-primary w-5 h-5"
-                onChange={(e) => {
-                  setIds([]);
-                  setUsername("");
-                  setCheckTotal(0);
+                <p className="flex gap-2">
+                  <BsShop className="text-xl " />
+                  {username}
+                </p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            <div className="  h-full flex items-center gap-3">
+              <div className="flex flex-col items-center">
+                <p>Total</p>
+                <p>{formatNumberIDR(checkTotal)}</p>
+              </div>
+              <p
+                className={`h-full bg-primary text-white flex items-center p-2 ${
+                  checkTotal != 0 && "hover:cursor-pointer"
+                } `}
+                onClick={() => {
+                  if (checkTotal != 0 && getCustomer()?.customer) {
+                    moveToCheckOut(products);
+                    return navigate(`/checkout/${username}`);
+                  }
+                  if (!getCustomer()?.customer) {
+                    setIsModalCustomer(true);
+                  }
                 }}
-              />
-
-              <p className="flex gap-2">
-                <BsShop className="text-xl " />
-                {username}
+              >
+                Checkout ({ids.length})
               </p>
             </div>
-          ) : (
-            <div></div>
-          )}
-          <div className="  h-full flex items-center gap-3">
-            <div className="flex flex-col items-center">
-              <p>Total</p>
-              <p>{formatNumberIDR(checkTotal)}</p>
-            </div>
-            <p
-              className={`h-full bg-primary text-white flex items-center p-2 ${
-                checkTotal != 0 && "hover:cursor-pointer"
-              } `}
-              onClick={() => {
-                if (checkTotal != 0 && getCustomer()?.customer) {
-                  moveToCheckOut(products);
-                  return navigate(`/checkout/${username}`);
-                }
-                if (!getCustomer()?.customer) {
-                  setIsModalCustomer(true);
-                }
-              }}
-            >
-              Checkout ({ids.length})
-            </p>
           </div>
-        </div>
-        ) }
+        )}
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}
