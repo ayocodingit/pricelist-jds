@@ -17,11 +17,11 @@ function ProductList({ product }) {
       title={product.name}
     >
       <div className="flex flex-col justify-center w-full">
-        <div className="relative flex justify-center w-20">
+        <div className="relative flex justify-center w-full">
           <img
             src={product.image}
             alt="image product"
-            className={`w-full h-20 object-contain rounded-md`}
+            className={`w-40 h-20 object-contain rounded-md`}
             loading="lazy"
           />
           {isStockEmpty && (
