@@ -14,10 +14,13 @@ function CartList({
   setIds,
 }) {
   const navigate = useNavigate();
-  const totalPrice = calculateDiscount(product.price, product.discount);
+  const totalPrice = calculateDiscount(
+    product.price * product.qty,
+    product.discount
+  );
   return (
-    <div className="text-sm text-black rounded-lg bg-white flex flex-col w-full shadow-lg relative">
-      <div className="flex justify-between w-full bg-primary text-white items-center p-2 rounded-t-lg">
+    <div className=" text-black rounded-xl bg-white flex flex-col shadow-lg relative my-2">
+      <div className="flex justify-between w-full items-center p-2 px-2 rounded-t-lg bg-primary text-white">
         <div className="flex gap-2 items-center">
           <BsShop className="text-xl " />
           {product.username}
@@ -26,7 +29,9 @@ function CartList({
           <div className="flex gap-2 items-center">
             <div
               onClick={() => {
-                navigate(`/list/${product.id}?qty=${product.qty}&note=${product.note}`);
+                navigate(
+                  `/list/${product.id}?qty=${product.qty}&note=${product.note}`
+                );
               }}
               className="hover: cursor-pointer"
             >
@@ -43,7 +48,7 @@ function CartList({
           </div>
         )}
       </div>
-      <div className="flex gap-4 w-full p-2 items-center">
+      <div className="flex p-2 gap-1 items-center">
         <input
           type="checkbox"
           checked={ids.includes(product.id)}
@@ -68,11 +73,14 @@ function CartList({
             }
           }}
         />
-        <img
-          src={product.image}
-          alt="image product"
-          className="h-12 w-1/5  object-contain"
-        />
+        <div className="w-40 p-2 rounded-lg">
+          <img
+            src={product.image}
+            alt="image product"
+            className="h-24 w-full rounded-xl object-contain "
+            loading="lazy"
+          />
+        </div>
         <div className="w-full flex flex-col gap-1 relative">
           <p className="text-sm">{product.name}</p>
           <p className="text-sm font-serif text-orange-600 flex gap-2 items-center">
@@ -84,7 +92,10 @@ function CartList({
             )}
           </p>
           <p className="flex text-xs">Quantity: {product.qty}</p>
-          <p className="flex text-xs flex-col ">Note <span className="text-gray-600 italic">{product.note || '-'}</span></p>
+          <p className="flex text-xs ">
+            Note{": "}
+            <span className="text-gray-600 italic">{product.note || ""}</span>
+          </p>
         </div>
       </div>
     </div>
