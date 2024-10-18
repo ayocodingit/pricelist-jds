@@ -200,7 +200,7 @@ Hatur nuhun~ ✨
             </div>
           )}
 
-          <div className="flex flex-col gap-2 mt-6 ">
+          <div className="flex flex-col gap-2">
             <p>Note</p>
             <textarea
               id="note"
