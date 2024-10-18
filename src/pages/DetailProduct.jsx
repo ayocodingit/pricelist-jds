@@ -218,7 +218,7 @@ Hatur nuhun~ ✨
               <p className="text-xs">Total Price</p>
               <p className="font-serif">
                 {formatNumberIDR(
-                  isStockEmpty ? total : 0
+                  !isStockEmpty ? total : 0
                 )}
               </p>
             </div>
