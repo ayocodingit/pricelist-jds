@@ -14,6 +14,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { getCustomer } from "../repository/customer";
 import ModalCustomer from "../components/ModalCustomer";
+import { VscShare } from "react-icons/vsc";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -89,29 +90,27 @@ function DetailProduct() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
-        <div className="flex relative">
+        <div className="flex relative rounded-lg border-2">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-full h-[25rem] p-2 object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[22rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute start-5 justify-between top-5 items-center text-black rounded-full shadow-md bg-white px-2">
-            <BsArrowLeft
-              className="bg-white text-3xl rounded-full hover:cursor-pointer p-1"
-              onClick={() => navigate("/list")}
-            />
-            <div className="flex gap-2 bg-white rounded-full p-2 ">
-              <FaRegShareFromSquare
-                className="p-1 hover: cursor-pointer text-3xl"
-                onClick={() => setShowSocialMedia(!showSocialMedia)}
+          <div className="absolute justify-between top-5 text-black w-full p-5">
+            <div className="flex justify-between items-center">
+              <BsArrowLeft
+                className="bg-white text-4xl rounded-full hover:cursor-pointer p-1 shadow-lg"
+                onClick={() => navigate("/list")}
               />
-              {showSocialMedia && (
-                <SocialMedia
-                  title={`
+              <div className="flex gap-2  items-center">
+                {showSocialMedia && (
+                  <SocialMedia
+                  size={34}
+                    title={`
 Mangga in case ada yg mau beli ~**${product.name}**~
 ${product.image}
 Harganya cuma **${formatNumberIDR(product.price)}** aja
@@ -121,122 +120,137 @@ ${location.href}
 
 Hatur nuhun~ ✨
 `}
+                  />
+                )}
+                <VscShare
+                  className="p-1 hover:cursor-pointer text-4xl bg-white rounded-full shadow-lg"
+                  onClick={() => setShowSocialMedia(!showSocialMedia)}
                 />
-              )}
-              <div className="relative" onClick={() => navigate("/cart")}>
-                <CiShoppingCart className="text-3xl " />
-                <p className="absolute rounded-full top-0 right-0 bg-primary text-white text-xs w-1/2 flex justify-center">
-                  {totalCart}
-                </p>
+
+                <div
+                  className="relative bg-white rounded-full p-1 hover:cursor-pointer shadow-lg"
+                  onClick={() => navigate("/cart")}
+                >
+                  <CiShoppingCart className="text-3xl " />
+                  <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs w-1/2 flex justify-center">
+                    {totalCart}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="px-2 text-sm h-full md:h-auto">
           <div className="p-5 shadow-lg rounded-t-3xl bg-white flex flex-col h-full gap-2">
-          <div className="flex justify-between">
-            <div>
-              <p
-                className={`${
-                  isStockEmpty ? "text-gray-500 " : "text-primary"
-                } rounded-md capitalize`}
-              >
-                {isStockEmpty && "Not "}
-                {product.tag}{" "}
-                {product.tag == tagOptions.READY_STOCK && (
-                  <span>{product.stock}</span>
-                )}
-              </p>
-            </div>
-            <div>
-              {!isStockEmpty && (
-                <div className="flex gap-2">
-                  <div className="flex h-6 justify-center items-center w-20 text-sm">
-                    <button
-                      onClick={() => {
-                        if (qty > 1) {
-                          calculateTotal(product.price, product.discount, "-");
-                        }
-                      }}
-                      className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
-                    >
-                      <AiOutlineMinus />
-                    </button>
-                    <div className="w-1/2  text-center h-full flex justify-center items-center">
-                      {qty}
+            <div className="flex justify-between">
+              <div>
+                <p
+                  className={`${
+                    isStockEmpty ? "text-gray-500 " : "text-primary"
+                  } rounded-md capitalize`}
+                >
+                  {isStockEmpty && "Not"}
+                  {product.tag}{" "}
+                  {product.tag == tagOptions.READY_STOCK && (
+                    <span>{product.stock}</span>
+                  )}
+                </p>
+              </div>
+              <div>
+                {!isStockEmpty && (
+                  <div className="flex gap-2">
+                    <div className="flex h-6 justify-center items-center w-20 text-sm">
+                      <button
+                        onClick={() => {
+                          if (qty > 1) {
+                            calculateTotal(
+                              product.price,
+                              product.discount,
+                              "-"
+                            );
+                          }
+                        }}
+                        className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
+                      >
+                        <AiOutlineMinus />
+                      </button>
+                      <div className="w-1/2  text-center h-full flex justify-center items-center">
+                        {qty}
+                      </div>
+                      <button
+                        onClick={() => {
+                          if (
+                            product.tag == tagOptions.PO ||
+                            (product.stock > 1 && qty < product.stock)
+                          )
+                            calculateTotal(
+                              product.price,
+                              product.discount,
+                              "+"
+                            );
+                        }}
+                        className="w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
+                      >
+                        <AiOutlinePlus />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => {
-                        if (
-                          product.tag == tagOptions.PO ||
-                          (product.stock > 1 && qty < product.stock)
-                        )
-                          calculateTotal(product.price, product.discount, "+");
-                      }}
-                      className="w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
-                    >
-                      <AiOutlinePlus />
-                    </button>
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="text-md font-bold font-roboto capitalize  items-center flex gap-2">
-            {product.discount > 0 && (
-              <p className="bg-green-100  text-primary p-1 rounded-lg text-xs">
-                -{product.discount}%
-              </p>
-            )}
-            <p className="text-wrap">{product.name}</p>
-          </div>
-          <div className=" outline-primary max-h-18 text-gray-400">
-            <div className="text-xs">{product.description || "-"}</div>
-          </div>
-          {product.location && (
-            <div className="flex items-center text-xs">
-              <BiMap />
-              <p className="text-gray-600">{product.location}</p>
-            </div>
-          )}
-
-          <div className="flex flex-col gap-2">
-            <p>Note</p>
-            <textarea
-              id="note"
-              placeholder="Enter Note"
-              onChange={(e) => setNote(e.target.value)}
-              className="rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20"
-              maxLength={100}
-              value={note}
-            >
-              {note}
-            </textarea>
-          </div>
-          <div className=" flex gap-2 my-5 justify-between text-white">
-            <div className=" bg-orange-600 p-2 items-center flex flex-col rounded-lg shadow-lg w-1/2">
-              <p className="text-xs">Total Price</p>
-              <p className="font-serif">
-                {formatNumberIDR(
-                  !isStockEmpty ? total : 0
                 )}
-              </p>
+              </div>
             </div>
-            <button
-              className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-1/2 ${
-                isStockEmpty ? "bg-gray-700" : "bg-primary"
-              }`}
-              onClick={() => {
-                if (isStockEmpty) return;
-                const isNewProduct = addToCart(product, qty, note);
-                setTotalCart(totalCart + 1);
-                alert(isNewProduct);
-              }}
-            >
-              <BsCartPlus className="text-2xl" />
-              Go To Cart
-            </button>
-          </div>
+            <div className="text-md font-bold font-roboto capitalize  items-center flex gap-2">
+              {product.discount > 0 && (
+                <p className="bg-green-100  text-primary p-1 rounded-lg text-xs">
+                  -{product.discount}%
+                </p>
+              )}
+              <p className="text-wrap">{product.name}</p>
+            </div>
+            <div className=" outline-primary max-h-18 text-gray-400">
+              <div className="text-xs">{product.description || "-"}</div>
+            </div>
+            {product.location && (
+              <div className="flex items-center text-xs">
+                <BiMap />
+                <p className="text-gray-600">{product.location}</p>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-2">
+              <p>Note</p>
+              <textarea
+                id="note"
+                placeholder="Enter Note"
+                onChange={(e) => setNote(e.target.value)}
+                className="rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20"
+                maxLength={100}
+                value={note}
+              >
+                {note}
+              </textarea>
+            </div>
+            <div className=" flex gap-2 my-5 justify-between text-white">
+              <div className=" bg-orange-600 p-2 items-center flex flex-col rounded-lg shadow-lg w-1/2">
+                <p className="text-xs">Total Price</p>
+                <p className="font-serif">
+                  {formatNumberIDR(!isStockEmpty ? total : 0)}
+                </p>
+              </div>
+              <button
+                className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-1/2 ${
+                  isStockEmpty ? "bg-gray-700" : "bg-primary"
+                }`}
+                onClick={() => {
+                  if (isStockEmpty) return;
+                  const isNewProduct = addToCart(product, qty, note);
+                  setTotalCart(totalCart + 1);
+                  alert(isNewProduct);
+                }}
+              >
+                <BsCartPlus className="text-2xl" />
+                Go To Cart
+              </button>
+            </div>
           </div>
         </div>
         <ModalCustomer
