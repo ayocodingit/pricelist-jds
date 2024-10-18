@@ -133,7 +133,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="px-2 text-sm h-full md:h-auto">
-          <div className="p-5 shadow-lg rounded-t-3xl bg-white flex flex-col h-full">
+          <div className="p-5 shadow-lg rounded-t-3xl bg-white flex flex-col h-full gap-2">
           <div className="flex justify-between">
             <div>
               <p
