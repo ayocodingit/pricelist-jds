@@ -1,9 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
+import './ModalCustom.css'
 
 function ModalCustom({ modalIsOpen, closeModal, children }) {
   return (
     <Modal
+      id="modal"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       style={{
@@ -12,11 +14,10 @@ function ModalCustom({ modalIsOpen, closeModal, children }) {
           left: "50%",
           right: "auto",
           bottom: "0%",
-          marginRight: "-50%",
           display: "flex",
           justifyContent: "center",
           transform: "translate(-50%, -50%)",
-          width: "90%"
+          width: "90%",
         },
       }}
       ariaHideApp={false}

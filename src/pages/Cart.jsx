@@ -48,7 +48,7 @@ function Cart() {
 
         {products.length > 0 && (
           <div
-            className={`py-4 px-2 flex flex-col max-h-[calc(80dvh)] w-full overflow-auto bg-white`}
+            className={`py-4 px-2 flex flex-col max-h-[calc(75dvh)] w-full overflow-auto bg-white`}
           >
             {products.map((product, index) => {
               return (
@@ -66,7 +66,7 @@ function Cart() {
             })}
           </div>
         )}
-        <div className="fixed bottom-0 z-10 text-sm py-4 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-lg justify-between">
+        <div className="fixed bottom-0 text-sm py-4 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
               <p>Selected Items({ids.length})</p>
