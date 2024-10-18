@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../repository/users";
-import PaymentList from "../components/PaymentList";
 import { formatNumberIDR } from "../utils/formatter";
 import { BsArrowLeft, BsPencil, BsShop } from "react-icons/bs";
 import { getAllCheckout } from "../repository/carts";
-import { AiOutlinePrinter } from "react-icons/ai";
+import { AiOutlineCopy, AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 import { getAttrDate } from "../utils/date";
 import { getCustomer } from "../repository/customer";
-import PaymentList2 from "../components/PaymentList2";
+import PaymentList from "../components/PaymentList";
 import Dropzone from "../components/Dropzone";
 import { BiTrash } from "react-icons/bi";
 import { sendOrders } from "../repository/orders";
 import { Flip, toast } from "react-toastify";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -25,6 +25,7 @@ function Checkout() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [VA, setVA] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,15 +76,14 @@ Hatur nuhun~ ✨`);
       theme: "light",
       transition: Flip,
     });
-
-    return navigate("/list/" + product.id + "?qty=" + qty);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (paymentMethod != 'cash' && !file) alert(error, `bukti transfer belum di unggah!`) 
+    if (paymentMethod != "cash" && !file)
+      alert(error, `bukti transfer belum di unggah!`);
     sendOrders(products, paymentMethod, file);
-    navigate('/success-order')
+    navigate("/success-order");
   };
 
   return (
@@ -127,22 +127,41 @@ Hatur nuhun~ ✨`);
             </div>
             <p className="font-bold py-3 px-2">Payment Method</p>
             <div className="flex flex-col gap-2 p-2 bg-white rounded-lg">
-              <PaymentList2
+              <PaymentList
                 payment={{ provider: "cash", value: "" }}
                 paymentMethod={paymentMethod}
                 setPaymentMethod={setPaymentMethod}
+                setVA={setVA}
               />
               {user.payments.map((payment, index) => {
                 return (
-                  <PaymentList2
+                  <PaymentList
                     payment={payment}
                     key={index}
                     paymentMethod={paymentMethod}
                     setPaymentMethod={setPaymentMethod}
+                    setVA={setVA}
                   />
                 );
               })}
             </div>
+            {paymentMethod != "cash" && VA && (
+              <div className="  p-2">
+                <div className="outline-dotted outline-primary outline-1  flex justify-between items-center p-5">
+                  <p className=""> No Rek {VA}</p>
+                  <CopyToClipboard
+                    text={VA}
+                    onCopy={() =>
+                      alert("success", "No Rek Copied on Clipboard")
+                    }
+                  >
+                    <AiOutlineCopy
+                      className={"text-2xl hover:cursor-copy mr-5"}
+                    />
+                  </CopyToClipboard>
+                </div>
+              </div>
+            )}
             {paymentMethod != "cash" && (
               <div className="flex flex-col items-center bg-white p-5 gap-5 w-full">
                 <p>Upload Bukti Pembayaran</p>

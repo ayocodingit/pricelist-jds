@@ -104,7 +104,7 @@ export const uploadImage = async (file) => {
       body: formData,
     }
   );
-  if (rawResponse.status != 200) throw new Error("failed upload image");
+  if (rawResponse.status != 201) throw new Error("failed upload image");
 
   return await rawResponse.json();
 };
