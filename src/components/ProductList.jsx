@@ -21,7 +21,7 @@ function ProductList({ product }) {
           <img
             src={product.image}
             alt="image product"
-            className={`min-w-40 h-40 object-contain rounded-md`}
+            className={`max-w-40 h-40 object-contain rounded-md`}
             loading="lazy"
           />
           {isStockEmpty && (
