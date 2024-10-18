@@ -81,7 +81,7 @@ Hatur nuhun~ ✨`);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (paymentMethod != "cash" && !file)
-      alert('error', `bukti transfer belum di unggah!`);
+      return alert('error', `bukti transfer belum di unggah!`);
     sendOrders(products, paymentMethod, file);
     navigate("/success-order");
   };
