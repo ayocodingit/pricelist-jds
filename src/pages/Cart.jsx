@@ -26,25 +26,18 @@ function Cart() {
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)]">
       <div className="w-full md:w-1/2 items-center">
         <div className="flex gap-2 py-5 px-2 justify-between items-center shadow-md sticky top-0 z-10 bg-gray-50">
-          <div className="flex flex-col gap-1 w-full">
-            <p>My</p>
-            <div className="text-xl flex justify-between items-center">
-              <p>Cart List ({products.length})</p>
-              <div className="flex items-center gap-2">
-                <BsArrowLeft
-                  className="p-1 text-3xl hover:cursor-pointer"
-                  onClick={() => navigate("/list")}
-                />
-                <FaRegTrashAlt
-                  className="text-lg"
-                  onClick={() => {
-                    removeAllCart();
-                    setIsChange(true);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+          <BsArrowLeft
+            className="p-1 text-3xl hover:cursor-pointer"
+            onClick={() => navigate("/list")}
+          />
+          <p>My Cart List ({getAllCart().length})</p>
+          <FaRegTrashAlt
+            className="text-lg"
+            onClick={() => {
+              removeAllCart();
+              setIsChange(true);
+            }}
+          />
         </div>
 
         {products.length === 0 && (
@@ -54,7 +47,11 @@ function Cart() {
         )}
 
         {products.length > 0 && (
-          <div className={`py-4 px-2 flex flex-col h-[calc(${ids.length ? '75dvh': '100dvh' })] w-full overflow-auto`}>
+          <div
+            className={`py-4 px-2 flex flex-col max-h-[calc(${
+              ids.length ? "75dvh" : "100dvh"
+            })] w-full overflow-auto`}
+          >
             {products.map((product, index) => {
               return (
                 <CartList
