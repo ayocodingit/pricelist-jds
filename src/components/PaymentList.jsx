@@ -10,6 +10,7 @@ function PaymentList({ payment, paymentMethod, setPaymentMethod, setVA }) {
               src={`/${payment.provider}.png`}
               alt="logo"
               className="object-contain h-12 w-full"
+loading="lazy"
             />
           </div>
 
