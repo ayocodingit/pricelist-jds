@@ -87,19 +87,19 @@ function DetailProduct() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100dvh)]  relative ">
-      <div className="w-full flex md:justify-center ">
-        <div className="w-full md:w-1/2 flex justify-center md:border-x-2 md:border-white ">
+    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
+      <div className="w-full md:w-1/2 flex flex-col">
+        <div className="flex relative">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
                 src={product.image}
                 alt="image product"
-                className={`max-h-[15rem] w-full relative object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="flex absolute start-5 justify-between md:start-[26%] top-5 items-center text-black rounded-full shadow-md bg-white px-2">
+          <div className="flex absolute start-5 justify-between top-5 items-center text-black rounded-full shadow-md bg-white px-2">
             <BsArrowLeft
               className="bg-white text-3xl rounded-full hover:cursor-pointer p-1"
               onClick={() => navigate("/list")}
@@ -132,30 +132,14 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-      </div>
-      <div className="w-full flex md:justify-center h-full">
-        <div className="md:w-1/2 w-full flex bg-white">
-          <div className="mt-5 p-4 flex justify-between w-full">
-            <div className="flex flex-col gap-2 w-full">
-              <p className="text-md font-roboto capitalize flex gap-2 text-wrap items-center">
-                {product.name}
-              </p>
-              <p className="text-sm font-serif text-orange-600 flex gap-2 items-center">
-                <span className="text-md">
-                  {formatNumberIDR(
-                    calculateDiscount(product.price, product.discount)
-                  )}
-                </span>
-                {product.discount > 0 && (
-                  <span className="bg-green-100  text-primary p-1 rounded-md text-xs">
-                    -{product.discount}%
-                  </span>
-                )}
-              </p>
+        <div className="pl-2 text-sm">
+          <div className="p-5 shadow-lg rounded-t-3xl bg-white flex flex-col">
+          <div className="flex justify-between">
+            <div>
               <p
                 className={`${
                   isStockEmpty ? "text-gray-500 " : "text-primary"
-                } text-sm rounded-md capitalize`}
+                } rounded-md capitalize`}
               >
                 {isStockEmpty && "Not "}
                 {product.tag}{" "}
@@ -163,22 +147,10 @@ Hatur nuhun~ ✨
                   <span>{product.stock}</span>
                 )}
               </p>
-
-              {product.location && (
-                <div className="flex items-center ">
-                  <BiMap />
-                  <p className="text-sm text-gray-600">{product.location}</p>
-                </div>
-              )}
-              <div className="w-full flex flex-col outline-primary gap-2 max-h-18 text-gray-800">
-                <div className="text-sm ">Description</div>
-                <div className="text-xs">{product.description || "-"}</div>
-              </div>
+            </div>
+            <div>
               {!isStockEmpty && (
-                <div className="flex gap-2 mt-2">
-                  <label htmlFor="" className="text-sm">
-                    Quantity
-                  </label>
+                <div className="flex gap-2">
                   <div className="flex h-6 justify-center items-center w-20 text-sm">
                     <button
                       onClick={() => {
@@ -208,63 +180,70 @@ Hatur nuhun~ ✨
                   </div>
                 </div>
               )}
-
-              <div className="w-full flex flex-col gap-2 text-sm">
-                <textarea
-                  id="note"
-                  placeholder="Enter Note"
-                  onChange={(e) => setNote(e.target.value)}
-                  className="md:w-1/2 w-full rounded-md outline-dashed outline-1 text-xs p-2 focus:outline-primary italic h-20"
-                  maxLength={100}
-                  value={note}
-                >
-                  {note}
-                </textarea>
-              </div>
             </div>
           </div>
+          <div className="text-md font-bold font-roboto capitalize  items-center flex gap-2">
+            {product.discount > 0 && (
+              <p className="bg-green-100  text-primary p-1 rounded-lg text-xs">
+                -{product.discount}%
+              </p>
+            )}
+            <p className="text-wrap">{product.name}</p>
+          </div>
+          <div className=" outline-primary max-h-18 text-gray-400">
+            <div className="text-xs">{product.description || "-"}</div>
+          </div>
+          {product.location && (
+            <div className="flex items-center text-xs">
+              <BiMap />
+              <p className="text-gray-600">{product.location}</p>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-2 mt-6 ">
+            <p>Note</p>
+            <textarea
+              id="note"
+              placeholder="Enter Note"
+              onChange={(e) => setNote(e.target.value)}
+              className="rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20"
+              maxLength={100}
+              value={note}
+            >
+              {note}
+            </textarea>
+          </div>
+          <div className=" flex gap-2 my-5 justify-between text-white">
+            <div className=" bg-orange-600 p-2 items-center flex flex-col rounded-lg shadow-lg w-1/2">
+              <p className="text-xs">Total Price</p>
+              <p className="font-serif">
+                {formatNumberIDR(
+                  total
+                )}
+              </p>
+            </div>
+            <button
+              className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-1/2 ${
+                isStockEmpty ? "bg-gray-700" : "bg-primary"
+              }`}
+              onClick={() => {
+                if (isStockEmpty) return;
+                const isNewProduct = addToCart(product, qty, note);
+                setTotalCart(totalCart + 1);
+                alert(isNewProduct);
+              }}
+            >
+              <BsCartPlus className="text-2xl" />
+              Go To Cart
+            </button>
+          </div>
+          </div>
         </div>
+        <ModalCustomer
+          setIsModalCustomer={setIsModalCustomer}
+          isModalCustomer={isModalCustomer}
+        />
       </div>
-      <div className="absolute w-full bottom-0 flex items-center  text-white justify-center h-12">
-        <div className="flex w-full md:w-1/2 h-full  items-center">
-          <button
-            className={`w-1/2  h-full p-2 flex justify-center items-center hover:bg-opacity-90 ${
-              isStockEmpty ? "bg-gray-500" : "bg-orange-600"
-            }`}
-            onClick={() => {
-              if (isStockEmpty) return;
-              const isNewProduct = addToCart(product, qty, note);
-              setTotalCart(totalCart + 1);
-              alert(isNewProduct);
-            }}
-          >
-            <BsCartPlus className="text-2xl" />
-          </button>
-          <button
-            className={` flex items-center justify-center h-full w-1/2 ${
-              isStockEmpty ? "bg-gray-500" : "bg-primary hover:bg-opacity-90"
-            } `}
-            onClick={handleCheckout}
-          >
-            <span className="flex flex-col p-2">
-              {isStockEmpty ? (
-                "Not Ready Stock"
-              ) : (
-                <div className="flex flex-col items-center text-xs">
-                  <span className="font-bold">Order Now </span>
-                  <span className="text-md font-serif">
-                    {formatNumberIDR(total)}
-                  </span>
-                </div>
-              )}
-            </span>
-          </button>
-        </div>
-      </div>
-      <ModalCustomer
-        setIsModalCustomer={setIsModalCustomer}
-        isModalCustomer={isModalCustomer}
-      />
     </div>
   );
 }
