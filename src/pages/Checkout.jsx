@@ -42,7 +42,7 @@ function Checkout() {
       let message = "";
 
       productDetail.forEach((product, index) => {
-        tmpTotal += product.qty * product.price;
+        tmpTotal += product.price * product.qty;
         tmpTotalQty += product.qty;
         message += `
 ${index + 1}. <b>${product.name}</b>
