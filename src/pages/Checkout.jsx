@@ -46,7 +46,8 @@ function Checkout() {
         tmpTotalQty += product.qty;
         message += `
 ${index + 1}. <b>${product.name}</b>
-    ${product.qty} x ${product.price} = ${formatNumberIDR(product.qty * product.price)}`;
+    ${product.qty} x ${product.price} = ${formatNumberIDR(product.qty * product.price)}
+    <i>${product.note}</i>`;
       });
 
       setTotal(tmpTotal);
