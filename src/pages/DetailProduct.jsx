@@ -100,7 +100,7 @@ function DetailProduct() {
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-full h-[18rem] p-2 object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[24rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
