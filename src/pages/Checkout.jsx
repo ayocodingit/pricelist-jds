@@ -90,7 +90,7 @@ Hatur nuhun~ ✨`);
     <>
       <form action="#" onSubmit={handleSubmit} className="print:hidden">
         <div className="bg-gray-50 min-h-[calc(100dvh)] print:hidden flex md:justify-center relative text-sm">
-          <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
+          <div className="w-full md:w-1/2 max-h-[calc(85dvh)] overflow-auto">
             <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-primary text-white">
               <BsArrowLeft
                 className="p-1 text-3xl hover:cursor-pointer"
