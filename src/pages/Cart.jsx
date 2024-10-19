@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllCart, moveToCheckOut, removeAllCart } from "../repository/carts";
+import { getAllCart, moveToCheckOut, removeAllCart, removesAllCart  } from "../repository/carts";
 import { BsArrowLeft, BsShop } from "react-icons/bs";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
@@ -34,8 +34,9 @@ function Cart() {
           <FaRegTrashAlt
             className="text-lg hover: cursor-pointer"
             onClick={() => {
-              removeAllCart();
               setIsChange(true);
+              if (ids.length === 0) return removeAllCart();
+               removesAllCart(ids);
             }}
           />
         </div>
