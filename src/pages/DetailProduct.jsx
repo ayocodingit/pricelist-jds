@@ -74,9 +74,9 @@ function DetailProduct() {
     !product.is_available;
 
   return (
-    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
+    <div className="bg-gray-100 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
-        <div className="flex relative rounded-lg bg-gray-200">
+        <div className="flex relative rounded-lg">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
@@ -126,8 +126,8 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="px-2 text-sm max-h-[calc(50dvh)] rounded-t-3xl bg-white">
-          <div className="p-5 flex flex-col h-full gap-2">
+        <div className="px-2 text-sm max-h-[calc(50dvh)]">
+          <div className="p-5 flex flex-col h-full gap-2 rounded-t-3xl bg-white">
             <div className="flex justify-between">
               <div>
                 <p
