@@ -76,7 +76,7 @@ function DetailProduct() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
-        <div className="flex relative rounded-lg">
+        <div className="flex relative rounded-lg bg-gray-50">
           <PhotoProvider className={`${isStockEmpty && "grayscale"}`}>
             <PhotoView src={product.image}>
               <img
