@@ -1,5 +1,6 @@
 import { getCustomer } from "./customer";
 import { sendOrders } from "./orders";
+import { calculateDiscount } from "../utils/formatter";
 
 const productsKey = "products";
 const checkoutKey = "checkout";
