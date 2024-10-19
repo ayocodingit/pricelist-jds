@@ -45,7 +45,8 @@ function Checkout() {
         tmpTotal += product.qty * product.price;
         tmpTotalQty += product.qty;
         message += `
-<b>${index + 1}) ${product.qty} x ${product.name}</b>`;
+${index + 1}. <b>${product.name}</b>
+    ${product.qty} x ${product.price} = ${formatNumberIDR(product.qty * product.price)}`;
       });
 
       setTotal(tmpTotal);
@@ -77,8 +78,8 @@ function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const message = `Yuhuu agan @${username}
-Asiik ada yang beli produkmu 
+    const message = `Asiik ada yang beli produkmu @${username}
+ 
 <b>Berikut Rinciannya</b>
 
 Nama Pelanggan: <b>${getCustomer().customer}</b>
@@ -88,7 +89,14 @@ Detail produk: ${title}
 
 Total: <b>${formatNumberIDR(total)}</b>
 
-TerimaKasih `
+<strong>Jangan lupa Share terus produk kamu yah
+agar penjualannya makin meningkat 🤝</strong>
+
+<b>Salam Sukses JDS Mart</b>
+${location.origin}
+
+
+`
     if (paymentMethod != "cash" && !file)
       return alert("error", `bukti transfer belum di unggah!`);
     sendOrders(products, paymentMethod, file, message);
