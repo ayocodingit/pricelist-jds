@@ -234,7 +234,7 @@ Hatur nuhun~ ✨
                 }}
               >
                 <BsCartPlus className="text-2xl text-yellow-500" />
-                Go To Cart
+                Add to Cart
               </button>
             </div>
           </div>
