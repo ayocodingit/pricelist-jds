@@ -10,7 +10,7 @@ export default {
         roboto: 'Roboto'
       },
       colors: {
-        primary: '#16a75c'
+        primary: '#007F6E'
       }
     },
   },
