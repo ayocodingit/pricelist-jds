@@ -73,7 +73,7 @@ export const moveToCheckOut = (products) => {
   name: product.name,
   qty: product.qty,
   note: product.note
-  price: product.qty * product.price
+  price: calculateDiscount(product.price, product.discount)
 })
 removeItemCart(product.id)
 });
