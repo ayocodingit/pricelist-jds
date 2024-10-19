@@ -67,7 +67,16 @@ export const removeAllCheckout = () => {
 };
 
 export const moveToCheckOut = (products) => {
-  products.forEach((product) => removeItemCart(product.id));
+  const checkout = []
+  products.forEach((product) => {
+  checkout.push({
+  name: product.name,
+  qty: product.qty,
+  note: product.note
+  price: product.qty * product.price
+})
+removeItemCart(product.id)
+});
   localStorage.removeItem(checkoutKey);
-  localStorage.setItem(checkoutKey, JSON.stringify(products));
+  localStorage.setItem(checkoutKey, JSON.stringify(checkout));
 };
