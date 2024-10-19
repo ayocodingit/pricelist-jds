@@ -229,7 +229,7 @@ Hatur nuhun~ ✨
               </div>
               <button
                 className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
-                  isStockEmpty ? "bg-gray-700" : "bg-primary"
+                  isStockEmpty ? "bg-gray-900" : "bg-primary"
                 }`}
                 onClick={() => {
                   if (isStockEmpty) return;
