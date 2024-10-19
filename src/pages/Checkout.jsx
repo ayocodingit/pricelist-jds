@@ -62,7 +62,7 @@ Hatur nuhun~ ✨`);
   }, []);
 
   if (!user || products.length == 0 || !getCustomer()) {
-    return;
+    return navigate("/404");
   }
 
   const alert = (typeAlert, message) => {
