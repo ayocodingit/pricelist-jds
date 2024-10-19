@@ -254,7 +254,7 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="fixed bottom-0 w-full h-16 p-2 rounded-lg shadow-lg items-center flex gap-2 text-white">
+        <div className="fixed bottom-0 w-full h-16 text-white">
           <div className="flex w-full items-center bg-white h-full md:w-1/2">
             <div className=" p-2 items-center flex flex-col w-1/3 text-black">
               <p className="">Total Price</p>
