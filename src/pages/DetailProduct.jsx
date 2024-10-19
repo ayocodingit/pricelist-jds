@@ -233,7 +233,7 @@ Hatur nuhun~ ✨
                   alert(isNewProduct);
                 }}
               >
-                <BsCartPlus className="text-2xl text-yellow-500" />
+                <BsCartPlus className="text-2xl" />
                 Add to Cart
               </button>
             </div>
