@@ -121,7 +121,7 @@ function List() {
             </div>
           )}
           {products.length === 0 && (
-            <div className="capitalize justify-center flex items-center h-[calc(70dvh)]">
+            <div className="capitalize justify-center flex items-center h-[calc(65dvh)]">
               Product is Not Found
             </div>
           )}
