@@ -7,8 +7,8 @@ function FilterCategory({ handleCategory, category }) {
   return (
     <>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center shadow-md rounded-md ${
-          category == categoryOptions.FOOD ? "text-white bg-primary" : "bg-white"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center shadow-md rounded-md bg-white ${
+          category == categoryOptions.FOOD ? "text-primary" :  "text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.FOOD)}
         title={categoryOptions.FOOD}
@@ -17,8 +17,8 @@ function FilterCategory({ handleCategory, category }) {
         <span>Food</span>
       </li>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center  shadow-md rounded-md ${
-          category == categoryOptions.DRINK ? "text-white bg-primary" : "bg-white"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center  shadow-md rounded-md bg-white ${
+          category == categoryOptions.DRINK ? "text-primary" :  "text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.DRINK)}
         title={categoryOptions.DRINK}
@@ -27,8 +27,8 @@ function FilterCategory({ handleCategory, category }) {
         <span>Drink</span>
       </li>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center  shadow-md rounded-md ${
-          category == categoryOptions.INGREDIENTS ? "text-white bg-primary" : "bg-white"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex items-center  shadow-md rounded-md bg-white ${
+          category == categoryOptions.INGREDIENTS ? "text-primary" :  "text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.INGREDIENTS)}
         title={categoryOptions.INGREDIENTS}

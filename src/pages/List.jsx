@@ -56,7 +56,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col">
-        <div className="sticky top-0 bg-gray-50 z-10 shadow-sm">
+        <div className="sticky top-0 bg-primary text-white z-10 shadow-sm">
           {/* Profile */}
           <div className="px-5 pt-7 flex justify-between items-center">
             <div className="">
@@ -66,7 +66,7 @@ function List() {
               <p className="text-xl font-bold">Welcome Back!</p>
             </div>
             <div
-              className="relative hover:cursor-pointer bg-white rounded-lg"
+              className="relative hover:cursor-pointer bg-white text-black rounded-lg"
               onClick={() => navigate("/cart")}
             >
               <CiShoppingCart className="text-3xl" />
@@ -80,13 +80,13 @@ function List() {
             <input
               type="text"
               placeholder="Search"
-              className="bg-white rounded-md w-full h-10 pl-10 focus:outline-primary outline-1 outline-double"
+              className="bg-white text-black rounded-md w-full h-10 pl-10 focus:outline-primary outline-1 outline-double"
               defaultValue={q}
               onChange={handleSearch}
             />
-            <FaSearch className="absolute top-3 text-lg left-8 " />
+            <FaSearch className="absolute top-3 text-lg left-8 text-black" />
             <VscListFilter
-              className={`text-4xl hover:cursor-pointer ${filter && 'text-primary'}`}
+              className={`text-4xl hover:cursor-pointer ${filter && 'text-white'}`}
               onClick={() => setFilter((prev) => !prev)}
             />
           </div>

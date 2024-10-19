@@ -25,14 +25,14 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)]">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-2 py-5 px-2 justify-between items-center shadow-sm sticky top-0 z-10 bg-gray-50">
+        <div className="flex gap-2 py-2 px-2 justify-between items-center shadow-sm sticky top-0 z-10 bg-primary text-white">
           <BsArrowLeft
             className="p-1 text-3xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
           />
           <p>My Cart List ({getAllCart().length})</p>
           <FaRegTrashAlt
-            className="text-lg"
+            className="text-lg hover: cursor-pointer"
             onClick={() => {
               removeAllCart();
               setIsChange(true);
@@ -69,12 +69,16 @@ function Cart() {
         <div className="fixed bottom-0 text-sm py-4 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
+              <p className="first-letter:capitalize">{username ? 'seller' : 'Silahkan Pilih Produk untuk di checkout'}</p>
+              <p>{username && '@' + username}</p>
+            </div>
+            <div className="flex justify-between w-full  items-center">
               <p>Selected Items({ids.length})</p>
               <p>Total : {formatNumberIDR(checkTotal)}</p>
             </div>
             <button
               className={`w-full bg-primary text-white flex justify-center rounded-lg p-2 ${
-                checkTotal != 0 && "hover:cursor-pointer"
+                checkTotal != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
               onClick={() => {
                 if (checkTotal != 0 && getCustomer()?.customer) {

@@ -81,17 +81,17 @@ Hatur nuhun~ ✨`);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (paymentMethod != "cash" && !file)
-      return alert('error', `bukti transfer belum di unggah!`);
+      return alert("error", `bukti transfer belum di unggah!`);
     sendOrders(products, paymentMethod, file);
     navigate("/success-order");
   };
 
   return (
     <>
-      <form action="#" onSubmit={handleSubmit}>
+      <form action="#" onSubmit={handleSubmit} className="print:hidden">
         <div className="bg-gray-50 min-h-[calc(100dvh)] print:hidden flex md:justify-center relative text-sm">
-          <div className="w-full md:w-1/2 max-h-[calc(85dvh)] overflow-auto">
-            <div className="flex gap-2 py-5 px-2 items-center shadow-sm sticky top-0 z-10 bg-gray-50">
+          <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
+            <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-primary text-white">
               <BsArrowLeft
                 className="p-1 text-3xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
@@ -146,7 +146,7 @@ Hatur nuhun~ ✨`);
               })}
             </div>
             {paymentMethod != "cash" && VA && (
-              <div className="  p-2">
+              <div className=" flex flex-col gap-2  p-2 bg-white">
                 <div className="outline-dotted outline-primary outline-1  flex justify-between items-center p-5">
                   <p className=""> No Rek {VA}</p>
                   <CopyToClipboard
@@ -191,7 +191,19 @@ Hatur nuhun~ ✨`);
             <div className=" flex flex-col w-full items-center  px-5 py-2 h-full">
               <div className="flex items-center justify-between p-2 w-full">
                 <p>Total</p>
-                <p>{formatNumberIDR(total)}</p>
+                <div className="flex items-center">
+                  <p>{formatNumberIDR(total)}</p>
+                  <CopyToClipboard
+                    text={total}
+                    onCopy={() =>
+                      alert("success", "Total Copied on Clipboard")
+                    }
+                  >
+                    <AiOutlineCopy
+                      className={"text-xl hover:cursor-copy"}
+                    />
+                  </CopyToClipboard>
+                </div>
               </div>
               <button
                 className="w-full bg-primary h-full text-white"

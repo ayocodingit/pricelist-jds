@@ -6,7 +6,7 @@ function SortProduct({ handleSort, sort }) {
       <>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
-            sort == 'name' && "text-primary"
+            sort == 'name' ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort('name')}
           title={'name'}
@@ -16,7 +16,7 @@ function SortProduct({ handleSort, sort }) {
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
-            sort == 'price' && "text-primary"
+            sort == 'price' ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort('price')}
           title={'price'}
@@ -26,7 +26,7 @@ function SortProduct({ handleSort, sort }) {
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
-            sort == 'discount' && "text-primary"
+            sort == 'discount' ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort('discount')}
           title={'discount'}
