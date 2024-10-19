@@ -6,9 +6,6 @@ function Homepage() {
     <div className="h-[calc(100dvh)] flex flex-col justify-center items-center gap-10 bg-gray-50">
       <div className="flex flex-col items-center   gap-2">
         <h1 className="text-4xl font-serif tracking-widest text-center">Welcome to <br/> JDS Mart </h1>
-        <p className="text-md tracking-widest">
-          Small and Medium enterprises (SMEs)
-        </p>
       </div>
       <div className="flex justify-center">
         <img src="/logo_jds.png" alt="logo jds" className="w-60" />
