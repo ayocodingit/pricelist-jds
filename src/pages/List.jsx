@@ -113,7 +113,7 @@ function List() {
         <FavoriteList products={products} />
       </div> */}
         {/* Product  */}
-        <div className="px-2 py-2 flex flex-col gap-3 bg-white min-h-[50dvh] justify-center">
+        <div className="px-2 py-2 flex flex-col gap-3 bg-white min-h-[80dvh] justify-center">
           {products.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {products.map((product, index) => {
