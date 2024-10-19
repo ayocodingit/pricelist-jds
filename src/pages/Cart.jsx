@@ -41,7 +41,7 @@ function Cart() {
         </div>
 
         {products.length === 0 && (
-          <div className="flex justify-center items-center h-[calc(75dvh)]">
+          <div className="flex justify-center items-center h-[calc(75dvh)] bg-white">
             Cart is Empty
           </div>
         )}
