@@ -59,6 +59,15 @@ export const removeItemCart = (id) => {
   localStorage.setItem(productsKey, JSON.stringify(products));
 };
 
+export const removesItemCart = (ids) => {
+  let products = getAll(productsKey);
+
+  products = products.filter((product) => !ids.includes(product.id));
+
+  localStorage.removeItem(productsKey);
+  localStorage.setItem(productsKey, JSON.stringify(products));
+};
+
 export const removeAllCart = () => {
   localStorage.removeItem(productsKey);
 };
