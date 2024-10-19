@@ -20,7 +20,7 @@ function SuccessOrder() {
           </p>
           <Link
             to={"/list"}
-            className="text-white bg-primary rounded-lg shadow-lg p-2 py-5"
+            className="text-white bg-primary rounded-lg shadow-lg p-2 px-5"
           >
             Homepage
           </Link>
