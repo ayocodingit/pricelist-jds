@@ -216,8 +216,8 @@ Hatur nuhun~ ✨
               </textarea>
             </div>
             <div className=" flex gap-2 my-5 justify-between text-white">
-              <div className=" bg-primary p-2 items-center flex flex-col rounded-lg shadow-lg w-1/2">
-                <p className="text-xs">Total Price</p>
+              <div className=" p-2 items-center flex flex-col w-1/2">
+                <p className="">Total Price</p>
                 <p className="font-serif">
                   {formatNumberIDR(!isStockEmpty ? total : 0)}
                 </p>
