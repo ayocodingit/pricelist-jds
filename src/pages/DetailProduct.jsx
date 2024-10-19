@@ -140,7 +140,7 @@ Hatur nuhun~ ✨
                     isStockEmpty ? "text-gray-500 " : "text-primary"
                   } rounded-md capitalize`}
                 >
-                  {isStockEmpty && "Not"}
+                  {isStockEmpty && "Not "}
                   {product.tag}{" "}
                   {product.tag == tagOptions.READY_STOCK && (
                     <span>{product.stock}</span>
