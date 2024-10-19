@@ -5,7 +5,7 @@ function Homepage() {
   return (
     <div className="h-[calc(100dvh)] flex flex-col justify-center items-center gap-10 bg-gray-50">
       <div className="flex flex-col items-center   gap-2">
-        <h1 className="text-4xl font-serif tracking-widest">Welcome to JDS Mart </h1>
+        <h1 className="text-4xl font-serif tracking-widest text-center">Welcome to JDS Mart </h1>
         <p className="text-md tracking-widest">
           Small and Medium enterprises (SMEs)
         </p>
