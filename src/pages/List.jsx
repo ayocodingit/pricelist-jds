@@ -66,11 +66,11 @@ function List() {
               <p className="text-xl font-bold">Welcome Back!</p>
             </div>
             <div
-              className="relative hover:cursor-pointer bg-white text-black rounded-lg"
+              className="relative hover:cursor-pointer text-white rounded-lg p-2"
               onClick={() => navigate("/cart")}
             >
               <CiShoppingCart className="text-3xl" />
-              <p className="absolute rounded-full top-0 right-0 outline-black outline-1 outline-double bg-white text-xs w-1/2 flex justify-center">
+              <p className="absolute rounded-full top-2 right-2 text-black bg-white text-xs w-4 flex justify-center">
                 {getCountCart()}
               </p>
             </div>
@@ -80,11 +80,11 @@ function List() {
             <input
               type="text"
               placeholder="Search"
-              className="bg-white text-black rounded-md w-full h-10 pl-10 focus:outline-primary outline-1 outline-double"
+              className="bg-white text-black rounded-md w-full p-2 h-8 pl-10 focus:outline-primary outline-1 outline-primary outline-double"
               defaultValue={q}
               onChange={handleSearch}
             />
-            <FaSearch className="absolute top-3 text-lg left-8 text-black" />
+            <FaSearch className="absolute top-2 text-md left-8 text-gray-400" />
             <VscListFilter
               className={`text-4xl hover:cursor-pointer ${filter && 'text-white'}`}
               onClick={() => setFilter((prev) => !prev)}
@@ -113,7 +113,7 @@ function List() {
         <FavoriteList products={products} />
       </div> */}
         {/* Product  */}
-        <div className="px-2 my-5 flex flex-col gap-3">
+        <div className="px-2 py-2 flex flex-col gap-3 bg-white">
           {products.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {products.map((product, index) => {

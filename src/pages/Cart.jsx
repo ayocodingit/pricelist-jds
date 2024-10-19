@@ -48,7 +48,7 @@ function Cart() {
 
         {products.length > 0 && (
           <div
-            className={`py-4 px-2 flex flex-col max-h-[calc(75dvh)] w-full overflow-auto bg-white`}
+            className={`py-4 px-2 flex flex-col h-[calc(75dvh)] w-full overflow-auto bg-white`}
           >
             {products.map((product, index) => {
               return (
