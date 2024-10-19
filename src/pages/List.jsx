@@ -112,7 +112,7 @@ function List() {
         {/* Product  */}
         <div className="px-2 py-2 flex flex-col gap-3 bg-white justify-center">
           {products.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 h-[calc(74dvh)] p-2 overflow-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 h-[calc(73dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
@@ -121,12 +121,12 @@ function List() {
             </div>
           )}
           {products.length === 0 && (
-            <div className="capitalize justify-center flex items-center">
+            <div className="capitalize justify-center flex items-center h-[calc(73dvh)]">
               Product is Not Found
             </div>
           )}
         </div>
-          <div className="fixed bottom-0 bg-white text-black p-2 items-center flex justify-center w-full md:w-1/2 shadow-lg rounded-lg">
+          <div className="fixed bottom-0 bg-white text-black p-2 items-center flex justify-center w-full md:w-1/2 rounded-lg">
             <Footer/>
           </div>
       </div>
