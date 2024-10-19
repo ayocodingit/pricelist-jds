@@ -73,7 +73,7 @@ export const moveToCheckOut = (products) => {
   checkout.push({
   name: product.name,
   qty: product.qty,
-  note: product.note
+  note: product.note,
   price: calculateDiscount(product.price, product.discount)
 })
 removeItemCart(product.id)
