@@ -216,14 +216,14 @@ Hatur nuhun~ ✨
               </textarea>
             </div>
             <div className=" flex gap-2 my-5 justify-between text-white">
-              <div className=" p-2 items-center flex flex-col w-1/2 text-black">
+              <div className=" p-2 items-center flex flex-col w-1/3 text-black">
                 <p className="">Total Price</p>
                 <p className="font-serif">
                   {formatNumberIDR(!isStockEmpty ? total : 0)}
                 </p>
               </div>
               <button
-                className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-1/2 ${
+                className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 ${
                   isStockEmpty ? "bg-gray-700" : "bg-black"
                 }`}
                 onClick={() => {
