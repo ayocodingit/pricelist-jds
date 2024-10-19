@@ -169,7 +169,7 @@ Hatur nuhun~ ✨`);
                   <Dropzone setFile={setFile} />
 
                   {file && (
-                    <div className="absolute bg-gray-50 outline-dotted outline-primary w-full p-5 h-full flex justify-center items-center">
+                    <div className="absolute bg-gray-50 border border-dashed border-primary w-full p-5 h-full flex justify-center items-center">
                       <>
                         <img
                           src={URL.createObjectURL(file)}
