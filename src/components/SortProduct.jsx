@@ -15,7 +15,7 @@ function SortProduct({ handleSort, sort }) {
           <span>Name</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
             sort == 'price' ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort('price')}
@@ -25,7 +25,7 @@ function SortProduct({ handleSort, sort }) {
            <span>Price</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md  ${
             sort == 'discount' ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort('discount')}
