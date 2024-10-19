@@ -48,7 +48,7 @@ function Cart() {
 
         {products.length > 0 && (
           <div
-            className={`py-4 px-2 flex flex-col h-[calc(75dvh)] w-full overflow-auto bg-white`}
+            className={`py-1 px-2 flex flex-col md:h-[calc(74dvh)] h-[calc(70dvh)] w-full overflow-auto bg-white`}
           >
             {products.map((product, index) => {
               return (
@@ -69,7 +69,7 @@ function Cart() {
         <div className="fixed bottom-0 text-sm py-4 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
-              <p className="first-letter:capitalize">{username ? 'seller' : 'Silahkan Pilih Produk untuk di checkout'}</p>
+              <p className="first-letter:capitalize">{username ? 'seller' : 'Silahkan Pilih Produk terlebih dahulu'}</p>
               <p>{username && '@' + username}</p>
             </div>
             <div className="flex justify-between w-full  items-center">

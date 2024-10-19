@@ -1,4 +1,5 @@
 import { getCustomer } from "./customer";
+import { sendTelegram } from "./telegram";
 
 const storeOrder = async (product, orderId, customer, paymentMethod, photo) => {
   const body = {
@@ -109,25 +110,26 @@ export const uploadImage = async (file) => {
   return await rawResponse.json();
 };
 
-export const sendOrders = async (products, paymentMethod, file) => {
-  const promises = [];
-  const customer = getCustomer();
-  const orderId = `order-${Date.now()}`;
-  const photo = [];
+export const sendOrders = async (products, paymentMethod, file, message) => {
+  // const promises = [];
+  // const customer = getCustomer();
+  // const orderId = `order-${Date.now()}`;
+  // const photo = [];
 
-  if (paymentMethod !== "cash") {
-    try {
-      const res = await uploadImage(file);
-      const filename = res[0].filename;
-      photo.push(filename);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
+  // if (paymentMethod !== "cash") {
+  //   try {
+  //     const res = await uploadImage(file);
+  //     const filename = res[0].filename;
+  //     photo.push(filename);
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // }
 
-  products.forEach((product) =>
-    promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
-  );
+  // products.forEach((product) =>
+  //   promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
+  // );
 
-  Promise.allSettled(promises).then((res) => console.log(res));
+  // Promise.allSettled(promises).then((res) => console.log(res));
+  sendTelegram(message, file)
 };

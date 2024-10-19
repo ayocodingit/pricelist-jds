@@ -19,7 +19,7 @@ function CartList({
     product.discount
   );
   return (
-    <div className=" text-black flex flex-col border-b-2 relative my-2">
+    <div className=" text-black flex flex-col border-b-[1px] relative">
       <div className="flex p-2 gap-1 items-center">
         <input
           type="checkbox"
@@ -69,28 +69,26 @@ function CartList({
             <span className="text-gray-600 italic">{product.note || ""}</span>
           </p>
         </div>
-        {ids.length == 0 && (
-          <div className="flex gap-2 items-center">
-            <div
-              onClick={() => {
-                navigate(
-                  `/list/${product.id}?qty=${product.qty}&note=${product.note}`
-                );
-              }}
-              className="hover: cursor-pointer"
-            >
-              <BsPencil />
-            </div>
-
-            <CgClose
-              className="text-xl hover: cursor-pointer"
-              onClick={() => {
-                removeItemCart(product.id);
-                setIsChange(true);
-              }}
-            />
+        <div className="flex gap-2 items-center">
+          <div
+            onClick={() => {
+              navigate(
+                `/list/${product.id}?qty=${product.qty}&note=${product.note}`
+              );
+            }}
+            className="hover: cursor-pointer"
+          >
+            <BsPencil />
           </div>
-        )}
+
+          <CgClose
+            className="text-xl hover: cursor-pointer"
+            onClick={() => {
+              removeItemCart(product.id);
+              setIsChange(true);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

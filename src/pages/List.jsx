@@ -8,13 +8,10 @@ import { getCustomer } from "../repository/customer";
 import ModalCustomer from "../components/ModalCustomer";
 import FilterCategory from "../components/FilterCategory";
 import { categoryOptions } from "../utils/contstant/category";
-import FavoriteList from "../components/FavoriteList";
 import ProductList from "../components/ProductList";
 import SortProduct from "../components/SortProduct";
-import { BsFilter } from "react-icons/bs";
-import { FcFilledFilter } from "react-icons/fc";
-import { GrFilter } from "react-icons/gr";
 import { VscListFilter } from "react-icons/vsc";
+import Footer from '../components/Footer'
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -55,7 +52,7 @@ function List() {
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
-      <div className="w-full md:w-1/2 flex flex-col">
+      <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="sticky top-0 bg-primary text-white z-10 shadow-sm">
           {/* Profile */}
           <div className="px-5 pt-7 flex justify-between items-center">
@@ -113,9 +110,9 @@ function List() {
         <FavoriteList products={products} />
       </div> */}
         {/* Product  */}
-        <div className="px-2 py-2 flex flex-col gap-3 bg-white min-h-[80dvh] justify-center">
+        <div className="px-2 py-2 flex flex-col gap-3 bg-white justify-center">
           {products.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 h-[calc(72dvh)] py-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
@@ -129,6 +126,9 @@ function List() {
             </div>
           )}
         </div>
+          <div className="fixed bottom-0 bg-white text-black p-2 items-center flex justify-center w-full md:w-1/2 shadow-lg rounded-lg">
+            <Footer/>
+          </div>
       </div>
       <ModalCustomer
         setIsModalCustomer={setIsModalCustomer}

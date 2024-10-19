@@ -3,14 +3,23 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getByID } from "../repository/produts";
 import { BsArrowLeft, BsCartPlus } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { BiMap } from "react-icons/bi";
+import {
+  BiMap,
+  BiMessageRoundedDetail,
+  BiPhoneCall,
+  BiUserCheck,
+} from "react-icons/bi";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
 import { addToCart, getCountCart } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import {
+  AiOutlineMessage,
+  AiOutlineMinus,
+  AiOutlinePlus,
+} from "react-icons/ai";
 import { VscShare } from "react-icons/vsc";
 
 function DetailProduct() {
@@ -73,11 +82,15 @@ function DetailProduct() {
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
 
+  const handleRedirectCall = () => {
+    window.open(`https://t.me/${product.username}`, "_blank");
+  };
+
   return (
     <div className="bg-gray-100 min-h-[calc(100dvh)]  flex md:justify-center">
-      <div className="w-full md:w-1/2 flex flex-col">
+      <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="flex relative rounded-lg">
-        {isStockEmpty && (
+          {isStockEmpty && (
             <span className="absolute rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
             </span>
@@ -87,11 +100,11 @@ function DetailProduct() {
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-full h-[24rem] p-2 object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[18rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
-          <div className="absolute justify-between top-5 text-black w-full p-5">
+          <div className="absolute justify-between top-5 text-black w-full p-5 px-4">
             <div className="flex justify-between items-center">
               <BsArrowLeft
                 className="bg-white text-4xl rounded-full hover:cursor-pointer p-1 shadow-lg"
@@ -100,7 +113,7 @@ function DetailProduct() {
               <div className="flex gap-2  items-center">
                 {showSocialMedia && (
                   <SocialMedia
-                  size={34}
+                    size={34}
                     title={`
 Mangga in case ada yg mau beli ~**${product.name}**~
 ${product.image}
@@ -131,8 +144,8 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="px-2 text-sm  min-h-[calc(50dvh)]">
-          <div className="p-5 flex flex-col h-full gap-2 rounded-t-3xl bg-white">
+        <div className="px-2 text-sm ">
+          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white min-h-[calc(48dvh)] md:h-[calc(54dvh)] overflow-auto">
             <div className="flex justify-between">
               <div>
                 <p
@@ -197,7 +210,26 @@ Hatur nuhun~ ✨
               )}
               <p className="text-wrap">{product.name}</p>
             </div>
-            <div className=" outline-primary max-h-18 text-gray-400">
+            <div className="flex flex-col w-full gap-2">
+              <p>Seller</p>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <BiUserCheck className="text-3xl" />
+                  <p>@{product.username}</p>
+                </div>
+                <div className="flex gap-4">
+                  <BiMessageRoundedDetail
+                    className="text-3xl text-primary hover:cursor-pointer"
+                    onClick={handleRedirectCall}
+                  />
+                  <BiPhoneCall
+                    className="text-3xl text-primary hover:cursor-pointer"
+                    onClick={handleRedirectCall}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className=" outline-primary max-h-18 text-gray-400 overflow-auto">
               <div className="text-xs">{product.description || "-"}</div>
             </div>
             {product.location && (
@@ -220,28 +252,30 @@ Hatur nuhun~ ✨
                 {note}
               </textarea>
             </div>
-            <div className=" flex gap-2 my-5 justify-between text-white">
-              <div className=" p-2 items-center flex flex-col w-1/3 text-black">
-                <p className="">Total Price</p>
-                <p className="font-serif">
-                  {formatNumberIDR(!isStockEmpty ? total : 0)}
-                </p>
-              </div>
-              <button
-                className={` p-2 flex gap-2 rounded-lg shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
-                  isStockEmpty ? "bg-gray-900" : "bg-primary"
-                }`}
-                onClick={() => {
-                  if (isStockEmpty) return;
-                  const isNewProduct = addToCart(product, qty, note);
-                  setTotalCart(totalCart + 1);
-                  alert(isNewProduct);
-                }}
-              >
-                <BsCartPlus className="text-2xl" />
-                Add to Cart
-              </button>
+          </div>
+        </div>
+        <div className="fixed bottom-0 w-full h-16 p-2 rounded-lg shadow-lg items-center flex gap-2 text-white">
+          <div className="flex w-full items-center bg-white h-full md:w-1/2">
+            <div className=" p-2 items-center flex flex-col w-1/3 text-black">
+              <p className="">Total Price</p>
+              <p className="font-serif">
+                {formatNumberIDR(!isStockEmpty ? total : 0)}
+              </p>
             </div>
+            <button
+              className={` flex gap-2 rounded-lg p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
+                isStockEmpty ? "bg-gray-900" : "bg-primary"
+              }`}
+              onClick={() => {
+                if (isStockEmpty) return;
+                const isNewProduct = addToCart(product, qty, note);
+                setTotalCart(totalCart + 1);
+                alert(isNewProduct);
+              }}
+            >
+              <BsCartPlus className="text-2xl" />
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

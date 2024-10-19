@@ -14,6 +14,7 @@ import { BiTrash } from "react-icons/bi";
 import { sendOrders } from "../repository/orders";
 import { Flip, toast } from "react-toastify";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -40,20 +41,16 @@ function Checkout() {
       let tmpTotalQty = 0;
       let message = "";
 
-      productDetail.forEach((product) => {
+      productDetail.forEach((product, index) => {
         tmpTotal += product.qty * product.price;
         tmpTotalQty += product.qty;
-        message += `**${product.name} - ${product.qty}** 
-`;
+        message += `
+<b>${index + 1}) ${product.qty} x ${product.name}</b>`;
       });
 
       setTotal(tmpTotal);
       setTotalQty(tmpTotalQty);
-      setTitle(`aku beli produkmu yah 😁,
-
-${message}
-saya sudah tf yups! tolong di ceki ceki
-Hatur nuhun~ ✨`);
+      setTitle(message);
 
       return;
     }
@@ -80,9 +77,21 @@ Hatur nuhun~ ✨`);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const message = `Yuhuu agan @${username}
+Asiik ada yang beli produkmu 
+<b>Berikut Rinciannya</b>
+
+Nama Pelanggan: <b>${getCustomer().customer}</b>
+Payment Method: <b>${paymentMethod.toUpperCase()}</b>
+
+Detail produk: ${title}
+
+Total: <b>${formatNumberIDR(total)}</b>
+
+TerimaKasih `
     if (paymentMethod != "cash" && !file)
       return alert("error", `bukti transfer belum di unggah!`);
-    sendOrders(products, paymentMethod, file);
+    sendOrders(products, paymentMethod, file, message);
     navigate("/success-order");
   };
 
@@ -171,11 +180,15 @@ Hatur nuhun~ ✨`);
                   {file && (
                     <div className="absolute bg-gray-50 border border-dashed border-primary w-full p-5 h-full flex justify-center items-center">
                       <>
-                        <img
-                          src={URL.createObjectURL(file)}
-                          alt="gambar uploaded"
-                          className="object-contain w-40 h-32"
-                        />
+                        <PhotoProvider>
+                          <PhotoView src={URL.createObjectURL(file)}>
+                            <img
+                              src={URL.createObjectURL(file)}
+                              alt="gambar uploaded"
+                              className="object-contain w-40 h-32 hover:cursor-pointer"
+                            />
+                          </PhotoView>
+                        </PhotoProvider>
                         <BiTrash
                           className="text-2xl text-red-500 absolute top-2 right-2"
                           onClick={() => setFile(undefined)}
@@ -195,13 +208,9 @@ Hatur nuhun~ ✨`);
                   <p>{formatNumberIDR(total)}</p>
                   <CopyToClipboard
                     text={total}
-                    onCopy={() =>
-                      alert("success", "Total Copied on Clipboard")
-                    }
+                    onCopy={() => alert("success", "Total Copied on Clipboard")}
                   >
-                    <AiOutlineCopy
-                      className={"text-xl hover:cursor-copy"}
-                    />
+                    <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
                   </CopyToClipboard>
                 </div>
               </div>
