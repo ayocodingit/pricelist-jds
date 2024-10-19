@@ -174,7 +174,7 @@ Hatur nuhun~ ✨`);
                         <img
                           src={URL.createObjectURL(file)}
                           alt="gambar uploaded"
-                          className="object-contain w-full h-40"
+                          className="object-contain w-40 h-40"
                         />
                         <BiTrash
                           className="text-2xl text-red-500 absolute top-2 right-2"
