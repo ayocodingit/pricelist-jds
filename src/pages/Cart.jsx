@@ -34,11 +34,13 @@ function Cart() {
           <FaRegTrashAlt
             className="text-lg hover: cursor-pointer"
             onClick={() => {
-              setIsChange(true);
               if (ids.length === 0) { 
-                  return removeAllCart()
+                  removeAllCart()
+              } else {
+                  removesAllCart(ids)
               }
-               removesAllCart(ids);
+               
+               setIsChange(true);
              }}
           />
         </div>
