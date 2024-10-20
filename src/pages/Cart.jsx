@@ -39,8 +39,10 @@ function Cart() {
               } else {
                   removesItemCart(ids)
               }
-               
+               setUsername("")
                setIsChange(true);
+               setIds([])
+               setCheckTotal(0)
              }}
           />
         </div>
