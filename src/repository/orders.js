@@ -130,6 +130,6 @@ export const sendOrders = async (products, paymentMethod, file, message) => {
     promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
   );
 
-  Promise.allSettled(promises).then((res) => console.log(res));
-  sendTelegram(message, file)
+  Promise.allSettled([...promises, sendTelegram(message, file)]).then((res) => console.log(res));
+ 
 };
