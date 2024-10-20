@@ -80,6 +80,8 @@ export const moveToCheckOut = (products) => {
   const checkout = []
   products.forEach((product) => {
   checkout.push({
+  id: product.id,
+  username: product.username,
   name: product.name,
   qty: product.qty,
   note: product.note,
