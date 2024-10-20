@@ -65,7 +65,7 @@ function CartList({
           </p>
           <p className="flex text-xs">Quantity: {product.qty}</p>
           <p className="flex text-xs ">
-            Note{": "}
+            Note{" : "}
             <span className="text-gray-600 italic">{product.note || ""}</span>
           </p>
         </div>
