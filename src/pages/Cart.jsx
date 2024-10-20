@@ -35,9 +35,11 @@ function Cart() {
             className="text-lg hover: cursor-pointer"
             onClick={() => {
               setIsChange(true);
-              if (ids.length === 0) return removeAllCart();
+              if (ids.length === 0) { 
+                  return removeAllCart()
+              }
                removesAllCart(ids);
-            }}
+             }}
           />
         </div>
 
