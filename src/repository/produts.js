@@ -11,7 +11,7 @@ const products = [
     username: "novansyaah",
     tag: tagOptions.READY_STOCK,
     stock: 10,
-    discount: 10,
+    discount: 0,
     is_available: true,
     location: "R. Selatan",
     description: "",
