@@ -9,7 +9,7 @@ function SuccessOrder() {
   }, []);
 
   return (
-    <div className="bg-gray-50 h-[calc(100dvh)] flex justify-center items-center">
+    <div className="bg-white h-[calc(100dvh)] flex justify-center items-center">
       <div className="w-full md:w-1/2 h-full flex flex-col justify-center">
         <img src="/order-success.webp" className="w-full" alt="" />
         <div className="min-h-[calc(50dvh)] text-sm flex flex-col items-center justify-center gap-4 bg-white text-md">
