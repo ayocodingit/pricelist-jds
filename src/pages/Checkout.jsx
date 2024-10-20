@@ -46,7 +46,9 @@ function Checkout() {
         tmpTotalQty += product.qty;
         message += `
 ${index + 1}. <b>${product.name}</b>
-    ${product.qty} x ${product.price} = ${formatNumberIDR(product.qty * product.price)}
+    ${product.qty} x ${product.price} = ${formatNumberIDR(
+          product.qty * product.price
+        )}
     <i>${product.note}</i>`;
       });
 
@@ -97,9 +99,18 @@ agar penjualannya makin meningkat 🤝</strong>
 ${location.origin}
 
 
-`
+`;
     if (paymentMethod != "cash" && !file)
       return alert("error", `bukti transfer belum di unggah!`);
+
+    if (file && file.size >= 1024 * 1024) {
+      return alert("error", `file tidak boleh lebih dari 1MB`);
+    }
+
+    if (file && !/image/.test(file.type)) {
+      return alert("error", `file yang di upload harus berupa gambar`);
+    }
+
     sendOrders(products, paymentMethod, file, message);
     navigate("/success-order");
   };

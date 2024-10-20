@@ -14,7 +14,7 @@ function Dropzone({ setFile }) {
       <input
         {...getInputProps()}
         className="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
-        
+        accept="image/png, image/jpeg, image/svg, image/webp"
       />
       {isDragActive ? (
         <p> Drag and drop to upload </p>
