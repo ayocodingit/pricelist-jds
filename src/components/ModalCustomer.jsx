@@ -49,7 +49,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
           type="text"
           id="customer"
           className="w-full h-8 p-2 text-sm outline-primary outline-double rounded-md"
-          placeholder="Please Enter Your Name"
+          placeholder="Nama Lengkap - Divisi"
           min={3}
           onChange={(e) => setCustomer(e.target.value)}
           defaultValue={customer}
