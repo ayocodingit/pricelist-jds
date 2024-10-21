@@ -123,7 +123,7 @@ ${location.origin}
                 className="p-1 text-3xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
               />
-              <p>Check Out</p>
+              <p>Proses Bayar</p>
             </div>
             <p className="font-bold py-3 px-2">Rincian Pembelian</p>
             <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
