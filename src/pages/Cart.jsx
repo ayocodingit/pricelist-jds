@@ -97,7 +97,7 @@ function Cart() {
                 }
               }}
             >
-              Check Out
+              Proses Bayar
             </button>
           </div>
         </div>
