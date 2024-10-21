@@ -14,15 +14,15 @@ function SuccessOrder() {
         <img src="/order-success.webp" className="w-full" alt="" />
         <div className="min-h-[calc(50dvh)] text-sm flex flex-col items-center justify-center gap-4 bg-white text-md">
           <AiOutlineCheckCircle className="text-5xl text-primary" />
-          <p className="text-lg font-bold">Payment Successful!</p>
+          <p className="text-lg font-bold">Pemesanan Produk Berhasil!</p>
           <p className="text-center">
-            Congratulations on <br /> your order
+            Pesanan Anda sudah disampaikan kepada penjual yang bersangkutan
           </p>
           <Link
             to={"/list"}
-            className="text-white bg-primary rounded-lg shadow-lg p-2 px-5"
+            className="text-white bg-primary rounded-lg shadow-lg p-2 my-5 px-5"
           >
-            Homepage
+            Kembali Belanja
           </Link>
         </div>
       </div>

@@ -1,38 +1,39 @@
 import React from "react";
 import { AiOutlineSortAscending, AiOutlineDollar, AiOutlinePercentage } from "react-icons/ai";
+import { sortOptions } from "../utils/contstant/sort";
 
 function SortProduct({ handleSort, sort }) {
   return (
       <>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
-            sort == 'name' ? "text-primary" :  "text-black"
+            sort == sortOptions.NAME ? "text-primary" :  "text-black"
           }`}
-          onClick={() => handleSort('name')}
-          title={'name'}
+          onClick={() => handleSort(sortOptions.NAME)}
+          title={sortOptions.NAME}
         >
           <AiOutlineSortAscending />
-          <span>Name</span>
+          <span className="first-letter: capitalize">{sortOptions.NAME}</span>
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
-            sort == 'price' ? "text-primary" :  "text-black"
+            sort == sortOptions.PRICE ? "text-primary" :  "text-black"
           }`}
-          onClick={() => handleSort('price')}
-          title={'price'}
+          onClick={() => handleSort(sortOptions.PRICE)}
+          title={sortOptions.PRICE}
         >
           <AiOutlineDollar />
-           <span>Price</span>
+           <span className="first-letter: capitalize">{sortOptions.PRICE}</span>
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md  ${
-            sort == 'discount' ? "text-primary" :  "text-black"
+            sort == sortOptions.DISCOUNT ? "text-primary" :  "text-black"
           }`}
-          onClick={() => handleSort('discount')}
-          title={'discount'}
+          onClick={() => handleSort(sortOptions.DISCOUNT)}
+          title={sortOptions.DISCOUNT}
         >
           <AiOutlinePercentage />
-           <span>Discount</span>
+           <span className="first-letter: capitalize">{ sortOptions.DISCOUNT }</span>
         </li>
       </>
   );

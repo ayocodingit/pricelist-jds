@@ -28,7 +28,7 @@ function Homepage() {
           className="w-full md:w-1/2 h-12 my-7 text-center flex justify-center items-center rounded-lg border-2 text-white hover:bg-opacity-90 bg-primary "
           to={"list"}
         >
-          Let's Get Started
+          Mari Kita Mulai
         </Link>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { getProducts } from "../repository/produts";
+import { fetchProducts, getProducts } from "../repository/produts";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { getCountCart } from "../repository/carts";
@@ -11,7 +11,8 @@ import { categoryOptions } from "../utils/contstant/category";
 import ProductList from "../components/ProductList";
 import SortProduct from "../components/SortProduct";
 import { VscListFilter } from "react-icons/vsc";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
+import { sortOptions } from "../utils/contstant/sort";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -21,17 +22,18 @@ function List() {
     URLSearchParams.get("category") || categoryOptions.FOOD
   );
   const navigate = useNavigate();
-  const [sort, setSort] = useState(URLSearchParams.get("sort") || "price");
+  const [sort, setSort] = useState(URLSearchParams.get("sort") || sortOptions.PRICE);
   const [filter, setFilter] = useState(false);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
-    if (!["name", "discount", "price"].includes(sort)) {
-      setSort("name");
-      SetURLSearchParams({ q, category, sort: "discount" });
+    if (![sortOptions.NAME, sortOptions.DISCOUNT, sortOptions.PRICE].includes(sort)) {
+      setSort(sortOptions.PRICE);
+      SetURLSearchParams({ q, category, sort: sortOptions.PRICE });
     }
-    setProducts(getProducts(q, category, sort));
+    fetchProducts().then((res) => {
+      setProducts(getProducts(res, { q, category, sort }));
+    });
   }, [q, category, sort]);
 
   const handleSearch = (e) => {
@@ -57,10 +59,10 @@ function List() {
           {/* Profile */}
           <div className="px-5 pt-7 flex justify-between items-center">
             <div className="">
-              <p className="text-md">
-                Hello {getCustomer()?.customer || "Brother"}
+              <p className="">
+                Hai {getCustomer()?.customer || "Brother"}
               </p>
-              <p className="text-xl font-bold">Welcome Back!</p>
+              <p className="text-md font-bold">Selamat Datang Kembali!</p>
             </div>
             <div
               className="relative hover:cursor-pointer text-white rounded-lg p-2"
@@ -76,14 +78,16 @@ function List() {
           <div className="px-5 my-4 relative flex gap-2 items-center">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Cari Produk"
               className="bg-white text-black rounded-md w-full p-2 h-8 pl-10 focus:outline-primary outline-1 outline-primary outline-double"
               defaultValue={q}
               onChange={handleSearch}
             />
             <FaSearch className="absolute top-2 text-md left-8 text-gray-400" />
             <VscListFilter
-              className={`text-4xl hover:cursor-pointer ${filter && 'text-white'}`}
+              className={`text-4xl hover:cursor-pointer ${
+                filter && "text-white"
+              }`}
               onClick={() => setFilter((prev) => !prev)}
             />
           </div>
@@ -122,13 +126,13 @@ function List() {
           )}
           {products.length === 0 && (
             <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
-              Product is Not Found
+              Produk tidak ditemukan
             </div>
           )}
         </div>
-          <div className="fixed bottom-0 bg-white text-black p-2 items-center flex justify-center w-full md:w-1/2 rounded-lg">
-            <Footer/>
-          </div>
+        <div className="fixed bottom-0 bg-primary text-white p-2 items-center flex justify-center w-full md:w-1/2">
+          <Footer />
+        </div>
       </div>
       <ModalCustomer
         setIsModalCustomer={setIsModalCustomer}

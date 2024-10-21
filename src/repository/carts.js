@@ -1,5 +1,3 @@
-import { getCustomer } from "./customer";
-import { sendOrders } from "./orders";
 import { calculateDiscount } from "../utils/formatter";
 
 const productsKey = "products";
@@ -77,18 +75,18 @@ export const removeAllCheckout = () => {
 };
 
 export const moveToCheckOut = (products) => {
-  const checkout = []
+  const checkout = [];
   products.forEach((product) => {
-  checkout.push({
-  id: product.id,
-  username: product.username,
-  name: product.name,
-  qty: product.qty,
-  note: product.note,
-  price: calculateDiscount(product.price, product.discount)
-})
-removeItemCart(product.id)
-});
+    checkout.push({
+      id: product.id,
+      username: product.username,
+      name: product.name,
+      qty: product.qty,
+      note: product.note,
+      price: calculateDiscount(product.price, product.discount),
+    });
+    removeItemCart(product.id);
+  });
   localStorage.removeItem(checkoutKey);
   localStorage.setItem(checkoutKey, JSON.stringify(checkout));
 };

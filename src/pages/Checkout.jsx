@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getUser } from "../repository/users";
+import { fetchSeller, getUser } from "../repository/users";
 import { formatNumberIDR } from "../utils/formatter";
 import { BsArrowLeft, BsPencil, BsShop } from "react-icons/bs";
 import { getAllCheckout } from "../repository/carts";
@@ -30,11 +30,9 @@ function Checkout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const productDetail = getAllCheckout();
-    const userDetail = getUser(username);
-
-    if (userDetail && productDetail && getCustomer()) {
-      setUser(userDetail);
+    fetchSeller().then((users) => {
+      const productDetail = getAllCheckout();
+      setUser(getUser(users, username));
       setProducts(productDetail);
 
       let tmpTotal = 0;
@@ -55,14 +53,14 @@ ${index + 1}. <b>${product.name}</b>
       setTotal(tmpTotal);
       setTotalQty(tmpTotalQty);
       setTitle(message);
-
-      return;
-    }
-
-    navigate("/404");
+    });
   }, []);
 
-  if (!user || products.length == 0 || !getCustomer()) {
+  if (
+    Object.keys(user).length === 0 ||
+    products.length == 0 ||
+    !getCustomer()
+  ) {
     return navigate("/404");
   }
 
@@ -125,7 +123,7 @@ ${location.origin}
                 className="p-1 text-3xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
               />
-              <p>Checkout</p>
+              <p>Check Out</p>
             </div>
             <p className="font-bold py-3 px-2">Rincian Pembelian</p>
             <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
@@ -150,11 +148,11 @@ ${location.origin}
                 );
               })}
               <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
-                <p>Total QTY: {totalQty}</p>
+                <p>Total Jumlah: {totalQty}</p>
                 <p>{formatNumberIDR(total)}</p>
               </div>
             </div>
-            <p className="font-bold py-3 px-2">Payment Method</p>
+            <p className="font-bold py-3 px-2">Metode Pembayaran</p>
             <div className="flex flex-col gap-2 p-2 bg-white rounded-lg">
               <PaymentList
                 payment={{ provider: "cash", value: "" }}
@@ -181,7 +179,7 @@ ${location.origin}
                   <CopyToClipboard
                     text={VA}
                     onCopy={() =>
-                      alert("success", "No Rek Copied on Clipboard")
+                      alert("success", "No Rek Disalin di Papan Klip")
                     }
                   >
                     <AiOutlineCopy
@@ -223,12 +221,12 @@ ${location.origin}
           <div className="fixed bottom-0 z-10 text-sm h-24 flex w-full md:w-1/2  items-center gap-2 bg-white shadow-lg justify-between">
             <div className=" flex flex-col w-full items-center  px-5 py-2 h-full">
               <div className="flex items-center justify-between p-2 w-full">
-                <p>Total</p>
+                <p>Total Bayar</p>
                 <div className="flex items-center">
                   <p>{formatNumberIDR(total)}</p>
                   <CopyToClipboard
                     text={total}
-                    onCopy={() => alert("success", "Total Copied on Clipboard")}
+                    onCopy={() => alert("success", "Total Bayar Disalin di Papan Klip")}
                   >
                     <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
                   </CopyToClipboard>
@@ -238,7 +236,7 @@ ${location.origin}
                 className="w-full bg-primary h-full text-white"
                 type="submit"
               >
-                Buy
+                Bayar
               </button>
             </div>
           </div>

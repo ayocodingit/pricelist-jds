@@ -1,114 +1,14 @@
-const users = [
-  {
-    username: "novansyaah",
-    name_card: "Rahadian Novansyah",
-    payments: [
-      {
-        provider: "gopay",
-        value: "089669494255",
-      },
-      {
-        provider: "dana",
-        value: "089669494255",
-      },
-      {
-        provider: "jago syariah",
-        value: "502687237661",
-      },
-    ],
-  },
-  {
-    username: "duhabduh",
-    name_card: "Muhamad Abduh",
-    payments: [
-      {
-        provider: "gopay",
-        value: "085722507840",
-      },
-      {
-        provider: "jago syariah",
-        value: "501150988960",
-      },
-    ],
-  },
-  {
-    username: "samudra_ajri",
-    name_card: "Samudra Ajri",
-    payments: [
-      {
-        provider: "gopay",
-        value: "082129379891",
-      },
-      {
-        provider: "ovo",
-        value: "082129379891",
-      },
-    ],
-  },
-  {
-    username: "ashrinp",
-    name_card: "Ashri Permana",
-    payments: [
-      {
-        provider: "gopay",
-        value: "089666300757",
-      },
-      {
-        provider: "dana",
-        value: "089666300757",
-      },
-      {
-        provider: "jago",
-        value: "07925176333",
-      },
-    ],
-  },
-  {
-    username: "shintadewiaw",
-    name_card: "Shinta Dewi",
-    payments: [
-      {
-        provider: "jago syariah",
-        value: "502139100590",
-      },
-    ],
-  },
-  {   
-    username: "imamfahmi29",
-    name_card: "Imam Fahmi Fadillah",
-    payments: [
-      {
-        provider: "gopay",
-        value: "087802366348",
-      },
-      {
-        provider: "jago",
-        value: "502292253759",
-      },
-    ],
-  },
-   {
-    username: "wanzismail",
-    name_card: "Ridwan Ismail",
-    payments: [
-      {
-        provider: "gopay",
-        value: "081313318815",
-      },
-      {
-        provider: "jago syariah",
-        value: "501424131640",
-      },
-      {
-        provider: "bca",
-        value: "1390112927",
-      },
-    ],
-  },
+export const fetchSeller = async () => {
+  try {
+    const res = await fetch(`/sellers.json`)
+    const data = await res.json()
+    return data
+  } catch (error) {
+    return []
+  }
+}
 
-
-];
-
-export const getUser = (username) => {
-  return users.filter((user) => user.username === username)[0];
+export const getUser = (users, username) => {
+  const user = users.filter((user) => user.username === username)[0]
+  return user
 };

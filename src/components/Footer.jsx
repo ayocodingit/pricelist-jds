@@ -2,11 +2,11 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="text-sm flex gap-1">
-        For Register New Product you can Join
-        <a href="https://t.me/+zVf_gRBkoixlNTg1" className="underline">
-          Here
-        </a>
+    <div className="text-md flex gap-1">
+      Tertarik Berjualan! Join
+      <a href="https://t.me/+zVf_gRBkoixlNTg1" className="underline">
+        Disini
+      </a>
     </div>
   );
 }

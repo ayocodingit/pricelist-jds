@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { getByID } from "../repository/produts";
+import { fetchProducts, getByID } from "../repository/produts";
 import { BsArrowLeft, BsCartPlus } from "react-icons/bs";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import {
@@ -32,19 +32,14 @@ function DetailProduct() {
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
   const navigate = useNavigate();
+
   useEffect(() => {
-    const productDetail = getByID(id);
-    setTotalCart(getCountCart);
-
-    if (productDetail) {
-      setProduct(productDetail);
-      setTotal(
-        calculateDiscount(productDetail.price, productDetail.discount) * qty
-      );
-      return;
-    }
-
-    navigate("/404");
+    fetchProducts().then((products) => {
+      const product = getByID(products, id);
+      setProduct(product);
+      setTotalCart(getCountCart);
+      setTotal(calculateDiscount(product.price, product.discount) * qty);
+    });
   }, [totalCart]);
 
   const calculateTotal = (price, discount, operator) => {
@@ -64,7 +59,7 @@ function DetailProduct() {
   }
 
   const alert = (isNewProduct) => {
-    toast.success(`${isNewProduct ? "Add To Cart" : "Updated"} Success`, {
+    toast.success(`${isNewProduct ? "Tambah Keranjang" : "Update Keranjang"} Sukses`, {
       position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
@@ -100,7 +95,7 @@ function DetailProduct() {
               <img
                 src={product.image}
                 alt="image product"
-                className={`w-full h-[24rem] p-2 object-contain hover:cursor-zoom-in`}
+                className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
               />
             </PhotoView>
           </PhotoProvider>
@@ -210,8 +205,8 @@ Hatur nuhun~ ✨
               )}
               <p className="text-wrap">{product.name}</p>
             </div>
-            <div className="flex flex-col w-full gap-2">
-              <p>Seller</p>
+            <div className="flex flex-col w-full gap-2 py-2">
+              <p className="text-xs">Kontak Penjual</p>
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <BiUserCheck className="text-3xl" />
@@ -240,10 +235,10 @@ Hatur nuhun~ ✨
             )}
 
             <div className="flex flex-col gap-2">
-              <p>Note</p>
+              <p>Catatan</p>
               <textarea
                 id="note"
-                placeholder="Enter Note"
+                placeholder="Catatan untuk produk atau penjual"
                 onChange={(e) => setNote(e.target.value)}
                 className="rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20"
                 maxLength={100}
@@ -257,7 +252,7 @@ Hatur nuhun~ ✨
         <div className="fixed bottom-0 w-full h-16 text-white">
           <div className="flex w-full items-center bg-white h-full md:w-1/2 p-2">
             <div className=" p-2 items-center flex flex-col w-1/3 text-black">
-              <p className="">Total Price</p>
+              <p className="">Total</p>
               <p className="font-serif">
                 {formatNumberIDR(!isStockEmpty ? total : 0)}
               </p>
@@ -274,7 +269,7 @@ Hatur nuhun~ ✨
               }}
             >
               <BsCartPlus className="text-2xl" />
-              Add to Cart
+              Tambah Keranjang
             </button>
           </div>
         </div>
