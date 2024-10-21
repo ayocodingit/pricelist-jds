@@ -11,7 +11,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
   }, [isModalCustomer]);
 
   const alert = () => {
-    toast.success(`Thank You For Register`, {
+    toast.success(`Terima Kasih Sudah Mendaftar `, {
       position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
@@ -43,7 +43,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
         className="rounded-md flex flex-col gap-2 items-center"
       >
         <label htmlFor="customer" className="text-sm">
-          Silakan masukan data diri anda untuk melakukan pemesanan
+          Silahkan Masukan Data Diri sebelum Melakukan Proses Bayar
         </label>
         <input
           type="text"
@@ -59,7 +59,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
           type="submit"
           className="bg-primary text-white rounded-lg w-1/2"
         >
-          Save
+          Simpan
         </button>
       </form>
     </ModalCustom>
