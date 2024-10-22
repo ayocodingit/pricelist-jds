@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/Roboto-Regular.ttf");
-}
+@layer base {
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Roboto-Regular.ttf");
+  }
 
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/Roboto-Bold.ttf");
+  }
+}

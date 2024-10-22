@@ -297,7 +297,7 @@ ${location.origin}
           </div>
           {edit && (
             <textarea
-              className="rounded-md outline-2 outline-primary font-serif  outline-dashed p-2 w-full h-44 bg-white shadow-lg"
+              className="rounded-md outline-2 outline-primary font-[sans-serif]  outline-dashed p-2 w-full h-44 bg-white shadow-lg"
               onChange={(e) => setTitle(e.target.value)}
               disabled={!edit}
             >

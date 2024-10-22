@@ -252,7 +252,7 @@ Hatur nuhun~ ✨
           <div className="flex w-full items-center bg-white h-full md:w-1/2 p-2">
             <div className=" p-2 items-center flex flex-col w-1/3 text-black">
               <p className="">Total</p>
-              <p className="font-serif">
+              <p className="font-[sans-serif]">
                 {formatNumberIDR(!isStockEmpty ? total : 0)}
               </p>
             </div>
