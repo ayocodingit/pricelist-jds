@@ -70,20 +70,6 @@
         "description": ""
     },
     {
-        "id": 6,
-        "image": "https://i.ibb.co.com/bsdnCSK/image.png",
-        "name": "ES KUL-KUL PISANG DAN MELON",
-        "category": "makanan",
-        "price": 2500,
-        "username": "samudra_ajri",
-        "tag": "ready stock",
-        "stock": 10,
-        "discount": 0,
-        "is_available": true,
-        "location": "R. Selatan",
-        "description": ""
-    },
-    {
         "id": 7,
         "image": "https://i.ibb.co.com/5B95kvd/photo-2024-10-09-10-34-57.jpg",
         "name": "Cranberry Creamcheese Sourdough Bread",
