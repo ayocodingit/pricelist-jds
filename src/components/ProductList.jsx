@@ -54,8 +54,7 @@ function ProductList({ product }) {
               isStockEmpty ? "text-gray-500 " : "text-primary"
             } text-xs rounded-md capitalize`}
           >
-            {isStockEmpty && "Not "}
-            {product.tag}
+            {isStockEmpty ? product.tag : 'sold out'}
           </p>
         </div>
       </div>
