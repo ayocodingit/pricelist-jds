@@ -87,7 +87,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
           />
         </div>
         <span className="text-xs text-red-500 w-full md:w-1/2">
-          {!form.telegram && isChange && "Username Telegram harus diisi"}
+          {!form.telegram && "Username Telegram harus diisi"}
         </span>
         <div className="md:w-1/2 w-full flex flex-col my-4 text-xs italic gap-1">
           <span>
