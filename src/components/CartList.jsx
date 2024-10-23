@@ -55,7 +55,7 @@ function CartList({
         </div>
         <div className="w-full flex flex-col gap-1 relative">
           <p className="text-sm">{product.name}</p>
-          <p className="text-sm font-[sans-serif] text-orange-600 flex gap-2 items-center">
+          <p className="text-sm font-[sans-serif] text-primary flex gap-2 items-center">
             <span className="text-md">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
               <span className="bg-green-100  text-primary p-1 rounded-md text-xs">
