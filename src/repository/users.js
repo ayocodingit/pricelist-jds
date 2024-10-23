@@ -1,6 +1,6 @@
 export const fetchSeller = async () => {
   try {
-    const res = await fetch(`/sellers.json`)
+    const res = await fetch(`/api/sellers.json`)
     const data = await res.json()
     return data
   } catch (error) {

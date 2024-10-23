@@ -2,7 +2,7 @@ import { sortOptions } from "../utils/contstant/sort";
 
 export const fetchProducts = async () => {
   try {
-    const res = await fetch(`/products.json`);
+    const res = await fetch(`/api/products.json`);
     const data = await res.json();
     return data;
   } catch (error) {
