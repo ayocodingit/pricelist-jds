@@ -149,7 +149,7 @@ Hatur nuhun~ ✨
                   } rounded-md capitalize`}
                 >
                   {!isStockEmpty ? product.tag : 'sold out'}{" "}
-                  {product.tag == tagOptions.READY_STOCK && (
+                  {product.tag == tagOptions.READY_STOCK && !isStockEmpty && (
                     <span>{product.stock}</span>
                   )}
                 </p>
