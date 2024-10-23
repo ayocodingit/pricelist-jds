@@ -12,7 +12,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className=" rounded-md flex bg-white shadow-xl hover:outline-[#5D9F5D] hover:outline-double"
+      className=" rounded-md flex bg-white shadow-xl hover:outline-primary hover:outline-double"
       to={"/list/" + product.id}
       title={product.name}
     >
@@ -37,7 +37,7 @@ function ProductList({ product }) {
           >
             {product.name}
           </h1>
-          <div className="font-[sans-serif] text-orange-600 flex gap-2 items-center">
+          <div className="font-[sans-serif] text-primary flex gap-2 items-center">
             <p className="text-md">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
