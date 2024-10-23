@@ -28,7 +28,7 @@ function SuccessOrder() {
               target="_blank"
               className="bg-orange-500 p-2 rounded-lg text-white shadow-md"
             >
-              Ada Feedback?
+              Isi Feedback
             </a>
           </div>
         </div>

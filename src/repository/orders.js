@@ -117,19 +117,20 @@ export const sendOrders = async (products, paymentMethod, file, message) => {
   const photo = [];
 
   if (paymentMethod !== "cash") {
-     try {
-       const res = await uploadImage(file);
-       const filename = res[0].filename;
-       photo.push(filename);
-     } catch (error) {
-       throw new Error(error);
-     }
-   }
+    try {
+      const res = await uploadImage(file);
+      const filename = res[0].filename;
+      photo.push(filename);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-   products.forEach((product) =>
-     promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
-   );
+  products.forEach((product) =>
+    promises.push(storeOrder(product, orderId, customer, paymentMethod, photo))
+  );
 
-   Promise.allSettled([...promises, sendTelegram(message, file)]).then((res) => console.log(res));
- 
+  Promise.allSettled([...promises, sendTelegram(message, file)]).then((res) =>
+    console.log(res)
+  );
 };

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { formatNumberIDR } from "../utils/formatter";
 import ModalCustomer from "../components/ModalCustomer";
-import { getCustomer } from "../repository/customer";
+import { checkCompleteCustomer } from "../repository/customer";
 
 function Cart() {
   const [products, setProducts] = useState([]);
@@ -88,11 +88,11 @@ function Cart() {
                 checkTotal != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
               onClick={() => {
-                if (checkTotal != 0 && getCustomer()?.customer) {
+                if (checkTotal != 0 && checkCompleteCustomer()) {
                   moveToCheckOut(products);
                   return navigate(`/checkout/${username}`);
                 }
-                if (!getCustomer()?.customer) {
+                if (!checkCompleteCustomer()) {
                   setIsModalCustomer(true);
                 }
               }}

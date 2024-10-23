@@ -4,14 +4,22 @@ import { getCustomer, storeCustomer } from "../repository/customer";
 import { Flip, toast } from "react-toastify";
 
 function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
-  const [customer, setCustomer] = useState("");
+  const [form, setForm] = useState({
+    customer: "",
+    telegram: "",
+  });
+  const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
-    setCustomer(getCustomer()?.customer || "");
+    const { customer, telegram } = getCustomer();
+    setForm({
+      customer: customer ?? "",
+      telegram: telegram ?? "",
+    });
   }, [isModalCustomer]);
 
-  const alert = () => {
-    toast.success(`Terima Kasih Sudah Mendaftar `, {
+  const alert = (status, message) => {
+    toast[status](message, {
       position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
@@ -25,10 +33,8 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!customer) return;
-    storeCustomer({ customer, isOpen: true });
-    setCustomer("");
-    alert();
+    storeCustomer(form);
+    alert("success", "Registrasi berhasil");
     setIsModalCustomer(false);
   };
 
@@ -40,24 +46,60 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
       <form
         action="#"
         onSubmit={handleSubmit}
-        className="rounded-md flex flex-col gap-2 items-center"
+        className="rounded-md flex flex-col gap-2 items-center text-sm w-full"
       >
-        <label htmlFor="customer" className="text-sm">
-          Silahkan Masukan Data Diri sebelum Melakukan Proses Bayar
-        </label>
-        <input
-          type="text"
-          id="customer"
-          className="w-full h-8 p-2 text-sm outline-primary outline-double rounded-md"
-          placeholder="Nama Lengkap - Divisi"
-          min={3}
-          onChange={(e) => setCustomer(e.target.value)}
-          defaultValue={customer}
-          required
-        />
+        <p className="text-md font-bold">Registrasi Pembeli</p>
+        <div className="w-full md:w-1/2 flex flex-col gap-2 my-3">
+          <label htmlFor="customer">Nama Lengkap - Divisi</label>
+          <input
+            type="text"
+            id="customer"
+            name="customer"
+            className="w-full  h-8 p-2 text-sm outline-primary outline-double rounded-md"
+            placeholder="Nama Lengkap - Divisi"
+            min={3}
+            defaultValue={form.customer}
+            onChange={(e) => {
+              setForm({ ...form, customer: e.target.value });
+              setIsChange(true);
+            }}
+            required
+          />
+          <span className="text-xs text-red-500">
+            {!form.customer && isChange && "Nama Lengkap - Divisi harus diisi"}
+          </span>
+        </div>
+        <div className="w-full md:w-1/2 flex flex-col gap-2 justify-start">
+          <label htmlFor="telegram">Username Telegram</label>
+          <input
+            type="text"
+            id="telegram"
+            name="telegram"
+            className="w-full h-8 p-2 text-sm outline-primary outline-double rounded-md"
+            placeholder="Username Telegram"
+            min={3}
+            defaultValue={form.telegram}
+            onChange={(e) => {
+              setForm({ ...form, telegram: e.target.value.replace("@", "") });
+              setIsChange(true);
+            }}
+            required
+          />
+        </div>
+        <span className="text-xs text-red-500 w-full md:w-1/2">
+          {!form.telegram && isChange && "Username Telegram harus diisi"}
+        </span>
+        <div className="md:w-1/2 w-full flex flex-col my-4 text-xs italic gap-1">
+          <span>
+            *) Username Telegram akan digunakan untuk konfirmasi pesanan
+          </span>
+          <span>
+            *) Form Registrasi Pembeli ini berlaku hanya sementara waktu
+          </span>
+        </div>
         <button
           type="submit"
-          className="bg-primary text-white rounded-lg w-1/2"
+          className="bg-primary text-white rounded-md h-8 w-1/2"
         >
           Simpan
         </button>

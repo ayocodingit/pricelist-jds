@@ -84,6 +84,7 @@ ${index + 1}. <b>${product.name}</b>
 <b>Berikut Rinciannya</b>
 
 Nama Pelanggan: <b>${getCustomer().customer}</b>
+Akun Telegram: <b>@${getCustomer().telegram}</b>
 Payment Method: <b>${paymentMethod.toUpperCase()}</b>
 
 Detail produk: ${title}
@@ -93,10 +94,7 @@ Total: <b>${formatNumberIDR(total)}</b>
 <strong>Jangan lupa Share terus produk kamu yah
 agar penjualannya makin meningkat 🤝</strong>
 
-<b>Salam Sukses JDS Mart</b>
 ${location.origin}
-
-
 `;
     if (paymentMethod != "cash" && !file)
       return alert("error", `bukti transfer belum di unggah!`);
@@ -226,7 +224,9 @@ ${location.origin}
                   <p>{formatNumberIDR(total)}</p>
                   <CopyToClipboard
                     text={total}
-                    onCopy={() => alert("success", "Total Bayar Disalin di Papan Klip")}
+                    onCopy={() =>
+                      alert("success", "Total Bayar Disalin di Papan Klip")
+                    }
                   >
                     <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
                   </CopyToClipboard>

@@ -3,6 +3,7 @@ export const sendTelegram = async (message, photo) => {
   if (photo) formData.set("photo", photo);
   formData.set(photo ? "caption" : "text", message);
   formData.set("parse_mode", "HTML");
+  formData.set("message_thread_id", "103");
   formData.set("chat_id", import.meta.env.VITE_TELEGRAM_CHAT_ID);
   if (!photo) formData = JSON.stringify(Object.fromEntries(formData.entries()));
 

@@ -13,11 +13,16 @@ export const storeCustomer = (payload) => {
 export const getCustomer = () => {
   const item = localStorage.getItem(customerKey);
 
-  if (!item) return item;
+  if (!item) return {};
   try {
     return JSON.parse(item);
   } catch (error) {
     storeCustomer({ customer: item, isOpen: true });
     return getCustomer();
   }
+};
+
+export const checkCompleteCustomer = () => {
+  const { customer, telegram } = getCustomer();
+  return customer && telegram;
 };
