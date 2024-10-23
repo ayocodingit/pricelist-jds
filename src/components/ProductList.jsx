@@ -31,7 +31,7 @@ function ProductList({ product }) {
           )}
         </div>
 
-        <div className="flex flex-col gap-1 p-2 text-sm">
+        <div className="flex flex-col p-2 text-sm">
           <h1
             className={`text-nowrap overflow-hidden text-ellipsis font-roboto capitalize w-full`}
           >
