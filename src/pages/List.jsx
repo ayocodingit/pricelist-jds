@@ -22,7 +22,7 @@ function List() {
     URLSearchParams.get("category") || categoryOptions.FOOD
   );
   const navigate = useNavigate();
-  const [sort, setSort] = useState(URLSearchParams.get("sort") || sortOptions.PRICE);
+  const [sort, setSort] = useState(URLSearchParams.get("sort") || sortOptions.STOK);
   const [filter, setFilter] = useState(false);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
 
