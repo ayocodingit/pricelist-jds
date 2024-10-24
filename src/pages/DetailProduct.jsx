@@ -140,7 +140,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="px-2 text-sm ">
-          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(48dvh)] md:h-auto overflow-auto">
+          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(48dvh)] overflow-auto">
             <div className="flex justify-between">
               <div>
                 <p
@@ -248,7 +248,7 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="fixed md:relative bottom-0 w-full h-16 text-white">
+        <div className="fixed md:relative bottom-0 w-full h-16 px-2 text-white">
           <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
             <div className=" p-2 items-center flex flex-col w-1/3 text-black">
               <p className="">Total</p>
