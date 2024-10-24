@@ -91,7 +91,7 @@ Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
 Detail produk: ${title}
 Total: <b>${formatNumberIDR(total)}</b>
 
-<strong>Jangan lupa Konfirmasi Pesanan ini ke pelanggan</strong>
+<strong>Jangan lupa Konfirmasi Pesanan ini ke pelanggan kamu 🤝</strong>
 
 ${location.origin}
 `;
