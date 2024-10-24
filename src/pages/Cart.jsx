@@ -23,7 +23,7 @@ function Cart() {
   }, [isChange, checkTotal, username, ids]);
 
   return (
-    <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)]">
+    <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
       <div className="w-full md:w-1/2 items-center">
         <div className="flex gap-2 py-2 px-2 justify-between items-center shadow-sm sticky top-0 z-10 bg-primary text-white">
           <BsArrowLeft
