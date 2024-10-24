@@ -249,7 +249,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="fixed md:relative bottom-0 w-full h-16 text-white">
-          <div className="flex w-full items-center bg-white h-full p-2">
+          <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
             <div className=" p-2 items-center flex flex-col w-1/3 text-black">
               <p className="">Total</p>
               <p className="font-[sans-serif]">
