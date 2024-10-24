@@ -1,6 +1,7 @@
 import React from "react";
-import { AiOutlineSortAscending, AiOutlineDollar, AiOutlinePercentage } from "react-icons/ai";
+import { AiOutlineSortAscending, AiOutlineDollar } from "react-icons/ai";
 import { sortOptions } from "../utils/contstant/sort";
+import { BiCube } from "react-icons/bi";
 
 function SortProduct({ handleSort, sort }) {
   return (
@@ -27,13 +28,13 @@ function SortProduct({ handleSort, sort }) {
         </li>
         <li
           className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md  ${
-            sort == sortOptions.DISCOUNT ? "text-primary" :  "text-black"
+            sort == sortOptions.STOK ? "text-primary" :  "text-black"
           }`}
-          onClick={() => handleSort(sortOptions.DISCOUNT)}
-          title={sortOptions.DISCOUNT}
+          onClick={() => handleSort(sortOptions.STOK)}
+          title={sortOptions.STOK}
         >
-          <AiOutlinePercentage />
-           <span className="first-letter: capitalize">{ sortOptions.DISCOUNT }</span>
+          <BiCube />
+           <span className="first-letter: capitalize">{ sortOptions.STOK }</span>
         </li>
       </>
   );

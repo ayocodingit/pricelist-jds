@@ -27,9 +27,9 @@ function List() {
   const [isModalCustomer, setIsModalCustomer] = useState(false);
 
   useEffect(() => {
-    if (![sortOptions.NAME, sortOptions.DISCOUNT, sortOptions.PRICE].includes(sort)) {
-      setSort(sortOptions.PRICE);
-      SetURLSearchParams({ q, category, sort: sortOptions.PRICE });
+    if (![sortOptions.NAME, sortOptions.STOK, sortOptions.PRICE].includes(sort)) {
+      setSort(sortOptions.STOK);
+      SetURLSearchParams({ q, category, sort: sortOptions.STOK });
     }
     fetchProducts().then((res) => {
       setProducts(getProducts(res, { q, category, sort }));

@@ -16,8 +16,8 @@ const getFunctionSort = (sort) => {
     case sortOptions.PRICE:
       func = sortDescByPrice;
       break;
-    case sortOptions.DISCOUNT:
-      func = sortDescByDiscount;
+    case sortOptions.STOK:
+      func = sortDescByStock;
       break;
   }
   return func;
@@ -41,9 +41,9 @@ export const getByID = (products, id) => {
   return products.filter((product) => product.id == id)[0];
 };
 
-const sortDescByDiscount = (products) => {
+const sortDescByStock = (products) => {
   return products.sort((a, b) => {
-    return b.discount - a.discount;
+    return b.stock - a.stock;
   });
 };
 
