@@ -216,7 +216,7 @@ ${location.origin}
               </div>
             )}
           </div>
-          <div className="fixed md:relative bottom-0 z-10 text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg justify-between">
+          <div className="fixed md:relative bottom-0 z-10 text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
             <div className=" flex flex-col w-full items-center  px-5 py-2 h-full">
               <div className="flex items-center justify-between p-2 w-full">
                 <p>Total Bayar</p>
