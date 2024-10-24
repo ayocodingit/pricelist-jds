@@ -130,7 +130,7 @@ function List() {
             </div>
           )}
         </div>
-        <div className="fixed bottom-0 bg-primary text-white p-2 items-center flex justify-center w-full md:w-1/2">
+        <div className="fixed md:relative bottom-0 bg-primary text-white p-2 items-center flex justify-center w-full md:w-1/2">
           <Footer />
         </div>
       </div>
