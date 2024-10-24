@@ -83,18 +83,15 @@ ${index + 1}. <b>${product.name}</b>
  
 <b>Berikut Rinciannya</b>
 
-<u>Data Pelanggan</u>
+<b><u>Data Pelanggan</u></b>
+
 Nama: <b>${getCustomer().customer}</b>
 Akun: <b>@${getCustomer().telegram}</b>
-
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
-
 Detail produk: ${title}
-
 Total: <b>${formatNumberIDR(total)}</b>
 
-<strong>Jangan Konfirmasi Pesanan dan lupa Share terus produk kamu yah
-agar penjualannya makin meningkat 🤝</strong>
+<strong>Jangan lupa Konfirmasi Pesanan ini ke pelanggan</strong>
 
 ${location.origin}
 `;
