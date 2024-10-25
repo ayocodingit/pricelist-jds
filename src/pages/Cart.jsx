@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getAllCart, moveToCheckOut, removeAllCart, removesItemCart  } from "../repository/carts";
+import {
+  getAllCart,
+  moveToCheckOut,
+  removeAllCart,
+  removesItemCart,
+} from "../repository/carts";
 import { BsArrowLeft } from "react-icons/bs";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
@@ -34,16 +39,16 @@ function Cart() {
           <FaRegTrashAlt
             className="text-lg hover: cursor-pointer"
             onClick={() => {
-              if (ids.length === 0) { 
-                  removeAllCart()
+              if (ids.length === 0) {
+                removeAllCart();
               } else {
-                  removesItemCart(ids)
+                removesItemCart(ids);
               }
-               setUsername("")
-               setIsChange(true);
-               setIds([])
-               setCheckTotal(0)
-             }}
+              setUsername("");
+              setIsChange(true);
+              setIds([]);
+              setCheckTotal(0);
+            }}
           />
         </div>
 
@@ -76,8 +81,10 @@ function Cart() {
         <div className="fixed md:relative bottom-0 text-sm py-4 flex w-full items-center gap-2 bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
-              <p className="first-letter:capitalize">{username ? 'Penjual' : 'Silahkan Pilih Produk terlebih dahulu'}</p>
-              <p>{username && '@' + username}</p>
+              <p className="first-letter:capitalize">
+                {username ? "Penjual" : "Silahkan Pilih Produk terlebih dahulu"}
+              </p>
+              <p>{username && "@" + username}</p>
             </div>
             <div className="flex justify-between w-full  items-center">
               <p>Produk Terpilih({ids.length})</p>
@@ -87,14 +94,12 @@ function Cart() {
               className={`w-full bg-primary text-white flex justify-center rounded-lg p-2 ${
                 checkTotal != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
+              disabled={checkTotal === 0}
               onClick={() => {
-                if (checkTotal != 0 && checkCompleteCustomer()) {
-                  moveToCheckOut(products);
-                  return navigate(`/checkout/${username}`);
-                }
-                if (!checkCompleteCustomer()) {
-                  setIsModalCustomer(true);
-                }
+                if (!checkCompleteCustomer()) return setIsModalCustomer(true);
+
+                moveToCheckOut(products);
+                return navigate(`/checkout/${username}`);
               }}
             >
               Proses Bayar

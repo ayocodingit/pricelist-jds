@@ -8,6 +8,7 @@ function ModalCustom({ modalIsOpen, closeModal, children }) {
       id="modal"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
+      closeTimeoutMS={300}
       style={{
         content: {
           top: "auto",

@@ -22,12 +22,17 @@ function List() {
     URLSearchParams.get("category") || categoryOptions.FOOD
   );
   const navigate = useNavigate();
-  const [sort, setSort] = useState(URLSearchParams.get("sort") || sortOptions.STOK);
+  const [sort, setSort] = useState(
+    URLSearchParams.get("sort") || sortOptions.STOK
+  );
   const [filter, setFilter] = useState(false);
+  const [filterCount, setFilterCount] = useState(0);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
 
   useEffect(() => {
-    if (![sortOptions.NAME, sortOptions.STOK, sortOptions.PRICE].includes(sort)) {
+    if (
+      ![sortOptions.NAME, sortOptions.STOK, sortOptions.PRICE].includes(sort)
+    ) {
       setSort(sortOptions.STOK);
       SetURLSearchParams({ q, category, sort: sortOptions.STOK });
     }
@@ -59,9 +64,7 @@ function List() {
           {/* Profile */}
           <div className="px-5 pt-7 flex justify-between items-center">
             <div className="">
-              <p className="">
-                Hai {getCustomer()?.customer || "Brother"}
-              </p>
+              <p className="">Hai {getCustomer()?.customer || "Brother"}</p>
               <p className="text-md font-bold">Selamat Datang Kembali!</p>
             </div>
             <div
@@ -85,27 +88,33 @@ function List() {
             />
             <FaSearch className="absolute top-2 text-md left-8 text-gray-400" />
             <VscListFilter
-              className={`text-4xl hover:cursor-pointer ${
+              className={`text-4xl hover:cursor-pointer select-none ${
                 filter && "text-white"
               }`}
-              onClick={() => setFilter((prev) => !prev)}
+              onClick={() => {
+                setFilter((prev) => !prev);
+                setFilterCount(1);
+              }}
             />
           </div>
-          {filter && (
-            <>
-              {/* Category */}
-              <div className="px-5 my-5 overflow-auto flex text-sm gap-2">
-                <FilterCategory
-                  handleCategory={handleCategory}
-                  category={category}
-                />
-              </div>
-              {/* Sorting */}
-              <div className="px-5 my-5 flex text-sm gap-2">
-                <SortProduct handleSort={handleSort} sort={sort} />
-              </div>
-            </>
-          )}
+          <div
+            className={`
+            ${filter && filterCount === 1 && "animate-opacity-open"} 
+            ${!filter && filterCount === 1 && "animate-opacity-close"}
+            select-none overflow-hidden h-0 opacity-0`}
+          >
+            {/* Category */}
+            <div className="px-5 mb-5 overflow-auto flex text-sm gap-2">
+              <FilterCategory
+                handleCategory={handleCategory}
+                category={category}
+              />
+            </div>
+            {/* Sorting */}
+            <div className="px-5 my-5 flex text-sm gap-2">
+              <SortProduct handleSort={handleSort} sort={sort} />
+            </div>
+          </div>
         </div>
 
         {/* Favorite */}

@@ -13,7 +13,6 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
       customer: customer ?? "",
       telegram: telegram ?? "",
     },
-    validateOnMount: true,
     onSubmit: (values) => {
       storeCustomer(values);
       formik.resetForm();
