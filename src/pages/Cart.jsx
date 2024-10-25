@@ -33,7 +33,7 @@ function Cart() {
         const cart = carts.filter((cart) => cart.id === product.id)[0]
         // check stock available
         if (cart.qty > product.stock) continue
-        products.pop({
+        products.push({
           ...product,
           ...cart,
         });
