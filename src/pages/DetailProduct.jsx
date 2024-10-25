@@ -271,14 +271,14 @@ Hatur nuhun~ ✨
         </div>
         <div className="fixed md:relative bottom-0 w-full h-16 px-2 text-white">
           <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
-            <div className="p-2 flex flex-col w-1/2 text-black">
+            <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
               <p className="font-[sans-serif]">
                 {formatNumberIDR(!isStockEmpty ? total : 0)}
               </p>
             </div>
             <button
-              className={` flex gap-2 rounded-lg p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-1/2 ${
+              className={` flex gap-2 rounded-lg p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
                 isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
               }`}
               disabled={!formik.isValid}
