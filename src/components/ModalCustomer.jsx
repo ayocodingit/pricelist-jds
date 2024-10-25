@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ModalCustom from "./ModalCustom";
 import { getCustomer, storeCustomer } from "../repository/customer";
 import { Flip, toast } from "react-toastify";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
-  const [form, setForm] = useState({
-    customer: "",
-    telegram: "",
-  });
-  const [isChange, setIsChange] = useState(false);
+  const { customer, telegram } = getCustomer();
 
-  useEffect(() => {
-    const { customer, telegram } = getCustomer();
-    setForm({
+  const formik = useFormik({
+    initialValues: {
       customer: customer ?? "",
       telegram: telegram ?? "",
-    });
-  }, [isModalCustomer]);
+    },
+    validateOnMount: true,
+    onSubmit: (values) => {
+      storeCustomer(values);
+      formik.resetForm();
+      alert("success", "Registrasi berhasil");
+      setIsModalCustomer(false);
+    },
+    validationSchema: yup.object().shape({
+      customer: yup.string().min(3).required().label('Nama Lengkap - Divisi'),
+      telegram: yup
+        .string()
+        .min(3)
+        .required()
+        .label('akun telegram'),
+    }),
+  });
 
   const alert = (status, message) => {
     toast[status](message, {
@@ -31,13 +43,6 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    storeCustomer(form);
-    alert("success", "Registrasi berhasil");
-    setIsModalCustomer(false);
-  };
-
   return (
     <ModalCustom
       modalIsOpen={isModalCustomer}
@@ -45,8 +50,8 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
     >
       <form
         action="#"
-        onSubmit={handleSubmit}
-        className="rounded-md flex flex-col gap-2 items-center text-sm w-full"
+        onSubmit={formik.handleSubmit}
+        className="rounded-md flex flex-col gap-1 items-center text-sm w-full"
       >
         <p className="text-md font-bold">Registrasi Pembeli</p>
         <div className="w-full md:w-1/2 flex flex-col gap-2 my-3">
@@ -55,51 +60,44 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
             type="text"
             id="customer"
             name="customer"
-            className="w-full  h-8 p-2 text-sm outline-primary outline-double rounded-md"
+            className={`w-full  h-8 p-2 text-sm outline-double rounded-md ${
+              formik.errors.customer ? "outline-red-500" : "outline-primary"
+            }`}
             placeholder="Nama Lengkap - Divisi"
-            min={3}
-            defaultValue={form.customer}
-            onChange={(e) => {
-              setForm({ ...form, customer: e.target.value });
-              setIsChange(true);
-            }}
-            required
+            {...formik.getFieldProps("customer")}
           />
-          <span className="text-xs text-red-500">
-            {!form.customer && isChange && "Nama Lengkap - Divisi harus diisi"}
+          <span className="first-letter:capitalize italic text-xs text-red-500">
+            {formik.errors.customer}
           </span>
         </div>
         <div className="w-full md:w-1/2 flex flex-col gap-2 justify-start">
-          <label htmlFor="telegram">Username Telegram</label>
+          <label htmlFor="telegram">Akun Telegram</label>
           <input
             type="text"
             id="telegram"
             name="telegram"
-            className="w-full h-8 p-2 text-sm outline-primary outline-double rounded-md"
-            placeholder="Username Telegram"
-            min={3}
-            defaultValue={form.telegram}
-            onChange={(e) => {
-              setForm({ ...form, telegram: e.target.value.replace("@", "") });
-              setIsChange(true);
-            }}
-            required
+            className={`w-full  h-8 p-2 text-sm outline-double rounded-md ${
+              formik.errors.telegram ? "outline-red-500" : "outline-primary"
+            }`}
+            placeholder="Akun Telegram"
+            {...formik.getFieldProps("telegram")}
           />
-        </div>
-        <span className="text-xs text-red-500 w-full md:w-1/2">
-          {!form.telegram && "Username Telegram harus diisi"}
-        </span>
-        <div className="md:w-1/2 w-full flex flex-col my-4 text-xs italic gap-1">
-          <span>
-            *) Username Telegram akan digunakan untuk konfirmasi pesanan
+          <span className="first-letter:capitalize italic text-xs text-red-500">
+            {formik.errors.telegram}
           </span>
+        </div>
+        <div className="md:w-1/2 w-full flex flex-col mb-4 text-xs italic gap-1">
+          <span>*) Akun Telegram akan digunakan untuk konfirmasi pesanan</span>
           <span>
             *) Form Registrasi Pembeli ini berlaku hanya sementara waktu
           </span>
         </div>
         <button
           type="submit"
-          className="bg-primary text-white rounded-md h-8 w-1/2"
+          className={`bg-primary text-white rounded-md h-8 w-full md:w-1/2 ${
+            formik.isSubmitting || (!formik.isValid && "opacity-70")
+          }`}
+          disabled={formik.isSubmitting || !formik.isValid}
         >
           Simpan
         </button>
