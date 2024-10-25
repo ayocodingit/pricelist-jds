@@ -73,7 +73,7 @@ function CartList({
           <div
             onClick={() => {
               navigate(
-                `/list/${product.id}?qty=${product.qty}&note=${product.note}`
+                `/list/${product.id}?qty=${product.qty}&note=${product.note ?? ''}`
               );
             }}
             className="hover: cursor-pointer"
