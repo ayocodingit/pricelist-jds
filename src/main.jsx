@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div className="bg-gray-50 print:bg-white">
+    <div className="bg-gray-50 print:bg-white select-none">
       <RouterProvider router={router} />
     </div>
     <ToastContainer />
