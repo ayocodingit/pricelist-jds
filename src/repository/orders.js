@@ -110,10 +110,9 @@ export const uploadImage = async (file) => {
   return await rawResponse.json();
 };
 
-export const sendOrders = async (products, paymentMethod, file, message) => {
+export const sendOrders = async (orderId, products, paymentMethod, file, message) => {
   const promises = [];
   const customer = getCustomer();
-  const orderId = `order-${Date.now()}`;
   const photo = [];
 
   if (paymentMethod !== "cash") {

@@ -7,7 +7,7 @@ import { getAllCheckout } from "../repository/carts";
 import { AiOutlineCopy, AiOutlinePrinter } from "react-icons/ai";
 import SocialMedia from "../components/SocialMedia";
 import { getAttrDate } from "../utils/date";
-import { getCustomer } from "../repository/customer";
+import { checkCompleteCustomer, getCustomer } from "../repository/customer";
 import PaymentList from "../components/PaymentList";
 import Dropzone from "../components/Dropzone";
 import { BiTrash } from "react-icons/bi";
@@ -32,8 +32,17 @@ function Checkout() {
   useEffect(() => {
     fetchSeller().then((users) => {
       const productDetail = getAllCheckout();
-      setUser(getUser(users, username));
+      const seller = getUser(users, username);
+      setUser(seller);
       setProducts(productDetail);
+
+      if (
+        Object.keys(seller).length == 0 ||
+        productDetail.length == 0 ||
+        !checkCompleteCustomer()
+      ) {
+        return navigate("/404");
+      }
 
       let tmpTotal = 0;
       let tmpTotalQty = 0;
@@ -56,14 +65,6 @@ ${index + 1}. <b>${product.name}</b>
     });
   }, []);
 
-  if (
-    Object.keys(user).length === 0 ||
-    products.length == 0 ||
-    !getCustomer()
-  ) {
-    return navigate("/404");
-  }
-
   const alert = (typeAlert, message) => {
     toast[typeAlert](message, {
       position: "bottom-right",
@@ -79,20 +80,21 @@ ${index + 1}. <b>${product.name}</b>
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const message = `Asiik ada yang beli produkmu @${username}
- 
-<b>Berikut Rinciannya</b>
+    const orderId = `#${Date.now()}`;
+    const message = `No Order: <b>${orderId}</b>
+Seller: <b>@${username}</b>
 
-<b><u>Data Pelanggan</u></b>
-
+<b><u>Data Pembeli</u></b>
 Nama: <b>${getCustomer().customer}</b>
 Akun: <b>@${getCustomer().telegram}</b>
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
-Detail produk: ${title}
+
+<b><u>Data Produk</u></b> ${title}
 Total: <b>${formatNumberIDR(total)}</b>
 
 <strong>Jangan lupa Konfirmasi Pesanan ini ke pelanggan kamu 🤝</strong>
 
+<strong>JDS Mart - Dari <b>UMKM</b> untuk <b>Semua!</b> 😁</strong>
 ${location.origin}
 `;
     if (paymentMethod != "cash" && !file)
@@ -106,7 +108,7 @@ ${location.origin}
       return alert("error", `file yang di upload harus berupa gambar`);
     }
 
-    sendOrders(products, paymentMethod, file, message);
+    sendOrders(orderId, products, paymentMethod, file, message);
     navigate("/success-order");
   };
 
@@ -157,7 +159,7 @@ ${location.origin}
                 setPaymentMethod={setPaymentMethod}
                 setVA={setVA}
               />
-              {user.payments.map((payment, index) => {
+              {user?.payments?.map((payment, index) => {
                 return (
                   <PaymentList
                     payment={payment}
@@ -180,7 +182,9 @@ ${location.origin}
                     }
                   >
                     <AiOutlineCopy
-                      className={"text-2xl hover:cursor-copy mr-5"}
+                      className={
+                        "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
+                      }
                     />
                   </CopyToClipboard>
                 </div>
@@ -219,16 +223,20 @@ ${location.origin}
             <div className=" flex flex-col w-full items-center  px-5 py-2 h-full">
               <div className="flex items-center justify-between p-2 w-full">
                 <p>Total Bayar</p>
-                <div className="flex items-center">
-                  <p>{formatNumberIDR(total)}</p>
+                <div className="flex items-center gap-1">
                   <CopyToClipboard
                     text={total}
                     onCopy={() =>
                       alert("success", "Total Bayar Disalin di Papan Klip")
                     }
                   >
-                    <AiOutlineCopy className={"text-xl hover:cursor-copy"} />
+                    <AiOutlineCopy
+                      className={
+                        "text-3xl hover:cursor-copy p-1 bg-gray-100 rounded-md text-primary"
+                      }
+                    />
                   </CopyToClipboard>
+                  <p>{formatNumberIDR(total)}</p>
                 </div>
               </div>
               <button

@@ -15,62 +15,79 @@ import SocialMedia from "../components/SocialMedia";
 import { addToCart, getCountCart } from "../repository/carts";
 import { Flip, toast } from "react-toastify";
 import { CiShoppingCart } from "react-icons/ci";
-import {
-  AiOutlineMessage,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { VscShare } from "react-icons/vsc";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
   const [URLSearchParams] = useSearchParams();
-  const [qty, setQty] = useState(parseInt(URLSearchParams.get("qty")) || 1);
-  const [note, setNote] = useState(URLSearchParams.get("note") || "");
   const [total, setTotal] = useState(0);
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
   const navigate = useNavigate();
 
+  const formik = useFormik({
+    initialValues: {
+      qty: parseInt(URLSearchParams.get("qty")) || 1,
+      note: URLSearchParams.get("note") ?? "",
+    },
+    validationSchema: yup.object().shape({
+      qty: yup.number().required().min(1),
+      note: yup.string().optional().max(20),
+    }),
+  });
+
   useEffect(() => {
     fetchProducts().then((products) => {
       const product = getByID(products, id);
+      if (Object.keys(product).length == 0) {
+        return navigate("/404");
+      }
+      formik.setFieldValue(
+        "qty",
+        formik.values.qty <= product.stock ? formik.values.qty : product.stock
+      );
       setProduct(product);
       setTotalCart(getCountCart);
-      setTotal(calculateDiscount(product.price, product.discount) * qty);
+      setTotal(
+        calculateDiscount(product.price, product.discount) * formik.values.qty
+      );
     });
   }, [totalCart]);
 
   const calculateTotal = (price, discount, operator) => {
-    let count = qty;
+    let count = formik.values.qty;
     if (operator == "-") {
       count -= 1;
     } else {
       count += 1;
     }
 
-    setQty(count);
+    formik.setFieldValue("qty", count);
     setTotal(calculateDiscount(price, discount) * count);
   };
 
-  if (!product) {
-    return navigate("/404");
-  }
-
   const alert = (isNewProduct) => {
-    toast.success(`${isNewProduct ? "Tambah Keranjang" : "Update Keranjang"} Sukses`, {
-      position: "bottom-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      transition: Flip,
-    });
+    toast.success(
+      `${isNewProduct ? "Tambah Keranjang" : "Update Keranjang"} Sukses`,
+      {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+      }
+    );
 
-    return navigate("/list/" + product.id + "?qty=" + qty);
+    return navigate(
+      `/list/${product.id}?qty=${formik.values.qty}&note=${formik.values.note}`
+    );
   };
 
   const isStockEmpty =
@@ -148,7 +165,7 @@ Hatur nuhun~ ✨
                     isStockEmpty ? "text-gray-500 " : "text-primary"
                   } rounded-md capitalize`}
                 >
-                  {!isStockEmpty ? product.tag : 'sold out'}{" "}
+                  {!isStockEmpty ? product.tag : "sold out"}{" "}
                   {product.tag == tagOptions.READY_STOCK && !isStockEmpty && (
                     <span>{product.stock}</span>
                   )}
@@ -160,7 +177,7 @@ Hatur nuhun~ ✨
                     <div className="flex h-6 justify-center items-center w-20 text-sm">
                       <button
                         onClick={() => {
-                          if (qty > 1) {
+                          if (formik.values.qty > 1) {
                             calculateTotal(
                               product.price,
                               product.discount,
@@ -173,13 +190,14 @@ Hatur nuhun~ ✨
                         <AiOutlineMinus />
                       </button>
                       <div className="w-1/2  text-center h-full flex justify-center items-center">
-                        {qty}
+                        {formik.values.qty}
                       </div>
                       <button
                         onClick={() => {
                           if (
                             product.tag == tagOptions.PO ||
-                            (product.stock > 1 && qty < product.stock)
+                            (product.stock > 1 &&
+                              formik.values.qty < product.stock)
                           )
                             calculateTotal(
                               product.price,
@@ -237,14 +255,17 @@ Hatur nuhun~ ✨
               <p>Catatan</p>
               <textarea
                 id="note"
-                placeholder="Catatan untuk produk atau penjual"
-                onChange={(e) => setNote(e.target.value)}
-                className="rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20"
-                maxLength={100}
-                value={note}
+                placeholder="Catatan untuk penjual"
+                {...formik.getFieldProps("note")}
+                className={`rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20 ${
+                  formik.errors.note && "focus:outline-red-600"
+                }`}
               >
-                {note}
+                {formik.values.note}
               </textarea>
+              <span className="italic first-letter:capitalize text-xs text-red-600">
+                {formik.errors.note}
+              </span>
             </div>
           </div>
         </div>
@@ -258,11 +279,12 @@ Hatur nuhun~ ✨
             </div>
             <button
               className={` flex gap-2 rounded-lg p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
-                isStockEmpty ? "bg-gray-900" : "bg-primary"
+                isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
               }`}
+              disabled={!formik.isValid}
               onClick={() => {
                 if (isStockEmpty) return;
-                const isNewProduct = addToCart(product, qty, note);
+                const isNewProduct = addToCart(product, formik.values);
                 setTotalCart(totalCart + 1);
                 alert(isNewProduct);
               }}

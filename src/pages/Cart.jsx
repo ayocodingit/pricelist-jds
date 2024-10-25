@@ -12,20 +12,36 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { formatNumberIDR } from "../utils/formatter";
 import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
+import { fetchProducts, getByIDs } from "../repository/produts";
 
 function Cart() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const [isChange, setIsChange] = useState(false);
   const [username, setUsername] = useState("");
   const [checkTotal, setCheckTotal] = useState(0);
   const [ids, setIds] = useState([]);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
 
   useEffect(() => {
-    setProducts(getAllCart(username));
-    setIsChange(false);
-  }, [isChange, checkTotal, username, ids]);
+    fetchProducts().then((res) => {
+      const carts = getAllCart(username);
+      const ids = carts.map((product) => product.id);
+
+      const products = []
+
+      for (const product of getByIDs(res, ids)) {
+        const cart = carts.filter((cart) => cart.id === product.id)[0]
+        // check stock available
+        if (cart.qty > product.stock) continue
+        products.unshift({
+          ...product,
+          ...cart,
+        });
+      }      
+
+      setProducts(products);
+    });
+  }, [username, ids]);
 
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
@@ -45,7 +61,6 @@ function Cart() {
                 removesItemCart(ids);
               }
               setUsername("");
-              setIsChange(true);
               setIds([]);
               setCheckTotal(0);
             }}
@@ -67,7 +82,6 @@ function Cart() {
                 <CartList
                   product={product}
                   key={index}
-                  setIsChange={setIsChange}
                   setUsername={setUsername}
                   checkTotal={checkTotal}
                   setCheckTotal={setCheckTotal}

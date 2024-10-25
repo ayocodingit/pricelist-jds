@@ -1,16 +1,16 @@
 import { calculateDiscount } from "../utils/formatter";
 
-const productsKey = "products";
+const cartKey = "products";
 const checkoutKey = "checkout";
 
-export const addToCart = (item, qty, note = "") => {
+export const addToCart = ({ id, username }, orderDetail) => {
   let isNewItem = true;
   const product = {
-    ...item,
-    note,
-    qty,
+    id,
+    username,
+    ...orderDetail
   };
-  const products = getAll(productsKey);
+  const products = getAll(cartKey);
 
   for (const i in products) {
     if (products[i].id == product.id) {
@@ -22,8 +22,8 @@ export const addToCart = (item, qty, note = "") => {
 
   if (isNewItem) products.unshift(product);
 
-  localStorage.removeItem(productsKey);
-  localStorage.setItem(productsKey, JSON.stringify(products));
+  localStorage.removeItem(cartKey);
+  localStorage.setItem(cartKey, JSON.stringify(products));
 
   return isNewItem;
 };
@@ -41,33 +41,33 @@ const getAll = (key, username = "") => {
   return carts;
 };
 
-export const getAllCart = (username = "") => getAll(productsKey, username);
+export const getAllCart = (username = "") => getAll(cartKey, username);
 export const getAllCheckout = () => getAll(checkoutKey);
 
 export const getCountCart = () => {
-  return getAll(productsKey).length;
+  return getAll(cartKey).length;
 };
 
 export const removeItemCart = (id) => {
-  let products = getAll(productsKey);
+  let products = getAll(cartKey);
 
   products = products.filter((product) => product.id != id);
 
-  localStorage.removeItem(productsKey);
-  localStorage.setItem(productsKey, JSON.stringify(products));
+  localStorage.removeItem(cartKey);
+  localStorage.setItem(cartKey, JSON.stringify(products));
 };
 
 export const removesItemCart = (ids) => {
-  let products = getAll(productsKey);
+  let products = getAll(cartKey);
 
   products = products.filter((product) => ids.indexOf(product.id) === -1);
 
-  localStorage.removeItem(productsKey);
-  localStorage.setItem(productsKey, JSON.stringify(products));
+  localStorage.removeItem(cartKey);
+  localStorage.setItem(cartKey, JSON.stringify(products));
 };
 
 export const removeAllCart = () => {
-  localStorage.removeItem(productsKey);
+  localStorage.removeItem(cartKey);
 };
 
 export const removeAllCheckout = () => {
