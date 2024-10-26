@@ -41,9 +41,7 @@ function List() {
     }
     fetchProducts().then((res) => {
       setProducts(getProducts(res, { q, category, sort }));
-      setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
     });
   }, [q, category, sort]);
 
@@ -144,7 +142,7 @@ function List() {
               Produk tidak ditemukan
             </div>
           )}
-          { isLoading && products.length === 0 && (
+          { products.length === 0 && isLoading && (
             <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
               <Loading/>
             </div>
