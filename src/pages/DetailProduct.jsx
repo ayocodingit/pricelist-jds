@@ -303,7 +303,7 @@ Hatur nuhun~ ✨
               onClick={() => {
                 if (isStockEmpty) return;
                 const isNewProduct = addToCart(product, formik.values);
-                setTotalCart(totalCart + 1);
+                if (isNewItem) setTotalCart(totalCart + 1);
                 alert(isNewProduct);
               }}
             >
