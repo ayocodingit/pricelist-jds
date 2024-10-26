@@ -29,7 +29,7 @@ function CartList({
 
   return (
     <div className=" text-black flex flex-col relative">
-      <div className="flex px-2 gap-4 items-center border-b-[1px] py-1">
+      <div className="flex px-2 gap-4 items-center py-1">
         <input
           type="checkbox"
           checked={products.some(({ id }) => id == product.id)}
