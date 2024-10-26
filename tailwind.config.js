@@ -10,10 +10,10 @@ export default {
         primary: "#007F6E",
       },
       animation: {
-        "opacity-open": 'opacity-open 200ms ease-in both',
-        "opacity-close": 'opacity-close 200ms ease-out both',
-        "opacity-open-filter": 'opacity-open-filter 200ms ease-in both',
-        "opacity-close-filter": 'opacity-close-filter 200ms ease-out both',
+        "opacity-open": 'opacity-open 500ms ease-in both',
+        "opacity-close": 'opacity-close 500ms ease-out both',
+        "opacity-open-filter": 'opacity-open-filter 500ms ease-in both',
+        "opacity-close-filter": 'opacity-close-filter 500ms ease-out both',
       },
       keyframes: {
         "opacity-open": {
