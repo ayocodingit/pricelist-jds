@@ -43,6 +43,11 @@ function List() {
       setProducts(getProducts(res, { q, category, sort }));
         setIsLoading(false);
     });
+
+  
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
   }, [q, category, sort]);
 
   const handleSearch = (e) => {
