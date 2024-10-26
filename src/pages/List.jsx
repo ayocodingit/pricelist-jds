@@ -42,7 +42,6 @@ function List() {
     fetchProducts().then((res) => {
       setProducts(getProducts(res, { q, category, sort }));
       setTimeout(() => {
-        
         setIsLoading(false);
       }, 500);
     });
