@@ -76,7 +76,7 @@ function CartList({
             {product.note || ""}
           </span>
         </div>
-        <div className="flex gap-2 flex-col border-l-[1px] border-black items-center h-32">
+        <div className="flex gap-2 flex-col border-l-[1px] border-black items-center justify-center h-20">
           <div
             onClick={() => {
               navigate(
