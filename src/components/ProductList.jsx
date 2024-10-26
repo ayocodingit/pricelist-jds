@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
-import { BiMap } from "react-icons/bi";
 
 function ProductList({ product }) {
   const isStockEmpty =

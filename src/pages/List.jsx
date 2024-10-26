@@ -13,6 +13,7 @@ import SortProduct from "../components/SortProduct";
 import { VscListFilter } from "react-icons/vsc";
 import Footer from "../components/Footer";
 import { sortOptions } from "../utils/contstant/sort";
+import Loading from "../components/Loading";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -28,8 +29,10 @@ function List() {
   const [filter, setFilter] = useState(false);
   const [filterCount, setFilterCount] = useState(0);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     if (
       ![sortOptions.NAME, sortOptions.STOK, sortOptions.PRICE].includes(sort)
     ) {
@@ -38,6 +41,10 @@ function List() {
     }
     fetchProducts().then((res) => {
       setProducts(getProducts(res, { q, category, sort }));
+      setTimeout(() => {
+        
+        setIsLoading(false);
+      }, 500);
     });
   }, [q, category, sort]);
 
@@ -124,7 +131,7 @@ function List() {
       </div> */}
         {/* Product  */}
         <div className="flex flex-col gap-3 bg-white justify-center">
-          {products.length > 0 && (
+          {products.length > 0 && !isLoading && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 h-[calc(73dvh)] md:h-[calc(75dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
@@ -133,9 +140,14 @@ function List() {
               })}
             </div>
           )}
-          {products.length === 0 && (
+          {products.length === 0 && !isLoading && (
             <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
               Produk tidak ditemukan
+            </div>
+          )}
+          {isLoading && (
+            <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
+              <Loading/>
             </div>
           )}
         </div>
