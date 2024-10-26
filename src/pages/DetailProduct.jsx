@@ -299,7 +299,7 @@ Hatur nuhun~ ✨
               className={` flex gap-3 rounded-md p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
                 isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
               }`}
-              disabled={!formik.isValid || isLoading}
+              disabled={!formik.isValid}
               onClick={() => {
                 if (isStockEmpty) return;
                 const isNewProduct = addToCart(product, formik.values);
