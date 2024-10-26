@@ -3,15 +3,14 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
 import { CgClose } from "react-icons/cg";
-import { BsPencil, BsShop } from "react-icons/bs";
+import { BsPencil } from "react-icons/bs";
 
 function CartList({
   product,
-  setIsChange,
+  products,
+  setProducts,
   setUsername,
   setCheckTotal,
-  ids,
-  setIds,
 }) {
   const navigate = useNavigate();
   const totalPrice = calculateDiscount(
@@ -19,43 +18,39 @@ function CartList({
     product.discount
   );
   return (
-    <div className=" text-black flex flex-col border-b-[1px] relative">
-      <div className="flex p-2 gap-1 items-center">
+    <div className=" text-black flex flex-col relative">
+      <div className="flex px-2 gap-4 items-center border-b-[1px] py-1">
         <input
           type="checkbox"
-          checked={ids.includes(product.id)}
-          className="accent-primary w-6 h-10"
+          checked={products.some(({ id }) => id == product.id)}
+          className="accent-primary w-8 h-4 peer rounded"
           onChange={(e) => {
             if (e.target.checked) {
-              setCheckTotal((prev) => prev + totalPrice);
-              setUsername(product.username);
-              setIds((prev) => {
-                if (!prev.includes(product.id)) {
-                  return prev.push(product.id);
+              setProducts((prev) => {
+                setCheckTotal((total) => total + totalPrice);
+                setUsername(product.username);
+                if (!prev.some(({ id }) => id == product.id)) {
+                  prev.push(product);
                 }
                 return prev;
               });
             } else {
-              setCheckTotal((prev) => {
-                const total = prev - totalPrice;
-                setIds((ids) => ids.filter((id) => id != product.id));
-                if (total == 0) setUsername("");
-                return total;
-              });
+              setCheckTotal((total) => total - totalPrice);
+              setProducts((prev) => prev.filter(({ id }) => id != product.id));
             }
           }}
         />
-        <div className="w-40 p-2 rounded-lg">
+        <div className="w-40 rounded-md">
           <img
             src={product.image}
             alt="image product"
-            className="h-24 w-full rounded-xl object-contain "
+            className="h-24 p-2 w-full rounded-xl object-contain "
             loading="lazy"
           />
         </div>
-        <div className="w-full flex flex-col gap-1 relative">
-          <p className="text-sm">{product.name}</p>
-          <p className="text-sm font-[sans-serif] text-primary flex gap-2 items-center">
+        <div className="w-full flex flex-col relative">
+          <p className="">{product.name}</p>
+          <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
             <span className="text-md">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
               <span className="bg-green-100  text-primary p-1 rounded-md text-xs">
@@ -63,29 +58,35 @@ function CartList({
               </span>
             )}
           </p>
-          <p className="flex text-xs">Jumlah: {product.qty}</p>
-          <p className="flex text-xs gap-1">
-            Catatan:
-            <span className="text-gray-600 italic">{product.note || ""}</span>
-          </p>
+          <div className="flex text-xs mt-1 justify-between">
+            <p className="w-1/2">Catatan: </p>
+            <span className="w-1/2">Jumlah: {product.qty}</span>
+          </div>
+          <span className="text-gray-600 text-xs italic">
+            {product.note || ""}
+          </span>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 flex-col border-l-[1px] border-black p-2 items-center">
           <div
             onClick={() => {
               navigate(
-                `/list/${product.id}?qty=${product.qty}&note=${product.note ?? ''}`
+                `/list/${product.id}?qty=${product.qty}&note=${
+                  product.note ?? ""
+                }`
               );
             }}
             className="hover: cursor-pointer"
           >
             <BsPencil />
           </div>
-
           <CgClose
             className="text-xl hover: cursor-pointer"
             onClick={() => {
+              if (products.some(({ id }) => id == product.id)) {
+                setCheckTotal((total) => total - totalPrice);
+              }
+              setProducts((prev) => prev.filter(({ id }) => id != product.id));
               removeItemCart(product.id);
-              setIsChange(true);
             }}
           />
         </div>

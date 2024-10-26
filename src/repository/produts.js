@@ -38,7 +38,7 @@ export const getProducts = (products, { q = "", category = "", sort = "", ids = 
 };
 
 export const getByIDs = (products, ids) => {
-  return products.filter((product) => ids.indexOf(product.id) === 0)
+  return products.filter((product) => ids.indexOf(product.id) !== -1)
 }
 
 export const getByID = (products, id) => {

@@ -68,7 +68,7 @@ function List() {
               <p className="text-md font-bold">Selamat Datang Kembali!</p>
             </div>
             <div
-              className="relative hover:cursor-pointer text-white rounded-lg p-2"
+              className="relative hover:cursor-pointer text-white rounded-md p-2"
               onClick={() => navigate("/cart")}
             >
               <CiShoppingCart className="text-3xl" />

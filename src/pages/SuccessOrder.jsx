@@ -19,14 +19,14 @@ function SuccessOrder() {
           <div className="flex gap-2 items-center">
             <Link
               to={"/list"}
-              className="text-white bg-primary rounded-lg shadow-lg p-2 my-5 px-5"
+              className="text-white bg-primary rounded-md shadow-lg p-2 my-5 px-5"
             >
               Kembali Belanja
             </Link>
             <a
               href={import.meta.env.VITE_URL_FEEDBACK}
               target="_blank"
-              className="bg-orange-500 p-2 rounded-lg text-white shadow-md"
+              className="bg-orange-500 p-2 rounded-md text-white shadow-md"
             >
               Isi Feedback
             </a>

@@ -152,7 +152,7 @@ ${location.origin}
               </div>
             </div>
             <p className="font-bold py-3 px-2">Metode Pembayaran</p>
-            <div className="flex flex-col gap-2 p-2 bg-white rounded-lg">
+            <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
               <PaymentList
                 payment={{ provider: "cash", value: "" }}
                 paymentMethod={paymentMethod}
@@ -173,7 +173,7 @@ ${location.origin}
             </div>
             {paymentMethod != "cash" && VA && (
               <div className=" flex flex-col gap-2  p-2 bg-white">
-                <div className="outline-dotted outline-primary outline-1  flex justify-between items-center p-5">
+                <div className="border border-primary  flex justify-between items-center p-5">
                   <p className=""> No Rek {VA}</p>
                   <CopyToClipboard
                     text={VA}
@@ -240,7 +240,7 @@ ${location.origin}
                 </div>
               </div>
               <button
-                className="w-full bg-primary h-full text-white"
+                className="w-full bg-primary rounded-md h-full text-white"
                 type="submit"
               >
                 Bayar

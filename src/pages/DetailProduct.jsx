@@ -101,7 +101,7 @@ function DetailProduct() {
   return (
     <div className="bg-gray-100 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
-        <div className="flex relative rounded-lg">
+        <div className="flex relative rounded-md">
           {isStockEmpty && (
             <span className="absolute rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
@@ -185,7 +185,7 @@ Hatur nuhun~ ✨
                             );
                           }
                         }}
-                        className=" w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
+                        className=" w-1/2 h-full bg-primary text-white text-sm rounded-md flex justify-center items-center"
                       >
                         <AiOutlineMinus />
                       </button>
@@ -205,7 +205,7 @@ Hatur nuhun~ ✨
                               "+"
                             );
                         }}
-                        className="w-1/2 h-full bg-primary text-white text-sm rounded-lg flex justify-center items-center"
+                        className="w-1/2 h-full bg-primary text-white text-sm rounded-md flex justify-center items-center"
                       >
                         <AiOutlinePlus />
                       </button>
@@ -216,7 +216,7 @@ Hatur nuhun~ ✨
             </div>
             <div className="text-md font-bold font-roboto capitalize  items-center flex gap-2">
               {product.discount > 0 && (
-                <p className="bg-green-100  text-primary p-1 rounded-lg text-xs">
+                <p className="bg-green-100  text-primary p-1 rounded-md text-xs">
                   -{product.discount}%
                 </p>
               )}
@@ -278,7 +278,7 @@ Hatur nuhun~ ✨
               </p>
             </div>
             <button
-              className={` flex gap-2 rounded-lg p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
+              className={` flex gap-2 rounded-md p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
                 isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
               }`}
               disabled={!formik.isValid}

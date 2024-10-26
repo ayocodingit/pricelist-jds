@@ -5,43 +5,70 @@ import {
   removeAllCart,
   removesItemCart,
 } from "../repository/carts";
-import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft, BsShop } from "react-icons/bs";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { formatNumberIDR } from "../utils/formatter";
+import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
 
 function Cart() {
-  const [products, setProducts] = useState([]);
+  const [carts, setCarts] = useState([]);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [checkTotal, setCheckTotal] = useState(0);
-  const [ids, setIds] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
 
   useEffect(() => {
     fetchProducts().then((res) => {
+      if (products.length === 0) {
+        setUsername("");
+        setCheckTotal(0);
+      }
+
       const carts = getAllCart(username);
-      const ids = carts.map((product) => product.id);
+      const items = [];
+      const users = [];
 
-      const products = []
+      carts.forEach(({ username: seller }) => {
+        if (users.includes(seller)) return;
+        users.push(seller);
 
-      for (const product of getByIDs(res, ids)) {
-        const cart = carts.filter((cart) => cart.id === product.id)[0]
-        // check stock available
-        if (cart.qty > product.stock) continue
-        products.push({
-          ...product,
-          ...cart,
-        });
-      }      
+        const idsCart = getAllCart(seller).map((product) => product.id);
+        const tmpItems = [];
+        let total = 0;
 
-      setProducts(products);
+        for (const product of getByIDs(res, idsCart)) {
+          const cart = carts.filter((cart) => cart.id === product.id)[0];
+
+          // check stock available
+          if (cart.qty > product.stock) continue;
+
+          tmpItems.push({
+            ...product,
+            ...cart,
+          });
+          total += calculateDiscount(
+            product.price * cart.qty,
+            product.discount
+          );
+        }
+
+        if (tmpItems.length > 0) {
+          items.push({
+            total,
+            seller,
+            products: tmpItems,
+          });
+        }        
+      });
+
+      setCarts(items);
     });
-  }, [username, ids]);
+  }, [products, username]);
 
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
@@ -55,39 +82,59 @@ function Cart() {
           <FaRegTrashAlt
             className="text-lg hover: cursor-pointer"
             onClick={() => {
-              if (ids.length === 0) {
+              if (products.length === 0) {
                 removeAllCart();
               } else {
-                removesItemCart(ids);
+                removesItemCart(products.map((product) => product.id));
               }
-              setUsername("");
-              setIds([]);
-              setCheckTotal(0);
+              setProducts([]);
             }}
           />
         </div>
 
-        {products.length === 0 && (
+        {carts.length === 0 && (
           <div className="flex justify-center items-center h-[calc(75dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
-        {products.length > 0 && (
+        {carts.length > 0 && (
           <div
-            className={`py-1 px-2 flex flex-col md:h-[calc(74dvh)] h-[calc(75dvh)]  w-full overflow-auto bg-white`}
+            className={` flex flex-col md:h-[calc(74dvh)] h-[calc(75dvh)]  w-full overflow-auto bg-white text-sm`}
           >
-            {products.map((product, index) => {
+            {carts.map((cart, index) => {
               return (
-                <CartList
-                  product={product}
-                  key={index}
-                  setUsername={setUsername}
-                  checkTotal={checkTotal}
-                  setCheckTotal={setCheckTotal}
-                  setIds={setIds}
-                  ids={ids}
-                />
+                <div key={index} className="border-b-[1px] border-primary">
+                  <div className="text-black py-2  border-b-[1px] border-primary flex gap-1 items-center font-bold">
+                    <input
+                      type="checkbox"
+                      className="accent-primary w-8 h-4"
+                      checked={username == cart.seller}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setUsername(cart.seller);
+                          setProducts(cart.products);
+                          setCheckTotal(cart.total);
+                        } else {
+                          setProducts([]);
+                        }
+                      }}
+                    />
+                    <BsShop className="text-xl" />@{cart.seller}
+                  </div>
+                  {cart.products.map((product, index) => {
+                    return (
+                      <CartList
+                        product={product}
+                        key={index}
+                        setProducts={setProducts}
+                        setUsername={setUsername}
+                        setCheckTotal={setCheckTotal}
+                        products={products}
+                      />
+                    );
+                  })}
+                </div>
               );
             })}
           </div>
@@ -101,14 +148,14 @@ function Cart() {
               <p>{username && "@" + username}</p>
             </div>
             <div className="flex justify-between w-full  items-center">
-              <p>Produk Terpilih({ids.length})</p>
+              <p>Produk Terpilih({products.length})</p>
               <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
             </div>
             <button
-              className={`w-full bg-primary text-white flex justify-center rounded-lg p-2 ${
-                checkTotal != 0 && "hover:cursor-pointer hover:opacity-90"
+              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 ${
+                products.length != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
-              disabled={checkTotal === 0}
+              disabled={products.length === 0}
               onClick={() => {
                 if (!checkCompleteCustomer()) return setIsModalCustomer(true);
 
