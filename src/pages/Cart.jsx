@@ -13,6 +13,8 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
+import Loading from "../components/Loading";
+import Skeleton from "../components/Skeleton";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -21,8 +23,10 @@ function Cart() {
   const [checkTotal, setCheckTotal] = useState(0);
   const [products, setProducts] = useState([]);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchProducts().then((res) => {
       if (products.length === 0) {
         setUsername("");
@@ -63,10 +67,13 @@ function Cart() {
             seller,
             products: tmpItems,
           });
-        }        
+        }
       });
 
       setCarts(items);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     });
   }, [products, username]);
 
@@ -139,20 +146,38 @@ function Cart() {
             })}
           </div>
         )}
-        <div className="fixed md:relative bottom-0 text-sm py-4 flex w-full items-center gap-2 bg-white shadow-xl justify-between">
+        <div className="fixed md:relative bottom-0 text-sm py-4 flex w-full items-center gap-2 border-t bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
-              <p className="first-letter:capitalize">
-                {username ? "Penjual" : "Silahkan Pilih Produk terlebih dahulu"}
+              <p className="first-letter:capitalize">Penjual</p>
+              <p>
+                {!isLoading ? (
+                  username && "@" + username
+                ) : (
+                  <Loading size={15} />
+                )}
               </p>
-              <p>{username && "@" + username}</p>
             </div>
             <div className="flex justify-between w-full  items-center">
-              <p>Produk Terpilih({products.length})</p>
-              <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
+              <p>
+                Produk Terpilih{" "}
+                {!isLoading ? (
+                  `(${products.length})`
+                ) : (
+                  <Loading size={15} color="#000" />
+                )}
+              </p>
+              <p>
+                Total Bayar:{" "}
+                {!isLoading ? (
+                  formatNumberIDR(checkTotal)
+                ) : (
+                  <Loading size={15} />
+                )}
+              </p>
             </div>
             <button
-              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 ${
+              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
                 products.length != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
               disabled={products.length === 0}

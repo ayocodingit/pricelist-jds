@@ -43,7 +43,7 @@ function List() {
       setProducts(getProducts(res, { q, category, sort }));
       setTimeout(() => {
         setIsLoading(false);
-      }, 500);
+      }, 1000);
     });
   }, [q, category, sort]);
 
@@ -105,9 +105,9 @@ function List() {
           </div>
           <div
             className={`
-            ${filter && filterCount === 1 && "animate-opacity-open"} 
-            ${!filter && filterCount === 1 && "animate-opacity-close"}
-            select-none overflow-hidden h-0 opacity-0`}
+            ${filter && filterCount === 1 && "animate-opacity-open-filter"} 
+            ${!filter && filterCount === 1 && "animate-opacity-close-filter"}
+            overflow-hidden h-0 opacity-0`}
           >
             {/* Category */}
             <div className="px-5 mb-5 overflow-auto flex text-sm gap-2">
@@ -144,7 +144,7 @@ function List() {
               Produk tidak ditemukan
             </div>
           )}
-          {isLoading && (
+          { isLoading && (
             <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
               <Loading/>
             </div>

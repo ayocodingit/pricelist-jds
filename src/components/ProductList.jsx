@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
+import Skeleton from "./Skeleton";
+import { useState } from "react";
 
 function ProductList({ product }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
+
+  if (isLoading) return (
+    <div>
+      <Skeleton height={150}  />
+      <Skeleton count={3} height={20}/>
+  </div>
+);
 
   return (
     <Link
@@ -53,7 +71,7 @@ function ProductList({ product }) {
               isStockEmpty ? "text-gray-500 " : "text-black"
             } text-xs rounded-md capitalize`}
           >
-            {!isStockEmpty ? product.tag : 'sold out'}
+            {!isStockEmpty ? product.tag : "sold out"}
           </p>
         </div>
       </div>

@@ -10,11 +10,35 @@ export default {
         primary: "#007F6E",
       },
       animation: {
-        "opacity-open": 'opacity-open 200ms ease-in both',
-        "opacity-close": 'opacity-close 200ms ease-out both',
+        "opacity-open": 'opacity-open 300ms ease-in both',
+        "opacity-close": 'opacity-close 300ms ease-out both',
+        "opacity-open-filter": 'opacity-open-filter 300ms ease-in both',
+        "opacity-close-filter": 'opacity-close-filter 300ms ease-out both',
       },
       keyframes: {
         "opacity-open": {
+          '0%': {
+             opacity: 0,
+          },
+          '50%': {
+             opacity: 0.5,
+          },
+          '100%': {
+            opacity: 1,
+          }
+        },
+        "opacity-close": {
+          '0%': {
+            opacity: 1,
+          },
+          '50%': {
+             opacity: 0.5,
+          },
+          '100%': {
+            opacity: 0,
+          }
+        },
+        "opacity-open-filter": {
           '0%': {
              opacity: 0,
              height: 0
@@ -28,7 +52,7 @@ export default {
             height: "120px",
           }
         },
-        "opacity-close": {
+        "opacity-close-filter": {
           '0%': {
             opacity: 1,
             height: "120px",

@@ -1,14 +1,13 @@
 import React from "react";
-import { Hourglass } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
 
-function Loading({ height = 60, width = 60 }) {
+function Loading({ isLoading = true, size = 35, color = '#007F6E'}) {
   return (
-    <Hourglass
-      visible={true}
-      height={height}
-      width={width}
-      ariaLabel="hourglass-loading"
-      colors={["#007F6E", "#007F6E"]}
+    <ClipLoader
+      loading={isLoading}
+      size={size}
+      className="animate-opacity-close"
+      color={color}
     />
   );
 }

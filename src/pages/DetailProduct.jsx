@@ -19,6 +19,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { VscShare } from "react-icons/vsc";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import Loading from "../components/Loading";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -27,6 +28,7 @@ function DetailProduct() {
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -41,9 +43,18 @@ function DetailProduct() {
   });
 
   useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [])
+
+  useEffect(() => {
+    setIsLoading(true);
     fetchProducts().then((products) => {
       const product = getByID(products, id);
-      if (Object.keys(product).length == 0) {
+
+      if (!product) {
         return navigate("/404");
       }
       formik.setFieldValue(
@@ -56,7 +67,10 @@ function DetailProduct() {
         calculateDiscount(product.price, product.discount) * formik.values.qty
       );
     });
-  }, [totalCart]);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [formik.values.qty]);
 
   const calculateTotal = (price, discount, operator) => {
     let count = formik.values.qty;
@@ -274,14 +288,18 @@ Hatur nuhun~ ✨
             <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
               <p className="font-[sans-serif]">
-                {formatNumberIDR(!isStockEmpty ? total : 0)}
+                {!isLoading ? (
+                  formatNumberIDR(!isStockEmpty ? total : 0)
+                ) : (
+                  <Loading isLoading={isLoading} size={15} color="#000" />
+                )}
               </p>
             </div>
             <button
-              className={` flex gap-2 rounded-md p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
+              className={` flex gap-3 rounded-md p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
                 isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
               }`}
-              disabled={!formik.isValid}
+              disabled={!formik.isValid || isLoading}
               onClick={() => {
                 if (isStockEmpty) return;
                 const isNewProduct = addToCart(product, formik.values);

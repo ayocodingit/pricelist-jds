@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
 import { CgClose } from "react-icons/cg";
 import { BsPencil } from "react-icons/bs";
+import Skeleton from "./Skeleton";
 
 function CartList({
   product,
@@ -12,11 +13,20 @@ function CartList({
   setUsername,
   setCheckTotal,
 }) {
+   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
   const navigate = useNavigate();
   const totalPrice = calculateDiscount(
     product.price * product.qty,
     product.discount
   );
+
   return (
     <div className=" text-black flex flex-col relative">
       <div className="flex px-2 gap-4 items-center border-b-[1px] py-1">
