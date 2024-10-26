@@ -7,10 +7,9 @@ import Skeleton from "./Skeleton";
 import { useState } from "react";
 
 function ProductList({ product }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
