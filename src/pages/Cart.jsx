@@ -188,7 +188,7 @@ function Cart() {
                 return navigate(`/checkout/${username}`);
               }}
             >
-              Proses Bayar
+              {products.length > 0 ? 'Proses Bayar' : 'Produk belum dipilih'}
             </button>
           </div>
         </div>
