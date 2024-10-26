@@ -47,7 +47,7 @@ function List() {
   
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 1000);
   }, [q, category, sort]);
 
   const handleSearch = (e) => {
