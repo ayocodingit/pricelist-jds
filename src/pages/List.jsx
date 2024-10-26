@@ -130,7 +130,7 @@ function List() {
       </div> */}
         {/* Product  */}
         <div className="flex flex-col gap-3 bg-white justify-center">
-          {products.length > 0 && !isLoading && (
+          {products.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 h-[calc(73dvh)] md:h-[calc(75dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
@@ -144,7 +144,7 @@ function List() {
               Produk tidak ditemukan
             </div>
           )}
-          { isLoading && (
+          { isLoading && products.length === 0 && (
             <div className="capitalize justify-center flex items-center h-[calc(75dvh)] overflow-auto">
               <Loading/>
             </div>
