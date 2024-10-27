@@ -29,7 +29,7 @@ function DetailProduct() {
   const { id } = useParams();
   const [showSocialMedia, setShowSocialMedia] = useState(false);
   const [totalCart, setTotalCart] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -44,7 +44,6 @@ function DetailProduct() {
   });
 
   useEffect(() => {
-    setIsLoading(true);
     fetchProducts().then((products) => {
       const product = getByID(products, id);
 
