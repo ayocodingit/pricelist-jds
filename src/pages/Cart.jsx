@@ -114,7 +114,7 @@ function Cart() {
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col md:h-[calc(78dvh)] h-[calc(75dvh)]  w-full overflow-auto bg-white text-sm`}
+            className={` flex flex-col md:h-[calc(78dvh)] h-[calc(77dvh)]  w-full overflow-auto bg-white text-sm`}
           >
             {carts.map((cart, index) => {
               return (
