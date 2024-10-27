@@ -33,6 +33,7 @@ function List() {
 
   useEffect(() => {
     setIsLoading(true);
+    setProducts([])
     if (
       ![sortOptions.NAME, sortOptions.STOK, sortOptions.PRICE].includes(sort)
     ) {
