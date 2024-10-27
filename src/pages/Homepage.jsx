@@ -25,7 +25,7 @@ function Homepage() {
         </div>
 
         <Link
-          className="w-full md:w-1/2 h-12 my-7 text-center flex justify-center items-center rounded-md border-2 text-white hover:bg-opacity-90 bg-primary "
+          className="w-full md:w-1/2 h-12 my-7 text-center flex justify-center items-center rounded-md border-2 text-white hover:bg-opacity-90 bg-primary animate-opacity-open"
           to={"list"}
         >
           Mari Kita Mulai
