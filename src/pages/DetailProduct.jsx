@@ -44,13 +44,6 @@ function DetailProduct() {
 
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [])
-
-  useEffect(() => {
-    setIsLoading(true);
     fetchProducts().then((products) => {
       const product = getByID(products, id);
 
