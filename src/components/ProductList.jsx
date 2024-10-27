@@ -41,7 +41,7 @@ function ProductList({ product }) {
             loading="lazy"
           />
           {isStockEmpty && (
-            <span className="absolute rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+            <span className="absolute animate-opacity-open rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
             </span>
           )}

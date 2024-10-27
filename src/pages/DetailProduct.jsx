@@ -20,6 +20,7 @@ import { VscShare } from "react-icons/vsc";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Loading from "../components/Loading";
+import Image from "../components/Image";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -47,9 +48,7 @@ function DetailProduct() {
     fetchProducts().then((products) => {
       const product = getByID(products, id);
 
-      if (!product) {
-        return navigate("/404");
-      }
+      if (!product) return navigate("/404");
       formik.setFieldValue(
         "qty",
         formik.values.qty <= product.stock ? formik.values.qty : product.stock
@@ -59,11 +58,11 @@ function DetailProduct() {
       setTotal(
         calculateDiscount(product.price, product.discount) * formik.values.qty
       );
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [formik.values.qty]);
+  }, []);
 
   const calculateTotal = (price, discount, operator) => {
     let count = formik.values.qty;
@@ -106,23 +105,19 @@ function DetailProduct() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-[calc(100dvh)]  flex md:justify-center">
+    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="flex relative rounded-md">
-          {isStockEmpty && (
-            <span className="absolute rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+          {!isLoading && isStockEmpty && (
+            <span className="absolute rounded-full animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
             </span>
           )}
-          <PhotoProvider>
-            <PhotoView src={product.image}>
-              <img
-                src={product.image}
-                alt="image product"
-                className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
-              />
-            </PhotoView>
-          </PhotoProvider>
+          <Image
+            src={product.image}
+            alt="image product"
+            className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
+          />
           <div className="absolute justify-between top-5 text-black w-full p-5 px-4">
             <div className="flex justify-between items-center">
               <BsArrowLeft
@@ -281,11 +276,7 @@ Hatur nuhun~ ✨
             <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
               <p className="font-[sans-serif]">
-                {!isLoading ? (
-                  formatNumberIDR(!isStockEmpty ? total : 0)
-                ) : (
-                  <Loading isLoading={isLoading} size={15} color="#000" />
-                )}
+                {formatNumberIDR(!isStockEmpty ? total : 0)}
               </p>
             </div>
             <button
