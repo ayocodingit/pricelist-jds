@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function SuccessOrder() {
   useEffect(() => {
-    // removeAllCheckout();
+    removeAllCheckout();
   }, []);
 
   return (
