@@ -150,8 +150,8 @@ Hatur nuhun~ ✨
                   onClick={() => navigate("/cart")}
                 >
                   <CiShoppingCart className="text-3xl " />
-                  <p className="absolute rounded-full top-1 right-1 outline-black outline-1 outline-double bg-white text-xs w-4 flex justify-center">
-                    {!isLoading ? totalCart: <Loading size={15} color="#000"></Loading>}
+                  <p className="absolute rounded-full top-1 right-1 outline-black outline-1 outline-double bg-white text-xs w-4 flex justify-center animate-opacity-open">
+                    {totalCart}
                   </p>
                 </div>
               </div>
