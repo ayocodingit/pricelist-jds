@@ -36,8 +36,7 @@ function Checkout() {
       setUser(seller);
       setProducts(productDetail);
 
-      if (
-        Object.keys(seller).length == 0 ||
+      if (!seller ||
         productDetail.length == 0 ||
         !checkCompleteCustomer()
       ) {
