@@ -101,20 +101,20 @@ function Cart() {
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(79dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(80dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center md:h-[calc(78dvh)] h-[calc(79dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(80dvh)] bg-white">
             <Loading/>
           </div>
         )}
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col md:h-[calc(78dvh)] h-[calc(79dvh)]  w-full overflow-auto bg-white text-sm`}
+            className={` flex flex-col h-[calc(80dvh)]  w-full overflow-auto bg-white text-sm`}
           >
             {carts.map((cart, index) => {
               return (
