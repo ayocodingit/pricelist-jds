@@ -15,6 +15,7 @@ import { sendOrders } from "../repository/orders";
 import { Flip, toast } from "react-toastify";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import Loading from "../components/Loading";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -27,6 +28,8 @@ function Checkout() {
   const [file, setFile] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [VA, setVA] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,10 +39,7 @@ function Checkout() {
       setUser(seller);
       setProducts(productDetail);
 
-      if (!seller ||
-        productDetail.length == 0 ||
-        !checkCompleteCustomer()
-      ) {
+      if (!seller || productDetail.length == 0 || !checkCompleteCustomer()) {
         return navigate("/404");
       }
 
@@ -61,6 +61,9 @@ ${index + 1}. <b>${product.name}</b>
       setTotal(tmpTotal);
       setTotalQty(tmpTotalQty);
       setTitle(message);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     });
   }, []);
 
@@ -79,6 +82,8 @@ ${index + 1}. <b>${product.name}</b>
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoadingSubmit(true);
+
     const orderId = `#${Date.now()}`;
     const message = `No Order: <b>${orderId}</b>
 Seller: <b>@${username}</b>
@@ -107,14 +112,17 @@ ${location.origin}
       return alert("error", `file yang di upload harus berupa gambar`);
     }
 
-    sendOrders(orderId, products, paymentMethod, file, message);
-    navigate("/success-order");
+    setTimeout(() => {
+      setIsLoadingSubmit(false);
+      sendOrders(orderId, products, paymentMethod, file, message);
+      navigate("/success-order");
+    }, 1000);
   };
 
   return (
     <>
       <form action="#" onSubmit={handleSubmit} className="print:hidden">
-        <div className="bg-gray-50 min-h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
+        <div className="bg-gray-50 h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
           <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
             <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-primary text-white">
               <BsArrowLeft
@@ -123,103 +131,115 @@ ${location.origin}
               />
               <p>Proses Bayar</p>
             </div>
-            <p className="font-bold py-3 px-2">Rincian Pembelian</p>
-            <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
-              {products.map((product, index) => {
-                return (
-                  <div className=" flex flex-col gap-1 w-full " key={index}>
-                    <p className="print:font-normal print:text-xs">
-                      {index + 1}. {product.name}
-                    </p>
-                    <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
-                      {product.note}
-                    </p>
-                    <div className="flex justify-between ">
-                      <p className="px-4 print:text-xs">
-                        {product.qty} x {product.price}
-                      </p>
-                      <p className="print:text-xs">
-                        {formatNumberIDR(product.qty * product.price)}
-                      </p>
-                    </div>
+            {!isLoading && (
+              <>
+                <p className="font-bold py-3 px-2">Rincian Pembelian</p>
+                <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
+                  {products.map((product, index) => {
+                    return (
+                      <div className=" flex flex-col gap-1 w-full " key={index}>
+                        <p className="print:font-normal print:text-xs">
+                          {index + 1}. {product.name}
+                        </p>
+                        <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
+                          {product.note}
+                        </p>
+                        <div className="flex justify-between ">
+                          <p className="px-4 print:text-xs">
+                            {product.qty} x {product.price}
+                          </p>
+                          <p className="print:text-xs">
+                            {formatNumberIDR(product.qty * product.price)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
+                    <p>Total Jumlah: {totalQty}</p>
+                    <p>{formatNumberIDR(total)}</p>
                   </div>
-                );
-              })}
-              <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
-                <p>Total Jumlah: {totalQty}</p>
-                <p>{formatNumberIDR(total)}</p>
-              </div>
-            </div>
-            <p className="font-bold py-3 px-2">Metode Pembayaran</p>
-            <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
-              <PaymentList
-                payment={{ provider: "cash", value: "" }}
-                paymentMethod={paymentMethod}
-                setPaymentMethod={setPaymentMethod}
-                setVA={setVA}
-              />
-              {user?.payments?.map((payment, index) => {
-                return (
+                </div>
+                <p className="font-bold py-3 px-2">Metode Pembayaran</p>
+                <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
                   <PaymentList
-                    payment={payment}
-                    key={index}
+                    payment={{ provider: "cash", value: "" }}
                     paymentMethod={paymentMethod}
                     setPaymentMethod={setPaymentMethod}
                     setVA={setVA}
                   />
-                );
-              })}
-            </div>
-            {paymentMethod != "cash" && VA && (
-              <div className=" flex flex-col gap-2  p-2 bg-white">
-                <div className="border border-primary  flex justify-between items-center p-5">
-                  <p className=""> No Rek {VA}</p>
-                  <CopyToClipboard
-                    text={VA}
-                    onCopy={() =>
-                      alert("success", "No Rek Disalin di Papan Klip")
-                    }
+                  {user?.payments?.map((payment, index) => {
+                    return (
+                      <PaymentList
+                        payment={payment}
+                        key={index}
+                        paymentMethod={paymentMethod}
+                        setPaymentMethod={setPaymentMethod}
+                        setVA={setVA}
+                      />
+                    );
+                  })}
+                </div>
+                {paymentMethod != "cash" && VA && (
+                  <div
+                    className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
                   >
-                    <AiOutlineCopy
-                      className={
-                        "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
-                      }
-                    />
-                  </CopyToClipboard>
-                </div>
-              </div>
-            )}
-            {paymentMethod != "cash" && (
-              <div className="flex flex-col items-center p-5 gap-5 w-full">
-                <p>Upload Bukti Pembayaran</p>
-                <div className="relative flex flex-col items-center gap-6 w-full">
-                  <Dropzone setFile={setFile} />
-
-                  {file && (
-                    <div className="absolute bg-gray-50 border border-dashed border-primary w-full p-5 h-full flex justify-center items-center">
-                      <>
-                        <PhotoProvider>
-                          <PhotoView src={URL.createObjectURL(file)}>
-                            <img
-                              src={URL.createObjectURL(file)}
-                              alt="gambar uploaded"
-                              className="object-contain w-40 h-32 hover:cursor-pointer"
-                            />
-                          </PhotoView>
-                        </PhotoProvider>
-                        <BiTrash
-                          className="text-2xl text-red-500 absolute top-2 right-2"
-                          onClick={() => setFile(undefined)}
+                    <div className="border border-primary flex justify-between items-center p-5">
+                      <p className=""> No Rek {VA}</p>
+                      <CopyToClipboard
+                        text={VA}
+                        onCopy={() =>
+                          alert("success", "No Rek Disalin di Papan Klip")
+                        }
+                      >
+                        <AiOutlineCopy
+                          className={
+                            "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
+                          }
                         />
-                      </>
+                      </CopyToClipboard>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
+                {paymentMethod != "cash" && (
+                  <div className="flex flex-col items-center p-5 gap-5 w-full animate-opacity-open">
+                    <p>Upload Bukti Pembayaran</p>
+                    <div className="relative flex flex-col items-center gap-6 w-full">
+                      <Dropzone setFile={setFile} />
+
+                      {file && (
+                        <div className="absolute bg-gray-50 border border-dashed border-primary w-full p-5 h-full flex justify-center items-center">
+                          <>
+                            <PhotoProvider>
+                              <PhotoView src={URL.createObjectURL(file)}>
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  alt="gambar uploaded"
+                                  className="object-contain w-40 h-32 hover:cursor-pointer"
+                                />
+                              </PhotoView>
+                            </PhotoProvider>
+                            <BiTrash
+                              className="text-2xl text-red-500 absolute top-2 right-2"
+                              onClick={() => setFile(undefined)}
+                            />
+                          </>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {isLoading && (
+              <div className="flex h-[calc(76dvh)] justify-center items-center">
+                <Loading></Loading>
               </div>
             )}
           </div>
-          <div className="fixed md:relative bottom-0 z-10 text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
-            <div className=" flex flex-col w-full items-center  px-5 py-2 h-full">
+          <div className="fixed md:relative bottom-0  text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
+            <div className=" flex flex-col w-full items-center py-1 px-5 h-full">
               <div className="flex items-center justify-between p-2 w-full">
                 <p>Total Bayar</p>
                 <div className="flex items-center gap-1">
@@ -235,14 +255,21 @@ ${location.origin}
                       }
                     />
                   </CopyToClipboard>
-                  <p>{formatNumberIDR(total)}</p>
+                  <p>
+                    {!isLoading ? (
+                      formatNumberIDR(total)
+                    ) : (
+                      <Loading size={15}></Loading>
+                    )}
+                  </p>
                 </div>
               </div>
               <button
-                className="w-full bg-primary rounded-md h-full text-white"
+                className="w-full bg-primary rounded-md p-2 flex gap-3 justify-center items-center text-white"
                 type="submit"
               >
                 Bayar
+                {isLoadingSubmit && <Loading size={20} color="#fff"></Loading>}
               </button>
             </div>
           </div>

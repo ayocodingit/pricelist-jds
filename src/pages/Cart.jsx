@@ -14,7 +14,6 @@ import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
-import Skeleton from "../components/Skeleton";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -23,10 +22,15 @@ function Cart() {
   const [checkTotal, setCheckTotal] = useState(0);
   const [products, setProducts] = useState([]);
   const [isModalCustomer, setIsModalCustomer] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000);
+  }, [isLoading])
+
+  useEffect(() => {
     fetchProducts().then((res) => {
       if (products.length === 0) {
         setUsername("");
@@ -71,9 +75,6 @@ function Cart() {
       });
 
       setCarts(items);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
     });
   }, [products, username]);
 
@@ -99,15 +100,21 @@ function Cart() {
           />
         </div>
 
-        {carts.length === 0 && (
+        {carts.length === 0 && !isLoading && (
           <div className="flex justify-center items-center h-[calc(75dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
-        {carts.length > 0 && (
+        {isLoading && (
+          <div className="flex justify-center items-center md:h-[calc(78dvh)] h-[calc(75dvh)] bg-white">
+            <Loading/>
+          </div>
+        )}
+
+        {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col md:h-[calc(74dvh)] h-[calc(75dvh)]  w-full overflow-auto bg-white text-sm`}
+            className={` flex flex-col md:h-[calc(78dvh)] h-[calc(75dvh)]  w-full overflow-auto bg-white text-sm`}
           >
             {carts.map((cart, index) => {
               return (
@@ -137,6 +144,7 @@ function Cart() {
                         setProducts={setProducts}
                         setUsername={setUsername}
                         setCheckTotal={setCheckTotal}
+                        setIsLoading={setIsLoading}
                         products={products}
                       />
                     );
@@ -146,34 +154,22 @@ function Cart() {
             })}
           </div>
         )}
-        <div className="fixed md:relative bottom-0 text-sm py-4 flex w-full items-center gap-2 border-t bg-white shadow-xl justify-between">
+        <div className="fixed md:relative bottom-0 text-sm flex w-full items-center gap-2 border-t bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-3 px-5 py-2">
             <div className="flex justify-between w-full  items-center">
               <p className="first-letter:capitalize">Penjual</p>
               <p>
-                {!isLoading ? (
-                  username && "@" + username
-                ) : (
-                  <Loading size={15} />
-                )}
+                {username && "@" + username}
               </p>
             </div>
             <div className="flex justify-between w-full  items-center">
               <p>
                 Produk Terpilih{" "}
-                {!isLoading ? (
-                  `(${products.length})`
-                ) : (
-                  <Loading size={15} color="#000" />
-                )}
+                ({products.length})
               </p>
               <p>
                 Total Bayar:{" "}
-                {!isLoading ? (
-                  formatNumberIDR(checkTotal)
-                ) : (
-                  <Loading size={15} />
-                )}
+                  {formatNumberIDR(checkTotal)}
               </p>
             </div>
             <button
@@ -188,7 +184,7 @@ function Cart() {
                 return navigate(`/checkout/${username}`);
               }}
             >
-              {products.length > 0 ? 'Proses Bayar' : 'Silahkan Pilih Produk Terlebih Dahulu'}
+              {products.length > 0 ? 'Proses Bayar' : 'Silahkan Pilih Produk'}
             </button>
           </div>
         </div>

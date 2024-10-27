@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function SuccessOrder() {
   useEffect(() => {
-    removeAllCheckout();
+    // removeAllCheckout();
   }, []);
 
   return (
@@ -13,7 +13,7 @@ function SuccessOrder() {
       <div className="w-full md:w-1/2 h-full flex flex-col justify-center">
         <img src="/order-success.webp" className="w-full" alt="" />
         <div className="min-h-[calc(50dvh)] text-sm flex flex-col items-center justify-center gap-4 bg-white text-md">
-          <AiOutlineCheckCircle className="text-5xl text-primary" />
+          <AiOutlineCheckCircle className="text-5xl text-primary animate-opacity-open" />
           <p className="text-lg font-bold">Pemesanan Produk Berhasil!</p>
           <p>Pesanan Anda sudah disampaikan kepada penjual yang bersangkutan</p>
           <div className="flex gap-2 items-center">

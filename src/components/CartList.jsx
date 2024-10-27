@@ -12,15 +12,8 @@ function CartList({
   setProducts,
   setUsername,
   setCheckTotal,
+  setIsLoading,
 }) {
-   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
   const navigate = useNavigate();
   const totalPrice = calculateDiscount(
     product.price * product.qty,
@@ -97,6 +90,7 @@ function CartList({
               }
               setProducts((prev) => prev.filter(({ id }) => id != product.id));
               removeItemCart(product.id);
+              setIsLoading(true)
             }}
           />
         </div>
