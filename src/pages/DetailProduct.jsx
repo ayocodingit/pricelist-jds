@@ -269,7 +269,7 @@ Hatur nuhun~ ✨
               <p>Catatan</p>
               <textarea
                 id="note"
-                placeholder="Catatan untuk Produk"
+                placeholder="Catatan untuk Produk yang akan dibeli"
                 {...formik.getFieldProps("note")}
                 className={`rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20 ${
                   formik.errors.note && "focus:outline-red-600"
