@@ -7,7 +7,6 @@ function Error() {
   return (
     <div className="flex flex-col text-center gap-2 items-center justify-center h-[calc(100dvh)] text-2xl">
       <img src="/not-found.png" alt="not found" width={180} />
-      <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
     </div>
   );
