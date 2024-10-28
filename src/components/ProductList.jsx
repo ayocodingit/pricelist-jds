@@ -29,7 +29,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className=" rounded-md flex bg-white shadow-md hover:cursor-pointer max-h-60 relative"
+      className="border-[1px] border-primary rounded-md flex bg-white shadow-md hover:cursor-pointer max-h-60 relative"
       to={"/list/" + product.id}
       title={product.name}
     >
@@ -38,7 +38,7 @@ function ProductList({ product }) {
           <img
             src={product.image}
             alt="image product"
-            className={`w-40 h-40 object-contain rounded-lg p-2 `}
+            className={`w-40 h-40 object-contain`}
             loading="lazy"
           />
           {isStockEmpty && (
