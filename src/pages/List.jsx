@@ -133,7 +133,7 @@ setTimeout(() => {
         <FavoriteList products={products} />
       </div> */}
         {/* Product  */}
-        <div className="flex flex-col gap-3 bg-white justify-center">
+        <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 h-[calc(77dvh)] md:h-[calc(75dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
