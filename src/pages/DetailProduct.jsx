@@ -159,7 +159,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="px-2 text-sm ">
-          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(45dvh)] overflow-auto">
+          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(50dvh)] overflow-auto">
             <div className="flex justify-between">
               <div>
                 <p
