@@ -115,7 +115,7 @@ function DetailProduct() {
           <Image
             src={product.image}
             alt="image product"
-            className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in`}
+            className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in rounded-md `}
           />
           <div className="absolute justify-between top-5 text-black w-full p-5 px-4">
             <div className="flex justify-between items-center">
