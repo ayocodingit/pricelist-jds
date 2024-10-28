@@ -19,12 +19,13 @@ function ProductList({ product }) {
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
 
-  if (isLoading) return (
-    <div>
-      <Skeleton height={150}  />
-      <Skeleton count={3} height={20}/>
-  </div>
-);
+  if (isLoading)
+    return (
+      <div>
+        <Skeleton height={150} />
+        <Skeleton count={3} height={20} />
+      </div>
+    );
 
   return (
     <Link
@@ -57,6 +58,11 @@ function ProductList({ product }) {
             <p className="text-md">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
+              )}{" "}
+              {product.discount > 0 && (
+                <span className="text-xs line-through text-black">
+                  {formatNumberIDR(product.price)}
+                </span>
               )}
             </p>
             {product.discount > 0 && (

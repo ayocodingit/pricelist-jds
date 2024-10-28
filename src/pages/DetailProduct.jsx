@@ -216,13 +216,18 @@ Hatur nuhun~ ✨
                 )}
               </div>
             </div>
-            <div className="text-md font-bold font-roboto capitalize  items-center flex gap-2">
+            <div className="text-md font-roboto capitalize  items-center flex gap-2">
               {product.discount > 0 && (
+                <>
+                <span className="text-xs line-through text-black">
+                  {formatNumberIDR(product.price)}
+                </span>
                 <p className="bg-green-100  text-primary p-1 rounded-md text-xs">
                   -{product.discount}%
                 </p>
+                </>
               )}
-              <p className="text-wrap">{product.name}</p>
+              <p className="text-wrap font-bold">{product.name}</p>
             </div>
             <div className="flex flex-col w-full gap-2 py-2">
               <p className="text-xs">Kontak Penjual</p>
@@ -271,7 +276,7 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="fixed md:relative bottom-0 w-full h-16 px-2 text-white">
+        <div className="fixed md:relative bottom-0 w-full h-16 px-2 text-white text-sm">
           <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
             <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
