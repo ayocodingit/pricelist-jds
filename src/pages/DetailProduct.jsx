@@ -276,7 +276,7 @@ Hatur nuhun~ ✨
                 placeholder="Catatan untuk Produk yang akan dibeli"
 rows="4"
                 {...formik.getFieldProps("note")}
-                className={`shadow-sm border-[1px] p-2 focus:outline-none italic ${
+                className={`shadow-sm border-[1px] p-2 focus:outline-none italic resize-none ${
                   formik.errors.note && "focus:outline-red-600"
                 }`}
               >
