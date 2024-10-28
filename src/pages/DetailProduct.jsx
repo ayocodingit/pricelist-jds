@@ -225,7 +225,7 @@ Hatur nuhun~ ✨
                 </p>
                 {product.discount > 0 && (
                   <>
-                    <span className=" line-through text-gray-400">
+                    <span className=" line-through text-gray-400 text-sm">
                       {formatNumberIDR(product.price)}
                     </span>
                     <p className=" bg-primary text-white p-1 rounded-md text-xs">
