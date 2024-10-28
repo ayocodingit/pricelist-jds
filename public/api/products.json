@@ -141,11 +141,11 @@
         "image": "https://i.ibb.co.com/VQYydq6/IMG-20241009-145142-643.jpg",
         "name": "Cilok Bos Anom - Isi 15 Biji",
         "category": "makanan",
-        "price": 13000,
+        "price": 15000,
         "username": "imamfahmi29",
         "is_available": true,
         "tag": "pre order",
-        "discount": 0,
+        "discount": 13.3,
         "description": "",
         "stock": 100
     },
