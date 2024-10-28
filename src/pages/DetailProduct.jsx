@@ -265,7 +265,7 @@ Hatur nuhun~ ✨
             {product.location && (
               <div className="flex items-center text-xs">
                 <BiMap />
-                <p className="text-gray-600">{product.location}</p>
+                <p className="">{product.location}</p>
               </div>
             )}
 
