@@ -104,7 +104,7 @@ function DetailProduct() {
   };
 
   return (
-    <div className="bg-gray-50 h-[calc(100dvh)]  flex md:justify-center">
+    <div className="bg-gray-200 h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="flex relative rounded-md">
           {!isLoading && isStockEmpty && (
