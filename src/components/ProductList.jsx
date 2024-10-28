@@ -38,7 +38,7 @@ function ProductList({ product }) {
           <img
             src={product.image}
             alt="image product"
-            className={`w-40 h-40 object-contain rounded-md p-2 `}
+            className={`w-40 h-40 object-contain rounded-lg p-2 `}
             loading="lazy"
           />
           {isStockEmpty && (
