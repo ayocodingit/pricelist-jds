@@ -29,7 +29,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className=" rounded-md flex bg-white border-[1px] border-primary shadow-md hover:cursor-pointer max-h-60"
+      className=" rounded-md flex bg-white border-[1px] border-primary shadow-md hover:cursor-pointer max-h-60 relative"
       to={"/list/" + product.id}
       title={product.name}
     >
@@ -66,7 +66,7 @@ function ProductList({ product }) {
               )}
             </p>
             {product.discount > 0 && (
-              <p className="bg-green-100  text-primary p-1 rounded-md text-xs">
+              <p className="bg-primary absolute top-5 left-0 text-white p-1 rounded-r-md text-sm shadow-lg">
                 -{product.discount}%
               </p>
             )}

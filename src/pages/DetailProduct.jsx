@@ -131,7 +131,7 @@ function DetailProduct() {
 Mangga in case ada yg mau beli ~**${product.name}**~
 ${product.image}
 Harganya cuma **${formatNumberIDR(product.price)}** aja
-${product.discount? "Mumpung Sedang promo " + product.discount + '% ges' : ''}
+${product.discount ? "Mumpung Sedang promo " + product.discount + "% ges" : ""}
 
 untuk info detail produknya silakan kunjungi di bawah ini yah 
 ${location.href}
@@ -159,7 +159,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="px-2 text-sm ">
-          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(52dvh)] md:h-[calc(49dvh)] overflow-auto">
+          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(45dvh)] overflow-auto">
             <div className="flex justify-between">
               <div>
                 <p
@@ -216,21 +216,31 @@ Hatur nuhun~ ✨
                 )}
               </div>
             </div>
-            <div className="text-md font-roboto capitalize  items-center flex gap-2">
-              {product.discount > 0 && (
-                <>
-                <span className="text-xs line-through text-black">
-                  {formatNumberIDR(product.price)}
-                </span>
-                <p className="bg-green-100  text-primary p-1 rounded-md text-xs">
-                  -{product.discount}%
+            <div className="text-lg capitalize  justify-center flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <p className=" text-black">
+                  {formatNumberIDR(
+                    calculateDiscount(product.price, product.discount)
+                  )}
                 </p>
-                </>
-              )}
-              <p className="text-wrap font-bold">{product.name}</p>
+                {product.discount > 0 && (
+                  <>
+                    <span className="text-xs line-through text-gray-400">
+                      {formatNumberIDR(product.price)}
+                    </span>
+                    <p className=" text-primary p-1 rounded-md text-xs">
+                      -{product.discount}%
+                    </p>
+                  </>
+                )}
+              </div>
+              <div>
+                <p className="text-sm text-wrap font-bold">{product.name}</p>
+              </div>
             </div>
+
             <div className="flex flex-col w-full gap-2 py-2">
-              <p className="text-xs">Kontak Penjual</p>
+              {/* <p className="text-xs">Kontak Penjual</p> */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <BiUserCheck className="text-3xl" />
@@ -248,8 +258,9 @@ Hatur nuhun~ ✨
                 </div>
               </div>
             </div>
-            <div className=" outline-primary max-h-18 text-gray-400 overflow-auto">
-              <div className="text-xs">{product.description || "-"}</div>
+            <div className=" outline-primary text-black flex flex-col gap-1 text-sm">
+              Deskripsi Produk{" "}
+              <span className="text-xs italic">{product.description || "-"}</span>
             </div>
             {product.location && (
               <div className="flex items-center text-xs">
@@ -258,13 +269,13 @@ Hatur nuhun~ ✨
               </div>
             )}
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 mt-2">
               <p>Catatan</p>
               <textarea
                 id="note"
                 placeholder="Catatan untuk Produk yang akan dibeli"
                 {...formik.getFieldProps("note")}
-                className={`rounded-md outline-dashed outline-1 p-2 focus:outline-primary italic h-20 ${
+                className={`shadow-sm border-b-2 p-2 focus:outline-none italic h-10 ${
                   formik.errors.note && "focus:outline-red-600"
                 }`}
               >
@@ -276,7 +287,7 @@ Hatur nuhun~ ✨
             </div>
           </div>
         </div>
-        <div className="fixed md:relative bottom-0 w-full h-16 px-2 text-white text-sm">
+        <div className="fixed md:relative bottom-0 w-full px-2 border-t-[1px] text-white text-sm">
           <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
             <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
