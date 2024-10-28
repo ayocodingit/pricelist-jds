@@ -220,7 +220,7 @@ Hatur nuhun~ ✨
               <div className="flex items-center gap-2">
                 <p className=" text-black">
                   {formatNumberIDR(
-                    calculateDiscount(product.price, product.discount)
+                    calculateDiscount(product.price, product.discount) || 0
                   )}
                 </p>
                 {product.discount > 0 && (
