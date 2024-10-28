@@ -217,7 +217,7 @@ Hatur nuhun~ ✨
               </div>
             </div>
             <div className="text-lg capitalize  justify-center flex flex-col gap-1">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <p className=" text-black">
                   {formatNumberIDR(
                     calculateDiscount(product.price, product.discount) || 0
@@ -228,7 +228,7 @@ Hatur nuhun~ ✨
                     <span className="text-xs line-through text-gray-400">
                       {formatNumberIDR(product.price)}
                     </span>
-                    <p className=" text-primary p-1 rounded-md text-xs">
+                    <p className=" bg-primary text-white p-1 rounded-md text-xs">
                       -{product.discount}%
                     </p>
                   </>
