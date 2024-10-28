@@ -154,7 +154,7 @@ setTimeout(() => {
             </div>
           )}
         </div>
-        <div className="fixed md:relative bottom-0 bg-primary text-white p-2 items-center flex justify-center w-full">
+        <div className="fixed md:relative bottom-0 bg-primary text-white p-2 h-11 items-center flex justify-center w-full">
           <Footer />
         </div>
       </div>

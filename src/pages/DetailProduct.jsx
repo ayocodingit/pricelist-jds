@@ -104,7 +104,7 @@ function DetailProduct() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
+    <div className="bg-gray-50 h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="flex relative rounded-md">
           {!isLoading && isStockEmpty && (
@@ -158,7 +158,7 @@ Hatur nuhun~ ✨
           </div>
         </div>
         <div className="px-2 text-sm ">
-          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(52dvh)] overflow-auto">
+          <div className="p-4 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(52dvh)] md:h-[calc(49dvh)] overflow-auto">
             <div className="flex justify-between">
               <div>
                 <p
