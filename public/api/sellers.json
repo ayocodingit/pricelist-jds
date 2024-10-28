@@ -104,5 +104,19 @@
                 "value": "1390112927"
             }
         ]
+    },
+    {
+        "username": "joseharyono",
+        "name_card": "Jose Haryono",
+        "payments": [
+            {
+                "provider": "ovo",
+                "value": "085795595593"
+            },
+            {
+                "provider": "bca",
+                "value": "4372968323"
+            }
+        ]
     }
 ]

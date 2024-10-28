@@ -160,7 +160,7 @@
         "stock": 100,
         "discount": 0,
         "is_available": true,
-        "location": "R. Selatan",
+        "location": "",
         "description": "Bisa request dengan kemasan yang lebih besar (misal 1/2 kg)"
     },
     {
@@ -174,7 +174,21 @@
         "stock": 100,
         "discount": 0,
         "is_available": true,
-        "location": "R. Selatan",
+        "location": "",
         "description": "-"
+    },
+    {
+        "id": 15,
+        "image": "https://i.ibb.co.com/k9wV3g5/Whats-App-Image-2024-10-28-at-11-23-09.jpg",
+        "category": "makanan",
+        "name": "Bawang Goreng Kenangan kemasan 200gr",
+        "price": 55000,
+        "username": "joseharyono",
+        "tag": "pre order",
+        "stock": 100,
+        "discount": 20,
+        "is_available": true,
+        "location": "",
+        "description": "Bawang goreng asli sumenep non msg kemasan 200gr"
     }
 ]
