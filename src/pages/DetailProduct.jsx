@@ -131,6 +131,7 @@ function DetailProduct() {
 Mangga in case ada yg mau beli ~**${product.name}**~
 ${product.image}
 Harganya cuma **${formatNumberIDR(product.price)}** aja
+${product.discount? "Mumpung Sedang promo " + product.discount + '% ges' : ''}
 
 untuk info detail produknya silakan kunjungi di bawah ini yah 
 ${location.href}
