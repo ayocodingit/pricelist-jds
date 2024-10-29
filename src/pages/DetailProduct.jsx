@@ -128,12 +128,17 @@ function DetailProduct() {
                   <SocialMedia
                     size={34}
                     title={`
-Mangga in case ada yg mau beli ~**${product.name}**~
-${product.image}
-Harganya cuma **${formatNumberIDR(product.price)}** aja
-${product.discount ? "Mumpung Sedang promo " + product.discount + "% ges" : ""}
+Mangga in case ada yg mau beli 
 
-untuk info detail produknya silakan kunjungi di bawah ini yah 
+~**${product.name}**~
+
+${product.image}
+
+Harganya cuma **${formatNumberIDR(product.price)}** aja
+
+${product.discount ? "dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
+
+Yuk di cek cek produknya sebelum kehabisan
 ${location.href}
 
 Hatur nuhun~ ✨
