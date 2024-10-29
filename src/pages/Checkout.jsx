@@ -90,11 +90,7 @@ Seller: <b>@${username}</b>
 
 <b><u>Data Pembeli</u></b>
 Nama: <b>${getCustomer().customer}</b>
-Akun: <b>${
-      getCustomer().telegram.startsWith("@")
-        ? getCustomer().telegram
-        : "@" + getCustomer().telegram
-    }</b>
+Akun: <b>@${getCustomer().telegram.replace('@', '')}</b>
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
 
 <b><u>Data Produk</u></b> ${title}
