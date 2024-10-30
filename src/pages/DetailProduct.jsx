@@ -131,7 +131,7 @@ function DetailProduct() {
 Mangga in case ada yg mau beli 
 
 ~**${product.name}**~
-${product.description && product.description}
+${product.description ? product.description : ""}
 
 ${product.image}
 
