@@ -132,10 +132,11 @@ Mangga in case ada yg mau beli
 
 ~**${product.name}**~
 ${product.description && product.description}
+
 ${product.image}
 
 Harganya cuma **${formatNumberIDR(product.price)}** aja
-${product.discount ? "dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
+${product.discount && "dan Mumpung Sedang promo " + product.discount + "% ges"}
 
 Yuk di cek cek produknya dulu gan
 ${location.href}
