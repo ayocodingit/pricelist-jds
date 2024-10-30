@@ -136,7 +136,7 @@ ${product.description && product.description}
 ${product.image}
 
 Harganya cuma **${formatNumberIDR(product.price)}** aja
-${product.discount && "dan Mumpung Sedang promo " + product.discount + "% ges"}
+${product.discount > 0 && "dan Mumpung Sedang promo " + product.discount + "% ges"}
 
 Yuk di cek cek produknya dulu gan
 ${location.href}
