@@ -190,5 +190,25 @@
         "is_available": true,
         "location": "",
         "description": "Bawang goreng asli sumenep non msg kemasan 200gr"
+    },
+    {
+        "id": 16,
+        "image": "https://i.ibb.co.com/j4jnrnS/IMG-20241030-080831-386.jpg",
+        "category": "makanan",
+        "name": "Kartika Toast Almond Cookies - 51gr",
+        "price": 15000,
+        "username": "novansyaah",
+        "tag": "ready stock",
+        "stock": 10,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Kemasan Baru Kartika Toast Almond Cookies, lebih estetik dan modern
+
+Kemasan isi 51gr
+
+Kartika Toast Almond Cookies adalah pilihan sempurna bagi pecinta kue yang menginginkan cita rasa klasik yang gurih dan memikat. Dengan setiap gigitan, Anda akan merasakan kelezatan mentega yang melimpah dan rasa almond yang kaya, menghadirkan sensasi nikmat yang tak terlupakan.
+
+Dibuat dengan bahan-bahan berkualitas terbaik dan resep tradisional yang telah teruji, Kartika Toast Almond Cookies 43gr adalah camilan yang sempurna untuk menemani waktu santai Anda. Kemasan praktis berukuran 51 gram membuatnya ideal untuk dinikmati di mana saja, baik sebagai camilan di kantor, di perjalanan, atau sebagai teman setia saat bersantai di rumah."
     }
 ]
