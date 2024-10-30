@@ -118,5 +118,20 @@
                 "value": "4372968323"
             }
         ]
+    },
+
+    {
+        "username": "mikes05",
+        "name_card": "Michael Liondy",
+        "payments": [
+            {
+                "provider": "gopay",
+                "value": "08112349937"
+            },
+            {
+                "provider": "bca",
+                "value": "4490010128"
+            }
+        ]
     }
 ]
