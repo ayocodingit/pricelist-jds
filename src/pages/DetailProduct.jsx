@@ -268,7 +268,7 @@ Hatur nuhun~ ✨
               <span className="text-xs italic">{product.description || "-"}</span>
             </div>
             {product.location && (
-              <div className="flex items-center text-xs">
+              <div className="flex items-center">
                 <BiMap />
                 <p className="">{product.location}</p>
               </div>
