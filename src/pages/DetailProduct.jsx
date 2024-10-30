@@ -134,8 +134,7 @@ Mangga in case ada yg mau beli
 ${product.description ? product.description : ""}
 ${product.image}
 
-Harganya cuma **${formatNumberIDR(product.price)}** aja ${product.discount > 0 ? "
-dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
+Harganya cuma **${formatNumberIDR(product.price)}** aja ${product.discount > 0 ? "dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
 
 Yuk buruan beli produknya sebelum kehabisan
 ${location.href}
