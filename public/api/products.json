@@ -204,5 +204,19 @@
         "is_available": true,
         "location": "Ruang Selatan",
         "description": "Kemasan Baru Kartika Toast Almond Cookies, lebih estetik dan modern Kemasan isi 51gr. Kartika Toast Almond Cookies adalah pilihan sempurna bagi pecinta kue yang menginginkan cita rasa klasik yang gurih dan memikat. Dengan setiap gigitan, Anda akan merasakan kelezatan mentega yang melimpah dan rasa almond yang kaya, menghadirkan sensasi nikmat yang tak terlupakan. Dibuat dengan bahan-bahan berkualitas terbaik dan resep tradisional yang telah teruji, Kartika Toast Almond Cookies 43gr adalah camilan yang sempurna untuk menemani waktu santai Anda. Kemasan praktis berukuran 51 gram membuatnya ideal untuk dinikmati di mana saja, baik sebagai camilan di kantor, di perjalanan, atau sebagai teman setia saat bersantai di rumah."
+    },
+    {
+        "id": 17,
+        "image": "https://i.ibb.co.com/87ZvtdD/IMG-6400-Original.jpg",
+        "category": "minuman",
+        "name": "Dessert Jelly Sagoo",
+        "price": 30000,
+        "username": "mikes05",
+        "tag": "ready stock",
+        "stock": 8,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Dessert Jelly rasa Strawberry. Isian lengkap dengan buah strawberry segar di dalamnya. Tersedia juga versi hampers untuk kasih org terdekat/gebetan biar makin lengket 😋"
     }
 ]
