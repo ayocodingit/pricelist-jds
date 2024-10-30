@@ -138,6 +138,8 @@ Harganya cuma **${formatNumberIDR(product.price)}** aja
 
 ${product.discount ? "dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
 
+${product.description && product.description}
+
 Yuk di cek cek produknya dulu gan
 ${location.href}
 
