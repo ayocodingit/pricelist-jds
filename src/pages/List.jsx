@@ -113,7 +113,7 @@ function List() {
 
          <div className="flex flex-col px-5 py-2 gap-2 bg-white overflow-auto">
             <h1>Kategori</h1>
-            <div className="flex overflow-auto gap-2">
+            <div className="flex overflow-auto gap-5 p-2">
               <FilterCategory
                 handleCategory={handleCategory}
                 category={category}
