@@ -68,7 +68,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
-        <div className="sticky top-0 bg-white text-black z-10 shadow-lg py-2">
+        <div className="sticky top-0 bg-white text-black z-10 py-2">
           {/* Profile */}
           <div className="px-5 pt-3 flex justify-between items-center">
             <p className="text-2xl">
@@ -108,10 +108,7 @@ function List() {
               <SortProduct handleSort={handleSort} sort={sort} />
             </div>
           </div>
-         
-        </div>
-
-         <div className="flex flex-col px-5 py-2 gap-2 bg-white overflow-auto">
+<div className="flex flex-col px-5 py-2 gap-2 bg-white overflow-auto">
             <h1>Kategori</h1>
             <div className="flex overflow-auto gap-2">
               <FilterCategory
@@ -120,6 +117,10 @@ function List() {
               />
             </div>
           </div>
+         
+        </div>
+
+         
 
         {/* Favorite */}
         {/* <div className="px-5 my-5 flex flex-col gap-3">
