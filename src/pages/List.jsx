@@ -82,7 +82,7 @@ function List() {
               onClick={() => navigate("/cart")}
             >
               <CiShoppingCart className="text-3xl" />
-              <p className="absolute rounded-full top-2 right-2 text-black border bg-white text-xs w-4 flex justify-center">
+              <p className="absolute rounded-full top-2 right-2 text-black border border-black bg-white text-xs w-4 flex justify-center">
                 {getCountCart()}
               </p>
             </div>
