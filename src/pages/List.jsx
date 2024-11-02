@@ -133,7 +133,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid bg-white  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(56dvh)] md:min-h-[calc(60dvh)] p-2 overflow-auto">
+            <div className="grid bg-white  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(58dvh)] md:min-h-[calc(60dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
@@ -142,12 +142,12 @@ function List() {
             </div>
           )}
           {products.length === 0 && !isLoading && (
-            <div className="capitalize justify-center flex items-center h-[calc(56dvh)] md:min-h-[calc(60dvh)] overflow-auto">
+            <div className="capitalize justify-center flex items-center h-[calc(58dvh)] md:min-h-[calc(60dvh)] overflow-auto">
               Produk tidak ditemukan
             </div>
           )}
           {products.length === 0 && isLoading && (
-            <div className="capitalize justify-center flex items-center h-[calc(56dvh)] md:min-h-[calc(60dvh)] overflow-auto">
+            <div className="capitalize justify-center flex items-center h-[calc(58dvh)] md:min-h-[calc(60dvh)] overflow-auto">
               <Loading />
             </div>
           )}
