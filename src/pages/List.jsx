@@ -132,7 +132,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid bg-white  grid-cols-2 md:grid-cols-3 gap-2 max-h-[calc(54dvh)] md:min-h-[calc(54dvh)] p-2 overflow-auto">
+            <div className="grid bg-white  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(54dvh)] md:min-h-[calc(54dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
