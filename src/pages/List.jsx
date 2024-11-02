@@ -68,7 +68,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
-        <div className="sticky top-0 bg-white text-black z-10 py-2">
+        <div className="sticky top-0 bg-white text-black py-2 shadow-sm">
           {/* Profile */}
           <div className="px-5 pt-3 flex justify-between items-center">
             <p className="text-2xl">
