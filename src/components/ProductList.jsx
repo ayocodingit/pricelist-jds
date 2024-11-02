@@ -38,7 +38,7 @@ function ProductList({ product }) {
           <img
             src={product.image}
             alt="image product"
-            className={`w-40 h-40 object-contain`}
+            className={`w-40 h-40 object-contain p-2`}
             loading="lazy"
           />
           {isStockEmpty && (
@@ -55,7 +55,7 @@ function ProductList({ product }) {
             {product.name}
           </h1>
           <div className="font-[sans-serif] text-primary flex gap-2 items-center">
-            <p className="text-md">
+            <p className="text-lg">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
               )}{" "}

@@ -7,7 +7,7 @@ function PaymentList({ payment, paymentMethod, setPaymentMethod, setVA }) {
         <div className="flex gap-2 items-center">
           <div className="w-12">
             <img
-              src={`/${payment.provider}.png`}
+              src={`/payments/${payment.provider}.png`}
               alt="logo"
               className="object-contain h-12 w-full"
 loading="lazy"

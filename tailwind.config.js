@@ -45,21 +45,21 @@ export default {
           },
           '50%': {
              opacity: 0,
-             height: "120px"
+             height: "60px"
           },
           '100%': {
             opacity: 1,
-            height: "120px",
+            height: "60px",
           }
         },
         "opacity-close-filter": {
           '0%': {
             opacity: 1,
-            height: "120px",
+            height: "60px",
           },
           '50%': {
              opacity: 0,
-             height: "120px"
+             height: "60px"
           },
           '100%': {
             opacity: 0,
