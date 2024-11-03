@@ -164,7 +164,7 @@ ${location.origin}
                     <p>{formatNumberIDR(total)}</p>
                   </div>
                 </div>
-                <p className="py-3 px-2">Catatan Buat Penjual</p>
+                <p className="py-3 px-2 text-lg">Catatan Buat Penjual</p>
                 <div className="px-2">
                   <textarea
                     name="note"
@@ -177,7 +177,7 @@ onChange={(e) => setNote(e.target.value)}
                     {note}
                   </textarea>
                 </div>
-                <p className=" py-3 px-2">Metode Pembayaran</p>
+                <p className=" py-3 px-2 text-lg">Metode Pembayaran</p>
                 <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
                   <PaymentList
                     payment={{ provider: "cash", value: "" }}
