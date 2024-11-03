@@ -22,7 +22,7 @@ function CartList({
   );
 
   return (
-    <div className=" text-black flex flex-col relative">
+    <div className=" text-black flex flex-col relative bg-white">
       <div className="flex px-2 gap-4 items-center py-1">
         <input
           type="checkbox"
