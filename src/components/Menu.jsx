@@ -44,14 +44,14 @@ function Menu() {
             title="Profil"
           />
         </Link>
-        <Link to={"#"}>
+        {/* <Link to={"#"}>
           <SlQuestion
             className={`text-2xl text-white ${
               location.pathname == "/info" ? activeClass : noActiveClass
             } hover:opacity-100`}
             title="Info"
           />
-        </Link>
+        </Link> */}
       </ul>
     </div>
   );

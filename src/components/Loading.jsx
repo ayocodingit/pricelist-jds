@@ -1,7 +1,7 @@
 import React from "react";
 import { ClipLoader } from "react-spinners";
 
-function Loading({ isLoading = true, size = 35, color = '#007F6E'}) {
+function Loading({ isLoading = true, size = 35, color = 'var(--primary-color)'}) {
   return (
     <ClipLoader
       loading={isLoading}

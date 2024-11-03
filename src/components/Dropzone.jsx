@@ -9,7 +9,7 @@ function Dropzone({ setFile }) {
   return (
     <div
       {...getRootProps()}
-      className="hover:cursor-pointer border border-dashed relative h-40 flex items-center p-2 text-primary border-primary w-full justify-center"
+      className="hover:cursor-pointer border bg-white border-dashed rounded-md relative h-40 flex items-center p-2 text-primary border-primary w-full justify-center"
     >
       <input
         {...getInputProps()}

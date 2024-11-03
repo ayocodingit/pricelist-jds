@@ -74,7 +74,7 @@ function List() {
             <input
               type="text"
               placeholder="Cari Produk"
-              className="bg-gray-50 text-black rounded-md w-full p-2 h-10 pl-10 focus:outline-primary outline-1 outline-primary outline-double"
+              className="bg-gray-50 text-black rounded-md w-full p-2 h-9 pl-10 focus:outline-primary outline-1 outline-primary outline-double"
               defaultValue={q}
               onChange={handleSearch}
             />

@@ -16,6 +16,7 @@ import { Flip, toast } from "react-toastify";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Loading from "../components/Loading";
+import { SlArrowLeft } from "react-icons/sl";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -27,6 +28,7 @@ function Checkout() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [note, setNote] = useState("");
   const [VA, setVA] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
@@ -90,8 +92,9 @@ Seller: <b>@${username}</b>
 
 <b><u>Data Pembeli</u></b>
 Nama: <b>${getCustomer().customer}</b>
-Akun: <b>@${getCustomer().telegram.replace('@', '')}</b>
+Akun: <b>@${getCustomer().telegram.replace("@", "")}</b>
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
+Catatan: <b>${note || '-'}</b>
 
 <b><u>Data Produk</u></b> ${title}
 
@@ -122,19 +125,19 @@ ${location.origin}
 
   return (
     <>
-      <form action="#" onSubmit={handleSubmit} className="print:hidden">
+      <form action="#" onSubmit={handleSubmit} className="print:hidden text-sm">
         <div className="bg-gray-50 h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
           <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
-            <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-white text-black">
-              <BsArrowLeft
-                className="p-1 text-3xl hover:cursor-pointer"
+            <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">
+              <SlArrowLeft
+                className="text-xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
               />
               <p>Proses Bayar</p>
             </div>
             {!isLoading && (
               <>
-                <p className="font-bold py-3 px-2">Rincian Pembelian</p>
+                <p className="py-3 px-2">Rincian Pembelian</p>
                 <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
                   {products.map((product, index) => {
                     return (
@@ -147,7 +150,7 @@ ${location.origin}
                         </p>
                         <div className="flex justify-between ">
                           <p className="px-4 print:text-xs">
-                            {product.qty} x {product.price}
+                            {product.qty} x {formatNumberIDR(product.price)}
                           </p>
                           <p className="print:text-xs">
                             {formatNumberIDR(product.qty * product.price)}
@@ -161,7 +164,19 @@ ${location.origin}
                     <p>{formatNumberIDR(total)}</p>
                   </div>
                 </div>
-                <p className="font-bold py-3 px-2">Metode Pembayaran</p>
+                <p className="py-3 px-2">Catatan Buat Penjual</p>
+                <div className="px-2">
+                  <textarea
+                    name="note"
+                    rows={3}
+                    maxLength={50}
+                    className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
+                    placeholder="Pesanan nya aku ambil hari Senin yah..."
+                  >
+                    {note}
+                  </textarea>
+                </div>
+                <p className=" py-3 px-2">Metode Pembayaran</p>
                 <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
                   <PaymentList
                     payment={{ provider: "cash", value: "" }}
@@ -185,7 +200,7 @@ ${location.origin}
                   <div
                     className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
                   >
-                    <div className="border border-primary flex justify-between items-center p-5">
+                    <div className="border border-primary rounded-md flex justify-between items-center p-5">
                       <p className=""> No Rek {VA}</p>
                       <CopyToClipboard
                         text={VA}
@@ -203,13 +218,13 @@ ${location.origin}
                   </div>
                 )}
                 {paymentMethod != "cash" && (
-                  <div className="flex flex-col items-center p-5 gap-5 w-full animate-opacity-open">
+                  <div className="flex flex-col items-center px-2 py-5 gap-5 w-full animate-opacity-open">
                     <p>Upload Bukti Pembayaran</p>
                     <div className="relative flex flex-col items-center gap-6 w-full">
                       <Dropzone setFile={setFile} />
 
                       {file && (
-                        <div className="absolute bg-gray-50 border border-dashed border-primary w-full p-5 h-full flex justify-center items-center">
+                        <div className="absolute bg-white border border-dashed rounded-md border-primary w-full p-5 h-full flex justify-center items-center">
                           <>
                             <PhotoProvider>
                               <PhotoView src={URL.createObjectURL(file)}>

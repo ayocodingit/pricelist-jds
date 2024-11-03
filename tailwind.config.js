@@ -7,8 +7,7 @@ export default {
     },
     extend: {
       colors: {
-        primary2: "#007F6E",
-        primary: "#dc9788"
+        primary: "var(--primary-color)"
       },
       animation: {
         "opacity-open": 'opacity-open 200ms ease-in both',

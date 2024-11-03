@@ -21,6 +21,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Loading from "../components/Loading";
 import Image from "../components/Image";
+import { SlActionRedo, SlArrowLeft, SlBasket } from "react-icons/sl";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -87,6 +88,7 @@ function DetailProduct() {
         progress: undefined,
         theme: "light",
         transition: Flip,
+
       }
     );
 
@@ -107,8 +109,8 @@ function DetailProduct() {
     <div className="bg-gray-50 min-h-[calc(100dvh)] text-sm flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col h-[calc(90dvh)] overflow-auto">
         <div className="flex items-center py-2 px-5 gap-5 justify-between bg-white sticky top-0 z-10 shadow-sm">
-          <BsArrowLeft
-            className="text-4xl rounded-full hover:cursor-pointer p-1"
+          <SlArrowLeft
+            className="text-3xl rounded-full hover:cursor-pointer p-1"
             onClick={() => navigate("/list")}
           />
           <div className="flex gap-2  items-center">
@@ -134,8 +136,8 @@ ${location.href}
 Hatur nuhun~ ✨`}
               />
             )}
-            <VscShare
-              className="p-1 hover:cursor-pointer text-4xl"
+            <SlActionRedo
+              className="p-1 hover:cursor-pointer text-3xl"
               onClick={() => setShowSocialMedia(!showSocialMedia)}
             />
 
@@ -143,8 +145,8 @@ Hatur nuhun~ ✨`}
               className="relative  rounded-full p-1 hover:cursor-pointer"
               onClick={() => navigate("/cart")}
             >
-              <CiShoppingCart className="text-3xl " />
-              <p className="absolute rounded-full top-1 right-1 outline-black outline-1 outline-double bg-white  w-4 flex justify-center text-xs">
+              <SlBasket className="text-2xl " />
+              <p className="absolute rounded-md top-0 text-white right-0 bg-primary  w-4 flex justify-center text-xs">
                 {totalCart}
               </p>
             </div>
@@ -222,28 +224,28 @@ Hatur nuhun~ ✨`}
             </div>
             <div className="text-lg capitalize  justify-center flex flex-col gap-1">
               <div className="flex items-center gap-1">
-                <p className=" text-black">
+                <p className=" text-primary">
                   {formatNumberIDR(
                     calculateDiscount(product.price, product.discount) || 0
                   )}
                 </p>
                 {product.discount > 0 && (
                   <>
-                    <span className=" line-through text-gray-400 ">
+                    <span className=" line-through text-gray-600 text-sm">
                       {formatNumberIDR(product.price)}
                     </span>
-                    <p className=" bg-primary text-sm text-white p-1 rounded-md ">
+                    <p className=" bg-primary text-xs text-white p-1 rounded-md ">
                       -{product.discount}%
                     </p>
                   </>
                 )}
               </div>
               <div>
-                <p className=" text-wrap">{product.name}</p>
+                <p className=" text-wrap text-sm">{product.name}</p>
               </div>
             </div>
 
-            <div className="flex flex-col w-full gap-2 py-2">
+            <div className="flex flex-col w-full gap-2 py-1">
               {/* <p className="">Kontak Penjual</p> */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
@@ -280,10 +282,10 @@ Hatur nuhun~ ✨`}
               <textarea
                 id="note"
                 placeholder="Catatan untuk Produk yang akan dibeli"
-                rows="4"
+                rows="2"
                 disabled={isStockEmpty}
                 {...formik.getFieldProps("note")}
-                className={`shadow-sm border-[1px] p-2 focus:outline-none  rounded-md border-black resize-none ${
+                className={`shadow-sm border-[1px] p-2 focus:outline-none  rounded-md border-primary resize-none ${
                   formik.errors.note && "focus:outline-red-600"
                 }`}
               >

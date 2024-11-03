@@ -15,6 +15,7 @@ import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
+import { SlArrowLeft } from "react-icons/sl";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -27,9 +28,9 @@ function Cart() {
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
     }, 1000);
-  }, [isLoading])
+  }, [isLoading]);
 
   useEffect(() => {
     fetchProducts().then((res) => {
@@ -82,9 +83,9 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-4 py-3 px-2 bg-white items-center sticky top-0 z-10 shadow-sm">
-          <BsArrowLeft
-            className="text-2xl hover:cursor-pointer"
+        <div className="flex gap-4 py-3 px-4 bg-white items-center sticky top-0 z-10 shadow-sm">
+          <SlArrowLeft
+            className="text-xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
           />
           <p>Keranjang Saya ({getAllCart().length})</p>
@@ -102,20 +103,20 @@ function Cart() {
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(68dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)] bg-white">
-            <Loading/>
+          <div className="flex justify-center items-center h-[calc(68dvh)] bg-white">
+            <Loading />
           </div>
         )}
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col h-[calc(72dvh)] w-full overflow-auto text-sm`}
+            className={` flex flex-col h-[calc(68dvh)] w-full overflow-auto text-sm`}
           >
             {carts.map((cart, index) => {
               return (
@@ -155,40 +156,35 @@ function Cart() {
             })}
           </div>
         )}
-        <div className="fixed md:relative bottom-14 text-sm flex w-full items-center border-t bg-white shadow-xl justify-between">
-          <div className=" flex flex-col w-full items-center gap-2 px-5 py-2">
-            <div className="flex justify-between w-full  items-center">
-              <p className="first-letter:capitalize">Penjual</p>
-              <p>
-                {username && "@" + username}
-              </p>
-            </div>
-            <div className="flex justify-between w-full  items-center">
-              <p>
-                Produk Terpilih{" "}
-                ({products.length})
-              </p>
-              <p>
-                Total Bayar:{" "}
-                  {formatNumberIDR(checkTotal)}
-              </p>
-            </div>
-            <button
-              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
-                products.length != 0 && "hover:cursor-pointer hover:opacity-90"
-              } `}
-              disabled={products.length === 0}
-              onClick={() => {
-                if (!checkCompleteCustomer()) return setIsModalCustomer(true);
+          <div
+            className={`text-sm flex w-full items-center border-t bg-white shadow-xl justify-between`}
+          >
+            <div className=" flex flex-col w-full items-center gap-2 px-5 py-2">
+              <div className="flex justify-between w-full  items-center">
+                <p className="first-letter:capitalize">Penjual</p>
+                <p>{username && "@" + username}</p>
+              </div>
+              <div className="flex justify-between w-full  items-center">
+                <p>Produk Terpilih ({products.length})</p>
+                <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
+              </div>
+              <button
+                className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
+                  products.length != 0 &&
+                  "hover:cursor-pointer hover:opacity-90"
+                } `}
+                disabled={products.length === 0}
+                onClick={() => {
+                  if (!checkCompleteCustomer()) return setIsModalCustomer(true);
 
-                moveToCheckOut(products);
-                return navigate(`/checkout/${username}`);
-              }}
-            >
-              {products.length > 0 ? 'Proses Bayar' : 'Silahkan Pilih Produk'}
-            </button>
+                  moveToCheckOut(products);
+                  return navigate(`/checkout/${username}`);
+                }}
+              >
+                {products.length > 0 ? "Proses Bayar" : "Silahkan Pilih Produk"}
+              </button>
+            </div>
           </div>
-        </div>
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}

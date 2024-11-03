@@ -2,7 +2,7 @@ import React from "react";
 
 function PaymentList({ payment, paymentMethod, setPaymentMethod, setVA }) {
   return (
-    <div className="flex gap-2 p-2 px-5 text-black border border-primary items-center">
+    <div className="flex gap-2 p-2 px-5 text-black border border-primary items-center rounded-md">
       <div className="flex justify-between items-center w-full">
         <div className="flex gap-2 items-center">
           <div className="w-12">

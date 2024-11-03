@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: #dc9788
+}
+
 @layer base {
   @font-face {
     font-family: "Roboto";
@@ -19,3 +23,6 @@
     src: url("/fonts/Roboto-Bold.ttf");
   }
 }
+
+
+
