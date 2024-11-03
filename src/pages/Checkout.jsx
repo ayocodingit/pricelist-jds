@@ -125,7 +125,7 @@ ${location.origin}
       <form action="#" onSubmit={handleSubmit} className="print:hidden">
         <div className="bg-gray-50 h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
           <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
-            <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-primary text-white">
+            <div className="flex gap-2 py-3 px-2 items-center shadow-lg sticky top-0 z-10 bg-white text-black">
               <BsArrowLeft
                 className="p-1 text-3xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
@@ -239,7 +239,7 @@ ${location.origin}
               </div>
             )}
           </div>
-          <div className="fixed md:relative bottom-0  text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
+          <div className="fixed bottom-0  text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
             <div className=" flex flex-col w-full items-center py-1 px-5 h-full">
               <div className="flex items-center justify-between p-2 w-full">
                 <p>Total Bayar</p>

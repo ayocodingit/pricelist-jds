@@ -14,6 +14,7 @@ import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
+import Menu from "../components/Menu";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -81,13 +82,13 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-2 py-2 px-2 justify-between items-center shadow-sm sticky top-0 z-10 bg-primary text-white">
+        <div className="flex gap-2 py-5 px-2 bg-white items-center shadow-sm sticky top-0 z-10">
           <BsArrowLeft
             className="p-1 text-3xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
           />
           <p>Keranjang Saya ({getAllCart().length})</p>
-          <FaRegTrashAlt
+          {/* <FaRegTrashAlt
             className="text-lg hover: cursor-pointer"
             onClick={() => {
               if (products.length === 0) {
@@ -97,29 +98,29 @@ function Cart() {
               }
               setProducts([]);
             }}
-          />
+          /> */}
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(80dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(77dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[calc(80dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(77dvh)] bg-white">
             <Loading/>
           </div>
         )}
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col h-[calc(82dvh)]  w-full overflow-auto bg-white text-sm`}
+            className={` flex flex-col h-[calc(77dvh)] py-2 w-full overflow-auto bg-white text-sm`}
           >
             {carts.map((cart, index) => {
               return (
                 <div key={index}>
-                  <div className="text-black py-2  flex gap-1 items-center font-bold">
+                  <div className="text-black py-2 pl-1 flex gap-1 items-center font-bold">
                     <input
                       type="checkbox"
                       className="accent-primary w-8 h-4"
@@ -154,7 +155,7 @@ function Cart() {
             })}
           </div>
         )}
-        <div className="fixed md:relative bottom-0 text-sm flex w-full items-center border-t bg-white shadow-xl justify-between">
+        <div className="fixed md:relative bottom-16 text-sm flex w-full items-center border-t bg-white shadow-xl justify-between">
           <div className=" flex flex-col w-full items-center gap-2 px-5 py-1">
             <div className="flex justify-between w-full  items-center">
               <p className="first-letter:capitalize">Penjual</p>
@@ -193,6 +194,7 @@ function Cart() {
           isModalCustomer={isModalCustomer}
         />
       </div>
+      <Menu></Menu>
     </div>
   );
 }

@@ -105,7 +105,51 @@ function DetailProduct() {
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
-      <div className="w-full md:w-1/2 flex flex-col relative">
+      <div className="w-full md:w-1/2 flex flex-col h-[calc(90dvh)] overflow-auto">
+        <div className="flex items-center py-2 px-5 gap-5 justify-between bg-white sticky top-0 z-10 shadow-sm">
+          <BsArrowLeft
+            className="text-4xl rounded-full hover:cursor-pointer p-1"
+            onClick={() => navigate("/list")}
+          />
+          <div className="flex gap-2  items-center">
+            {showSocialMedia && (
+              <SocialMedia
+                size={34}
+                title={`
+Mangga in case ada yg mau beli 
+
+~**${product.name}**~
+${product.description ? product.description : ""}
+${product.image}
+
+Harganya cuma **${formatNumberIDR(product.price)}** aja ${
+                  product.discount > 0
+                    ? "dan Mumpung Sedang promo " + product.discount + "% ges"
+                    : ""
+                }
+
+Yuk buruan beli produknya sebelum kehabisan
+${location.href}
+
+Hatur nuhun~ ✨`}
+              />
+            )}
+            <VscShare
+              className="p-1 hover:cursor-pointer text-4xl"
+              onClick={() => setShowSocialMedia(!showSocialMedia)}
+            />
+
+            <div
+              className="relative  rounded-full p-1 hover:cursor-pointer"
+              onClick={() => navigate("/cart")}
+            >
+              <CiShoppingCart className="text-3xl " />
+              <p className="absolute rounded-full top-1 right-1 outline-black outline-1 outline-double bg-white  w-4 flex justify-center text-xs">
+                {totalCart}
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="flex relative rounded-md">
           {!isLoading && isStockEmpty && (
             <span className="absolute rounded-full animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
@@ -115,53 +159,11 @@ function DetailProduct() {
           <Image
             src={product.image}
             alt="image product"
-            className={`w-full h-[20rem] p-2 object-contain hover:cursor-zoom-in rounded-md `}
+            className={`w-full h-[20rem] bg-white p-2 object-contain hover:cursor-zoom-in rounded-md `}
           />
-          <div className="absolute justify-between top-5 text-black w-full p-5 px-4">
-            <div className="flex justify-between items-center">
-              <BsArrowLeft
-                className="bg-white text-4xl rounded-full hover:cursor-pointer p-1 shadow-lg"
-                onClick={() => navigate("/list")}
-              />
-              <div className="flex gap-2  items-center">
-                {showSocialMedia && (
-                  <SocialMedia
-                    size={34}
-                    title={`
-Mangga in case ada yg mau beli 
-
-~**${product.name}**~
-${product.description ? product.description : ""}
-${product.image}
-
-Harganya cuma **${formatNumberIDR(product.price)}** aja ${product.discount > 0 ? "dan Mumpung Sedang promo " + product.discount + "% ges" : ""}
-
-Yuk buruan beli produknya sebelum kehabisan
-${location.href}
-
-Hatur nuhun~ ✨`}
-                  />
-                )}
-                <VscShare
-                  className="p-1 hover:cursor-pointer text-4xl bg-white rounded-full shadow-lg"
-                  onClick={() => setShowSocialMedia(!showSocialMedia)}
-                />
-
-                <div
-                  className="relative bg-white rounded-full p-1 hover:cursor-pointer shadow-lg"
-                  onClick={() => navigate("/cart")}
-                >
-                  <CiShoppingCart className="text-3xl " />
-                  <p className="absolute rounded-full top-1 right-1 outline-black outline-1 outline-double bg-white text-xs w-4 flex justify-center">
-                    {totalCart}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="px-2 text-sm ">
-          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white h-[calc(50dvh)] overflow-auto">
+        <div className="  ">
+          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white">
             <div className="flex justify-between">
               <div>
                 <p
@@ -178,7 +180,7 @@ Hatur nuhun~ ✨`}
               <div>
                 {!isStockEmpty && (
                   <div className="flex gap-2">
-                    <div className="flex h-6 justify-center items-center w-20 text-sm">
+                    <div className="flex h-6 justify-center items-center w-20 ">
                       <button
                         onClick={() => {
                           if (formik.values.qty > 1) {
@@ -189,7 +191,7 @@ Hatur nuhun~ ✨`}
                             );
                           }
                         }}
-                        className=" w-1/2 h-full bg-primary text-white text-sm rounded-md flex justify-center items-center"
+                        className=" w-1/2 h-full bg-gray-300 text-black  rounded-md flex justify-center items-center"
                       >
                         <AiOutlineMinus />
                       </button>
@@ -209,7 +211,7 @@ Hatur nuhun~ ✨`}
                               "+"
                             );
                         }}
-                        className="w-1/2 h-full bg-primary text-white text-sm rounded-md flex justify-center items-center"
+                        className="w-1/2 h-full bg-primary text-white  rounded-md flex justify-center items-center"
                       >
                         <AiOutlinePlus />
                       </button>
@@ -227,22 +229,22 @@ Hatur nuhun~ ✨`}
                 </p>
                 {product.discount > 0 && (
                   <>
-                    <span className=" line-through text-gray-400 text-sm">
+                    <span className=" line-through text-gray-400 ">
                       {formatNumberIDR(product.price)}
                     </span>
-                    <p className=" bg-primary text-white p-1 rounded-md text-sm">
+                    <p className=" bg-primary text-sm text-white p-1 rounded-md ">
                       -{product.discount}%
                     </p>
                   </>
                 )}
               </div>
               <div>
-                <p className="text-sm text-wrap font-bold">{product.name}</p>
+                <p className=" text-wrap font-bold">{product.name}</p>
               </div>
             </div>
 
             <div className="flex flex-col w-full gap-2 py-2">
-              {/* <p className="text-xs">Kontak Penjual</p> */}
+              {/* <p className="">Kontak Penjual</p> */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <BiUserCheck className="text-3xl" />
@@ -250,19 +252,21 @@ Hatur nuhun~ ✨`}
                 </div>
                 <div className="flex gap-4">
                   <BiMessageRoundedDetail
-                    className="text-3xl text-primary hover:cursor-pointer"
+                    className="text-3xl  hover:cursor-pointer"
                     onClick={handleRedirectCall}
                   />
-                  <BiPhoneCall
+                  {/* <BiPhoneCall
                     className="text-3xl text-primary hover:cursor-pointer"
                     onClick={handleRedirectCall}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
-            <div className=" outline-primary text-black flex flex-col gap-1 text-sm">
+            <div className=" outline-primary text-black flex flex-col gap-1 ">
               Deskripsi Produk{" "}
-              <span className="text-xs italic">{product.description || "-"}</span>
+              <span className=" ">
+                {product.description || "-"}
+              </span>
             </div>
             {product.location && (
               <div className="flex items-center">
@@ -276,23 +280,23 @@ Hatur nuhun~ ✨`}
               <textarea
                 id="note"
                 placeholder="Catatan untuk Produk yang akan dibeli"
-rows="4"
-disabled={isStockEmpty}
+                rows="4"
+                disabled={isStockEmpty}
                 {...formik.getFieldProps("note")}
-                className={`shadow-sm border-[1px] p-2 focus:outline-none italic rounded-md border-black resize-none ${
+                className={`shadow-sm border-[1px] p-2 focus:outline-none  rounded-md border-black resize-none ${
                   formik.errors.note && "focus:outline-red-600"
                 }`}
               >
                 {formik.values.note}
               </textarea>
-              <span className="italic first-letter:capitalize text-xs text-red-600">
+              <span className=" first-letter:capitalize  text-red-600">
                 {formik.errors.note}
               </span>
             </div>
           </div>
         </div>
-        <div className="fixed md:relative bottom-0 w-full px-2 border-t-[1px] text-white text-sm">
-          <div className="flex w-full items-center bg-white h-full p-2 rounded-md">
+        <div className="fixed bottom-0 w-full  text-white ">
+          <div className="flex w-full md:w-1/2 items-center border-t-[1px] bg-white h-full p-2 rounded-md">
             <div className="p-2 flex flex-col w-1/3 text-black">
               <p className="">Total</p>
               <p className="font-[sans-serif]">

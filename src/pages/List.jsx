@@ -69,24 +69,6 @@ function List() {
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center">
       <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="sticky top-0 bg-white text-black py-2 shadow-md">
-          {/* Profile */}
-          <div className="px-5 pt-3 flex justify-between items-center">
-            <p className="text-lg">
-              Hai{" "}
-              <span className="font-bold">
-                {getCustomer()?.customer || "Brother"}
-              </span>
-            </p>
-            <div
-              className="relative hover:cursor-pointer rounded-md p-2"
-              onClick={() => navigate("/cart")}
-            >
-              <CiShoppingCart className="text-3xl" />
-              <p className="absolute rounded-full top-2 right-2 text-black border border-black bg-white text-xs w-4 flex justify-center">
-                {getCountCart()}
-              </p>
-            </div>
-          </div>
           {/* Search */}
           <div className="px-5 my-2 relative flex gap-2 items-center">
             <input
@@ -133,7 +115,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid bg-white  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(58dvh)] md:min-h-[calc(60dvh)] p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(58dvh)] md:min-h-[calc(68dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>

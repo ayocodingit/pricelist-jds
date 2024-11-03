@@ -5,6 +5,7 @@ import { removeItemCart } from "../repository/carts";
 import { CgClose } from "react-icons/cg";
 import { BsPencil } from "react-icons/bs";
 import Skeleton from "./Skeleton";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function CartList({
   product,
@@ -80,10 +81,10 @@ function CartList({
             }}
             className="hover: cursor-pointer"
           >
-            <BsPencil />
+            <BsPencil className="text-lg"/>
           </div>
-          <CgClose
-            className="text-xl hover: cursor-pointer"
+          <FaRegTrashAlt
+            className="text-xl hover: cursor-pointer text-red-600"
             onClick={() => {
               if (products.some(({ id }) => id == product.id)) {
                 setCheckTotal((total) => total - totalPrice);
