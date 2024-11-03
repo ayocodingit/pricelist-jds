@@ -103,13 +103,13 @@ function Cart() {
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(72dvh)]">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(72dvh)]">
             <Loading />
           </div>
         )}
@@ -156,6 +156,8 @@ function Cart() {
             })}
           </div>
         )}
+        { carts.length > 0 && (
+
           <div
             className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
           >
@@ -185,6 +187,7 @@ function Cart() {
               </button>
             </div>
           </div>
+        )}
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}

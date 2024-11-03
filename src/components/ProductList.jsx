@@ -48,14 +48,14 @@ function ProductList({ product }) {
           )}
         </div>
 
-        <div className="flex flex-col p-2 text-sm">
+        <div className="flex flex-col p-2">
           <h1
-            className={`text-nowrap overflow-hidden text-ellipsis font-roboto capitalize w-full`}
+            className={`text-nowrap overflow-hidden text-ellipsis capitalize w-full`}
           >
             {product.name}
           </h1>
-          <div className="font-[sans-serif] text-primary flex gap-2 items-center">
-            <p className="text-lg">
+          <div className=" text-primary flex gap-2 items-center">
+            <p className="text-md">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
               )}{" "}

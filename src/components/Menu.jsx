@@ -1,6 +1,6 @@
 import React from "react";
 import { CiShoppingCart } from "react-icons/ci";
-import { SlHome, SlQuestion, SlUser } from "react-icons/sl";
+import { SlBasket, SlHome, SlQuestion, SlUser } from "react-icons/sl";
 import { Link, useLocation } from "react-router-dom";
 import { getCountCart } from "../repository/carts";
 
@@ -21,7 +21,7 @@ function Menu() {
           />
         </Link>
         <Link to={"/cart"} className="relative">
-          <CiShoppingCart
+          <SlBasket
             className={`text-3xl text-white ${
               location.pathname == "/cart" ? activeClass : noActiveClass
             } hover:opacity-100`}
