@@ -239,7 +239,7 @@ Hatur nuhun~ ✨`}
                 )}
               </div>
               <div>
-                <p className=" text-wrap font-bold">{product.name}</p>
+                <p className=" text-wrap">{product.name}</p>
               </div>
             </div>
 
