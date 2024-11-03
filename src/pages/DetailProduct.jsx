@@ -262,7 +262,7 @@ Hatur nuhun~ ✨`}
                 </div>
               </div>
             </div>
-            <div className=" outline-primary text-black flex flex-col gap-1 ">
+            <div className=" outline-primary text-black flex flex-col gap-1 text-sm">
               Deskripsi Produk{" "}
               <span className=" ">
                 {product.description || "-"}
