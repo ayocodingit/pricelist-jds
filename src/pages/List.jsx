@@ -71,7 +71,7 @@ function List() {
         <div className="sticky top-0 bg-white text-black py-2 shadow-md">
           {/* Profile */}
           <div className="px-5 pt-3 flex justify-between items-center">
-            <p className="text-2xl">
+            <p className="text-lg">
               Hai{" "}
               <span className="font-bold">
                 {getCustomer()?.customer || "Brother"}
