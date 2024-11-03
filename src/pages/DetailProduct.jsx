@@ -107,7 +107,7 @@ function DetailProduct() {
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)] text-sm flex md:justify-center">
-      <div className="w-full md:w-1/2 flex flex-col h-[calc(92dvh)] overflow-auto">
+      <div className="w-full md:w-1/2 flex flex-col h-[calc(92dvh)] bg-black overflow-auto">
         <div className="flex items-center py-2 px-5 gap-5 justify-between bg-white sticky top-0 z-10 shadow-sm">
           <SlArrowLeft
             className="text-3xl rounded-full hover:cursor-pointer p-1"
