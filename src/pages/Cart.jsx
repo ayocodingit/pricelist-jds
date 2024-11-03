@@ -82,7 +82,7 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-2 py-2 px-2 bg-white items-center sticky top-0 z-10">
+        <div className="flex gap-2 py-2 px-2 bg-white items-center sticky top-0 z-10 shadow-sm">
           <BsArrowLeft
             className="p-1 text-3xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
