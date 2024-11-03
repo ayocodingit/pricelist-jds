@@ -102,13 +102,13 @@ function Cart() {
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(77dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(70dvh)] bg-white">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[calc(77dvh)] bg-white">
+          <div className="flex justify-center items-center h-[calc(70dvh)] bg-white">
             <Loading/>
           </div>
         )}
@@ -120,7 +120,7 @@ function Cart() {
             {carts.map((cart, index) => {
               return (
                 <div key={index}>
-                  <div className="text-black flex gap-4 items-center font-bold bg-white my-2">
+                  <div className="text-black flex gap-4 items-center font-bold bg-white mt-2">
                     <input
                       type="checkbox"
                       className="accent-primary w-8 h-4"
