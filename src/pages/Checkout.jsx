@@ -133,7 +133,7 @@ ${location.origin}
                 className="text-xl hover:cursor-pointer"
                 onClick={() => navigate("/list")}
               />
-              <p>Proses Bayar</p>
+              <p className="text-md">Proses Bayar</p>
             </div>
             {!isLoading && (
               <>
