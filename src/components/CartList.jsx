@@ -57,7 +57,7 @@ function CartList({
           <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
             <span className="text-md">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
-              <span className="bg-green-100  text-primary p-1 rounded-md text-xs">
+              <span className="bg-primary  text-white p-1 rounded-md text-xs">
                 -{product.discount}%
               </span>
             )}
