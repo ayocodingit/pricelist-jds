@@ -10,7 +10,7 @@ function SocialMedia({ title, size = 25, isGrid = false }) {
   const url = `Haloo Akang Teteh~`;
 
   return (
-    <div className={`flex gap-2 ${isGrid && 'flex-col' }`}>
+    <div className={`flex gap-2 animate-opacity-open ${isGrid && 'flex-col' }`}>
       <TelegramShareButton url={url} title={title}>
         <TelegramIcon size={size} round={true} />
       </TelegramShareButton>

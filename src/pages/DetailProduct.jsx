@@ -116,7 +116,7 @@ function DetailProduct() {
           <div className="flex gap-2  items-center">
             {showSocialMedia && (
               <SocialMedia
-                size={34}
+                size={30}
                 title={`
 Mangga in case ada yg mau beli 
 

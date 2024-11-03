@@ -157,7 +157,6 @@ function Cart() {
           </div>
         )}
         { carts.length > 0 && (
-
           <div
             className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
           >

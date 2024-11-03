@@ -6,6 +6,7 @@ import { CgClose } from "react-icons/cg";
 import { BsPencil } from "react-icons/bs";
 import Skeleton from "./Skeleton";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { SlPencil, SlTrash } from "react-icons/sl";
 
 function CartList({
   product,
@@ -81,9 +82,9 @@ function CartList({
             }}
             className="hover: cursor-pointer"
           >
-            <BsPencil className="text-lg"/>
+            <SlPencil className="text-lg"/>
           </div>
-          <FaRegTrashAlt
+          <SlTrash
             className="text-xl hover: cursor-pointer text-red-600"
             onClick={() => {
               if (products.some(({ id }) => id == product.id)) {
