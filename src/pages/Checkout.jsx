@@ -172,6 +172,7 @@ ${location.origin}
                     maxLength={50}
                     className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
                     placeholder="Pesanan nya aku ambil hari Senin yah..."
+onChange={(e) => setNote(e.target.value)}
                   >
                     {note}
                   </textarea>
