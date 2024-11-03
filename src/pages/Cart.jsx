@@ -103,20 +103,20 @@ function Cart() {
         </div>
 
         {carts.length === 0 && !isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)]">
+          <div className="flex justify-center items-center h-[calc(73dvh)]">
             Keranjang masih Kosong
           </div>
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[calc(72dvh)]">
+          <div className="flex justify-center items-center h-[calc(73dvh)]">
             <Loading />
           </div>
         )}
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col h-[calc(72dvh)] w-full overflow-auto text-sm`}
+            className={` flex flex-col h-[calc(73dvh)] w-full overflow-auto text-sm`}
           >
             {carts.map((cart, index) => {
               return (
@@ -156,7 +156,6 @@ function Cart() {
             })}
           </div>
         )}
-        { carts.length > 0 && (
           <div
             className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
           >
@@ -186,7 +185,6 @@ function Cart() {
               </button>
             </div>
           </div>
-        )}
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}
