@@ -32,7 +32,7 @@ function Menu() {
               location.pathname == "/cart" ? activeClass : noActiveClass
             } absolute rounded-full top-0 -right-3 text-white text-xs w-4 flex justify-center`}
           >
-            {getCountCart()}
+            ({getCountCart()})
           </p>
         </Link>
         {/* <li><SlHeart className={`text-2xl text-white ${location.pathname == '/favorit' ? activeClass : noActiveClass } hover:opacity-100`} /></li> */}
