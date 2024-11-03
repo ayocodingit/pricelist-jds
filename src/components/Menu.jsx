@@ -30,7 +30,7 @@ function Menu() {
           <p
             className={`${
               location.pathname == "/cart" ? activeClass : noActiveClass
-            } absolute rounded-full top-0 -right-3 text-white text-sm w-4 flex justify-center`}
+            } absolute rounded-full top-2 -right-4 text-white text-sm w-4 flex justify-center`}
           >
             ({getCountCart()})
           </p>
