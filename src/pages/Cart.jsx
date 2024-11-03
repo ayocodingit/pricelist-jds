@@ -82,7 +82,7 @@ function Cart() {
   return (
     <div className="bg-gray-50 text-md md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
       <div className="w-full md:w-1/2 items-center">
-        <div className="flex gap-2 py-5 px-2 bg-white items-center shadow-sm sticky top-0 z-10">
+        <div className="flex gap-2 py-5 px-2 bg-white items-center sticky top-0 z-10">
           <BsArrowLeft
             className="p-1 text-3xl hover:cursor-pointer"
             onClick={() => navigate("/list")}
@@ -120,7 +120,7 @@ function Cart() {
             {carts.map((cart, index) => {
               return (
                 <div key={index}>
-                  <div className="text-black flex gap-2 items-center font-bold bg-white mb-2 pb-2">
+                  <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
                     <input
                       type="checkbox"
                       className="accent-primary w-8 h-4"
