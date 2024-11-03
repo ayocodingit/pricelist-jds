@@ -27,13 +27,13 @@ function Menu() {
             } hover:opacity-100`}
             title="Keranjang"
           />
-          <p
+          {/*<p
             className={`${
               location.pathname == "/cart" ? activeClass : noActiveClass
             } absolute rounded-full top-1 -right-4 text-white text-sm w-4 flex justify-center`}
           >
             ({getCountCart()})
-          </p>
+          </p>*/}
         </Link>
         {/* <li><SlHeart className={`text-2xl text-white ${location.pathname == '/favorit' ? activeClass : noActiveClass } hover:opacity-100`} /></li> */}
         <Link to={"#"}>
