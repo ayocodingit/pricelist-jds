@@ -115,12 +115,12 @@ function Cart() {
 
         {carts.length > 0 && !isLoading && (
           <div
-            className={` flex flex-col h-[calc(78dvh)] py-2 w-full overflow-auto text-sm`}
+            className={` flex flex-col h-[calc(79dvh)] py-2 w-full overflow-auto text-sm`}
           >
             {carts.map((cart, index) => {
               return (
                 <div key={index}>
-                  <div className="text-black py-2 pl-1 flex gap-1 items-center font-bold">
+                  <div className="text-black py-2 pl-1 flex gap-1 items-center font-bold bg-white">
                     <input
                       type="checkbox"
                       className="accent-primary w-8 h-4"
