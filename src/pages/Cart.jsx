@@ -120,7 +120,7 @@ function Cart() {
             {carts.map((cart, index) => {
               return (
                 <div key={index}>
-                  <div className="text-black flex gap-4 items-center font-bold bg-white mt-2">
+                  <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
                     <input
                       type="checkbox"
                       className="accent-primary w-8 h-4"
