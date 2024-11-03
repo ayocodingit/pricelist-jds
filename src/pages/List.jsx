@@ -78,7 +78,7 @@ function List() {
               defaultValue={q}
               onChange={handleSearch}
             />
-            <FaSearch className="absolute top-2 text-xl left-8 text-gray-400" />
+            <FaSearch className="absolute top-2 text-lg left-8 text-gray-400" />
           </div>
           <div
             className={`
