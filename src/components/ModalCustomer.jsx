@@ -78,7 +78,7 @@ function ModalCustomer({ setIsModalCustomer, isModalCustomer }) {
             className={`w-full  h-8 p-2 text-sm outline-double rounded-md ${
               formik.errors.telegram ? "outline-red-500" : "outline-primary"
             }`}
-            placeholder="Akun Telegram"
+            placeholder="@aseptea"
             {...formik.getFieldProps("telegram")}
           />
           <span className="first-letter:capitalize italic text-xs text-red-500">
