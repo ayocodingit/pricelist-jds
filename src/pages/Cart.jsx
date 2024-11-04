@@ -159,7 +159,7 @@ function Cart() {
           <div
             className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
           >
-            <div className=" flex flex-col w-full items-center gap-2 px-5 py-2">
+            <div className="z-20 flex flex-col w-full items-center gap-2 px-5 py-2">
               <div className="flex justify-between w-full  items-center">
                 <p className="first-letter:capitalize">Penjual</p>
                 <p>{username && "@" + username}</p>
