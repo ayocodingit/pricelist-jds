@@ -156,41 +156,42 @@ function Cart() {
             })}
           </div>
         )}
-          <div
-            className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
-          >
-            <div className="z-20 flex flex-col w-full items-center gap-2 px-5 py-2">
-              <div className="flex justify-between w-full  items-center">
-                <p className="first-letter:capitalize">Penjual</p>
-                <p>{username && "@" + username}</p>
-              </div>
-              <div className="flex justify-between w-full  items-center">
-                <p>Produk Terpilih ({products.length})</p>
-                <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
-              </div>
-              <button
-                className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
-                  products.length != 0 &&
-                  "hover:cursor-pointer hover:opacity-90"
-                } `}
-                disabled={products.length === 0}
-                onClick={() => {
-                  if (!checkCompleteCustomer()) return setIsModalCustomer(true);
 
-                  moveToCheckOut(products);
-                  return navigate(`/checkout/${username}`);
-                }}
-              >
-                {products.length > 0 ? "Proses Bayar" : "Silahkan Pilih Produk"}
-              </button>
-            </div>
-          </div>
         <ModalCustomer
           setIsModalCustomer={setIsModalCustomer}
           isModalCustomer={isModalCustomer}
         />
       </div>
-      <Menu></Menu>
+      <Menu>
+        <div
+          className={`text-sm flex w-full items-center border-y bg-white shadow-xl justify-between`}
+        >
+          <div className="z-20 flex flex-col w-full items-center gap-2 px-5 py-2">
+            <div className="flex justify-between w-full  items-center">
+              <p className="first-letter:capitalize">Penjual</p>
+              <p>{username && "@" + username}</p>
+            </div>
+            <div className="flex justify-between w-full  items-center">
+              <p>Produk Terpilih ({products.length})</p>
+              <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
+            </div>
+            <button
+              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
+                products.length != 0 && "hover:cursor-pointer hover:opacity-90"
+              } `}
+              disabled={products.length === 0}
+              onClick={() => {
+                if (!checkCompleteCustomer()) return setIsModalCustomer(true);
+
+                moveToCheckOut(products);
+                return navigate(`/checkout/${username}`);
+              }}
+            >
+              {products.length > 0 ? "Proses Bayar" : "Silahkan Pilih Produk"}
+            </button>
+          </div>
+        </div>
+      </Menu>
     </div>
   );
 }
