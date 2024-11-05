@@ -72,7 +72,7 @@ function Customer() {
         {!isLoading && (
           <>
             <div className="flex items-center w-full mt-5">
-              <label className="w-1/3">Nama Lengkap - Divisi</label>
+              <label className="w-1/3">Nama - Divisi</label>
               <input
                 placeholder="Nama Lengkap - Divisi"
                 className="border-b-[1px] focus:border-primary w-full focus:outline-none bg-transparent p-2"
