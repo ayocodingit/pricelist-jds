@@ -7,7 +7,7 @@ function FilterCategory({ handleCategory, category }) {
     <>
       <li
         className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center shadow-lg rounded-md ${
-          category == categoryOptions.FOOD ? "bg-primary text-white" : "bg-gray-300 text-black"
+          category == categoryOptions.FOOD ? "bg-primary text-white" : "bg-gray-200 text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.FOOD)}
         title={categoryOptions.FOOD}
