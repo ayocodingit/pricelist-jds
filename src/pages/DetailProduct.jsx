@@ -171,7 +171,7 @@ Hatur nuhun~ ✨`}
                 <p
                   className={`${
                     isStockEmpty ? "text-gray-500 " : "text-white bg-primary rounded-md p-1 text-center "
-                  } text-sm rounded-md capitalize`}
+                  } text-xs rounded-md capitalize`}
                 >
                   {!isStockEmpty ? product.tag : "sold out"}{" "}
                   {product.tag == tagOptions.READY_STOCK && !isStockEmpty && (
