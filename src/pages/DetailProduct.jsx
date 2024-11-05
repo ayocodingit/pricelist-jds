@@ -266,7 +266,7 @@ Hatur nuhun~ ✨`}
             </div>
             <div className=" outline-primary text-black flex flex-col gap-1 text-sm">
               Deskripsi Produk{" "}
-              <span className=" ">
+              <span className="text-justify">
                 {product.description || "-"}
               </span>
             </div>
