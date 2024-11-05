@@ -26,7 +26,7 @@ function Customer() {
       telegram: telegram ? '@' + telegram.replace('@', '') : "",
     },
     onSubmit: (values) => {
-      formik.values = values
+      formik.values.telegram = values.telegram ? '@' + values.telegram.replace('@', '') : "",
       setIsLoadingSubmit(true);
       storeCustomer(values);
       alert(
