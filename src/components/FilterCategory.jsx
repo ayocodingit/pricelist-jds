@@ -16,8 +16,8 @@ function FilterCategory({ handleCategory, category }) {
         <span className="first-letter: capitalize">{categoryOptions.FOOD}</span>
       </li>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center  shadow-lg rounded-md bg-primary text-white ${
-          category == categoryOptions.DRINK ? "opacity-100" : "opacity-70"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center  shadow-lg rounded-md ${
+          category == categoryOptions.DRINK ? "bg-primary text-white" : "bg-gray-200 text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.DRINK)}
         title={categoryOptions.DRINK}
