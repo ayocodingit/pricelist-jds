@@ -34,7 +34,7 @@ function ProductList({ product }) {
       title={product.name}
     >
       <div className="flex flex-col justify-center w-full">
-        <div className="relative flex justify-center w-full">
+        <div className="relative flex justify-center">
           <img
             src={product.image}
             alt="image product"
@@ -54,7 +54,7 @@ function ProductList({ product }) {
           >
             {product.name}
           </h1>
-          <div className=" text-primary flex gap-2 items-center">
+          <div className=" text-primary flex gap-2 items-center w-full">
             <p className="text-md">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
@@ -73,7 +73,7 @@ function ProductList({ product }) {
           </div>
           <p
             className={`${
-              isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-md w-1/2"
+              isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-md"
             } text-xs rounded-md capitalize mt-2 `}
           >
             {!isStockEmpty ? product.tag : "sold out"}
