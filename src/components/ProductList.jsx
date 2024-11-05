@@ -73,7 +73,7 @@ function ProductList({ product }) {
           </div>
           <p
             className={`${
-              isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-md"
+              isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-md w-fit"
             } text-xs rounded-md capitalize mt-2 `}
           >
             {!isStockEmpty ? product.tag : "sold out"}
