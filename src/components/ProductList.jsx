@@ -74,7 +74,7 @@ function ProductList({ product }) {
           <p
             className={`${
               isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-lg w-fit"
-            } text-xs rounded-md capitalize mt-2 `}
+            } text-xs rounded-md capitalize `}
           >
             {!isStockEmpty ? product.tag : "sold out"}
           </p>
