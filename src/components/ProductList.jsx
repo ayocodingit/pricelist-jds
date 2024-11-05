@@ -29,7 +29,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className="border-[1px] border-primary rounded-md flex bg-white shadow-md hover:cursor-pointer max-h-72 relative"
+      className="border-[1px] border-primary rounded-md flex bg-white shadow-md hover:cursor-pointer max-h-72 relative w-full"
       to={"/list/" + product.id}
       title={product.name}
     >
