@@ -72,7 +72,7 @@ function Customer() {
         {!isLoading && (
           <>
             <div className="flex items-center w-full mt-5">
-              <label className="w-1/3">Nama dan Divisi</label>
+              <label className="w-1/2">Nama dan Divisi</label>
               <input
                 placeholder="Nama Lengkap - Divisi"
                 className="border-b-[1px] focus:border-primary w-full focus:outline-none bg-transparent p-2"
@@ -80,13 +80,13 @@ function Customer() {
               />
             </div>
             <div className="w-full flex mt-1">
-              <div className="w-1/3">&nbsp;</div>
+              <div className="w-1/2">&nbsp;</div>
               <span className="w-full first-letter:capitalize italic text-xs text-red-500">
                 {formik.errors.customer}
               </span>
             </div>
             <div className="flex items-center w-full">
-              <label className="w-1/3">Akun Telegram</label>
+              <label className="w-1/2">Akun Telegram</label>
               <input
                 placeholder="@aseptea"
                 className="border-b-[1px] focus:border-primary w-full focus:outline-none bg-transparent p-2"
@@ -94,7 +94,7 @@ function Customer() {
               />
             </div>
             <div className="w-full flex mt-1">
-              <div className="w-1/3">&nbsp;</div>
+              <div className="w-1/2">&nbsp;</div>
               <span className="w-full first-letter:capitalize italic text-xs text-red-500">
                 {formik.errors.telegram}
               </span>
