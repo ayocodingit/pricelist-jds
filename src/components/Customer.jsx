@@ -23,7 +23,7 @@ function Customer() {
   const formik = useFormik({
     initialValues: {
       customer: customer ?? "",
-      telegram: telegram ?? "",
+      telegram: telegram ? '@' + telegram.replace('@', '') : "",
     },
     onSubmit: (values) => {
       setIsLoadingSubmit(true);
