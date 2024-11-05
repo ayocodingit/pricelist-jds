@@ -7,7 +7,7 @@ function FilterCategory({ handleCategory, category }) {
     <>
       <li
         className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center shadow-lg rounded-md bg-primary ${
-          category == categoryOptions.FOOD ? "text-white" : "text-gray-500"
+          category == categoryOptions.FOOD ? "text-white" : "text-white"
         }`}
         onClick={() => handleCategory(categoryOptions.FOOD)}
         title={categoryOptions.FOOD}
@@ -17,7 +17,7 @@ function FilterCategory({ handleCategory, category }) {
       </li>
       <li
         className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center  shadow-lg rounded-md bg-primary ${
-          category == categoryOptions.DRINK ? "text-white" : "text-gray-500"
+          category == categoryOptions.DRINK ? "text-white" : "text-white"
         }`}
         onClick={() => handleCategory(categoryOptions.DRINK)}
         title={categoryOptions.DRINK}
