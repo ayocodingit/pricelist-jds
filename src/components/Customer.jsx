@@ -67,7 +67,7 @@ function Customer() {
       className="flex flex-col items-center  w-full   p-5"
       onSubmit={formik.handleSubmit}
     >
-      <div className="bg-white w-full min-h-96 p-10 rounded-lg  shadow-sm flex flex-col items-center">
+      <div className="bg-white w-full min-h-96 p-5 rounded-lg  shadow-sm flex flex-col items-center">
         <img src="/user.png" className="w-32 object-contain" alt="logo user" />
         {!isLoading && (
           <>
