@@ -6,8 +6,8 @@ function FilterCategory({ handleCategory, category }) {
   return (
     <>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center shadow-lg rounded-md bg-gray-50 ${
-          category == categoryOptions.FOOD ? "text-primary" : "text-black"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center shadow-lg rounded-md bg-primary ${
+          category == categoryOptions.FOOD ? "text-white" : "text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.FOOD)}
         title={categoryOptions.FOOD}
@@ -16,8 +16,8 @@ function FilterCategory({ handleCategory, category }) {
         <span className="first-letter: capitalize">{categoryOptions.FOOD}</span>
       </li>
       <li
-        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center  shadow-lg rounded-md bg-gray-50 ${
-          category == categoryOptions.DRINK ? "text-primary" : "text-black"
+        className={`p-2 gap-2 hover:cursor-pointer hover:opacity-90 flex flex-col items-center  shadow-lg rounded-md bg-primary ${
+          category == categoryOptions.DRINK ? "text-white" : "text-black"
         }`}
         onClick={() => handleCategory(categoryOptions.DRINK)}
         title={categoryOptions.DRINK}
