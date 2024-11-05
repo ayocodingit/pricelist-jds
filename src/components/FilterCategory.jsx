@@ -12,7 +12,7 @@ function FilterCategory({ handleCategory, category }) {
         onClick={() => handleCategory(categoryOptions.FOOD)}
         title={categoryOptions.FOOD}
       >
-        <img src="/hamburger.png" alt="food image" width={30} className={`${category == categoryOptions.FOOD ? 'grayscale-100' : 'grayscale'}`} />
+        <img src="/hamburger.png" alt="food image" width={30} />
         <span className="first-letter: capitalize">{categoryOptions.FOOD}</span>
       </li>
       <li
@@ -22,7 +22,7 @@ function FilterCategory({ handleCategory, category }) {
         onClick={() => handleCategory(categoryOptions.DRINK)}
         title={categoryOptions.DRINK}
       >
-        <img src="/drink.png" alt="drink image" width={30} className={`${category == categoryOptions.DRINK ? 'grayscale-100' : 'grayscale'}`} />
+        <img src="/drink.png" alt="drink image" width={30}/>
         <span className="first-letter: capitalize">
           {categoryOptions.DRINK}
         </span>
