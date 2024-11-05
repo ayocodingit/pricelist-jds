@@ -68,7 +68,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-lg">
       <div className="w-full md:w-1/2 flex flex-col relative">
-        <div className="sticky top-0 bg-primary text-black py-2 shadow-md">
+        <div className="sticky top-0 bg-white text-black py-2 shadow-md">
           {/* Search */}
           <div className="px-5 my-2 relative flex gap-2 items-center">
             <input
