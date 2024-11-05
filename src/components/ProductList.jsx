@@ -33,7 +33,7 @@ function ProductList({ product }) {
       to={"/list/" + product.id}
       title={product.name}
     >
-      <div className="flex flex-col justify-center w-full gap-2">
+      <div className="flex flex-col justify-center w-full">
         <div className="relative flex justify-center w-full">
           <img
             src={product.image}
@@ -74,7 +74,7 @@ function ProductList({ product }) {
           <p
             className={`${
               isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-lg w-fit"
-            } text-xs rounded-md capitalize `}
+            } text-xs rounded-md capitalize mt-2 `}
           >
             {!isStockEmpty ? product.tag : "sold out"}
           </p>
