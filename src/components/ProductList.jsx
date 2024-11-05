@@ -33,7 +33,7 @@ function ProductList({ product }) {
       to={"/list/" + product.id}
       title={product.name}
     >
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center w-full">
         <div className="relative flex justify-center">
           <img
             src={product.image}
