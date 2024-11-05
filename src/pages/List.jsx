@@ -66,7 +66,7 @@ function List() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm">
+    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
       <div className="w-full md:w-1/2 flex flex-col relative">
         <div className="sticky top-0 bg-white text-black py-2 shadow-md">
           {/* Search */}
@@ -115,7 +115,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-3 gap-2 h-[calc(67dvh)] md:min-h-[calc(68dvh)] p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-4 gap-2 h-[calc(67dvh)] md:h-[calc(66dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>

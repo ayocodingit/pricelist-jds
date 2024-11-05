@@ -81,7 +81,7 @@ function Cart() {
   }, [products, username]);
 
   return (
-    <div className="bg-gray-50 text-sm md:justify-center flex relative min-h-[calc(100dvh)] md:h-auto">
+    <div className="bg-gray-50 text-sm  md:text-md md:justify-center flex relative min-h-[calc(100dvh)]">
       <div className="w-full md:w-1/2 items-center">
         <div className="flex gap-4 py-3 px-4 bg-white items-center sticky top-0 z-10 shadow-sm">
           <SlArrowLeft
