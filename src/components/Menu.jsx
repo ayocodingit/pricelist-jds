@@ -38,7 +38,7 @@ function Menu({ children }) {
         </Link>
         {/* <li><SlHeart className={`text-2xl text-white ${location.pathname == '/favorit' ? activeClass : noActiveClass } hover:opacity-100`} /></li> */}
         <Link
-          to={"#"}
+          to={"/me"}
           className={`flex flex-col items-center gap-1 ${
             location.pathname == "/me" ? activeClass : noActiveClass
           }`}

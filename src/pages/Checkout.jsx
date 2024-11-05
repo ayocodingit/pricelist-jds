@@ -125,7 +125,7 @@ ${location.origin}
 
   return (
     <>
-      <form action="#" onSubmit={handleSubmit} className="print:hidden text-sm  md:text-md">
+      <form action="#" onSubmit={handleSubmit} className="print:hidden text-sm  md:text-lg">
         <div className="bg-gray-50 h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
           <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
             <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">

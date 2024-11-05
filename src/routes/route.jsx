@@ -6,6 +6,7 @@ import DetailProduct from "../pages/DetailProduct.jsx";
 import Cart from "../pages/Cart.jsx";
 import Checkout from "../pages/Checkout.jsx";
 import SuccessOrder from "../pages/SuccessOrder.jsx";
+import Profile from "../pages/Profile.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
   {
     path: "success-order",
     element: <SuccessOrder />,
+  },
+  {
+    path: "me",
+    element: <Profile />,
   },
 ]);
