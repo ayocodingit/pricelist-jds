@@ -7,7 +7,7 @@ function SortProduct({ handleSort, sort }) {
   return (
       <>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center${
             sort == sortOptions.NAME ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort(sortOptions.NAME)}
@@ -17,7 +17,7 @@ function SortProduct({ handleSort, sort }) {
           <span className="first-letter: capitalize">{sortOptions.NAME}</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center${
             sort == sortOptions.PRICE ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort(sortOptions.PRICE)}
@@ -27,7 +27,7 @@ function SortProduct({ handleSort, sort }) {
            <span className="first-letter: capitalize">{sortOptions.PRICE}</span>
         </li>
         <li
-          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center bg-white rounded-md  ${
+          className={`p-1  hover:cursor-pointer hover:opacity-90 flex gap-1 items-center ${
             sort == sortOptions.STOK ? "text-primary" :  "text-black"
           }`}
           onClick={() => handleSort(sortOptions.STOK)}
