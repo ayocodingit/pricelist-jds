@@ -218,5 +218,19 @@
         "is_available": true,
         "location": "Ruang Selatan",
         "description": "Dessert Jelly rasa Strawberry. Isian lengkap dengan buah strawberry segar di dalamnya. Tersedia juga versi hampers untuk kasih org terdekat/gebetan biar makin lengket 😋"
+    },
+{
+        "id": 18,
+        "image": "https://i.ibb.co.com/HKDsrxm/372497223501190.png",
+        "category": "makanan",
+        "name": "Cilok Mertua",
+        "price": 10000,
+        "username": "imamfahmi29",
+        "tag": "pre order",
+        "stock": 9999,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": ""
     }
 ]
