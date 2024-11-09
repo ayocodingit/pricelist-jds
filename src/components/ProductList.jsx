@@ -54,7 +54,7 @@ function ProductList({ product }) {
           >
             {product.name}
           </h1>
-          <div className=" text-primary flex gap-2 items-center">
+          <div className=" text-primary flex gap-2 items-center mt-2">
             <p className="text-md">
               {formatNumberIDR(
                 calculateDiscount(product.price, product.discount)
