@@ -15,6 +15,7 @@ import Footer from "../components/Footer";
 import { sortOptions } from "../utils/contstant/sort";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
+import { SlBasket } from "react-icons/sl";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,7 @@ function List() {
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
-      <div className="w-full md:w-1/2 flex flex-col relative">
+      <div className="w-full flex flex-col relative">
         <div className="sticky top-0 bg-white text-black py-2 shadow-md">
           {/* Search */}
           <div className="px-5 my-2 relative flex gap-2 items-center">
@@ -79,6 +80,15 @@ function List() {
               onChange={handleSearch}
             />
             <FaSearch className="absolute top-2 text-lg left-8 text-gray-400" />
+            <div
+              className="relative  rounded-full p-1 hover:cursor-pointer"
+              onClick={() => navigate("/cart")}
+            >
+              <SlBasket className="text-2xl " />
+              <p className="absolute rounded-md top-0 text-white right-0 bg-primary  w-4 flex justify-center text-xs">
+                {getCountCart()}
+              </p>
+            </div>
           </div>
           <div
             className={`
@@ -90,7 +100,7 @@ function List() {
               <SortProduct handleSort={handleSort} sort={sort} />
             </div>
           </div>
-<div className="flex flex-col px-5 gap-2 overflow-auto">
+          <div className="flex flex-col px-5 gap-2 overflow-auto">
             <h1>Kategori</h1>
             <div className="flex overflow-auto gap-2">
               <FilterCategory
@@ -99,10 +109,7 @@ function List() {
               />
             </div>
           </div>
-         
         </div>
-
-         
 
         {/* Favorite */}
         {/* <div className="px-5 my-5 flex flex-col gap-3">
@@ -134,7 +141,7 @@ function List() {
             </div>
           )}
         </div>
-          <Menu/>
+        <Menu />
       </div>
       <ModalCustomer
         setIsModalCustomer={setIsModalCustomer}

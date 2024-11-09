@@ -14,7 +14,7 @@ function Image({ src, alt, className }) {
   if (isLoading) {
      return (
       <div className="w-full rounded-md">
-        <Skeleton width={'100%'} className={className}/>
+        <Skeleton className={className}/>
       </div>
     );
   }

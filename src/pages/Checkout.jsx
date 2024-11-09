@@ -94,7 +94,7 @@ Seller: <b>@${username}</b>
 Nama: <b>${getCustomer().customer}</b>
 Akun: <b>@${getCustomer().telegram.replace("@", "")}</b>
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
-Catatan: <b>${note || '-'}</b>
+Catatan: <b>${note || "-"}</b>
 
 <b><u>Data Produk</u></b> ${title}
 
@@ -124,240 +124,178 @@ ${location.origin}
   };
 
   return (
-    <>
-      <form action="#" onSubmit={handleSubmit} className="print:hidden text-sm  md:text-md">
-        <div className="bg-gray-50 h-[calc(100dvh)] print:hidden flex flex-col md:items-center relative text-sm">
-          <div className="w-full md:w-1/2 max-h-[calc(88dvh)] overflow-auto">
-            <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">
-              <SlArrowLeft
-                className="text-xl hover:cursor-pointer"
-                onClick={() => navigate("/list")}
-              />
-              <p className="text-md">Proses Bayar</p>
-            </div>
-            {!isLoading && (
-              <>
-                <p className="py-3 px-2 text-md">Rincian Pembelian</p>
-                <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
-                  {products.map((product, index) => {
-                    return (
-                      <div className=" flex flex-col gap-1 w-full " key={index}>
-                        <p className="print:font-normal print:text-xs">
-                          {index + 1}. {product.name}
+    <form action="#" onSubmit={handleSubmit} className="text-sm  md:text-md">
+      <div className="bg-gray-50 h-[calc(100dvh)] flex flex-col relative text-sm">
+        <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">
+          <SlArrowLeft
+            className="text-xl hover:cursor-pointer"
+            onClick={() => navigate("/list")}
+          />
+          <p className="text-md">Proses Bayar</p>
+        </div>
+        <div className="w-full h-[calc(82dvh)] overflow-auto md:flex gap-5">
+          {!isLoading && (
+            <>
+            <div className="md:w-full">
+              <p className="py-3 px-2 text-md">Rincian Pembelian</p>
+              <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
+                {products.map((product, index) => {
+                  return (
+                    <div className=" flex flex-col gap-1 w-full " key={index}>
+                      <p className="print:font-normal print:text-xs">
+                        {index + 1}. {product.name}
+                      </p>
+                      <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
+                        {product.note}
+                      </p>
+                      <div className="flex justify-between ">
+                        <p className="px-4 print:text-xs">
+                          {product.qty} x {formatNumberIDR(product.price)}
                         </p>
-                        <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
-                          {product.note}
+                        <p className="print:text-xs">
+                          {formatNumberIDR(product.qty * product.price)}
                         </p>
-                        <div className="flex justify-between ">
-                          <p className="px-4 print:text-xs">
-                            {product.qty} x {formatNumberIDR(product.price)}
-                          </p>
-                          <p className="print:text-xs">
-                            {formatNumberIDR(product.qty * product.price)}
-                          </p>
-                        </div>
                       </div>
-                    );
-                  })}
-                  <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
-                    <p>Total Jumlah: {totalQty}</p>
-                    <p>{formatNumberIDR(total)}</p>
-                  </div>
-                </div>
-                <p className="py-3 px-2 text-md">Catatan Buat Penjual</p>
-                <div className="px-2">
-                  <textarea
-                    name="note"
-                    rows={3}
-                    maxLength={50}
-                    className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
-                    placeholder="Pesanan nya aku ambil hari Senin yah..."
-onChange={(e) => setNote(e.target.value)}
-value={note}
-                  >
-                    {note}
-                  </textarea>
-                </div>
-                <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
-                <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
-                  <PaymentList
-                    payment={{ provider: "cash", value: "" }}
-                    paymentMethod={paymentMethod}
-                    setPaymentMethod={setPaymentMethod}
-                    setVA={setVA}
-                  />
-                  {user?.payments?.map((payment, index) => {
-                    return (
-                      <PaymentList
-                        payment={payment}
-                        key={index}
-                        paymentMethod={paymentMethod}
-                        setPaymentMethod={setPaymentMethod}
-                        setVA={setVA}
-                      />
-                    );
-                  })}
-                </div>
-                {paymentMethod != "cash" && VA && (
-                  <div
-                    className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
-                  >
-                    <div className="border border-primary rounded-md flex justify-between items-center p-5">
-                      <p className=""> No Rek {VA}</p>
-                      <CopyToClipboard
-                        text={VA}
-                        onCopy={() =>
-                          alert("success", "No Rek Disalin di Papan Klip")
-                        }
-                      >
-                        <AiOutlineCopy
-                          className={
-                            "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
-                          }
-                        />
-                      </CopyToClipboard>
                     </div>
-                  </div>
-                )}
-                {paymentMethod != "cash" && (
-                  <div className="flex flex-col items-center px-2 py-5 gap-5 w-full animate-opacity-open">
-                    <p>Upload Bukti Pembayaran</p>
-                    <div className="relative flex flex-col items-center gap-6 w-full">
-                      <Dropzone setFile={setFile} />
-
-                      {file && (
-                        <div className="absolute bg-white border border-dashed rounded-md border-primary w-full p-5 h-full flex justify-center items-center">
-                          <>
-                            <PhotoProvider>
-                              <PhotoView src={URL.createObjectURL(file)}>
-                                <img
-                                  src={URL.createObjectURL(file)}
-                                  alt="gambar uploaded"
-                                  className="object-contain w-40 h-32 hover:cursor-pointer"
-                                />
-                              </PhotoView>
-                            </PhotoProvider>
-                            <BiTrash
-                              className="text-2xl text-red-500 absolute top-2 right-2"
-                              onClick={() => setFile(undefined)}
-                            />
-                          </>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-
-            {isLoading && (
-              <div className="flex h-[calc(76dvh)] justify-center items-center">
-                <Loading></Loading>
+                  );
+                })}
+                <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
+                  <p>Total Jumlah: {totalQty}</p>
+                  <p>{formatNumberIDR(total)}</p>
+                </div>
               </div>
-            )}
-          </div>
-          <div className="fixed bottom-0  text-sm h-24 flex w-full items-center gap-2 bg-white shadow-lg md:w-1/2 justify-between">
-            <div className=" flex flex-col w-full items-center py-2 px-4 gap-2 h-full">
-              <div className="flex items-center justify-between w-full">
-                <p>Total Bayar</p>
-                <div className="flex items-center gap-1">
-                  <CopyToClipboard
-                    text={total}
-                    onCopy={() =>
-                      alert("success", "Total Bayar Disalin di Papan Klip")
-                    }
-                  >
-                    <AiOutlineCopy
-                      className={
-                        "text-3xl hover:cursor-copy p-1 bg-gray-100 rounded-md text-primary"
-                      }
+              <p className="py-3 px-2 text-md">Catatan Buat Penjual</p>
+              <div className="px-2">
+                <textarea
+                  name="note"
+                  rows={3}
+                  maxLength={50}
+                  className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
+                  placeholder="Pesanan nya aku ambil hari Senin yah..."
+                  onChange={(e) => setNote(e.target.value)}
+                  value={note}
+                >
+                  {note}
+                </textarea>
+              </div>
+              </div>
+              <div className="md:w-full">
+              <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
+              <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
+                <PaymentList
+                  payment={{ provider: "cash", value: "" }}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  setVA={setVA}
+                />
+                {user?.payments?.map((payment, index) => {
+                  return (
+                    <PaymentList
+                      payment={payment}
+                      key={index}
+                      paymentMethod={paymentMethod}
+                      setPaymentMethod={setPaymentMethod}
+                      setVA={setVA}
                     />
-                  </CopyToClipboard>
-                  <p>
-                    {!isLoading ? (
-                      formatNumberIDR(total)
-                    ) : (
-                      <Loading size={15}></Loading>
+                  );
+                })}
+              </div>
+              {paymentMethod != "cash" && VA && (
+                <div
+                  className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
+                >
+                  <div className="border border-primary rounded-md flex justify-between items-center p-5">
+                    <p className=""> No Rek {VA}</p>
+                    <CopyToClipboard
+                      text={VA}
+                      onCopy={() =>
+                        alert("success", "No Rek Disalin di Papan Klip")
+                      }
+                    >
+                      <AiOutlineCopy
+                        className={
+                          "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
+                        }
+                      />
+                    </CopyToClipboard>
+                  </div>
+                </div>
+              )}
+              {paymentMethod != "cash" && (
+                <div className="flex flex-col items-center px-2 py-5 gap-5 w-full animate-opacity-open">
+                  <p>Upload Bukti Pembayaran</p>
+                  <div className="relative flex flex-col items-center gap-6 w-full">
+                    <Dropzone setFile={setFile} />
+
+                    {file && (
+                      <div className="absolute bg-white border border-dashed rounded-md border-primary w-full p-5 h-full flex justify-center items-center">
+                        <>
+                          <PhotoProvider>
+                            <PhotoView src={URL.createObjectURL(file)}>
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt="gambar uploaded"
+                                className="object-contain w-40 h-32 hover:cursor-pointer"
+                              />
+                            </PhotoView>
+                          </PhotoProvider>
+                          <BiTrash
+                            className="text-2xl text-red-500 absolute top-2 right-2"
+                            onClick={() => setFile(undefined)}
+                          />
+                        </>
+                      </div>
                     )}
-                  </p>
+                  </div>
                 </div>
-              </div>
-              <button
-                className="w-full bg-primary rounded-md p-2 flex gap-3 justify-center items-center text-white"
-                type="submit"
-              >
-                Bayar
-                {isLoadingSubmit && <Loading size={20} color="#fff"></Loading>}
-              </button>
+              )}
             </div>
-          </div>
-        </div>
-      </form>
-      <div className="hidden print:flex flex-col bg-gray-50 print:bg-white items-center w-full md:justify-center p-5 gap-4 relative print:justify-normal print:text-xs print:w-[58mm] print:h-[100mm] print:font-extralight min-h-screen">
-        <div className="text-md flex flex-col gap-2 items-center md:w-1/2">
-          <Link to={"/list"}>
-            <BsShop className="text-5xl print:text-3xl" />
-          </Link>
-          <p className="text-center">{user.name_card}</p>
-        </div>
+            </>
+          )}
 
-        <div className="flex flex-col gap-2 p-2 print:p-0 w-full bg-white shadow-lg print:shadow-none text-md md:w-1/2 print:w-full print:py-2 print:border-t-[1px] border-black print:text-xs">
-          {products.map((product, index) => {
-            return (
-              <div className=" flex flex-col gap-1" key={index}>
-                <p className="font-bold print:font-normal print:text-xs">
-                  {index + 1}. {product.name}
-                </p>
-                <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
-                  {product.note}
-                </p>
-                <div className="flex justify-between ">
-                  <p className="px-4 print:text-xs">
-                    {product.qty} x {product.price}
-                  </p>
-                  <p className="print:text-xs">
-                    {formatNumberIDR(product.qty * product.price)}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-          <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-32">
-            <p>Total QTY: {totalQty}</p>
-            <p>{formatNumberIDR(total)}</p>
-          </div>
-        </div>
-
-        <div className="w-full md:w-1/3 flex flex-col items-center gap-5 print:hidden">
-          <div className="flex gap-2 items-center">
-            <SocialMedia title={title} size={30} />
-            <AiOutlinePrinter
-              className="hover:cursor-pointer text-3xl"
-              title="Print Order"
-              onClick={() => {
-                const { month, date, year } = getAttrDate();
-                document.title = `Order Price List ${month}-${date}-${year}`;
-                window.print();
-              }}
-            />
-            <BsPencil
-              title="Edit Message"
-              className={`text-2xl ${edit && "border-b-2 border-black"}`}
-              onClick={() => setEdit((prev) => !prev)}
-            />
-          </div>
-          {edit && (
-            <textarea
-              className="rounded-md outline-2 outline-primary font-[sans-serif]  outline-dashed p-2 w-full h-44 bg-white shadow-lg"
-              onChange={(e) => setTitle(e.target.value)}
-              disabled={!edit}
-            >
-              {title}
-            </textarea>
+          {isLoading && (
+            <div className="flex h-[calc(76dvh)] w-full justify-center items-center">
+              <Loading></Loading>
+            </div>
           )}
         </div>
+        <div className="fixed md:relative bottom-0  text-sm h-24 flex w-full items-center gap-2 md:bg-transparent bg-white shadow-lg justify-between md:justify-end">
+          <div className=" flex flex-col w-full md:w-1/2 items-center py-2 px-4 gap-2 h-full md:bg-white md:shadow-lg">
+            <div className="flex items-center justify-between w-full">
+              <p>Total Bayar</p>
+              <div className="flex items-center gap-1">
+                <CopyToClipboard
+                  text={total}
+                  onCopy={() =>
+                    alert("success", "Total Bayar Disalin di Papan Klip")
+                  }
+                >
+                  <AiOutlineCopy
+                    className={
+                      "text-3xl hover:cursor-copy p-1 bg-gray-100 rounded-md text-primary"
+                    }
+                  />
+                </CopyToClipboard>
+                <p>
+                  {!isLoading ? (
+                    formatNumberIDR(total)
+                  ) : (
+                    <Loading size={15}></Loading>
+                  )}
+                </p>
+              </div>
+            </div>
+            <button
+              className="w-full bg-primary rounded-md p-2 flex gap-3 justify-center items-center text-white"
+              type="submit"
+            >
+              Bayar
+              {isLoadingSubmit && <Loading size={20} color="#fff"></Loading>}
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </form>
   );
 }
 
