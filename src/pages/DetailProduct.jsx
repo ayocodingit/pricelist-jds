@@ -163,7 +163,7 @@ Hatur nuhun~ ✨`}
             className={`w-full h-[20rem] md:h-[calc(60dvh)] hover:cursor-zoom-in rounded-md object-contain`}
           />
         </div>
-        <div className="p-3 flex flex-col gap-2 md:max-h-[calc(99dvh)] min-h-[calc(48dvh)] md:justify-center md:p-10 bg-white md:w-1/2 md:shadow-md md:rounded-md md:overflow-auto">
+        <div className="p-3 flex flex-col gap-2 md:max-h-[calc(99dvh)] min-h-[calc(45dvh)] md:justify-center md:p-10 bg-white md:w-1/2 md:shadow-md md:rounded-md md:overflow-auto">
           <div className="flex justify-between">
             <div>
               <p
