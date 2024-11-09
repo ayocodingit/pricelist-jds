@@ -150,7 +150,7 @@ Hatur nuhun~ ✨`}
           </div>
         </div>
       </div>
-      <div className="w-full md:flex md:justify-center md:gap-5 h-[calc(88dvh)] md:h-full items-center overflow-auto md:overflow-hidden">
+      <div className="w-full md:flex md:justify-center md:gap-5 h-[calc(90dvh)] md:h-full items-center overflow-auto md:overflow-hidden">
         <div className="flex relative rounded-md md:h-auto md:w-1/3">
           {!isLoading && isStockEmpty && (
             <span className="absolute rounded-full animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
