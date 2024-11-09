@@ -165,7 +165,7 @@ Hatur nuhun~ ✨`}
           />
         </div>
         <div className="  ">
-          <div className="p-3 flex flex-col gap-2 rounded-t-3xl bg-white min-h-[calc(44dvh)]">
+          <div className="p-5 flex flex-col gap-2 bg-white min-h-[calc(44dvh)]">
             <div className="flex justify-between">
               <div>
                 <p
