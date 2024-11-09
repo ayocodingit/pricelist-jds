@@ -161,7 +161,7 @@ Hatur nuhun~ ✨`}
           <Image
             src={product.image}
             alt="image product"
-            className={`w-full h-[20rem] hover:cursor-zoom-in rounded-md `}
+            className={`w-full h-[20rem] hover:cursor-zoom-in rounded-md object-contain`}
           />
         </div>
         <div className="  ">
