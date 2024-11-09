@@ -71,13 +71,13 @@ function ProductList({ product }) {
               </p>
             )}
           </div>
-          <p
+        {/*  <p
             className={`${
               isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-lg w-fit"
             } text-xs rounded-md capitalize mt-2 `}
           >
             {!isStockEmpty ? product.tag : "sold out"}
-          </p>
+          </p> */}
         </div>
       </div>
     </Link>
