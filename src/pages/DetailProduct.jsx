@@ -164,8 +164,7 @@ Hatur nuhun~ ✨`}
             className={`w-full h-[20rem] hover:cursor-zoom-in rounded-md object-contain`}
           />
         </div>
-        <div className="  ">
-          <div className="p-5 flex flex-col gap-2 bg-white min-h-[calc(44dvh)]">
+          <div className="p-3 flex flex-col gap-2 bg-white min-h-[calc(44dvh)]">
             <div className="flex justify-between">
               <div>
                 <p
@@ -296,7 +295,6 @@ Hatur nuhun~ ✨`}
               </span>
             </div>
           </div>
-        </div>
         <div className="fixed bottom-0 w-full  text-white ">
           <div className="flex w-full md:w-1/2 items-center border-t-[1px] bg-white h-full p-2 rounded-md">
             <div className="p-2 flex flex-col w-1/3 text-black">
