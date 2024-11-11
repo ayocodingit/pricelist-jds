@@ -47,24 +47,25 @@ function Cart() {
         if (users.includes(seller)) return;
         users.push(seller);
 
-        const idsCart = getAllCart(seller).map((product) => product.id);
+        const idsCart = getAllCart(seller).map((product) => product.productId);
         const tmpItems = [];
         let total = 0;
 
         for (const product of getByIDs(res, idsCart)) {
-          const cart = carts.filter((cart) => cart.id === product.id)[0];
-
-          // check stock available
-          if (cart.qty > product.stock) continue;
-
-          tmpItems.push({
-            ...product,
-            ...cart,
-          });
-          total += calculateDiscount(
-            product.price * cart.qty,
-            product.discount
+          const cart = carts.filter(
+            (cart) => cart.id === `${product.id}-${cart.variant}`
           );
+
+          for (const cart2 of cart) {
+            tmpItems.push({
+              ...product,
+              ...cart2,
+            });
+            total += calculateDiscount(
+              product.price * cart.qty,
+              product.discount
+            );
+          }
         }
 
         if (tmpItems.length > 0) {
@@ -124,14 +125,11 @@ function Cart() {
                     <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
                       <input
                         type="checkbox"
+                        disabled={products.length === 0}
                         className="accent-primary w-8 h-4"
                         checked={username == cart.seller}
                         onChange={(e) => {
-                          if (e.target.checked) {
-                            setUsername(cart.seller);
-                            setProducts(cart.products);
-                            setCheckTotal(cart.total);
-                          } else {
+                          if (!e.target.checked) {
                             setProducts([]);
                           }
                         }}

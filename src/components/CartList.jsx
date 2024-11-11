@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
-import { CgClose } from "react-icons/cg";
-import { BsPencil } from "react-icons/bs";
-import Skeleton from "./Skeleton";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { SlPencil, SlTrash } from "react-icons/sl";
 
 function CartList({
@@ -54,7 +50,9 @@ function CartList({
           />
         </div>
         <div className="w-full flex flex-col relative">
-          <p className="">{product.name}</p>
+          <p className="">{product.name} {product.variant && (
+              <span className="capitalize font-bold">- {product.variant}</span>
+            )}</p>
           <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
             <span className="text-md">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
@@ -75,14 +73,12 @@ function CartList({
           <div
             onClick={() => {
               navigate(
-                `/list/${product.id}?qty=${product.qty}&note=${
-                  product.note ?? ""
-                }`
+                `/list/${product.productId}?id=${product.id}`
               );
             }}
             className="hover: cursor-pointer"
           >
-            <SlPencil className="text-lg"/>
+            <SlPencil className="text-lg" />
           </div>
           <SlTrash
             className="text-xl hover: cursor-pointer text-red-600"
@@ -92,7 +88,7 @@ function CartList({
               }
               setProducts((prev) => prev.filter(({ id }) => id != product.id));
               removeItemCart(product.id);
-              setIsLoading(true)
+              setIsLoading(true);
             }}
           />
         </div>

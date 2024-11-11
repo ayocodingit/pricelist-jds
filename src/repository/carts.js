@@ -1,19 +1,20 @@
 import { calculateDiscount } from "../utils/formatter";
 
-const cartKey = "products";
+const cartKey = "carts";
 const checkoutKey = "checkout";
 
 export const addToCart = ({ id, username }, orderDetail) => {
   let isNewItem = true;
   const product = {
-    id,
+    productId: id,
+    id: `${id}-${orderDetail.variant}`,
     username,
     ...orderDetail
   };
   const products = getAll(cartKey);
 
   for (const i in products) {
-    if (products[i].id == product.id) {
+    if (products[i].id == `${id}-${orderDetail.variant}`) {
       products[i] = product;
       isNewItem = false;
       break;
@@ -38,10 +39,12 @@ const getAll = (key, username = "") => {
   if (username) {
     carts = carts.filter((product) => product.username == username);
   }
+  
   return carts;
 };
 
 export const getAllCart = (username = "") => getAll(cartKey, username);
+export const getCartByID = (id) => getAll(cartKey).filter((cart) => cart.id === id);
 export const getAllCheckout = () => getAll(checkoutKey);
 
 export const getCountCart = () => {
@@ -79,10 +82,12 @@ export const moveToCheckOut = (products) => {
   products.forEach((product) => {
     checkout.push({
       id: product.id,
+      productId: product.productId,
       username: product.username,
       name: product.name,
       qty: product.qty,
       note: product.note,
+      variant: product.variant,
       price: calculateDiscount(product.price, product.discount),
     });
     removeItemCart(product.id);

@@ -11,7 +11,8 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": ["cheese", "choco"]
     },
     {
         "id": 2,
@@ -25,7 +26,11 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": [
+            "cheese",
+            "choco"
+        ]
     },
     {
         "id": 3,
@@ -39,7 +44,8 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
     },
     {
         "id": 4,
@@ -53,7 +59,9 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
+        
     },
     {
         "id": 5,
@@ -67,7 +75,8 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
     },
     {
         "id": 7,
@@ -80,7 +89,8 @@
         "discount": 0,
         "is_available": true,
         "description": "",
-        "stock": 100
+        "stock": 100,
+        "variants": []
     },
     {
         "id": 8,
@@ -93,7 +103,8 @@
         "discount": 0,
         "is_available": true,
         "description": "",
-        "stock": 100
+        "stock": 100,
+        "variants": []
     },
     {
         "id": 9,
@@ -107,7 +118,8 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
     },
     {
         "id": 10,
@@ -121,7 +133,8 @@
         "discount": 0,
         "is_available": true,
         "location": "R. Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
     },
     {
         "id": 11,
@@ -134,7 +147,8 @@
         "tag": "pre order",
         "discount": 0,
         "description": "",
-        "stock": 100
+        "stock": 100,
+        "variants": []
     },
     {
         "id": 12,
@@ -147,7 +161,8 @@
         "tag": "pre order",
         "discount": 0,
         "description": "",
-        "stock": 100
+        "stock": 100,
+        "variants": []
     },
     {
         "id": 13,
@@ -161,7 +176,8 @@
         "discount": 0,
         "is_available": true,
         "location": "",
-        "description": "Bisa request dengan kemasan yang lebih besar (misal 1/2 kg)"
+        "description": "Bisa request dengan kemasan yang lebih besar (misal 1/2 kg)",
+        "variants": []
     },
     {
         "id": 14,
@@ -175,7 +191,8 @@
         "discount": 0,
         "is_available": true,
         "location": "",
-        "description": "-"
+        "description": "-",
+        "variants": []
     },
     {
         "id": 15,
@@ -189,7 +206,8 @@
         "discount": 20,
         "is_available": true,
         "location": "",
-        "description": "Bawang goreng asli sumenep non msg kemasan 200gr"
+        "description": "Bawang goreng asli sumenep non msg kemasan 200gr",
+        "variants": []
     },
     {
         "id": 16,
@@ -203,7 +221,8 @@
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": "Kemasan Baru Kartika Toast Almond Cookies, lebih estetik dan modern Kemasan isi 51gr. Kartika Toast Almond Cookies adalah pilihan sempurna bagi pecinta kue yang menginginkan cita rasa klasik yang gurih dan memikat. Dengan setiap gigitan, Anda akan merasakan kelezatan mentega yang melimpah dan rasa almond yang kaya, menghadirkan sensasi nikmat yang tak terlupakan. Dibuat dengan bahan-bahan berkualitas terbaik dan resep tradisional yang telah teruji, Kartika Toast Almond Cookies 43gr adalah camilan yang sempurna untuk menemani waktu santai Anda. Kemasan praktis berukuran 51 gram membuatnya ideal untuk dinikmati di mana saja, baik sebagai camilan di kantor, di perjalanan, atau sebagai teman setia saat bersantai di rumah."
+        "description": "Kemasan Baru Kartika Toast Almond Cookies, lebih estetik dan modern Kemasan isi 51gr. Kartika Toast Almond Cookies adalah pilihan sempurna bagi pecinta kue yang menginginkan cita rasa klasik yang gurih dan memikat. Dengan setiap gigitan, Anda akan merasakan kelezatan mentega yang melimpah dan rasa almond yang kaya, menghadirkan sensasi nikmat yang tak terlupakan. Dibuat dengan bahan-bahan berkualitas terbaik dan resep tradisional yang telah teruji, Kartika Toast Almond Cookies 43gr adalah camilan yang sempurna untuk menemani waktu santai Anda. Kemasan praktis berukuran 51 gram membuatnya ideal untuk dinikmati di mana saja, baik sebagai camilan di kantor, di perjalanan, atau sebagai teman setia saat bersantai di rumah.",
+        "variants": []
     },
     {
         "id": 17,
@@ -217,9 +236,10 @@
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": "Dessert Jelly rasa Strawberry. Isian lengkap dengan buah strawberry segar di dalamnya. Tersedia juga versi hampers untuk kasih org terdekat/gebetan biar makin lengket 😋"
+        "description": "Dessert Jelly rasa Strawberry. Isian lengkap dengan buah strawberry segar di dalamnya. Tersedia juga versi hampers untuk kasih org terdekat/gebetan biar makin lengket 😋",
+        "variants": []
     },
-{
+    {
         "id": 18,
         "image": "https://i.ibb.co.com/HKDsrxm/372497223501190.png",
         "category": "makanan",
@@ -231,9 +251,10 @@
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": ""
+        "description": "",
+        "variants": []
     },
-{
+    {
         "id": 19,
         "image": "https://i.ibb.co.com/9sNHNZ2/20231114-214214.jpg",
         "category": "minuman",
@@ -245,6 +266,11 @@
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": "Susu yang terbuat dari 100% Roasted Almond, dipadukan dengan setetes gula alami Stevia. Tanpa pengawet sehingga aman banget dikonsumsi buat semua kalangan karena tidak menaikkan gula darah. Setelah dibuka, wajib habis dalam 3-4 hari. Tersedia 3 varian rasa: Original Roasted Almond, Choco Almond, Vanilla Roasted Almond (tulis varian di catatan: cth - ori 2 vanilla 3) - Diskon Rp 5.000 untuk pembelian minimal 10 item."
+        "description": "Susu yang terbuat dari 100% Roasted Almond, dipadukan dengan setetes gula alami Stevia. Tanpa pengawet sehingga aman banget dikonsumsi buat semua kalangan karena tidak menaikkan gula darah. Setelah dibuka, wajib habis dalam 3-4 hari. Tersedia 3 varian rasa: Original Roasted Almond, Choco Almond, Vanilla Roasted Almond (tulis varian di catatan: cth - ori 2 vanilla 3) - Diskon Rp 5.000 untuk pembelian minimal 10 item.",
+        "variants": [
+            "original roasted almond",
+            "choco almond",
+            "vanilla roasted almond"
+        ]
     }
 ]

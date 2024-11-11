@@ -53,11 +53,13 @@ function Checkout() {
         tmpTotal += product.price * product.qty;
         tmpTotalQty += product.qty;
         message += `
-${index + 1}. <b>${product.name}</b>
+${index + 1}. <b>${product.name}</b> ${
+          product.variant ? `- <i>${product.variant}</i>` : ""
+        } 
     ${product.qty} x ${product.price} = ${formatNumberIDR(
           product.qty * product.price
         )}
-    <i>${product.note}</i>`;
+    <i>${product.note || "tidak ada"}</i>`;
       });
 
       setTotal(tmpTotal);
@@ -94,7 +96,7 @@ Seller: <b>@${username}</b>
 Nama: <b>${getCustomer().customer}</b>
 Akun: <b>@${getCustomer().telegram.replace("@", "")}</b>
 Metode Pembayaran: <b>${paymentMethod.toUpperCase()}</b>
-Catatan: <b>${note || "-"}</b>
+Catatan: <b>${note || "tidak ada"}</b>
 
 <b><u>Data Produk</u></b> ${title}
 
@@ -136,120 +138,125 @@ ${location.origin}
         <div className="w-full h-[calc(82dvh)] overflow-auto md:flex gap-5">
           {!isLoading && (
             <>
-            <div className="md:w-full">
-              <p className="py-3 px-2 text-md">Rincian Pembelian</p>
-              <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
-                {products.map((product, index) => {
-                  return (
-                    <div className=" flex flex-col gap-1 w-full " key={index}>
-                      <p className="print:font-normal print:text-xs">
-                        {index + 1}. {product.name}
-                      </p>
-                      <p className="print:text-xs text-sm px-4 -my-1 italic text-gray-600">
-                        {product.note}
-                      </p>
-                      <div className="flex justify-between ">
-                        <p className="px-4 print:text-xs">
-                          {product.qty} x {formatNumberIDR(product.price)}
+              <div className="md:w-full">
+                <p className="py-3 px-2 text-md">Rincian Pembelian</p>
+                <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
+                  {products.map((product, index) => {
+                    return (
+                      <div className=" flex flex-col gap-1 w-full " key={index}>
+                        <p className="print:font-normal print:text-xs">
+                          {index + 1}. {product.name}{" "}
+                          {product.variant && (
+                            <span className="capitalize font-bold">
+                              - {product.variant} <br />
+                            </span>
+                          )}{" "}
                         </p>
-                        <p className="print:text-xs">
-                          {formatNumberIDR(product.qty * product.price)}
+                        <p className="print:text-xs text-sm px-4 italic text-gray-600">
+                          catatan: {product.note || "tidak ada"}
                         </p>
+                        <div className="flex justify-between ">
+                          <p className="px-4 print:text-xs">
+                            {product.qty} x {formatNumberIDR(product.price)}
+                          </p>
+                          <p className="print:text-xs">
+                            {formatNumberIDR(product.qty * product.price)}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-                <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
-                  <p>Total Jumlah: {totalQty}</p>
-                  <p>{formatNumberIDR(total)}</p>
+                    );
+                  })}
+                  <div className="bg-white w-full flex border-t-[1px] border-black py-1 justify-between mt-10">
+                    <p>Total Jumlah: {totalQty}</p>
+                    <p>{formatNumberIDR(total)}</p>
+                  </div>
                 </div>
-              </div>
-              <p className="py-3 px-2 text-md">Catatan Buat Penjual</p>
-              <div className="px-2">
-                <textarea
-                  name="note"
-                  rows={3}
-                  maxLength={50}
-                  className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
-                  placeholder="Pesanan nya aku ambil hari Senin yah..."
-                  onChange={(e) => setNote(e.target.value)}
-                  value={note}
-                >
-                  {note}
-                </textarea>
-              </div>
+                <p className="py-3 px-2 text-md">Catatan Buat Penjual</p>
+                <div className="px-2">
+                  <textarea
+                    name="note"
+                    rows={3}
+                    maxLength={50}
+                    className="w-full rounded-md resize-none p-2 focus:outline-none border-[1px] border-primary"
+                    placeholder="Pesanan nya aku ambil hari Senin yah..."
+                    onChange={(e) => setNote(e.target.value)}
+                    value={note}
+                  >
+                    {note}
+                  </textarea>
+                </div>
               </div>
               <div className="md:w-full">
-              <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
-              <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
-                <PaymentList
-                  payment={{ provider: "cash", value: "" }}
-                  paymentMethod={paymentMethod}
-                  setPaymentMethod={setPaymentMethod}
-                  setVA={setVA}
-                />
-                {user?.payments?.map((payment, index) => {
-                  return (
-                    <PaymentList
-                      payment={payment}
-                      key={index}
-                      paymentMethod={paymentMethod}
-                      setPaymentMethod={setPaymentMethod}
-                      setVA={setVA}
-                    />
-                  );
-                })}
-              </div>
-              {paymentMethod != "cash" && VA && (
-                <div
-                  className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
-                >
-                  <div className="border border-primary rounded-md flex justify-between items-center p-5">
-                    <p className=""> No Rek {VA}</p>
-                    <CopyToClipboard
-                      text={VA}
-                      onCopy={() =>
-                        alert("success", "No Rek Disalin di Papan Klip")
-                      }
-                    >
-                      <AiOutlineCopy
-                        className={
-                          "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
-                        }
+                <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
+                <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
+                  <PaymentList
+                    payment={{ provider: "cash", value: "" }}
+                    paymentMethod={paymentMethod}
+                    setPaymentMethod={setPaymentMethod}
+                    setVA={setVA}
+                  />
+                  {user?.payments?.map((payment, index) => {
+                    return (
+                      <PaymentList
+                        payment={payment}
+                        key={index}
+                        paymentMethod={paymentMethod}
+                        setPaymentMethod={setPaymentMethod}
+                        setVA={setVA}
                       />
-                    </CopyToClipboard>
-                  </div>
+                    );
+                  })}
                 </div>
-              )}
-              {paymentMethod != "cash" && (
-                <div className="flex flex-col items-center px-2 py-5 gap-5 w-full animate-opacity-open">
-                  <p>Upload Bukti Pembayaran</p>
-                  <div className="relative flex flex-col items-center gap-6 w-full">
-                    <Dropzone setFile={setFile} />
+                {paymentMethod != "cash" && VA && (
+                  <div
+                    className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
+                  >
+                    <div className="border border-primary rounded-md flex justify-between items-center p-5">
+                      <p className=""> No Rek {VA}</p>
+                      <CopyToClipboard
+                        text={VA}
+                        onCopy={() =>
+                          alert("success", "No Rek Disalin di Papan Klip")
+                        }
+                      >
+                        <AiOutlineCopy
+                          className={
+                            "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
+                          }
+                        />
+                      </CopyToClipboard>
+                    </div>
+                  </div>
+                )}
+                {paymentMethod != "cash" && (
+                  <div className="flex flex-col items-center px-2 py-5 gap-5 w-full animate-opacity-open">
+                    <p>Upload Bukti Pembayaran</p>
+                    <div className="relative flex flex-col items-center gap-6 w-full">
+                      <Dropzone setFile={setFile} />
 
-                    {file && (
-                      <div className="absolute bg-white border border-dashed rounded-md border-primary w-full p-5 h-full flex justify-center items-center">
-                        <>
-                          <PhotoProvider>
-                            <PhotoView src={URL.createObjectURL(file)}>
-                              <img
-                                src={URL.createObjectURL(file)}
-                                alt="gambar uploaded"
-                                className="object-contain w-40 h-32 hover:cursor-pointer"
-                              />
-                            </PhotoView>
-                          </PhotoProvider>
-                          <BiTrash
-                            className="text-2xl text-red-500 absolute top-2 right-2"
-                            onClick={() => setFile(undefined)}
-                          />
-                        </>
-                      </div>
-                    )}
+                      {file && (
+                        <div className="absolute bg-white border border-dashed rounded-md border-primary w-full p-5 h-full flex justify-center items-center">
+                          <>
+                            <PhotoProvider>
+                              <PhotoView src={URL.createObjectURL(file)}>
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  alt="gambar uploaded"
+                                  className="object-contain w-40 h-32 hover:cursor-pointer"
+                                />
+                              </PhotoView>
+                            </PhotoProvider>
+                            <BiTrash
+                              className="text-2xl text-red-500 absolute top-2 right-2"
+                              onClick={() => setFile(undefined)}
+                            />
+                          </>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
             </>
           )}
 
