@@ -295,11 +295,11 @@ Hatur nuhun~ ✨`}
             {product.variants?.length > 0 && (
               <div className="flex flex-col gap-2 mt-2">
                 <p>Pilih Variasi</p>
-                <div className="flex gap-2">
+                <div className="flex gap-2 overflow-auto">
                   {product.variants?.map((variant, index) => (
                     <button
                       key={index}
-                      className={`p-2 flex  rounded-md ${
+                      className={`p-2 flex  rounded-md capitalize ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
