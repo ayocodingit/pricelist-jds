@@ -1,6 +1,6 @@
 import { calculateDiscount } from "../utils/formatter";
 
-const cartKey = "carts";
+const cartKey = "cart";
 const checkoutKey = "checkout";
 
 export const addToCart = ({ id, username }, orderDetail) => {
