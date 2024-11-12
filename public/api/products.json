@@ -60,7 +60,7 @@
         "is_available": true,
         "location": "R. Selatan",
         "description": "",
-        "variants": []
+        "variants": ["level 2", "level 10"]
         
     },
     {
