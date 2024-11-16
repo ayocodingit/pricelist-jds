@@ -79,7 +79,7 @@ function List() {
               isClearable
               size="md"
               radius="md"
-              onClear={() => setQ("")}
+              onClear={() => { setQ(""); SetURLSearchParams({ q: "", category, sort }); }}
               classNames={{
                 input: [
                   "bg-white",
