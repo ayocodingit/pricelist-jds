@@ -48,7 +48,7 @@ function FilterCategory({ handleCategory, category }) {
         <CardBody className=" flex justify-center items-center w-full p-0">
           <Image
             alt="Card background"
-            className="object-contain w-full h-8 rounded-xl"
+            className="object-contain w-full h-7 rounded-xl"
             src="/drink.png"
           />
         </CardBody>
