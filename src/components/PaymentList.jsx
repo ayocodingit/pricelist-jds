@@ -1,34 +1,40 @@
+import { cn, Image, Radio } from "@nextui-org/react";
 import React from "react";
+
+export const CustomRadio = (props) => {
+  const { children, ...otherProps } = props;
+
+  return (
+    <Radio
+      {...otherProps}
+      classNames={{
+        base: cn(
+          "w-full flex m-0 max-w-full items-center justify-between",
+          "flex-row-reverse cursor-pointer rounded-lg gap-4 p-5 border-[1px] border-primary",
+          "data-[selected=true]:border-primary capitalize"
+        ),
+      }}
+    >
+      {children}
+    </Radio>
+  );
+};
 
 function PaymentList({ payment, paymentMethod, setPaymentMethod, setVA }) {
   return (
-    <div className="flex gap-2 p-2 px-5 text-black border border-primary items-center rounded-md">
-      <div className="flex justify-between items-center w-full">
-        <div className="flex gap-2 items-center">
-          <div className="w-12">
-            <img
-              src={`/payments/${payment.provider}.png`}
-              alt="logo"
-              className="object-contain h-12 w-full"
-loading="lazy"
-            />
-          </div>
-
-          <p className="first-letter: capitalize">{payment.provider}</p>
+    <>
+      <CustomRadio value={payment.provider} id={payment.value}>
+        <div className="flex items-center gap-2">
+          <Image
+            src={`/payments/${payment.provider}.png`}
+            alt="logo"
+            className="object-contain h-10 w-10"
+            loading="lazy"
+          ></Image>
+          <p>{payment.provider}</p>
         </div>
-        <input
-          type="radio"
-          name="payment"
-          className="w-16 h-5 accent-primary"
-          value={payment.provider}
-          checked={payment.provider === paymentMethod}
-          onChange={(e) => {
-              setPaymentMethod(e.target.value)
-              setVA(payment.value)
-          }}  
-        />
-      </div>
-    </div>
+      </CustomRadio>
+    </>
   );
 }
 

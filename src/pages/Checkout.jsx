@@ -17,6 +17,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Loading from "../components/Loading";
 import { SlArrowLeft } from "react-icons/sl";
+import { Button, Radio, RadioGroup } from "@nextui-org/react";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -189,29 +190,39 @@ ${location.origin}
               <div className="md:w-full">
                 <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
                 <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
-                  <PaymentList
-                    payment={{ provider: "cash", value: "" }}
-                    paymentMethod={paymentMethod}
-                    setPaymentMethod={setPaymentMethod}
-                    setVA={setVA}
-                  />
-                  {user?.payments?.map((payment, index) => {
-                    return (
-                      <PaymentList
-                        payment={payment}
-                        key={index}
-                        paymentMethod={paymentMethod}
-                        setPaymentMethod={setPaymentMethod}
-                        setVA={setVA}
-                      />
-                    );
-                  })}
+                  <RadioGroup
+                    color="primary"
+                    value={paymentMethod}
+                    onChange={(e) => {
+                      setPaymentMethod(e.target.value);
+                      setVA(e.target.id);
+                      
+                    }}
+                  >
+                    <PaymentList
+                      payment={{ provider: "cash", value: "" }}
+                      paymentMethod={paymentMethod}
+                      setPaymentMethod={setPaymentMethod}
+                      setVA={setVA}
+                    />
+                    {user?.payments?.map((payment, index) => {
+                      return (
+                        <PaymentList
+                          payment={payment}
+                          key={index}
+                          paymentMethod={paymentMethod}
+                          setPaymentMethod={setPaymentMethod}
+                          setVA={setVA}
+                        />
+                      );
+                    })}
+                  </RadioGroup>
                 </div>
                 {paymentMethod != "cash" && VA && (
                   <div
                     className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
                   >
-                    <div className="border border-primary rounded-md flex justify-between items-center p-5">
+                    <div className="border border-primary rounded-md flex justify-between items-center p-4">
                       <p className=""> No Rek {VA}</p>
                       <CopyToClipboard
                         text={VA}
@@ -221,7 +232,7 @@ ${location.origin}
                       >
                         <AiOutlineCopy
                           className={
-                            "text-3xl hover:cursor-copy mr-5 p-1 bg-gray-100 rounded-md text-primary"
+                            "text-3xl hover:cursor-copy bg-gray-100 rounded-md text-primary"
                           }
                         />
                       </CopyToClipboard>
@@ -292,13 +303,13 @@ ${location.origin}
                 </p>
               </div>
             </div>
-            <button
+            <Button
               className="w-full bg-primary rounded-md p-2 flex gap-3 justify-center items-center text-white"
               type="submit"
             >
               Bayar
               {isLoadingSubmit && <Loading size={20} color="#fff"></Loading>}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

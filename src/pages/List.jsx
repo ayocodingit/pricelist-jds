@@ -9,14 +9,14 @@ import ModalCustomer from "../components/ModalCustomer";
 import FilterCategory from "../components/FilterCategory";
 import { categoryOptions } from "../utils/contstant/category";
 import ProductList from "../components/ProductList";
-import SortProduct from "../components/SortProduct";
 import { VscListFilter } from "react-icons/vsc";
 import Footer from "../components/Footer";
 import { sortOptions } from "../utils/contstant/sort";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
 import { SlBasket } from "react-icons/sl";
-import { Badge, Input } from "@nextui-org/react";
+import { Badge, Input, Select, SelectItem } from "@nextui-org/react";
+import CartIcon from "../components/CartIcon";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -70,7 +70,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
       <div className="w-full flex flex-col relative">
-        <div className="sticky top-0 bg-white text-black py-2 shadow-md">
+        <div className="sticky top-0 bg-white text-black py-2 flex flex-col gap-2 shadow-md">
           {/* Search */}
           <div className="px-5 my-2 relative flex gap-2 items-center bg-white">
             <Input
@@ -92,10 +92,10 @@ function List() {
                   "border-[1px]",
                   "bg-white",
                   "hover:bg-white",
-            "dark:hover:bg-white",
-            "group-data-[focus=true]:bg-white",
-            "dark:group-data-[focus=true]:bg-white",
-            "data-[hover=true]:bg-white",
+                  "dark:hover:bg-white",
+                  "group-data-[focus=true]:bg-white",
+                  "dark:group-data-[focus=true]:bg-white",
+                  "data-[hover=true]:bg-white",
                   "!cursor-text",
                 ],
               }}
@@ -104,28 +104,42 @@ function List() {
                 <FaSearch className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
               }
             />
-            <div
-              className="relative  rounded-full p-1 hover:cursor-pointer"
-              onClick={() => navigate("/cart")}
+
+            <Select
+              className="max-w-xs hidden md:flex items-center"
+              size="sm"
+              defaultSelectedKeys={[sort]}
+              label="Urutan Produk"
+              onChange={(e) => handleSort(e.target.value)}
             >
-              <Badge content={getCountCart()} color="primary" size="md" variant="shadow" shape="circle">
-                <SlBasket className="text-2xl " />
-              </Badge>
-            </div>
+              {Object.entries(Object.values(sortOptions)).map((sorts, key) => (
+                <SelectItem key={sorts[1]}>{sorts[1]}</SelectItem>
+              ))}
+            </Select>
+            <CartIcon></CartIcon>
           </div>
-          <div
-            className={`
-            overflow-hidden `}
-          >
+          <div>
             {/* Sorting */}
-            <div className="px-5 flex items-center gap-2">
-              <h1>Urutkan </h1>
-              <SortProduct handleSort={handleSort} sort={sort} />
+            <div className="px-5 flex items-center md:hidden gap-2">
+              <Select
+                label="Urutan Produk"
+                className="w-full flex items-center"
+                size="sm"
+                defaultSelectedKeys={[sort]}
+                onChange={(e) => handleSort(e.target.value)}
+              >
+                {Object.entries(Object.values(sortOptions)).map(
+                  (sorts, key) => (
+                    <SelectItem key={sorts[1]}>{sorts[1]}</SelectItem>
+                  )
+                )}
+              </Select>
+
             </div>
           </div>
           <div className="flex flex-col px-5 gap-2 overflow-auto">
             <h1>Kategori</h1>
-            <div className="flex overflow-auto gap-2">
+            <div className="flex overflow-auto gap-2 items-center">
               <FilterCategory
                 handleCategory={handleCategory}
                 category={category}
@@ -145,7 +159,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-[calc(67dvh)] md:h-[calc(66dvh)] p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-[calc(65dvh)] md:h-[calc(64dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>

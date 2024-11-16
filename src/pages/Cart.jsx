@@ -16,7 +16,7 @@ import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
 import { SlArrowLeft } from "react-icons/sl";
-import { Checkbox } from "@nextui-org/react";
+import { Button, Checkbox } from "@nextui-org/react";
 import ModalCustomer2 from "../components/ModalCustomer2";
 
 function Cart() {
@@ -125,7 +125,7 @@ function Cart() {
                 return (
                   <div key={index}>
                     <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
-                      <Checkbox
+                      {/* <Checkbox
                         isSelected={username == cart.seller}
                         isDisabled={products.length === 0}
                         size="md"
@@ -140,7 +140,7 @@ function Cart() {
                           {" "}
                           <BsShop className="text-xl" />@{cart.seller}{" "}
                         </div>
-                      </Checkbox>
+                      </Checkbox> */}
                       {/* <input
                         type="checkbox"
                         disabled={products.length === 0}
@@ -191,7 +191,7 @@ function Cart() {
               <p>Produk Terpilih ({products.length})</p>
               <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
             </div>
-            <button
+            <Button
               className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
                 products.length != 0 && "hover:cursor-pointer hover:opacity-90"
               } `}
@@ -204,7 +204,7 @@ function Cart() {
               }}
             >
               {products.length > 0 ? "Proses Bayar" : "Silahkan Pilih Produk"}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -7,13 +7,14 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
 import SocialMedia from "../components/SocialMedia";
 import { addToCart, getCartByID, getCountCart } from "../repository/carts";
-import { Flip, toast } from "react-toastify";
+import { Flip, Slide, toast } from "react-toastify";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Image from "../components/Image";
 import { SlActionRedo, SlArrowLeft, SlBasket } from "react-icons/sl";
-import { Textarea } from "@nextui-org/react";
+import { Button, Chip, Image, Textarea } from "@nextui-org/react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import CartIcon from "../components/CartIcon";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -100,14 +101,15 @@ function DetailProduct() {
     toast.success(
       `${isNewProduct ? "Tambah Keranjang" : "Update Keranjang"} Sukses`,
       {
-        position: "bottom-right",
+        position: "bottom-center",
         autoClose: 1000,
         hideProgressBar: false,
-        pauseOnHover: false,
-        draggable: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
         progress: undefined,
         theme: "light",
-        transition: Flip,
+        transition: Slide,
       }
     );
 
@@ -158,87 +160,74 @@ Hatur nuhun~ ✨`}
             className="p-1 hover:cursor-pointer text-3xl"
             onClick={() => setShowSocialMedia(!showSocialMedia)}
           />
-
-          <div
-            className="relative  rounded-full p-1 hover:cursor-pointer"
-            onClick={() => navigate("/cart")}
-          >
-            <SlBasket className="text-2xl " />
-            <p className="absolute rounded-md top-0 text-white right-0 bg-primary  w-4 flex justify-center text-xs">
-              {totalCart}
-            </p>
-          </div>
+          <CartIcon></CartIcon>
         </div>
       </div>
       <div className="w-full md:flex md:justify-center md:gap-5 max-h-[calc(85dvh)] md:h-full items-center overflow-auto md:overflow-hidden">
-        <div className="flex relative rounded-md md:h-auto md:w-1/3">
+        <div className="flex relative rounded-md w-full md:h-auto md:w-1/3">
           {!isLoading && isStockEmpty && (
-            <span className="absolute rounded-full animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+            <span className="absolute rounded-full z-20 animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
             </span>
           )}
-          <Image
-            src={product.image}
-            alt="image product"
-            className={`w-full h-[20rem] md:h-[calc(60dvh)] hover:cursor-zoom-in rounded-md object-contain`}
-          />
+          <PhotoProvider>
+            <PhotoView src={product.image}>
+              <Image
+                removeWrapper
+                src={product.image}
+                alt="image product"
+                className={`w-full h-[20rem] md:h-[calc(60dvh)] hover:cursor-zoom-in rounded-md object-contain`}
+              />
+            </PhotoView>
+          </PhotoProvider>
         </div>
         <div className="  md:max-h-[calc(99dvh)] min-h-[calc(44dvh)] md:justify-center md:p-4 bg-white md:w-1/2 md:shadow-md md:rounded-md md:overflow-auto">
           <div className="p-5 flex flex-col gap-2">
-            <div className="flex justify-between">
-              <div>
-                <p
-                  className={`${
-                    isStockEmpty
-                      ? "text-gray-500 "
-                      : "text-white bg-primary rounded-md p-1 text-center "
-                  } text-xs rounded-md capitalize`}
-                >
-                  {!isStockEmpty ? product.tag : "sold out"}{" "}
-                  {product.tag == tagOptions.READY_STOCK && !isStockEmpty && (
-                    <span>{product.stock}</span>
-                  )}
-                </p>
-              </div>
+            <div className="flex justify-between items-center">
+              <Chip
+                className={`${
+                  isStockEmpty
+                    ? "text-black "
+                    : "text-white bg-primary rounded-md p-1 text-center "
+                } text-xs rounded-md capitalize`}
+                size="sm"
+              >
+                {!isStockEmpty ? product.tag : "sold out"}{" "}
+                {product.tag == tagOptions.READY_STOCK && !isStockEmpty && (
+                  <span>{product.stock}</span>
+                )}
+              </Chip>
               <div>
                 {!isStockEmpty && (
-                  <div className="flex gap-2">
-                    <div className="flex h-6 justify-center items-center w-20 ">
-                      <button
-                        onClick={() => {
-                          if (formik.values.qty > 1) {
-                            calculateTotal(
-                              product.price,
-                              product.discount,
-                              "-"
-                            );
-                          }
-                        }}
-                        className=" w-1/2 h-full bg-gray-300 text-black  rounded-md flex justify-center items-center"
-                      >
-                        <AiOutlineMinus />
-                      </button>
-                      <div className="w-1/2  text-center h-full flex justify-center items-center">
-                        {formik.values.qty}
-                      </div>
-                      <button
-                        onClick={() => {
-                          if (
-                            product.tag == tagOptions.PO ||
-                            (product.stock > 1 &&
-                              formik.values.qty < product.stock)
-                          )
-                            calculateTotal(
-                              product.price,
-                              product.discount,
-                              "+"
-                            );
-                        }}
-                        className="w-1/2 h-full bg-primary text-white  rounded-md flex justify-center items-center"
-                      >
-                        <AiOutlinePlus />
-                      </button>
+                  <div className="flex h-5 justify-center items-center gap-2">
+                    <Button
+                      size="sm"
+                      onClick={() => {
+                        if (formik.values.qty > 1) {
+                          calculateTotal(product.price, product.discount, "-");
+                        }
+                      }}
+                      className="h-full min-w-8 w-8 bg-gray-300 text-black  rounded-md flex justify-center items-center"
+                    >
+                      <AiOutlineMinus className="text-3xl"/>
+                    </Button>
+                    <div className="w-1/2   text-center h-full flex justify-center items-center">
+                      {formik.values.qty}
                     </div>
+                    <Button
+                      size="sm"
+                      onClick={() => {
+                        if (
+                          product.tag == tagOptions.PO ||
+                          (product.stock > 1 &&
+                            formik.values.qty < product.stock)
+                        )
+                          calculateTotal(product.price, product.discount, "+");
+                      }}
+                      className=" h-full min-w-8 w-8 bg-primary text-white  rounded-md flex justify-center items-center"
+                    >
+                      <AiOutlinePlus className="text-3xl"/>
+                    </Button>
                   </div>
                 )}
               </div>
@@ -262,7 +251,7 @@ Hatur nuhun~ ✨`}
                 )}
               </div>
               <div>
-                <p className=" text-wrap text-sm">{product.name}</p>
+                <p className=" text-wrap text-md">{product.name}</p>
               </div>
             </div>
 
@@ -301,9 +290,9 @@ Hatur nuhun~ ✨`}
                 <p>Pilih Variasi</p>
                 <div className="flex gap-2 overflow-auto">
                   {product.variants?.map((variant, index) => (
-                    <button
+                    <Button
                       key={index}
-                      className={`p-2 flex  rounded-md capitalize ${
+                      className={`p-2 flex rounded-md capitalize ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
@@ -314,7 +303,7 @@ Hatur nuhun~ ✨`}
                       }}
                     >
                       {variant}
-                    </button>
+                    </Button>
                   ))}
                 </div>
                 <span className=" first-letter:capitalize  text-red-600">
@@ -324,7 +313,7 @@ Hatur nuhun~ ✨`}
             )}
             <div className="flex flex-col gap-2 mt-2">
               <Textarea
-              isInvalid={!!formik.errors.note}
+                isInvalid={!!formik.errors.note}
                 label="Catatan"
                 variant="bordered"
                 labelPlacement="outside"
@@ -335,22 +324,6 @@ Hatur nuhun~ ✨`}
                 errorMessage={formik.errors.note}
                 {...formik.getFieldProps("note")}
               />
-              {/* <p>Catatan</p>
-              <textarea
-                id="note"
-                placeholder="Catatan untuk Produk yang akan dibeli"
-                rows="2"
-                disabled={isStockEmpty}
-                {...formik.getFieldProps("note")}
-                className={`shadow-sm border-[1px] p-2 focus:outline-none  rounded-md border-primary resize-none ${
-                  formik.errors.note && "focus:outline-red-600"
-                }`}
-              >
-                {formik.values.note}
-              </textarea> */}
-              {/* <span className=" first-letter:capitalize  text-red-600">
-                {formik.errors.note}
-              </span> */}
             </div>
           </div>
           <div className="fixed md:relative bottom-0 w-full text-white">
@@ -361,9 +334,11 @@ Hatur nuhun~ ✨`}
                   {formatNumberIDR(!isStockEmpty ? total : 0)}
                 </p>
               </div>
-              <button
-                className={` flex gap-3 rounded-md p-2 shadow-lg justify-center items-center hover:bg-opacity-90 w-full ${
-                  isStockEmpty || !formik.isValid ? "bg-gray-900" : "bg-primary"
+              <Button
+                className={`w-full text-white ${
+                  isStockEmpty || !formik.isValid
+                    ? "bg-gray-900 "
+                    : "bg-primary"
                 }`}
                 disabled={!formik.isValid}
                 onClick={() => {
@@ -375,7 +350,7 @@ Hatur nuhun~ ✨`}
               >
                 <BsCartPlus className="text-2xl" />
                 Tambah Keranjang
-              </button>
+              </Button>
             </div>
           </div>
         </div>
