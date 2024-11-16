@@ -209,7 +209,7 @@ Hatur nuhun~ ✨`}
                       }}
                       className="h-full min-w-8 w-10 bg-gray-300 text-black  rounded-md flex justify-center items-center"
                     >
-                      <AiOutlineMinus className="text-4xl"/>
+                  -
                     </Button>
                     <div className="w-1/2   text-center h-full flex justify-center items-center">
                       {formik.values.qty}
@@ -226,7 +226,7 @@ Hatur nuhun~ ✨`}
                       }}
                       className=" h-full min-w-8 w-10 bg-primary text-white  rounded-md flex justify-center items-center"
                     >
-                      <AiOutlinePlus className="text-4xl"/>
+                      +
                     </Button>
                   </div>
                 )}
