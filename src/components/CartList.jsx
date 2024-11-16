@@ -3,6 +3,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { useNavigate } from "react-router-dom";
 import { removeItemCart } from "../repository/carts";
 import { SlPencil, SlTrash } from "react-icons/sl";
+import { Checkbox } from "@nextui-org/react";
 
 function CartList({
   product,
@@ -21,7 +22,7 @@ function CartList({
   return (
     <div className=" text-black flex flex-col relative bg-white">
       <div className="flex px-2 gap-4 items-center py-1">
-        <input
+        {/* <input
           type="checkbox"
           checked={products.some(({ id }) => id == product.id)}
           className="accent-primary w-8 h-4 peer rounded"
@@ -40,7 +41,28 @@ function CartList({
               setProducts((prev) => prev.filter(({ id }) => id != product.id));
             }
           }}
+        /> */}
+        <Checkbox
+          isSelected={products.some(({ id }) => id == product.id)}
+          size="md"
+          className="flex items-center ml-[0px]"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setProducts((prev) => {
+                setCheckTotal((total) => total + totalPrice);
+                setUsername(product.username);
+                if (!prev.some(({ id }) => id == product.id)) {
+                  prev.push(product);
+                }
+                return prev;
+              });
+            } else {
+              setCheckTotal((total) => total - totalPrice);
+              setProducts((prev) => prev.filter(({ id }) => id != product.id));
+            }
+          }}
         />
+
         <div className="w-40 rounded-md">
           <img
             src={product.image}
@@ -50,9 +72,12 @@ function CartList({
           />
         </div>
         <div className="w-full flex flex-col relative">
-          <p className="">{product.name} {product.variant && (
+          <p className="">
+            {product.name}{" "}
+            {product.variant && (
               <span className="capitalize font-bold">- {product.variant}</span>
-            )}</p>
+            )}
+          </p>
           <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
             <span className="text-md">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
@@ -72,9 +97,7 @@ function CartList({
         <div className="flex gap-5 flex-col border-black items-center p-2 justify-center h-20">
           <div
             onClick={() => {
-              navigate(
-                `/list/${product.productId}?id=${product.id}`
-              );
+              navigate(`/list/${product.productId}?id=${product.id}`);
             }}
             className="hover: cursor-pointer"
           >

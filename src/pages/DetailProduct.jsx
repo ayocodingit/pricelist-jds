@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Image from "../components/Image";
 import { SlActionRedo, SlArrowLeft, SlBasket } from "react-icons/sl";
+import { Textarea } from "@nextui-org/react";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -64,7 +65,10 @@ function DetailProduct() {
       if (!cart) {
         formik.setFieldValue("qty", 1);
       } else {
-        formik.setFieldValue("qty", cart.qty <= product.stock ? cart.qty : product.stock);
+        formik.setFieldValue(
+          "qty",
+          cart.qty <= product.stock ? cart.qty : product.stock
+        );
         formik.setFieldValue("variant", cart.variant);
         formik.setFieldValue("note", cart.note);
       }
@@ -319,7 +323,19 @@ Hatur nuhun~ ✨`}
               </div>
             )}
             <div className="flex flex-col gap-2 mt-2">
-              <p>Catatan</p>
+              <Textarea
+              isInvalid={!!formik.errors.note}
+                label="Catatan"
+                variant="bordered"
+                labelPlacement="outside"
+                placeholder="Catatan untuk Produk yang akan dibeli"
+                className={`shadow-sm rounded-md border-primary resize-none capitalize ${
+                  formik.errors.note && "focus:outline-red-600"
+                }`}
+                errorMessage={formik.errors.note}
+                {...formik.getFieldProps("note")}
+              />
+              {/* <p>Catatan</p>
               <textarea
                 id="note"
                 placeholder="Catatan untuk Produk yang akan dibeli"
@@ -331,10 +347,10 @@ Hatur nuhun~ ✨`}
                 }`}
               >
                 {formik.values.note}
-              </textarea>
-              <span className=" first-letter:capitalize  text-red-600">
+              </textarea> */}
+              {/* <span className=" first-letter:capitalize  text-red-600">
                 {formik.errors.note}
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="fixed md:relative bottom-0 w-full text-white">

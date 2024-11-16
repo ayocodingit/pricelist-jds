@@ -5,14 +5,15 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/route.jsx";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div className="select-none">
+    <NextUIProvider className="select-none text-foreground bg-background">
       <RouterProvider router={router} />
-    </div>
+    </NextUIProvider>
     <ToastContainer />
   </StrictMode>
 );

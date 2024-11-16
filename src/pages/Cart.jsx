@@ -16,6 +16,8 @@ import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
 import { SlArrowLeft } from "react-icons/sl";
+import { Checkbox } from "@nextui-org/react";
+import ModalCustomer2 from "../components/ModalCustomer2";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -123,7 +125,23 @@ function Cart() {
                 return (
                   <div key={index}>
                     <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
-                      <input
+                      <Checkbox
+                        isSelected={username == cart.seller}
+                        isDisabled={products.length === 0}
+                        size="md"
+                        className="flex items-center ml-1"
+                        onChange={(e) => {
+                          if (!e.target.checked) {
+                            setProducts([]);
+                          }
+                        }}
+                      >
+                        <div className="flex gap-1">
+                          {" "}
+                          <BsShop className="text-xl" />@{cart.seller}{" "}
+                        </div>
+                      </Checkbox>
+                      {/* <input
                         type="checkbox"
                         disabled={products.length === 0}
                         className="accent-primary w-8 h-4"
@@ -134,7 +152,7 @@ function Cart() {
                           }
                         }}
                       />
-                      <BsShop className="text-xl" />@{cart.seller}
+                      <BsShop className="text-xl" />@{cart.seller} */}
                     </div>
                     {cart.products.map((product, index) => {
                       return (
@@ -155,7 +173,7 @@ function Cart() {
             </div>
           )}
 
-          <ModalCustomer
+          <ModalCustomer2
             setIsModalCustomer={setIsModalCustomer}
             isModalCustomer={isModalCustomer}
           />

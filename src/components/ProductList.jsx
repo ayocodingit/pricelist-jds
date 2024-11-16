@@ -5,6 +5,7 @@ import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
 import Skeleton from "./Skeleton";
 import { useState } from "react";
+import { Image, Tooltip } from "@nextui-org/react";
 
 function ProductList({ product }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,30 +20,25 @@ function ProductList({ product }) {
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
 
-  if (isLoading)
-    return (
-      <div>
-        <Skeleton height={150} />
-        <Skeleton count={3} height={20} />
-      </div>
-    );
-
   return (
     <Link
       className="border-[1px] border-primary rounded-md flex bg-white shadow-md hover:cursor-pointer h-48 md:h-60 relative w-full"
       to={"/list/" + product.id}
-      title={product.name}
     >
       <div className="flex flex-col justify-center w-full">
         <div className="relative flex justify-center w-full">
-          <img
-            src={product.image}
+          <Tooltip content={product.name} color="primary" placement="bottom" showArrow={true}>
+          <Image
             alt="image product"
-            className={`w-full h-32 md:h-40 object-contain p-2 `}
+            src={product.image}
+            className={`w-full h-32 md:h-40 object-contain p-1 -z-0`}
             loading="lazy"
+            radius="sm"
           />
+          </Tooltip>
+
           {isStockEmpty && (
-            <span className="absolute animate-opacity-open rounded-full bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+            <span className="absolute animate-opacity-open rounded-full z-10 bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
               Habis
             </span>
           )}
@@ -71,7 +67,7 @@ function ProductList({ product }) {
               </p>
             )}
           </div>
-        {/*  <p
+          {/*  <p
             className={`${
               isStockEmpty ? "text-gray-500 " : "text-white bg-primary p-1 text-center rounded-lg w-fit"
             } text-xs rounded-md capitalize mt-2 `}

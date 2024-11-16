@@ -16,6 +16,7 @@ import { sortOptions } from "../utils/contstant/sort";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
 import { SlBasket } from "react-icons/sl";
+import { Badge, Input } from "@nextui-org/react";
 
 function List() {
   const [products, setProducts] = useState([]);
@@ -71,23 +72,45 @@ function List() {
       <div className="w-full flex flex-col relative">
         <div className="sticky top-0 bg-white text-black py-2 shadow-md">
           {/* Search */}
-          <div className="px-5 my-2 relative flex gap-2 items-center">
-            <input
-              type="text"
-              placeholder="Cari Produk"
-              className="bg-gray-50 text-black rounded-md w-full p-2 h-9 pl-10 focus:outline-primary outline-1 outline-primary outline-double"
+          <div className="px-5 my-2 relative flex gap-2 items-center bg-white">
+            <Input
               defaultValue={q}
               onChange={handleSearch}
+              isClearable
+              size="md"
+              radius="md"
+              onClear={() => setQ("")}
+              classNames={{
+                input: [
+                  "bg-white",
+                  "text-black/90 dark:text-white/90",
+                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                ],
+                innerWrapper: "bg-white",
+                inputWrapper: [
+                  "border-primary",
+                  "border-[1px]",
+                  "bg-white",
+                  "hover:bg-white",
+            "dark:hover:bg-white",
+            "group-data-[focus=true]:bg-white",
+            "dark:group-data-[focus=true]:bg-white",
+            "data-[hover=true]:bg-white",
+                  "!cursor-text",
+                ],
+              }}
+              placeholder="Cari Produk"
+              startContent={
+                <FaSearch className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+              }
             />
-            <FaSearch className="absolute top-2 text-lg left-8 text-gray-400" />
             <div
               className="relative  rounded-full p-1 hover:cursor-pointer"
               onClick={() => navigate("/cart")}
             >
-              <SlBasket className="text-2xl " />
-              <p className="absolute rounded-md top-0 text-white right-0 bg-primary  w-4 flex justify-center text-xs">
-                {getCountCart()}
-              </p>
+              <Badge content={getCountCart()} color="primary" size="md" variant="shadow" shape="circle">
+                <SlBasket className="text-2xl " />
+              </Badge>
             </div>
           </div>
           <div
@@ -122,7 +145,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-4 gap-2 h-[calc(67dvh)] md:h-[calc(66dvh)] p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-[calc(67dvh)] md:h-[calc(66dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
