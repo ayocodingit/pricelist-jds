@@ -72,7 +72,7 @@ function List() {
       <div className="w-full flex flex-col relative">
         <div className="sticky top-0 bg-white text-black py-2 flex flex-col gap-2 shadow-md">
           {/* Search */}
-          <div className="px-5 my-2 relative flex gap-2 items-center bg-white">
+          <div className="px-2 my-2 relative flex gap-2 items-center bg-white">
             <Input
               defaultValue={q}
               onChange={handleSearch}
