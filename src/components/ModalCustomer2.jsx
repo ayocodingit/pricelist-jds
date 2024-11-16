@@ -11,10 +11,13 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+useDisclosure,
 } from "@nextui-org/react";
 
 function ModalCustomer2({ setIsModalCustomer, isModalCustomer }) {
   const { customer, telegram } = getCustomer();
+  
+const {isOpen, onOpen, onClose} = useDisclosure();
 
   const formik = useFormik({
     initialValues: {
