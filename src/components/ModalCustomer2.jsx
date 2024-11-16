@@ -63,7 +63,6 @@ function ModalCustomer2({ setIsModalCustomer, isModalCustomer }) {
           <ModalHeader>Registrasi Pembeli</ModalHeader>
           <ModalBody>
             <Input
-              autoFocus
               label="Nama Lengkap - Divisi"
               labelPlacement="outside"
               placeholder="Nama Lengkap - Divisi"
@@ -93,17 +92,10 @@ function ModalCustomer2({ setIsModalCustomer, isModalCustomer }) {
           </ModalBody>
           <ModalFooter>
             <Button
-              color="warning"
-              variant="flat"
-              onPress={() => setIsModalCustomer(false)}
-            >
-              Close
-            </Button>
-            <Button
               disabled={formik.isSubmitting || !formik.isValid}
               color="primary"
               type="submit"
-              className={`${
+              className={`w-full ${
                 formik.isSubmitting || (!formik.isValid && "opacity-70")
               }`}
             >
