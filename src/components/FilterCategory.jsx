@@ -16,7 +16,7 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`py-2 h-40 ${
+        className={`py-2 ${
           category == categoryOptions.FOOD
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
@@ -30,7 +30,7 @@ function FilterCategory({ handleCategory, category }) {
             src="/hamburger.png"
           />
         </CardBody>
-        <CardFooter className=" flex-col items-center p-2">
+        <CardFooter className=" flex-col items-center">
           <h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
         </CardFooter>
       </Card>
@@ -38,7 +38,7 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`py-2 h-40 ${
+        className={`py-2${
           category == categoryOptions.DRINK
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
