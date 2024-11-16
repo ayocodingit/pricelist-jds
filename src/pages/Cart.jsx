@@ -2,21 +2,16 @@ import React, { useEffect, useState } from "react";
 import {
   getAllCart,
   moveToCheckOut,
-  removeAllCart,
-  removesItemCart,
 } from "../repository/carts";
-import { BsArrowLeft, BsShop } from "react-icons/bs";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
-import ModalCustomer from "../components/ModalCustomer";
 import { checkCompleteCustomer } from "../repository/customer";
 import { fetchProducts, getByIDs } from "../repository/produts";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
 import { SlArrowLeft } from "react-icons/sl";
-import { Button, Checkbox } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import ModalCustomer2 from "../components/ModalCustomer2";
 
 function Cart() {
@@ -91,17 +86,6 @@ function Cart() {
           onClick={() => navigate("/list")}
         />
         <p>Keranjang Saya ({getAllCart().length})</p>
-        {/* <FaRegTrashAlt
-            className="text-lg hover: cursor-pointer"
-            onClick={() => {
-              if (products.length === 0) {
-                removeAllCart();
-              } else {
-                removesItemCart(products.map((product) => product.id));
-              }
-              setProducts([]);
-            }}
-          /> */}
       </div>
       <div className="w-full flex gap-2 items-center">
         <div className="w-full md:w-full items-center shadow-md rounded-md">
@@ -125,34 +109,6 @@ function Cart() {
                 return (
                   <div key={index}>
                     <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
-                      {/* <Checkbox
-                        isSelected={username == cart.seller}
-                        isDisabled={products.length === 0}
-                        size="md"
-                        className="flex items-center ml-1"
-                        onChange={(e) => {
-                          if (!e.target.checked) {
-                            setProducts([]);
-                          }
-                        }}
-                      >
-                        <div className="flex gap-1">
-                          {" "}
-                          <BsShop className="text-xl" />@{cart.seller}{" "}
-                        </div>
-                      </Checkbox> */}
-                      {/* <input
-                        type="checkbox"
-                        disabled={products.length === 0}
-                        className="accent-primary w-8 h-4"
-                        checked={username == cart.seller}
-                        onChange={(e) => {
-                          if (!e.target.checked) {
-                            setProducts([]);
-                          }
-                        }}
-                      />
-                      <BsShop className="text-xl" />@{cart.seller} */}
                     </div>
                     {cart.products.map((product, index) => {
                       return (
