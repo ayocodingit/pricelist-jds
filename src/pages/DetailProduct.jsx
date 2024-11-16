@@ -292,7 +292,7 @@ Hatur nuhun~ ✨`}
                   {product.variants?.map((variant, index) => (
                     <Button
                       key={index}
-                      className={`flex rounded-md capitalize w-full ${
+                      className={`flex rounded-md capitalize w-full min-w-auto ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
