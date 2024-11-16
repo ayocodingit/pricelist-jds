@@ -120,7 +120,7 @@ function List() {
           </div>
           <div>
             {/* Sorting */}
-            <div className="px-5 flex items-center md:hidden gap-2">
+            <div className="px-2 flex items-center md:hidden gap-2">
               <Select
                 label="Urutan Produk"
                 className="w-full flex items-center"
@@ -137,7 +137,7 @@ function List() {
 
             </div>
           </div>
-          <div className="flex flex-col px-5 gap-2 overflow-auto">
+          <div className="flex flex-col px-2 gap-2 overflow-auto">
             <h1>Kategori</h1>
             <div className="flex overflow-auto gap-2 items-center">
               <FilterCategory
