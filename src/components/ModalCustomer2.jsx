@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getCustomer, storeCustomer } from "../repository/customer";
 import { Flip, toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -11,13 +11,19 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-useDisclosure,
+  useDisclosure,
 } from "@nextui-org/react";
 
 function ModalCustomer2({ setIsModalCustomer, isModalCustomer }) {
   const { customer, telegram } = getCustomer();
-  
-const {isOpen, onOpen, onClose} = useDisclosure();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    if (isModalCustomer) {
+      onOpen();
+    }
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -29,6 +35,7 @@ const {isOpen, onOpen, onClose} = useDisclosure();
       formik.resetForm();
       alert("success", "Registrasi berhasil");
       setIsModalCustomer(false);
+      onClose();
     },
     validationSchema: yup.object().shape({
       customer: yup.string().min(3).required().label("Nama Lengkap - Divisi"),
@@ -49,13 +56,16 @@ const {isOpen, onOpen, onClose} = useDisclosure();
     });
   };
 
-
   return (
     <Modal
-      isOpen={isModalCustomer}
-      closeModal={() => setIsModalCustomer(false)}
+      isOpen={isOpen}
       backdrop="opaque"
       placement="auto"
+      onClose={() => {
+        formik.resetForm();
+        setIsModalCustomer(false);
+        onClose();
+      }}
     >
       <ModalContent>
         <form
@@ -83,7 +93,7 @@ const {isOpen, onOpen, onClose} = useDisclosure();
               isInvalid={!!formik.errors.telegram}
               errorMessage={formik.errors.telegram}
             />
-            
+
             <div className="w-full flex flex-col mb-4 text-xs gap-1">
               <span>
                 *) Akun Telegram akan digunakan untuk konfirmasi pesanan
