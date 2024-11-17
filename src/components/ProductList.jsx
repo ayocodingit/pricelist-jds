@@ -34,6 +34,7 @@ function ProductList({ product }) {
             className={`w-full h-32 md:h-40 object-contain p-1 -z-0`}
             loading="lazy"
             radius="sm"
+            disableSkeleton={true}
           />
           </Tooltip>
 
