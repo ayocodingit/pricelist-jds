@@ -293,7 +293,7 @@ Hatur nuhun~ ✨`}
                     <Button
 fullWidth={true}
                       key={index}
-                      className={`flex rounded-md capitalize w-full text-wrap ${
+                      className={`rounded-md capitalize text-clip ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
