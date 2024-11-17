@@ -291,6 +291,7 @@ Hatur nuhun~ ✨`}
                 <div className="flex gap-2 overflow-x-scroll w-full">
                   {product.variants?.map((variant, index) => (
                     <Button
+fullWidth={true}
                       key={index}
                       className={`flex rounded-md capitalize w-auto ${
                         formik.values.variant == variant
