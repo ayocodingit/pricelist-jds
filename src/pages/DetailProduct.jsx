@@ -288,7 +288,7 @@ Hatur nuhun~ ✨`}
             {product.variants?.length > 0 && (
               <div className="flex flex-col gap-2 mt-2 w-full">
                 <p>Pilih Variasi</p>
-                <div className="flex gap-2 overflow-auto">
+                <div className="flex gap-2 overflow-auto w-full">
                   {product.variants?.map((variant, index) => (
                     <Button
 fullWidth={true}
