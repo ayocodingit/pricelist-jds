@@ -5,7 +5,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { getCountCart } from "../repository/carts";
 import { getCustomer } from "../repository/customer";
-import ModalCustomer from "../components/ModalCustomer";
 import FilterCategory from "../components/FilterCategory";
 import { categoryOptions } from "../utils/contstant/category";
 import ProductList from "../components/ProductList";
@@ -31,7 +30,6 @@ function List() {
   );
   const [filter, setFilter] = useState(false);
   const [filterCount, setFilterCount] = useState(0);
-  const [isModalCustomer, setIsModalCustomer] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -180,10 +178,6 @@ function List() {
         </div>
         <Menu />
       </div>
-      <ModalCustomer
-        setIsModalCustomer={setIsModalCustomer}
-        isModalCustomer={isModalCustomer}
-      />
     </div>
   );
 }
