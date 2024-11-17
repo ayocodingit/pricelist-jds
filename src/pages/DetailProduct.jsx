@@ -286,9 +286,9 @@ Hatur nuhun~ ✨`}
             )}
 
             {product.variants?.length > 0 && (
-              <div className="flex gap-2 mt-2 w-full">
+              <div className="flex flex-col gap-2 mt-2 w-full">
                 <p>Pilih Variasi</p>
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2">
                   {product.variants?.map((variant, index) => (
                     <Button
                       key={index}
