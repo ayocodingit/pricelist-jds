@@ -201,7 +201,7 @@ Hatur nuhun~ ✨`}
                 {!isStockEmpty && (
                   <div className="flex h-5 justify-center items-center gap-2">
                     <Button
-                      size="sm"
+                      size="md"
                       onClick={() => {
                         if (formik.values.qty > 1) {
                           calculateTotal(product.price, product.discount, "-");
@@ -215,7 +215,7 @@ Hatur nuhun~ ✨`}
                       {formik.values.qty}
                     </div>
                     <Button
-                      size="sm"
+                      size="md"
                       onClick={() => {
                         if (
                           product.tag == tagOptions.PO ||
@@ -292,7 +292,6 @@ Hatur nuhun~ ✨`}
                   {product.variants?.map((variant, index) => (
                     <Button
                       key={index}
-variant="shadow"
                       className={`rounded-md capitalize ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
