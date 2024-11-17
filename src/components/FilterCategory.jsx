@@ -26,7 +26,7 @@ function FilterCategory({ handleCategory, category }) {
         <CardBody className="flex justify-center items-center w-full p-0 gap-2">
           <Image
             alt="Card background"
-            className="object-contain w-full h-8 rounded-xl"
+            className="object-contain w-8 h-8 rounded-xl"
             src="/hamburger.png"
           />
 <h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
