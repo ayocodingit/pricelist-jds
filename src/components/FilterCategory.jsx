@@ -16,14 +16,14 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`w-60 ${
+        className={`${
           category == categoryOptions.FOOD
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
         }`}
         onPress={() => handleCategory(categoryOptions.FOOD)}
       >
-        <CardBody className="flex justify-center items-center w-full p-0 gap-2">
+        <CardBody className="flex justify-center items-center w-full p-2 gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 rounded-xl"
