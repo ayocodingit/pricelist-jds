@@ -16,23 +16,21 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`py-2 flex gap-2 ${
+        className={`${
           category == categoryOptions.FOOD
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
         }`}
         onPress={() => handleCategory(categoryOptions.FOOD)}
       >
-        <CardBody className=" flex justify-center items-center w-full p-0">
+        <CardBody className="flex justify-center items-center w-full p-0 gap-2">
           <Image
             alt="Card background"
             className="object-contain w-full h-8 rounded-xl"
             src="/hamburger.png"
           />
+<h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
         </CardBody>
-        <CardFooter className=" flex-col items-center">
-          <h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
-        </CardFooter>
       </Card>
       <Card
         radius="sm"
