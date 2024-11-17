@@ -286,14 +286,13 @@ Hatur nuhun~ ✨`}
             )}
 
             {product.variants?.length > 0 && (
-              <div className="flex flex-col gap-2 mt-2 w-full">
+              <div className="flex gap-2 mt-2 w-full">
                 <p>Pilih Variasi</p>
-                <div className="flex gap-2 overflow-auto w-full">
+                <div className="flex gap-2">
                   {product.variants?.map((variant, index) => (
                     <Button
-fullWidth={true}
                       key={index}
-                      className={`rounded-md capitalize text-wrap max-w-auto ${
+                      className={`rounded-md capitalize ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
