@@ -16,7 +16,7 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`py-2 ${
+        className={`py-2 flex gap-2 ${
           category == categoryOptions.FOOD
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
