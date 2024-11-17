@@ -36,23 +36,21 @@ function FilterCategory({ handleCategory, category }) {
         radius="sm"
         shadow="sm"
         isPressable
-        className={`py-2 ${
+        className={`${
           category == categoryOptions.DRINK
             ? "bg-primary text-white"
             : "bg-gray-200 text-black"
         }`}
         onPress={() => handleCategory(categoryOptions.DRINK)}
       >
-        <CardBody className=" flex justify-center items-center w-full p-0">
+        <CardBody className="flex justify-center items-center w-full p-2 gap-2">
           <Image
             alt="Card background"
-            className="object-contain w-full h-8 rounded-xl"
+            className="object-contain w-8 h-8 rounded-xl"
             src="/drink.png"
           />
+<h4 className="text-md capitalize">{categoryOptions.DRINK}</h4>
         </CardBody>
-        <CardFooter className=" flex-col items-center">
-          <h4 className="text-md capitalize">{categoryOptions.DRINK}</h4>
-        </CardFooter>
       </Card>
     </>
   );
