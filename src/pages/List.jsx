@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { fetchProducts, getProducts } from "../repository/produts";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { getCountCart } from "../repository/carts";
 import { getCustomer } from "../repository/customer";
@@ -13,8 +13,15 @@ import Footer from "../components/Footer";
 import { sortOptions } from "../utils/contstant/sort";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
-import { SlBasket } from "react-icons/sl";
-import { Badge, Input, Select, SelectItem } from "@nextui-org/react";
+import { SlBasket, SlUser } from "react-icons/sl";
+import {
+  Avatar,
+  AvatarIcon,
+  Badge,
+  Input,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import CartIcon from "../components/CartIcon";
 
 function List() {
@@ -68,7 +75,7 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
       <div className="w-full flex flex-col relative">
-        <div className="sticky top-0 bg-white text-black py-2 flex flex-col gap-2 shadow-md">
+        <div className="sticky top-0 bg-white text-black py-2 flex flex-col gap-2 shadow-md z-20">
           {/* Search */}
           <div className="px-2 my-2 relative flex gap-2 items-center bg-white">
             <Input
@@ -77,7 +84,10 @@ function List() {
               isClearable
               size="md"
               radius="md"
-              onClear={() => { setQ(""); SetURLSearchParams({ q: "", category, sort }); }}
+              onClear={() => {
+                setQ("");
+                SetURLSearchParams({ q: "", category, sort });
+              }}
               classNames={{
                 input: [
                   "bg-white",
@@ -107,22 +117,34 @@ function List() {
               className="max-w-xs hidden md:flex items-center"
               size="sm"
               defaultSelectedKeys={[sort]}
-              label="Urutan Produk"
+              labelPlacement="outside-left"
+              label="Urutkan"
               onChange={(e) => handleSort(e.target.value)}
             >
               {Object.entries(Object.values(sortOptions)).map((sorts, key) => (
                 <SelectItem key={sorts[1]}>{sorts[1]}</SelectItem>
               ))}
             </Select>
+            <Link to={"/me"} className={`flex flex-col items-center gap-1`}>
+              <Avatar
+                icon={<AvatarIcon />}
+                classNames={{
+                  base: "text-primary",
+                  icon: "bg-gray-200",
+                }}
+                size="sm"
+              />
+            </Link>
             <CartIcon></CartIcon>
           </div>
-          <div>
+          <div className="md:hidden">
             {/* Sorting */}
-            <div className="px-2 flex items-center md:hidden gap-2">
+            <div className="px-2 flex items-center  gap-2">
               <Select
-                label="Urutan Produk"
                 className="w-full flex items-center"
                 size="sm"
+                labelPlacement="outside-left"
+                label="Urutkan"
                 defaultSelectedKeys={[sort]}
                 onChange={(e) => handleSort(e.target.value)}
               >
@@ -132,7 +154,6 @@ function List() {
                   )
                 )}
               </Select>
-
             </div>
           </div>
           <div className="flex flex-col px-2 gap-2 overflow-auto">
@@ -157,7 +178,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-[calc(62dvh)] p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-auto p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
@@ -176,7 +197,6 @@ function List() {
             </div>
           )}
         </div>
-        <Menu />
       </div>
     </div>
   );

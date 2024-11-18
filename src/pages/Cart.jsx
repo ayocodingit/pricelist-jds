@@ -80,12 +80,8 @@ function Cart() {
 
   return (
     <div className="bg-gray-50 text-sm  md:text-md flex flex-col relative h-[calc(100dvh)]">
-      <div className="flex gap-4 py-3 px-4 bg-white items-center sticky top-0 z-10 shadow-sm">
-        <SlArrowLeft
-          className="text-xl hover:cursor-pointer"
-          onClick={() => navigate("/list")}
-        />
-        <p>Keranjang Saya ({getAllCart().length})</p>
+      <div className="flex gap-4 py-3 px-4 bg-white items-center justify-center sticky top-0 z-10 shadow-sm">
+        <p className="text-md">Keranjang Saya ({getAllCart().length})</p>
       </div>
       <div className="w-full flex gap-2 items-center">
         <div className="w-full md:w-full items-center shadow-md rounded-md">
@@ -107,9 +103,7 @@ function Cart() {
             >
               {carts.map((cart, index) => {
                 return (
-                  <div key={index}>
-                    <div className="text-black flex gap-2 items-center font-bold bg-white mt-2 pt-2">
-                    </div>
+                  <div key={index} className="my-2">
                     {cart.products.map((product, index) => {
                       return (
                         <CartList
@@ -148,8 +142,8 @@ function Cart() {
               <p>Total Bayar: {formatNumberIDR(checkTotal)}</p>
             </div>
             <Button
-              className={`w-full bg-primary text-white flex justify-center rounded-md p-2 gap-2 ${
-                products.length != 0 && "hover:cursor-pointer hover:opacity-90"
+              className={`w-full flex justify-center rounded-md p-2 gap-2 ${
+                products.length != 0 && "bg-primary text-white hover:cursor-pointer hover:opacity-90"
               } `}
               disabled={products.length === 0}
               onClick={() => {

@@ -27,15 +27,22 @@ function ProductList({ product }) {
     >
       <div className="flex flex-col justify-center w-full">
         <div className="relative flex justify-center w-full">
-          <Tooltip content={product.name} color="primary" placement="bottom" showArrow={true}>
-          <Image
-            alt="image product"
-            src={product.image}
-            className={`w-full h-32 md:h-40 object-contain p-1 -z-0`}
-            radius="sm"
-            loading="lazy"
-            disableSkeleton={true}
-          />
+          <Tooltip
+            content={product.name}
+            color="primary"
+            placement="bottom"
+            showArrow={true}
+            delay={0}
+            closeDelay={0}
+          >
+            <Image
+              alt="image product"
+              src={product.image}
+              className={`w-full h-32 md:h-40 object-contain p-1 -z-0`}
+              radius="sm"
+              loading="lazy"
+              disableSkeleton={true}
+            />
           </Tooltip>
 
           {isStockEmpty && (
