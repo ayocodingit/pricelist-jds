@@ -119,7 +119,6 @@
             }
         ]
     },
-
     {
         "username": "mikes05",
         "name_card": "Michael Liondy",
@@ -131,6 +130,20 @@
             {
                 "provider": "bca",
                 "value": "4490010128"
+            }
+        ]
+    },
+    {
+        "username": "angwinarasy",
+        "name_card": "Angwin Arasy Jomantara",
+        "payments": [
+            {
+                "provider": "gopay",
+                "value": "081563936174"
+            },
+            {
+                "provider": "jago",
+                "value": "102388385518"
             }
         ]
     }

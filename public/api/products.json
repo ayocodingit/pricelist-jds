@@ -12,7 +12,10 @@
         "is_available": true,
         "location": "R. Selatan",
         "description": "",
-        "variants": ["cheese", "choco"]
+        "variants": [
+            "cheese",
+            "choco"
+        ]
     },
     {
         "id": 2,
@@ -60,8 +63,10 @@
         "is_available": true,
         "location": "R. Selatan",
         "description": "",
-        "variants": ["level 2", "level 10"]
-        
+        "variants": [
+            "level 2",
+            "level 10"
+        ]
     },
     {
         "id": 5,
@@ -272,5 +277,20 @@
             "choco almond",
             "vanilla roasted almond"
         ]
+    },
+    {
+        "id": 20,
+        "image": "https://s.digitalservice.id/gfBBQf",
+        "category": "makanan",
+        "name": "Usus Crispy Daun Jeruk Pedas",
+        "price": 6000,
+        "username": "angwinarasy",
+        "tag": "ready stock",
+        "stock": 40,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Rasa gurihnya bikin hati senang, aroma daun jeruknya bikin tenang, dan pedasnya bikin nagih. Sekali coba, pasti balik lagi!",
+        "variants": []
     }
 ]
