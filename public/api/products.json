@@ -187,7 +187,7 @@
     {
         "id": 14,
         "image": "https://i.ibb.co.com/GkD1Trw/74-D3-B543-D1-B1-C443-F4-DA36-B84918092-C0.jpg",
-        "category": "makanan",
+        "category": "camilan",
         "name": "Peyek Kacang",
         "price": 13000,
         "username": "wanzismail",
@@ -292,5 +292,20 @@
         "location": "Ruang Selatan",
         "description": "Rasa gurihnya bikin hati senang, aroma daun jeruknya bikin tenang, dan pedasnya bikin nagih. Sekali coba, pasti balik lagi!",
         "variants": []
+    },
+    {
+        "id": 21,
+        "image": "https://i.ibb.co.com/Wvtvq8k/photo-2024-11-18-13-12-42.jpg",
+        "category": "camilan",
+        "name": "Peyek kecil",
+        "price": 3000,
+        "username": "wanzismail",
+        "tag": "ready stock",
+        "stock": 5,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Beli 2 Diskon Rp. 1000",
+        "variants": ["Ikan Teri", "Udang Rebon"]
     }
 ]
