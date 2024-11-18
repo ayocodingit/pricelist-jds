@@ -307,5 +307,20 @@
         "location": "Ruang Selatan",
         "description": "Beli 2 Diskon Rp. 1000",
         "variants": ["Ikan Teri", "Udang Rebon"]
+    },
+    {
+        "id": 22,
+        "image": "https://i.ibb.co.com/MDtv7GG/photo-2024-11-18-19-35-51.jpg",
+        "category": "makanan",
+        "name": "Dimsum Kang Dado",
+        "price": 25000,
+        "username": "imamfahmi29",
+        "tag": "pre order",
+        "stock": 9999,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Dimsum Kang Dado adalah dimsum yang dibuat dengan bahan-bahan berkualitas tinggi dan diolah dengan teknik tradisional. Dimsum ini bisa disantap sebagai camilan, hidangan pembuka, atau sajian utama. Berikut deskripsi produk Dimsum Kang Dado: Isi: 30 dimsum per pack, Kemasan: Praktis dan mudah disiapkan untuk dimasak, Rasa: Lezat dan autentik.",
+        "variants": []
     }
 ]
