@@ -130,7 +130,7 @@ function List() {
               <Avatar
                 icon={<AvatarIcon />}
                 classNames={{
-                  base: "text-primary",
+                  base: "text-black",
                   icon: "bg-gray-200",
                 }}
                 size="sm"
