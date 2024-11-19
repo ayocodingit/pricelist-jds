@@ -103,7 +103,7 @@ function Cart() {
             >
               {carts.map((cart, index) => {
                 return (
-                  <div key={index} className="my-2">
+                  <div key={index} className="">
                     {cart.products.map((product, index) => {
                       return (
                         <CartList
