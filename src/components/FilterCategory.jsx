@@ -26,7 +26,7 @@ function FilterCategory({ handleCategory, category }) {
         <CardBody className="flex justify-center items-center w-full p-2 gap-2">
           <Image
             alt="Card background"
-            className="object-contain w-8 h-8 rounded-xl"
+            className="object-contain w-8 h-8 rounded-xl hidden"
             src="/hamburger.png"
           />
 <h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
@@ -46,7 +46,7 @@ function FilterCategory({ handleCategory, category }) {
         <CardBody className="flex justify-center items-center w-full p-2 gap-2">
           <Image
             alt="Card background"
-            className="object-contain w-8 h-8 rounded-xl"
+            className="object-contain w-8 h-8 hidden rounded-xl"
             src="/drink.png"
           />
 <h4 className="text-md capitalize">{categoryOptions.DRINK}</h4>
@@ -66,7 +66,7 @@ function FilterCategory({ handleCategory, category }) {
         <CardBody className="flex justify-center items-center w-full p-2 gap-2">
           <Image
             alt="Card background"
-            className="object-contain w-8 h-8 rounded-xl"
+            className="object-contain w-8 h-8 rounded-xl hidden"
             src="/camilan.png"
           />
 <h4 className="text-md capitalize">{categoryOptions.SNACK}</h4>
