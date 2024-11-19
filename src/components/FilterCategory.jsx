@@ -29,7 +29,7 @@ function FilterCategory({ handleCategory, category }) {
             className="object-contain w-8 h-8 rounded-xl hidden"
             src="/hamburger.png"
           />
-<h4 className="text-md capitalize">{categoryOptions.FOOD}</h4>
+<h4 className="text-sm capitalize">{categoryOptions.FOOD}</h4>
         </CardBody>
       </Card>
       <Card
@@ -49,17 +49,17 @@ function FilterCategory({ handleCategory, category }) {
             className="object-contain w-8 h-8 hidden rounded-xl"
             src="/drink.png"
           />
-<h4 className="text-md capitalize">{categoryOptions.DRINK}</h4>
+<h4 className="text-sm capitalize">{categoryOptions.DRINK}</h4>
         </CardBody>
       </Card>
       <Card
         radius="lg"
         shadow="sm"
         isPressable
-        className={`${
+        className={`border-[1px] ${
           category == categoryOptions.SNACK
-            ? "bg-primary text-white"
-            : "bg-gray-200 text-black"
+            ? "border-primary text-primary"
+            : "border-gray-200 text-black"
         }`}
         onPress={() => handleCategory(categoryOptions.SNACK)}
       >
@@ -69,7 +69,7 @@ function FilterCategory({ handleCategory, category }) {
             className="object-contain w-8 h-8 rounded-xl hidden"
             src="/camilan.png"
           />
-<h4 className="text-md capitalize">{categoryOptions.SNACK}</h4>
+<h4 className="text-sm capitalize">{categoryOptions.SNACK}</h4>
         </CardBody>
       </Card>
     </>
