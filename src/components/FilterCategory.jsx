@@ -63,7 +63,7 @@ function FilterCategory({ handleCategory, category }) {
         }`}
         onPress={() => handleCategory(categoryOptions.SNACK)}
       >
-        <CardBody className="flex justify-center items-center w-full gap-2">
+        <CardBody className="flex justify-center items-center w-full p-0 gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 rounded-xl hidden"
