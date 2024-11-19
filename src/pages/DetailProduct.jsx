@@ -291,6 +291,7 @@ Hatur nuhun~ ✨`}
                 <div className="gap-2 grid  grid-cols-2">
                   {product.variants?.map((variant, index) => (
                     <Button
+size="sm"
                       key={index}
                       className={`rounded-md capitalize ${
                         formik.values.variant == variant
