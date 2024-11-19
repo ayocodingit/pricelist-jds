@@ -96,6 +96,7 @@ function List() {
                 ],
                 innerWrapper: "bg-white",
                 inputWrapper: [
+                  "border-gray-500",
                   "border-[1px]",
                   "bg-white",
                   "hover:bg-white",
