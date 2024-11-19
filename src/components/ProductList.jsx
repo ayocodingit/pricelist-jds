@@ -70,7 +70,7 @@ function ProductList({ product }) {
               )}
             </p>
             {product.discount > 0 && (
-              <p className="bg-primary absolute top-20 left-0 text-white p-1 rounded-r-md text-sm shadow-lg">
+              <p className="bg-primary absolute top-10 left-0 text-white p-1 rounded-r-md text-sm shadow-lg">
                 -{product.discount}%
               </p>
             )}
