@@ -158,7 +158,7 @@ function List() {
             </div>
           </div>
 */}
-          <div className="flex flex-col px-2 gap-2 overflow-auto">
+          <div className="flex flex-col px-2 gap-2 overflow-auto relative">
             <h1>Kategori</h1>
             <div className="flex overflow-auto gap-2 items-center">
               <FilterCategory
