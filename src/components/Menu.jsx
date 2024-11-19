@@ -8,9 +8,9 @@ function Menu({ children }) {
   const noActiveClass = "opacity-70";
 
   return (
-    <div className="fixed bottom-0 z-20 w-full text-xs shadow-md">
+    <div className="fixed bottom-0 z-20 w-full text-xs shadow-sm">
       {children}
-      <ul className="bg-primary h-full flex items-center gap-2 justify-around px-10 py-2 text-white">
+      <ul className="bg-white h-full flex items-center gap-2 justify-around px-10 py-2 text-gray-800">
         <Link
           to={"/list"}
           className={`flex flex-col items-center gap-1 ${
