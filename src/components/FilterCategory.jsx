@@ -64,11 +64,6 @@ function FilterCategory({ handleCategory, category }) {
         onPress={() => handleCategory(categoryOptions.SNACK)}
       >
         <CardBody className="flex justify-center items-center w-full p-1 gap-2">
-          <Image
-            alt="Card background"
-            className="object-contain w-8 h-8 rounded-xl hidden"
-            src="/camilan.png"
-          />
 <h4 className="text-sm capitalize">{categoryOptions.SNACK}</h4>
         </CardBody>
       </Card>
