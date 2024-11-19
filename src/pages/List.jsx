@@ -112,7 +112,7 @@ function List() {
                 <FaSearch className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
               }
             />
-
+{/*
             <Select
               className="max-w-xs hidden md:flex items-center"
               size="sm"
@@ -125,6 +125,7 @@ function List() {
                 <SelectItem key={sorts[1]}>{sorts[1]}</SelectItem>
               ))}
             </Select>
+*/}
             <Link to={"/me"} className={`flex flex-col items-center gap-1`}>
               <Avatar
                 icon={<AvatarIcon />}
@@ -137,6 +138,7 @@ function List() {
             </Link>
             <CartIcon></CartIcon>
           </div>
+{/*
           <div className="md:hidden">
             {/* Sorting */}
             <div className="px-2 flex items-center  gap-2">
@@ -156,6 +158,7 @@ function List() {
               </Select>
             </div>
           </div>
+*/}
           <div className="flex flex-col px-2 gap-2 overflow-auto">
             <h1>Kategori</h1>
             <div className="flex overflow-auto gap-2 items-center">
