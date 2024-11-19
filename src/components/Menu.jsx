@@ -10,7 +10,7 @@ function Menu({ children }) {
   return (
     <div className="fixed bottom-0 z-20 w-full text-xs shadow-sm">
       {children}
-      <ul className="bg-white h-full flex items-center gap-2 justify-around px-10 py-2 text-gray-800">
+      <ul className="bg-white h-full flex items-center gap-2 justify-around px-10 py-2 text-black">
         <Link
           to={"/list"}
           className={`flex flex-col items-center gap-1 ${
