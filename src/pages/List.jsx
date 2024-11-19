@@ -127,7 +127,7 @@ function List() {
             </Select>
 */}
             <Link to={"/me"} className={`flex flex-col items-center gap-1`}>
-              <Avatar src="/user.png" size="sm" />
+              <Avatar src="/user.png" size="md" />
             </Link>
           </div>
           {/*
