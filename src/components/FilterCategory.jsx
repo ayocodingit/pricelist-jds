@@ -13,7 +13,7 @@ function FilterCategory({ handleCategory, category }) {
   return (
     <>
       <Card
-        radius="sm"
+        radius="lg"
         shadow="sm"
         isPressable
         className={`${
@@ -23,7 +23,7 @@ function FilterCategory({ handleCategory, category }) {
         }`}
         onPress={() => handleCategory(categoryOptions.FOOD)}
       >
-        <CardBody className="flex justify-center items-center w-full p-2 gap-2">
+        <CardBody className="flex justify-center items-center w-full gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 rounded-xl hidden"
@@ -33,7 +33,7 @@ function FilterCategory({ handleCategory, category }) {
         </CardBody>
       </Card>
       <Card
-        radius="sm"
+        radius="lg"
         shadow="sm"
         isPressable
         className={`${
@@ -43,7 +43,7 @@ function FilterCategory({ handleCategory, category }) {
         }`}
         onPress={() => handleCategory(categoryOptions.DRINK)}
       >
-        <CardBody className="flex justify-center items-center w-full p-2 gap-2">
+        <CardBody className="flex justify-center items-center w-full gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 hidden rounded-xl"
@@ -53,7 +53,7 @@ function FilterCategory({ handleCategory, category }) {
         </CardBody>
       </Card>
       <Card
-        radius="sm"
+        radius="lg"
         shadow="sm"
         isPressable
         className={`${
@@ -63,7 +63,7 @@ function FilterCategory({ handleCategory, category }) {
         }`}
         onPress={() => handleCategory(categoryOptions.SNACK)}
       >
-        <CardBody className="flex justify-center items-center w-full p-2 gap-2">
+        <CardBody className="flex justify-center items-center w-full gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 rounded-xl hidden"
