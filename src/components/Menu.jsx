@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 function Menu({ children }) {
   const location = useLocation();
   const activeClass = "opacity-100";
-  const noActiveClass = "opacity-70";
+  const noActiveClass = "opacity-50";
 
   return (
     <div className="fixed bottom-0 z-20 w-full text-xs shadow-sm">

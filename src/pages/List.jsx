@@ -75,15 +75,15 @@ function List() {
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
       <div className="w-full flex flex-col relative">
-        <div className="sticky top-0 bg-white text-black py-2 flex flex-col gap-2 z-20">
+        <div className="sticky top-0 bg-white text-black flex flex-col gap-2 z-20">
           {/* Search */}
-          <div className="px-2 my-2 relative flex gap-2 items-center bg-white">
+          <div className="px-3 mt-2 relative flex gap-2 items-center ">
             <Input
               defaultValue={q}
               onChange={handleSearch}
               isClearable
               size="md"
-              radius="md"
+              radius="sm"
               onClear={() => {
                 setQ("");
                 SetURLSearchParams({ q: "", category, sort });
@@ -112,7 +112,7 @@ function List() {
                 <FaSearch className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
               }
             />
-{/*
+            {/*
             <Select
               className="max-w-xs hidden md:flex items-center"
               size="sm"
@@ -127,18 +127,10 @@ function List() {
             </Select>
 */}
             <Link to={"/me"} className={`flex flex-col items-center gap-1`}>
-              <Avatar
-                icon={<AvatarIcon />}
-                classNames={{
-                  base: "text-black",
-                  icon: "bg-gray-200",
-                }}
-                size="sm"
-              />
+              <Avatar src="/user.png" size="sm" />
             </Link>
-            <CartIcon></CartIcon>
           </div>
-{/*
+          {/*
           <div className="md:hidden">
             <div className="px-2 flex items-center  gap-2">
               <Select
@@ -158,18 +150,14 @@ function List() {
             </div>
           </div>
 */}
-          
         </div>
 
-<div className="flex flex-col px-2 gap-2 overflow-auto py-2 bg-white">
-            <h1>Kategori</h1>
-            <div className="flex overflow-auto gap-2 items-center">
-              <FilterCategory
-                handleCategory={handleCategory}
-                category={category}
-              />
-            </div>
-          </div>
+        <CartIcon></CartIcon>
+        <Menu></Menu>
+
+        <div className="flex px-2 gap-2 overflow-auto bg-white">
+          <FilterCategory handleCategory={handleCategory} category={category} />
+        </div>
 
         {/* Favorite */}
         {/* <div className="px-5 my-5 flex flex-col gap-3">
@@ -182,7 +170,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-5 gap-2 h-auto p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-5  gap-2 max-h-[calc(80dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
