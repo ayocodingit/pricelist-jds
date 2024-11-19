@@ -13,7 +13,7 @@ function FilterCategory({ handleCategory, category }) {
   return (
     <>
       <Card
-        radius="lg"
+        radius="md"
         shadow="sm"
         isPressable
         className={`${
@@ -53,7 +53,7 @@ function FilterCategory({ handleCategory, category }) {
         </CardBody>
       </Card>
       <Card
-        radius="lg"
+        radius="md"
         shadow="sm"
         isPressable
         className={`border-[1px] ${
@@ -63,7 +63,7 @@ function FilterCategory({ handleCategory, category }) {
         }`}
         onPress={() => handleCategory(categoryOptions.SNACK)}
       >
-        <CardBody className="flex justify-center items-center w-full p-0 gap-2">
+        <CardBody className="flex justify-center items-center w-full p-1 gap-2">
           <Image
             alt="Card background"
             className="object-contain w-8 h-8 rounded-xl hidden"
