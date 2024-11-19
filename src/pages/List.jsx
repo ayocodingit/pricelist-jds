@@ -140,7 +140,6 @@ function List() {
           </div>
 {/*
           <div className="md:hidden">
-            {/* Sorting */}
             <div className="px-2 flex items-center  gap-2">
               <Select
                 className="w-full flex items-center"
