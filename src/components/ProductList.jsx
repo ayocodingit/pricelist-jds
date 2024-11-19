@@ -22,7 +22,7 @@ function ProductList({ product }) {
 
   return (
     <Link
-      className=" rounded-md flex bg-white hover:cursor-pointer h-48 md:h-60 relative w-full"
+      className=" rounded-sm shadow-sm flex bg-white hover:cursor-pointer h-48 md:h-60 relative w-full"
       to={"/list/" + product.id}
     >
       <div className="flex flex-col justify-center w-full">
