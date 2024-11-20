@@ -131,7 +131,7 @@ ${location.origin}
       <div className="bg-gray-50 h-[calc(100dvh)] flex flex-col relative text-sm">
         <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">
           <SlArrowLeft
-            className="text-xl hover:cursor-pointer"
+            className="text-lg hover:cursor-pointer"
             onClick={() => navigate("/list")}
           />
           <p className="text-md">Proses Bayar</p>
