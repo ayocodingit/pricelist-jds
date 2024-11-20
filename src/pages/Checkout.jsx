@@ -223,7 +223,7 @@ ${location.origin}
                     className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
                   >
                     <div className="border border-primary rounded-md flex justify-between items-center p-4">
-                      <p className=""> No Rek {VA}</p>
+                      <p className="font-bold"> No Rek {VA}</p>
                       <CopyToClipboard
                         text={VA}
                         onCopy={() =>
