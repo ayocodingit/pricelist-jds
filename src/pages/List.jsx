@@ -2,26 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { fetchProducts, getProducts } from "../repository/produts";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { CiShoppingCart } from "react-icons/ci";
-import { getCountCart } from "../repository/carts";
-import { getCustomer } from "../repository/customer";
 import FilterCategory from "../components/FilterCategory";
 import { categoryOptions } from "../utils/contstant/category";
 import ProductList from "../components/ProductList";
-import { VscListFilter } from "react-icons/vsc";
-import Footer from "../components/Footer";
+
 import { sortOptions } from "../utils/contstant/sort";
 import Loading from "../components/Loading";
 import Menu from "../components/Menu";
-import { SlBasket, SlUser } from "react-icons/sl";
-import {
-  Avatar,
-  AvatarIcon,
-  Badge,
-  Input,
-  Select,
-  SelectItem,
-} from "@nextui-org/react";
+import { Avatar, Input } from "@nextui-org/react";
 import CartIcon from "../components/CartIcon";
 
 function List() {
@@ -31,12 +19,9 @@ function List() {
   const [category, setCategory] = useState(
     URLSearchParams.get("category") || categoryOptions.FOOD
   );
-  const navigate = useNavigate();
   const [sort, setSort] = useState(
     URLSearchParams.get("sort") || sortOptions.STOK
   );
-  const [filter, setFilter] = useState(false);
-  const [filterCount, setFilterCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -67,17 +52,18 @@ function List() {
     SetURLSearchParams({ q, category, sort });
   };
 
-  const handleSort = (sorting) => {
-    setSort(sorting);
-    SetURLSearchParams({ q, category, sort: sorting });
-  };
+  // const handleSort = (sorting) => {
+  //   setSort(sorting);
+  //   SetURLSearchParams({ q, category, sort: sorting });
+  // };
 
   return (
     <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
       <div className="w-full flex flex-col relative">
         <div className="sticky top-0 bg-white text-black flex flex-col gap-2 z-20">
+          <h1 className="px-4 mt-2 md:text-xl text-lg uppercase">JDS Mart</h1>
           {/* Search */}
-          <div className="px-3 mt-2 relative flex gap-2 items-center ">
+          <div className="px-3 relative flex gap-2 items-center ">
             <Input
               defaultValue={q}
               onChange={handleSearch}
@@ -150,14 +136,16 @@ function List() {
             </div>
           </div>
 */}
+          <div className="flex px-2 gap-2 overflow-auto bg-white">
+            <FilterCategory
+              handleCategory={handleCategory}
+              category={category}
+            />
+          </div>
         </div>
 
         <CartIcon></CartIcon>
         <Menu></Menu>
-
-        <div className="flex px-2 gap-2 overflow-auto bg-white">
-          <FilterCategory handleCategory={handleCategory} category={category} />
-        </div>
 
         {/* Favorite */}
         {/* <div className="px-5 my-5 flex flex-col gap-3">
@@ -170,7 +158,7 @@ function List() {
         {/* Product  */}
         <div className="flex flex-col gap-3 justify-center">
           {products.length > 0 && (
-            <div className="grid  grid-cols-2 md:grid-cols-5  gap-2 h-[calc(82dvh)] md:h-auto p-2 overflow-auto">
+            <div className="grid  grid-cols-2 md:grid-cols-5  gap-2 h-[calc(75dvh)] md:max-h-[calc(75dvh)] p-2 overflow-auto">
               {products.map((product, index) => {
                 return (
                   <ProductList product={product} key={index}></ProductList>
