@@ -15,6 +15,7 @@ import { SlActionRedo, SlArrowLeft, SlBasket } from "react-icons/sl";
 import { Button, Chip, Image, Textarea } from "@nextui-org/react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import CartIcon from "../components/CartIcon";
+import Description from "../components/Description";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -25,6 +26,7 @@ function DetailProduct() {
   const [totalCart, setTotalCart] = useState(0);
   const [cartId, setCartId] = useState(URLSearchParams.get("id") || "");
   const [isLoading, setIsLoading] = useState(true);
+  const [showDetail, setShowDetail] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -141,7 +143,8 @@ function DetailProduct() {
 Mangga in case ada yg mau beli 
 
 ~**${product.name}**~
-${product.description ? product.description : ""}
+${product.description ? product.description.replace(/(<([^>]+)>)/gi, "") : ""}
+
 ${product.image}
 
 Harganya cuma **${formatNumberIDR(product.price)}** aja ${
@@ -163,7 +166,7 @@ Hatur nuhun~ ✨`}
           <CartIcon></CartIcon>
         </div>
       </div>
-      <div className="w-full md:flex md:justify-center md:gap-5 max-h-[calc(85dvh)] md:h-full items-center overflow-auto md:overflow-hidden">
+      <div className="w-full md:flex md:justify-center md:gap-5 h-[calc(85dvh)] md:h-full items-center overflow-auto">
         <div className="flex relative rounded-md w-full md:h-auto md:w-1/3">
           {!isLoading && isStockEmpty && (
             <span className="absolute rounded-full z-20 animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
@@ -181,7 +184,7 @@ Hatur nuhun~ ✨`}
             </PhotoView>
           </PhotoProvider>
         </div>
-        <div className="  md:max-h-[calc(99dvh)] min-h-[calc(44dvh)] md:justify-center md:p-4 bg-white md:w-1/2 md:shadow-md md:rounded-md md:overflow-auto">
+        <div className="  md:max-h-[calc(99dvh)] min-h-[calc(44dvh)] md:justify-center md:p-4 bg-white md:w-1/2 md:shadow-md md:rounded-md">
           <div className="p-5 flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <Chip
@@ -274,9 +277,30 @@ Hatur nuhun~ ✨`}
                 </div>
               </div>
             </div>
-            <div className=" outline-primary text-black flex flex-col gap-1 text-sm">
+            <div className=" outline-primary text-black flex flex-col text-sm gap-1">
               Deskripsi Produk{" "}
-              <span className="text-justify">{product.description || "-"}</span>
+              <div
+                className="text-justify text-wrap text-ellipsis overflow-auto"
+                dangerouslySetInnerHTML={{
+                  __html: product.description
+                    ? product.description.substring(0, 400)
+                    : "-",
+                }}
+              />
+              {product?.description?.length > 400 && (
+                <span
+                  className="underline text-blue-500 hover:cursor-pointer"
+                  onClick={() => setShowDetail(true)}
+                >
+                  Lihat Detail
+                </span>
+              )}
+              {showDetail && (
+                <Description
+                  description={product.description}
+                  setShowDetail={setShowDetail}
+                ></Description>
+              )}
             </div>
             {product.location && (
               <div className="flex items-center">
@@ -291,7 +315,7 @@ Hatur nuhun~ ✨`}
                 <div className="gap-2 grid  grid-cols-2">
                   {product.variants?.map((variant, index) => (
                     <Button
-size="sm"
+                      size="sm"
                       key={index}
                       className={`rounded-md capitalize ${
                         formik.values.variant == variant
