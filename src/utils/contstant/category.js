@@ -2,5 +2,5 @@ export const categoryOptions = {
   FOOD: "makanan",
   DRINK: "minuman",
   SNACK: "camilan",
-  PEMPEK: "pempek"
+  FROZEN_FOOD: "frozen food"
 };
