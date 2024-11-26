@@ -12,7 +12,7 @@ function SuccessOrder() {
     <div className="bg-white h-[calc(100dvh)] flex justify-center items-center text-center text-sm  md:text-base">
       <div className="w-full md:w-1/2 h-full flex flex-col justify-center">
         <img src="/order-success.webp" className="w-full h-40 object-contain" alt="" />
-        <div className="min-h-[calc(50dvh)] text-sm flex flex-col items-center justify-center gap-4 bg-white text-base">
+        <div className="min-h-[calc(50dvh)] flex flex-col items-center justify-center gap-4 bg-white text-base">
           <AiOutlineCheckCircle className="text-5xl text-primary animate-opacity-open" />
           <p className="text-lg">Pemesanan Produk Berhasil!</p>
           <p>Pesanan Anda sudah disampaikan kepada penjual yang bersangkutan</p>

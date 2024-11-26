@@ -82,7 +82,7 @@ export const removeAllCheckout = () => {
 export const moveToCheckOut = (products) => {
   const checkout = [];
   products.forEach((product) => {
-    let voucher = calculateDiscount(product.price, product.discount);
+    let voucher = calculateDiscount(product.price, product.discount) * product.qty;
     if (product?.promo) {
       const { requirement, code } = product.promo;
       voucher += promo[code](product.qty, requirement.min, requirement.discount);

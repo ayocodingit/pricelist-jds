@@ -14,9 +14,8 @@ function CartList({
   setIsLoading,
 }) {
   const navigate = useNavigate();
-  const voucher =
-    calculateDiscount(product.price, product.discount) + product.voucher;
-  let totalPrice = (product.price * product.qty) - voucher;
+  
+  let totalPrice = (product.price * product.qty) - product.voucher;
 
   return (
     <div className=" text-black flex flex-col relative bg-white shadow-sm">

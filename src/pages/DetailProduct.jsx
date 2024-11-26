@@ -67,13 +67,12 @@ function DetailProduct() {
         );
       }
 
+      const qty = !cart ? 1 : product.stock ? cart.qty : product.stock;
+
       if (!cart) {
         formik.setFieldValue("qty", 1);
       } else {
-        formik.setFieldValue(
-          "qty",
-          cart.qty <= product.stock ? cart.qty : product.stock
-        );
+        formik.setFieldValue("qty", qty);
         formik.setFieldValue("variant", cart.variant);
         formik.setFieldValue("note", cart.note);
       }
@@ -81,8 +80,8 @@ function DetailProduct() {
       setProduct(product);
       setTotalCart(getCountCart());
 
-      const voucher = calculateDiscount(product.price, product.discount);
-      let total = product.price * formik.values.qty - voucher;
+      const voucher = calculateDiscount(product.price, product.discount) * qty;
+      let total = product.price * qty - voucher;
 
       setTotal(total);
       setVoucher(voucher);
@@ -101,7 +100,7 @@ function DetailProduct() {
       count += 1;
     }
 
-    let voucher = calculateDiscount(price, discount);
+    let voucher = calculateDiscount(price, discount) * count;
     if (product?.promo) {
       const { requirement, code } = product.promo;
       voucher += promo[code](count, requirement.min, requirement.discount);

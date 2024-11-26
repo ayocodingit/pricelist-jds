@@ -52,10 +52,10 @@ function Cart() {
           );
 
           for (const cart2 of cart) {
-            let voucher = calculateDiscount(product.price,product.discount)
+            let voucher = calculateDiscount(product.price,product.discount) * cart2.qty
             if (product?.promo) {
               const { requirement, code } = product.promo;
-              voucher = promo[code](
+              voucher += promo[code](
                 cart2.qty,
                 requirement.min,
                 requirement.discount
