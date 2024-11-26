@@ -24,14 +24,14 @@ export const addToCart = ({ id, username }, orderDetail) => {
 
   if (isNewItem) products.unshift(product);
 
-  localStorage.removeItem(cartKey);
-  localStorage.setItem(cartKey, JSON.stringify(products));
+  sessionStorage.removeItem(cartKey);
+  sessionStorage.setItem(cartKey, JSON.stringify(products));
 
   return isNewItem;
 };
 
 const getAll = (key, username = "") => {
-  const storage = localStorage.getItem(key);
+  const storage = sessionStorage.getItem(key);
   let carts = [];
 
   if (storage) {
@@ -58,8 +58,8 @@ export const removeItemCart = (id) => {
 
   products = products.filter((product) => product.id != id);
 
-  localStorage.removeItem(cartKey);
-  localStorage.setItem(cartKey, JSON.stringify(products));
+  sessionStorage.removeItem(cartKey);
+  sessionStorage.setItem(cartKey, JSON.stringify(products));
 };
 
 export const removesItemCart = (ids) => {
@@ -67,16 +67,16 @@ export const removesItemCart = (ids) => {
 
   products = products.filter((product) => ids.indexOf(product.id) === -1);
 
-  localStorage.removeItem(cartKey);
-  localStorage.setItem(cartKey, JSON.stringify(products));
+  sessionStorage.removeItem(cartKey);
+  sessionStorage.setItem(cartKey, JSON.stringify(products));
 };
 
 export const removeAllCart = () => {
-  localStorage.removeItem(cartKey);
+  sessionStorage.removeItem(cartKey);
 };
 
 export const removeAllCheckout = () => {
-  localStorage.removeItem(checkoutKey);
+  sessionStorage.removeItem(checkoutKey);
 };
 
 export const moveToCheckOut = (products) => {
@@ -100,6 +100,6 @@ export const moveToCheckOut = (products) => {
     });
     removeItemCart(product.id);
   });
-  localStorage.removeItem(checkoutKey);
-  localStorage.setItem(checkoutKey, JSON.stringify(checkout));
+  sessionStorage.removeItem(checkoutKey);
+  sessionStorage.setItem(checkoutKey, JSON.stringify(checkout));
 };
