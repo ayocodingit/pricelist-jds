@@ -15,7 +15,7 @@ const paths = [
   },
   {
     path: '/me',
-    title: 'Keranjang',
+    title: 'Profile',
     icon: SlUser
   },
 ]
