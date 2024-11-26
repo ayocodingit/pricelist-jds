@@ -15,7 +15,7 @@ const paths = [
   },
   {
     path: '/me',
-    title: 'Profile',
+    title: 'Profil',
     icon: SlUser
   },
 ]
