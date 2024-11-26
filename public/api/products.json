@@ -194,10 +194,18 @@
         "tag": "ready stock",
         "stock": 1,
         "discount": 0,
-        "is_available": true,
+        "is_available": false,
         "location": "Ruang Selatan",
-        "description": "Beli 2 Diskon Rp. 1000",
-        "variants": []
+        "description": "",
+        "variants": [],
+        "promo": {
+            "code": "DealDiscount",
+            "description": "Beli 2 Diskon Rp. 1000",
+            "requirement": {
+                "min": 2,
+                "discount": 1000
+            }
+        }
     },
     {
         "id": 15,
@@ -271,12 +279,20 @@
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": "Susu yang terbuat dari 100% Roasted Almond, dipadukan dengan setetes gula alami Stevia. Tanpa pengawet sehingga aman banget dikonsumsi buat semua kalangan karena tidak menaikkan gula darah. Setelah dibuka, wajib habis dalam 3-4 hari. Tersedia 3 varian rasa: Original Roasted Almond, Choco Almond, Vanilla Roasted Almond - Diskon Rp 5.000 untuk pembelian minimal 10 item.",
+        "description": "Susu yang terbuat dari 100% Roasted Almond, dipadukan dengan setetes gula alami Stevia. Tanpa pengawet sehingga aman banget dikonsumsi buat semua kalangan karena tidak menaikkan gula darah. Setelah dibuka, wajib habis dalam 3-4 hari. Tersedia 3 varian rasa: Original Roasted Almond, Choco Almond, Vanilla Roasted Almond",
         "variants": [
             "original roasted almond",
             "choco almond",
             "vanilla roasted almond"
-        ]
+        ],
+        "promo": {
+            "code": "DealDiscount",
+            "description": "Beli 10 Diskon Rp. 5000",
+            "requirement": {
+                "min": 10,
+                "discount": 5000
+            }
+        }
     },
     {
         "id": 20,
@@ -303,13 +319,21 @@
         "tag": "ready stock",
         "stock": 5,
         "discount": 0,
-        "is_available": true,
+        "is_available": false,
         "location": "Ruang Selatan",
-        "description": "Beli 2 Diskon Rp. 1000",
+        "description": "",
         "variants": [
             "Ikan Teri",
             "Udang Rebon"
-        ]
+        ],
+        "promo": {
+            "code": "DealDiscount",
+            "description": "Beli 2 Diskon Rp. 1000",
+            "requirement": {
+                "min": 2,
+                "discount": 1000
+            }
+        }
     },
     {
         "id": 22,

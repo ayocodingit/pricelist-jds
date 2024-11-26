@@ -4,10 +4,10 @@ import Menu from "../components/Menu";
 
 function Profile() {
   return (
-    <div className="h-[calc(100dvh)] bg-gray-50 text-sm md:text-md flex md:justify-center">
+    <div className="h-[calc(100dvh)] bg-gray-50 text-sm md:text-base flex md:justify-center">
       <div className="flex w-full md:w-1/2 items-center mt-32 flex-col">
         <Customer></Customer>
-        <p className="text-md text-center">
+        <p className="text-base text-center">
           <a
             href="https://t.me/+zVf_gRBkoixlNTg1"
             className=" text-lg text-primary hover:underline"

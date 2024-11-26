@@ -16,6 +16,7 @@ import { Button, Chip, Image, Textarea } from "@nextui-org/react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import CartIcon from "../components/CartIcon";
 import Description from "../components/Description";
+import promo from "../utils/promo";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -27,6 +28,7 @@ function DetailProduct() {
   const [cartId, setCartId] = useState(URLSearchParams.get("id") || "");
   const [isLoading, setIsLoading] = useState(true);
   const [showDetail, setShowDetail] = useState(false);
+  const [voucher, setVoucher] = useState(0);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -78,9 +80,13 @@ function DetailProduct() {
 
       setProduct(product);
       setTotalCart(getCountCart());
-      setTotal(
-        calculateDiscount(product.price, product.discount) * formik.values.qty
-      );
+
+      const voucher = calculateDiscount(product.price, product.discount);
+      let total = product.price * formik.values.qty - voucher;
+
+      setTotal(total);
+      setVoucher(voucher);
+
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -95,8 +101,15 @@ function DetailProduct() {
       count += 1;
     }
 
+    let voucher = calculateDiscount(price, discount);
+    if (product?.promo) {
+      const { requirement, code } = product.promo;
+      voucher += promo[code](count, requirement.min, requirement.discount);
+    }
+
     formik.setFieldValue("qty", count);
-    setTotal(calculateDiscount(price, discount) * count);
+    setTotal(price * count - voucher);
+    setVoucher(voucher);
   };
 
   const alert = (isNewProduct) => {
@@ -129,7 +142,7 @@ function DetailProduct() {
   };
 
   return (
-    <div className="bg-gray-50 h-[calc(100dvh)] text-sm md:text-md flex flex-col">
+    <div className="bg-gray-50 h-[calc(100dvh)] text-sm md:text-base flex flex-col">
       <div className="flex items-center py-2 px-5 md:px-32 gap-5 justify-between bg-white sticky top-0 z-10 shadow-sm">
         <SlArrowLeft
           className="text-3xl rounded-full hover:cursor-pointer p-1"
@@ -169,7 +182,7 @@ Hatur nuhun~ ✨`}
       <div className="w-full md:flex md:justify-center md:gap-5 h-[calc(85dvh)] md:h-full items-center overflow-auto">
         <div className="flex relative rounded-md w-full md:h-auto md:w-1/3">
           {!isLoading && isStockEmpty && (
-            <span className="absolute rounded-full z-20 animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+            <span className="absolute rounded-full z-20 animate-opacity-open bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base shadow-lg font-roboto">
               Habis
             </span>
           )}
@@ -184,7 +197,7 @@ Hatur nuhun~ ✨`}
             </PhotoView>
           </PhotoProvider>
         </div>
-        <div className="  md:max-h-[calc(99dvh)] min-h-[calc(44dvh)] md:justify-center md:p-4 bg-white md:w-1/2 md:shadow-md md:rounded-md">
+        <div className="  md:max-h-[calc(99dvh)] min-h-[calc(44dvh)] md:justify-center md:p-2 bg-white md:w-1/2 md:shadow-md md:rounded-md">
           <div className="p-5 flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <Chip
@@ -212,7 +225,7 @@ Hatur nuhun~ ✨`}
                       }}
                       className="h-full min-w-8 w-10 bg-gray-300 text-black  rounded-md flex justify-center items-center"
                     >
-                  -
+                      -
                     </Button>
                     <div className="w-1/2   text-center h-full flex justify-center items-center">
                       {formik.values.qty}
@@ -238,15 +251,10 @@ Hatur nuhun~ ✨`}
             <div className="text-lg capitalize  justify-center flex flex-col gap-1">
               <div className="flex items-center gap-1">
                 <p className=" text-primary">
-                  {formatNumberIDR(
-                    calculateDiscount(product.price, product.discount) || 0
-                  )}
+                  {formatNumberIDR(product.price)}
                 </p>
                 {product.discount > 0 && (
                   <>
-                    <span className=" line-through text-gray-600 text-sm">
-                      {formatNumberIDR(product.price)}
-                    </span>
                     <p className=" bg-primary text-xs text-white p-1 rounded-md ">
                       -{product.discount}%
                     </p>
@@ -254,7 +262,7 @@ Hatur nuhun~ ✨`}
                 )}
               </div>
               <div>
-                <p className=" text-wrap text-md">{product.name}</p>
+                <p className=" text-wrap text-base">{product.name}</p>
               </div>
             </div>
 
@@ -302,6 +310,16 @@ Hatur nuhun~ ✨`}
                 ></Description>
               )}
             </div>
+
+            {product?.promo && (
+              <div className=" gap-1 flex flex-col py-2">
+                <p className="font-semibold">Promo Spesial</p>
+                <p className="text-base text-primary">
+                  {product.promo.description}
+                </p>
+              </div>
+            )}
+
             {product.location && (
               <div className="flex items-center">
                 <BiMap className="text-xl" />
@@ -312,12 +330,12 @@ Hatur nuhun~ ✨`}
             {product.variants?.length > 0 && (
               <div className="flex flex-col gap-2 mt-2 w-full">
                 <p>Pilih Variasi</p>
-                <div className="gap-2 grid  grid-cols-2">
+                <div className="gap-2 flex overflow-auto">
                   {product.variants?.map((variant, index) => (
                     <Button
                       size="sm"
                       key={index}
-                      className={`rounded-md capitalize ${
+                      className={`rounded-md capitalize !min-w-40 ${
                         formik.values.variant == variant
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-black"
@@ -355,9 +373,13 @@ Hatur nuhun~ ✨`}
             <div className="flex w-full items-center border-t-[1px] md:border-0 bg-white h-full p-2 rounded-md">
               <div className="p-2 flex flex-col w-1/3 text-black">
                 <p className="">Total</p>
-                <p className="font-[sans-serif]">
+                <p className="font-[sans-serif] flex flex-col gap-1">
                   {formatNumberIDR(!isStockEmpty ? total : 0)}
                 </p>
+              </div>
+              <div className="text-black w-1/3 flex flex-col">
+                <span>Hemat</span>
+                {formatNumberIDR(voucher)}
               </div>
               <Button
                 className={`w-full text-white ${

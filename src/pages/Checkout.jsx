@@ -18,6 +18,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import Loading from "../components/Loading";
 import { SlArrowLeft } from "react-icons/sl";
 import { Button, Radio, RadioGroup } from "@nextui-org/react";
+import promo from "../utils/promo";
 
 function Checkout() {
   const [user, setUser] = useState({});
@@ -51,15 +52,17 @@ function Checkout() {
       let message = "";
 
       productDetail.forEach((product, index) => {
-        tmpTotal += product.price * product.qty;
+        tmpTotal += (product.price * product.qty) - product.voucher;
         tmpTotalQty += product.qty;
+
         message += `
 ${index + 1}. <b>${product.name}</b> ${
           product.variant ? `- <i>${product.variant}</i>` : ""
         } 
     ${product.qty} x ${product.price} = ${formatNumberIDR(
-          product.qty * product.price
+          (product.price * product.qty) - product.voucher
         )}
+    ${product.voucher > 0 ? `Hemat: ${formatNumberIDR(product.voucher)}` : ""}
     <i>${product.note || "tidak ada"}</i>`;
       });
 
@@ -108,6 +111,9 @@ Total: <b>${formatNumberIDR(total)}</b>
 <strong>JDS Mart - Dari <b>UMKM</b> untuk <b>Semua!</b> 😁</strong>
 ${location.origin}
 `;
+
+console.log(message);
+
     if (paymentMethod != "cash" && !file)
       return alert("error", `bukti transfer belum di unggah!`);
 
@@ -127,20 +133,20 @@ ${location.origin}
   };
 
   return (
-    <form action="#" onSubmit={handleSubmit} className="text-sm  md:text-md">
+    <form action="#" onSubmit={handleSubmit} className="text-sm  md:text-base">
       <div className="bg-gray-50 h-[calc(100dvh)] flex flex-col relative text-sm">
         <div className="flex gap-2 py-3 px-2 items-center shadow-sm sticky top-0 z-10 bg-white text-black">
           <SlArrowLeft
             className="text-lg hover:cursor-pointer"
             onClick={() => navigate("/list")}
           />
-          <p className="text-md">Proses Bayar</p>
+          <p className="text-base">Proses Bayar</p>
         </div>
         <div className="w-full h-[calc(82dvh)] overflow-auto md:flex gap-5">
           {!isLoading && (
             <>
               <div className="md:w-full">
-                <p className="py-3 px-2 text-md">Rincian Pembelian</p>
+                <p className="py-3 px-2 text-base">Rincian Pembelian</p>
                 <div className="border-1 flex flex-col gap-2 py-2 items-center justify-center w-full bg-white shadow-md p-4">
                   {products.map((product, index) => {
                     return (
@@ -157,11 +163,18 @@ ${location.origin}
                           catatan: {product.note || "tidak ada"}
                         </p>
                         <div className="flex justify-between ">
-                          <p className="px-4 print:text-xs">
-                            {product.qty} x {formatNumberIDR(product.price)}
+                          <p className="px-4 print:text-xs flex gap-5 items-center">
+                            {product.qty} x {formatNumberIDR(product.price)}{" "}
+                            {product.voucher > 0 && (
+                              <span className="text-xs">
+                                Hemat {formatNumberIDR(product.voucher)}
+                              </span>
+                            )}
                           </p>
                           <p className="print:text-xs">
-                            {formatNumberIDR(product.qty * product.price)}
+                            {formatNumberIDR(
+                              (product.qty * product.price) - product.voucher
+                            )}
                           </p>
                         </div>
                       </div>
@@ -172,7 +185,7 @@ ${location.origin}
                     <p>{formatNumberIDR(total)}</p>
                   </div>
                 </div>
-                <p className="py-3 px-2 text-md">Catatan Buat Penjual</p>
+                <p className="py-3 px-2 text-base">Catatan Buat Penjual</p>
                 <div className="px-2">
                   <textarea
                     name="note"
@@ -188,7 +201,7 @@ ${location.origin}
                 </div>
               </div>
               <div className="md:w-full">
-                <p className=" py-3 px-2 text-md">Metode Pembayaran</p>
+                <p className=" py-3 px-2 text-base">Metode Pembayaran</p>
                 <div className="flex flex-col gap-2 p-2 bg-white rounded-md">
                   <RadioGroup
                     color="primary"
@@ -196,7 +209,6 @@ ${location.origin}
                     onChange={(e) => {
                       setPaymentMethod(e.target.value);
                       setVA(e.target.id);
-                      
                     }}
                   >
                     <PaymentList
@@ -223,7 +235,10 @@ ${location.origin}
                     className={` flex flex-col gap-2  p-2 bg-white animate-opacity-open`}
                   >
                     <div className="border border-primary rounded-md flex justify-between items-center p-4">
-                      <p className=""> No Rek <span className="font-bold">{VA}</span></p>
+                      <p className="">
+                        {" "}
+                        No Rek <span className="font-bold">{VA}</span>
+                      </p>
                       <CopyToClipboard
                         text={VA}
                         onCopy={() =>

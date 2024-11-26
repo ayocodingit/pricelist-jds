@@ -58,7 +58,7 @@ function List() {
   // };
 
   return (
-    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-md">
+    <div className="bg-gray-50 min-h-[calc(100dvh)]  flex md:justify-center text-sm md:text-base">
       <div className="w-full flex flex-col relative">
         <div className="sticky top-0 bg-white text-black flex flex-col gap-2 z-20">
           <h1 className="px-4 mt-2 md:text-xl text-lg uppercase">JDS Mart</h1>

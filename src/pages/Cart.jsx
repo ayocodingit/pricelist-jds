@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  getAllCart,
-  moveToCheckOut,
-} from "../repository/carts";
+import { getAllCart, moveToCheckOut } from "../repository/carts";
 import CartList from "../components/CartList";
 import { useNavigate } from "react-router-dom";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
@@ -13,6 +10,7 @@ import Menu from "../components/Menu";
 import { SlArrowLeft } from "react-icons/sl";
 import { Button } from "@nextui-org/react";
 import ModalCustomer2 from "../components/ModalCustomer2";
+import promo from "../utils/promo";
 
 function Cart() {
   const [carts, setCarts] = useState([]);
@@ -54,14 +52,21 @@ function Cart() {
           );
 
           for (const cart2 of cart) {
+            let voucher = calculateDiscount(product.price,product.discount)
+            if (product?.promo) {
+              const { requirement, code } = product.promo;
+              voucher = promo[code](
+                cart2.qty,
+                requirement.min,
+                requirement.discount
+              );              
+            }
             tmpItems.push({
               ...product,
               ...cart2,
+              voucher
             });
-            total += calculateDiscount(
-              product.price * cart.qty,
-              product.discount
-            );
+            total += (product.price * cart2.qty) - product.discount;
           }
         }
 
@@ -79,9 +84,9 @@ function Cart() {
   }, [products, username]);
 
   return (
-    <div className="bg-gray-50 text-sm  md:text-md flex flex-col relative h-[calc(100dvh)]">
+    <div className="bg-gray-50 text-sm  md:text-base flex flex-col relative h-[calc(100dvh)]">
       <div className="flex gap-4 py-3 px-4 bg-white items-center justify-center sticky top-0 z-10 shadow-sm">
-        <p className="text-md">Keranjang Saya ({getAllCart().length})</p>
+        <p className="text-base">Keranjang Saya ({getAllCart().length})</p>
       </div>
       <div className="w-full flex gap-2 items-center">
         <div className="w-full md:w-full items-center shadow-md rounded-md">
@@ -143,7 +148,8 @@ function Cart() {
             </div>
             <Button
               className={`w-full flex justify-center rounded-md p-2 gap-2 ${
-                products.length != 0 && "bg-primary text-white hover:cursor-pointer hover:opacity-90"
+                products.length != 0 &&
+                "bg-primary text-white hover:cursor-pointer hover:opacity-90"
               } `}
               disabled={products.length === 0}
               onClick={() => {

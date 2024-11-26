@@ -1,4 +1,5 @@
 import { calculateDiscount } from "../utils/formatter";
+import promo from "../utils/promo";
 
 const cartKey = "cart";
 const checkoutKey = "checkout";
@@ -9,7 +10,7 @@ export const addToCart = ({ id, username }, orderDetail) => {
     productId: id,
     id: `${id}-${orderDetail.variant}`,
     username,
-    ...orderDetail
+    ...orderDetail,
   };
   const products = getAll(cartKey);
 
@@ -39,12 +40,13 @@ const getAll = (key, username = "") => {
   if (username) {
     carts = carts.filter((product) => product.username == username);
   }
-  
+
   return carts;
 };
 
 export const getAllCart = (username = "") => getAll(cartKey, username);
-export const getCartByID = (id) => getAll(cartKey).filter((cart) => cart.id === id);
+export const getCartByID = (id) =>
+  getAll(cartKey).filter((cart) => cart.id === id);
 export const getAllCheckout = () => getAll(checkoutKey);
 
 export const getCountCart = () => {
@@ -80,6 +82,11 @@ export const removeAllCheckout = () => {
 export const moveToCheckOut = (products) => {
   const checkout = [];
   products.forEach((product) => {
+    let voucher = calculateDiscount(product.price, product.discount);
+    if (product?.promo) {
+      const { requirement, code } = product.promo;
+      voucher += promo[code](product.qty, requirement.min, requirement.discount);
+    }
     checkout.push({
       id: product.id,
       productId: product.productId,
@@ -88,7 +95,8 @@ export const moveToCheckOut = (products) => {
       qty: product.qty,
       note: product.note,
       variant: product.variant,
-      price: calculateDiscount(product.price, product.discount),
+      price: product.price,
+      voucher: voucher,
     });
     removeItemCart(product.id);
   });

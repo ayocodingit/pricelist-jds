@@ -14,15 +14,13 @@ function CartList({
   setIsLoading,
 }) {
   const navigate = useNavigate();
-  const totalPrice = calculateDiscount(
-    product.price * product.qty,
-    product.discount
-  );
+  const voucher =
+    calculateDiscount(product.price, product.discount) + product.voucher;
+  let totalPrice = (product.price * product.qty) - voucher;
 
   return (
     <div className=" text-black flex flex-col relative bg-white shadow-sm">
       <div className="flex px-2 gap-4 items-center py-1">
-       
         <Checkbox
           isSelected={products.some(({ id }) => id == product.id)}
           size="md"
@@ -60,12 +58,15 @@ function CartList({
             )}
           </p>
           <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
-            <span className="text-md">{formatNumberIDR(totalPrice)}</span>
+            <span className="text-base">{formatNumberIDR(totalPrice)}</span>
             {product.discount > 0 && (
               <span className="bg-primary  text-white p-1 rounded-md text-xs">
                 -{product.discount}%
               </span>
             )}
+          </p>
+          <p className="rounded-md text-xs">
+            hemat: {formatNumberIDR(product.voucher)}
           </p>
           <div className="flex text-xs mt-1 justify-between">
             <p className="w-1/2">Catatan: </p>

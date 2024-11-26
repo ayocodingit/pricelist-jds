@@ -32,7 +32,7 @@ function Description({ description, setShowDetail }) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-md">
+              <ModalHeader className="flex flex-col gap-1 text-base">
                 Detail Produk
               </ModalHeader>
               <ModalBody>

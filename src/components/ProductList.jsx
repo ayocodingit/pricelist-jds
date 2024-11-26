@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { calculateDiscount, formatNumberIDR } from "../utils/formatter";
 import { tagOptions } from "../utils/contstant/tag";
-import Skeleton from "./Skeleton";
 import { useState } from "react";
 import { Image, Tooltip } from "@nextui-org/react";
 
@@ -19,6 +18,13 @@ function ProductList({ product }) {
   const isStockEmpty =
     (product.tag == tagOptions.READY_STOCK && product.stock == 0) ||
     !product.is_available;
+
+  let voucher = calculateDiscount(
+    product.price,
+    product.discount
+  );
+
+  let totalPrice = product.price - voucher;
 
   return (
     <Link
@@ -46,7 +52,7 @@ function ProductList({ product }) {
           </Tooltip>
 
           {isStockEmpty && (
-            <span className="absolute animate-opacity-open rounded-full z-10 bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-md shadow-lg font-roboto">
+            <span className="absolute animate-opacity-open rounded-full z-10 bg-gray-900 text-white p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base shadow-lg font-roboto">
               Habis
             </span>
           )}
@@ -59,10 +65,8 @@ function ProductList({ product }) {
             {product.name}
           </h1>
           <div className=" text-primary flex gap-2 items-center mt-2">
-            <p className="text-md">
-              {formatNumberIDR(
-                calculateDiscount(product.price, product.discount)
-              )}{" "}
+            <p className="text-base">
+              {formatNumberIDR(totalPrice)}{" "}
               {product.discount > 0 && (
                 <span className="text-xs line-through text-black">
                   {formatNumberIDR(product.price)}

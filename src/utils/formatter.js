@@ -10,5 +10,5 @@ export const formatNumberIDR = (number) => {
 
 export const calculateDiscount = (price, discount) => {
   const voucher = (price / 100) * discount;
-  return price - voucher;
+  return voucher;
 };

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
-    <div className="h-[calc(100dvh)] flex items-center md:justify-center gap-2 px-5 text-sm md:text-md dark:bg-black dark:text-white">
+    <div className="h-[calc(100dvh)] flex items-center md:justify-center gap-2 px-5 text-sm md:text-base dark:bg-black dark:text-white">
       <div className="w-full md:w-1/2 gap-2 flex flex-col items-center text-center">
         <Image src="/homepage.png" className="w-full h-52 object-contain animate-opacity-open">
 
