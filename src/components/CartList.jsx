@@ -53,7 +53,7 @@ function CartList({
           <p className="">
             {product.name}{" "}
             {product.variant && (
-              <span className="capitalize font-bold">- {product.variant}</span>
+              <span className="capitalize font-bold text-sm">- {product.variant}</span>
             )}
           </p>
           <p className=" font-[sans-serif] text-primary flex gap-2 items-center">
