@@ -11,7 +11,7 @@ import { NextUIProvider } from "@nextui-org/react";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <NextUIProvider className="select-none text-foreground bg-background text-sm md:text-base">
+    <NextUIProvider className="select-none text-foreground bg-background text-base md:text-lg">
       <RouterProvider router={router} />
     </NextUIProvider>
     <ToastContainer />
