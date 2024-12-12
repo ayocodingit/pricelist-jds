@@ -379,5 +379,20 @@
         "location": "Ruang Selatan",
         "description": "<p>Nikmati sensasi pempek telur yang kaya rasa dan tekstur lembut! <br/> <br/> 🔥 Kenapa Harus Coba EL Pempek? <br/> • Lengkap dan Variatif: Pengen coba semua jenis pempek? Pempek Campur solusinya, pengen coba Pempek Telornya aja?bisaaaa! <br/> • Rasa yang Otentik: EL Pempek dibuat dengan bahan-bahan terbaik dan resep asli Palembang, rasanya gak perlu diragukan lagi! <br/> • Praktis dan Lezat: Kamu bisa langsung nikmati pempek ini setelah digoreng. Simpel dan enak, cocok buat makan bareng keluarga atau teman-teman. <br/> <br/> 🌟Promo Spesial!🌟 <br/> ⁃ Dapatkan 1 Loyalty Card setiap pembelian 1 varian pempek <br/> ⁃ 10 Loyalty Card FREE 1 Pempek varian apapun bebas pilih </p>",
         "variants": []
+    },
+    {
+        "id": 25,
+        "image": "https://i.ibb.co.com/59LxjRh/gambar.png",
+        "category": "makanan",
+        "name": "Chuba Keripik Singkong",
+        "price": 1500,
+        "username": "duhabduh",
+        "tag": "ready stock",
+        "stock": 10,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "",
+        "variants": []
     }
 ]
