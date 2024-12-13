@@ -239,18 +239,26 @@
     },
     {
         "id": 17,
-        "image": "https://i.ibb.co.com/NF0JSQk/IMG-6402-Original.jpg",
+        "image": "https://i.ibb.co.com/xYKCZzd/IMG-1801.jpg",
         "category": "minuman",
-        "name": "Dessert Jelly Sagoo",
-        "price": 30000,
+        "name": "Mango Coconut Jelly",
+        "price": 35000,
         "username": "mikes05",
         "tag": "pre order",
         "stock": 9999,
         "discount": 0,
         "is_available": true,
         "location": "Ruang Selatan",
-        "description": "Dessert Jelly rasa Strawberry. Isian lengkap dengan buah strawberry segar di dalamnya. Tersedia juga versi hampers untuk kasih org terdekat/gebetan biar makin lengket 😋",
-        "variants": []
+        "description": "Perpaduan antara buah Mangga dengan topping yang super duper banyak dan kuah mango yang creamy. Mangganya asli dan tanpa tambahan sirup. Tersedia juga versi hampers + Rp 10.000 untuk merayakan natal bersama teman dan keluarga.",
+        "variants": [],
+        "promo": {
+            "code": "ThresholdDiscount",
+            "description": "Minimal Beli 4 Harga menjadi Rp. 30.000",
+            "requirement": {
+                "min": 4,
+                "discount": 5000
+            }
+        }
     },
     {
         "id": 18,
@@ -394,5 +402,28 @@
         "location": "Ruang Selatan",
         "description": "",
         "variants": []
+    },
+    {
+        "id": 26,
+        "image": "https://i.ibb.co.com/wWzn2x3/IMG-1808.jpg",
+        "category": "minuman",
+        "name": "Strawberry Lychee Jelly",
+        "price": 35000,
+        "username": "mikes05",
+        "tag": "pre order",
+        "stock": 9999,
+        "discount": 0,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Perpaduan antara buah Strawberry dengan berbagai macam jelly yang membuat dessert ini meriah. Dilengkapi juga dengan buah Lychee yang menyegarkan. Tersedia juga versi hampers + Rp 10.000 untuk merayakan natal bersama teman dan keluarga.",
+        "variants": [],
+        "promo": {
+            "code": "ThresholdDiscount",
+            "description": "Minimal Beli 4 Harga menjadi Rp. 30.000",
+            "requirement": {
+                "min": 4,
+                "discount": 5000
+            }
+        }
     }
 ]
