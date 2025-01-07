@@ -136,7 +136,7 @@ function List() {
             </div>
           </div>
 */}
-          <div className="flex px-2 gap-2 overflow-auto bg-white">
+          <div className="flex px-2 gap-2 overflow-auto bg-white no-scrollbar">
             <FilterCategory
               handleCategory={handleCategory}
               category={category}
