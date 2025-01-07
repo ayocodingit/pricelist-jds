@@ -25,6 +25,10 @@
     font-display: swap;
     src: url("/fonts/Roboto-Bold.ttf");
   }
+
+  html {
+    font-family: 'Poppins', serif; 
+  }
 }
 
 
