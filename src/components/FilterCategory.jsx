@@ -16,7 +16,8 @@ const filters = Object.entries(categoryOptions);
 function FilterCategory({ handleCategory, category }) {
   return (
     <>
-      <Tabs variant="underlined" aria-label="Filter Category" onSelectionChange={(key) => handleCategory(key)}>
+      <Tabs variant="underlined" aria-label="Filter Category"
+className="no-scrollbar" onSelectionChange={(key) => handleCategory(key)}>
         {filters.map((value) => (
           <Tab key={value[1]} title={value[1]} className="capitalize" />
         ))}
