@@ -425,5 +425,20 @@
                 "discount": 5000
             }
         }
+    },
+    {
+        "id": 27,
+        "image": "https://i.ibb.co.com/BK6Zdrj3/image.png",
+        "category": "makanan",
+        "name": "Kartika Toast Puffies Kaleng Limited Edition Special Ramadhan - Netto 150gr",
+        "price": 40000,
+        "username": "novansyaah",
+        "tag": "ready stock",
+        "stock": 10,
+        "discount": 25,
+        "is_available": true,
+        "location": "Ruang Selatan",
+        "description": "Exp: 26 Januari 2026",
+        "variants": []
     }
 ]
