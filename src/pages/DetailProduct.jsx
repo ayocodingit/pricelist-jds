@@ -12,7 +12,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { SlActionRedo, SlArrowLeft, SlBasket } from "react-icons/sl";
-import { Button, Chip, Image, Textarea } from "@nextui-org/react";
+import { Button, Chip, Textarea } from "@nextui-org/react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import CartIcon from "../components/CartIcon";
 import Description from "../components/Description";
@@ -187,8 +187,7 @@ Hatur nuhun~ ✨`}
           )}
           <PhotoProvider>
             <PhotoView src={product.image}>
-              <Image
-                removeWrapper
+              <img
                 src={product.image}
                 alt="image product"
                 className={`w-full h-[20rem] md:h-[calc(60dvh)] hover:cursor-zoom-in rounded-md object-contain`}

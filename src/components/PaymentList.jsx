@@ -1,4 +1,4 @@
-import { cn, Image, Radio } from "@nextui-org/react";
+import { cn, Radio } from "@nextui-org/react";
 import React from "react";
 
 export const CustomRadio = (props) => {
@@ -25,12 +25,12 @@ function PaymentList({ payment, paymentMethod, setPaymentMethod, setVA }) {
     <>
       <CustomRadio value={payment.provider} id={payment.value}>
         <div className="flex items-center gap-2">
-          <Image
+          <img
             src={`/payments/${payment.provider}.png`}
             alt="logo"
             className="object-contain h-10 w-10"
             loading="lazy"
-          ></Image>
+          ></img>
           <p>{payment.provider}</p>
         </div>
       </CustomRadio>

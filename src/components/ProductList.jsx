@@ -41,13 +41,12 @@ function ProductList({ product }) {
             delay={0}
             closeDelay={0}
           >
-            <Image
+            <img
               alt="image product"
               src={product.image}
               className={`w-full h-32 md:h-40 object-contain p-1 -z-0`}
               radius="sm"
               loading="lazy"
-              disableSkeleton={true}
             />
           </Tooltip>
 

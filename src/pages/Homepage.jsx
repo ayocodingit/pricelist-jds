@@ -1,4 +1,4 @@
-import { Button, Image } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,9 +6,9 @@ function Homepage() {
   return (
     <div className="h-[calc(100dvh)] flex items-center md:justify-center gap-2 px-5 text-sm md:text-base dark:bg-black dark:text-white">
       <div className="w-full md:w-1/2 gap-2 flex flex-col items-center text-center">
-        <Image src="/homepage.png" className="w-full h-52 object-contain animate-opacity-open">
+        <img src="/homepage.png" className="w-full h-52 object-contain animate-opacity-open">
 
-        </Image>
+        </img>
         <h1 className="text-4xl font-[sans-serif] tracking-widest">
           JDS Mart
         </h1>
